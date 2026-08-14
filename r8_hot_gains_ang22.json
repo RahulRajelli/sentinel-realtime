@@ -1,0 +1,40 @@
+[
+ {
+  "scenario": "hot_gains",
+  "expected": "control_oscillation",
+  "ok": false,
+  "injected": [
+   "ATC_ANG_RLL_P=22.0",
+   "ATC_ANG_PIT_P=22.0",
+   "ATC_RAT_RLL_P=0.7",
+   "ATC_RAT_PIT_P=0.7",
+   "SIM_WIND_SPD=14.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "actuator_saturation",
+  "latency_s": 2.0,
+  "all_advised": [
+   "actuator_saturation"
+  ],
+  "false_positives": 0,
+  "incidents": 155,
+  "advisories": 2,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 211,
+  "buffer_last": 3227,
+  "detect_ms_first": 0.73,
+  "detect_ms_last": 6.35,
+  "worst_cycle_ms": 17.3,
+  "ambiguous": true,
+  "expected_first": [
+   "actuator_saturation",
+   "ekf_inconsistency"
+  ],
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\hot_gains_ang22wind_r0.json",
+  "bundle_id": "dd5db6ad0a2e784f",
+  "rep": 0
+ }
+]

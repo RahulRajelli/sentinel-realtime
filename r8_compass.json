@@ -1,0 +1,101 @@
+[
+ {
+  "scenario": "compass_offset",
+  "expected": "compass_inconsistency",
+  "ok": true,
+  "injected": [
+   "SIM_MAG1_OFS_X=400.0",
+   "SIM_MAG1_OFS_Y=400.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "ekf_inconsistency",
+  "latency_s": 1.0,
+  "all_advised": [
+   "compass_inconsistency",
+   "ekf_inconsistency"
+  ],
+  "false_positives": 0,
+  "incidents": 310,
+  "advisories": 4,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 217,
+  "buffer_last": 3304,
+  "detect_ms_first": 0.7,
+  "detect_ms_last": 5.48,
+  "worst_cycle_ms": 16.8,
+  "ambiguous": true,
+  "expected_first": "ekf_inconsistency",
+  "ambiguity_confirmed": true,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\compass_offset_r0.json",
+  "bundle_id": "208f0c138b8eb274",
+  "rep": 0
+ },
+ {
+  "scenario": "compass_offset",
+  "expected": "compass_inconsistency",
+  "ok": true,
+  "injected": [
+   "SIM_MAG1_OFS_X=400.0",
+   "SIM_MAG1_OFS_Y=400.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "ekf_inconsistency",
+  "latency_s": 1.0,
+  "all_advised": [
+   "compass_inconsistency",
+   "ekf_inconsistency"
+  ],
+  "false_positives": 0,
+  "incidents": 310,
+  "advisories": 4,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 210,
+  "buffer_last": 3297,
+  "detect_ms_first": 0.42,
+  "detect_ms_last": 7.36,
+  "worst_cycle_ms": 15.4,
+  "ambiguous": true,
+  "expected_first": "ekf_inconsistency",
+  "ambiguity_confirmed": true,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\compass_offset_r1.json",
+  "bundle_id": "3404617f357fb1fa",
+  "rep": 1
+ },
+ {
+  "scenario": "compass_offset",
+  "expected": "compass_inconsistency",
+  "ok": true,
+  "injected": [
+   "SIM_MAG1_OFS_X=400.0",
+   "SIM_MAG1_OFS_Y=400.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "ekf_inconsistency",
+  "latency_s": 1.0,
+  "all_advised": [
+   "compass_inconsistency",
+   "ekf_inconsistency"
+  ],
+  "false_positives": 0,
+  "incidents": 310,
+  "advisories": 4,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 210,
+  "buffer_last": 3311,
+  "detect_ms_first": 0.42,
+  "detect_ms_last": 5.92,
+  "worst_cycle_ms": 16.5,
+  "ambiguous": true,
+  "expected_first": "ekf_inconsistency",
+  "ambiguity_confirmed": true,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\compass_offset_r2.json",
+  "bundle_id": "34c046b569ac3636",
+  "rep": 2
+ }
+]
