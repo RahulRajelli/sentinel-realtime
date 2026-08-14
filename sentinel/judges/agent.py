@@ -48,9 +48,27 @@ _JSON_BLOCK = re.compile(r"\{.*\}", re.DOTALL)
 class AgentJudge:
     id = "B3"
 
-    def __init__(self, client: ModelClient, max_turns: int = 10) -> None:
+    def __init__(self, client: ModelClient, max_turns: int = 10,
+                 withhold: tuple[str, ...] = (), offer: tuple[str, ...] = ()) -> None:
         self.client = client
         self.max_turns = max_turns
+        # Tools removed from the offered set, for ablation.
+        #
+        # Exists because of the E4 result on 2026-08-14: B3 scored 0.00 on `compass_offset` while
+        # B1 -- same model, same prompt, NO tools -- scored 0.89, and B3's rationale said "the EKF
+        # inconsistency was detected first... this likely caused the compass inconsistency". The
+        # hypothesis is that `list_advisories` and `ordering` expose detection ORDER, and the
+        # model reads order as causality. Withholding them tests that directly instead of
+        # inferring it from rationales.
+        #
+        # Withheld tools are removed from the offered specs, not stubbed: a tool that exists and
+        # refuses would still tell the model the ordering question is askable.
+        self.withhold = tuple(withhold)
+        # Opt-in extras from OPTIONAL_SPECS. They are not in SPECS so that the default offered
+        # set stays exactly the five the published table was measured against.
+        self.offer = tuple(offer)
+        self.specs = ([s for s in BundleTools.SPECS if s["name"] not in self.withhold]
+                      + [s for s in BundleTools.OPTIONAL_SPECS if s["name"] in self.offer])
 
     def judge(self, bundle: RunBundle, budget: Budget | None = None,
               variant: str = "v1") -> Verdict:
@@ -74,7 +92,7 @@ class AgentJudge:
 
             try:
                 resp = self.client.complete(
-                    messages=messages, tools=BundleTools.SPECS, temperature=0.0, seed=0)
+                    messages=messages, tools=self.specs, temperature=0.0, seed=0)
             except Exception as exc:
                 # A transport failure -- rate limit, timeout, 5xx -- is a HARNESS failure, not a
                 # model one, and it must not take the sweep down with it. Measured 2026-08-14:

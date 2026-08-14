@@ -39,6 +39,13 @@ from sentinel.bundle import RunBundle
 # they are excluded by the allow-list in `summarize()` and checked by value in the tests.
 FORBIDDEN_KEYS = ("expected_root_cause", "expected_symptoms")
 
+# How much of an evidence series `detector_evidence` returns verbatim before summarising. Head is
+# larger than tail on purpose: onset ordering is the judgement E4 measures, and it lives in the
+# first few samples. Named constants rather than literals so a future table can state the value
+# the numbers were produced under -- see the docstring for what forced the cap.
+EVIDENCE_HEAD = 10
+EVIDENCE_TAIL = 5
+
 
 class BundleTools:
     """The whole world a judge is allowed to observe, for one bundle."""
@@ -96,6 +103,21 @@ class BundleTools:
 
         This is what makes a verdict citable: an advisory is only checkable if the reader can
         see which metric crossed which threshold, and by how much.
+
+        **Bounded, and it has to be.** This returned every row for every cycle until 2026-08-14,
+        when it was measured at 1,056 rows / 191,465 chars (~48k tokens) for `accel_clipping` on
+        a 45 s flight -- against a 711-char `summarize()`. One call was ~270x the entire starting
+        context, so B3 tripped its token ceiling and degraded to B0 before reasoning at all. The
+        agent tier could not be measured, and B2's matched-spend `k` was being derived from that
+        meaningless number.
+
+        A detector re-firing 1,056 times is one fact, not 1,056 facts, so the cap costs no
+        information a judge could use: onset (`first`), persistence (`last`) and the distribution
+        (`by_metric`) are all retained, and `n_rows` states what was elided. `signal_window` on
+        the same page already promises "Never the raw series"; this is that rule applied here.
+
+        Small results are returned as a bare list exactly as before -- the shape only changes
+        when it would otherwise be unaffordable, and `truncated` says so explicitly.
         """
         rows: list[dict[str, Any]] = []
         for cycle in self._b.cycles:
@@ -112,7 +134,107 @@ class BundleTools:
         if not rows:
             return {"error": f"{incident_type!r} was never detected in this flight",
                     "detected_types": sorted(self._types())}
-        return rows
+        if len(rows) <= EVIDENCE_HEAD + EVIDENCE_TAIL:
+            return rows
+
+        by_metric: dict[str, dict[str, Any]] = {}
+        for r in rows:
+            g = by_metric.setdefault(r["metric"], {
+                "n": 0, "t_first": r["t"], "t_last": r["t"],
+                "value_min": r["value"], "value_max": r["value"], "_sum": 0.0,
+                "threshold": r["threshold"], "unit": r["unit"],
+            })
+            g["n"] += 1
+            g["t_last"] = r["t"]
+            v = r["value"]
+            if isinstance(v, (int, float)):
+                g["value_min"] = min(g["value_min"], v)
+                g["value_max"] = max(g["value_max"], v)
+                g["_sum"] += v
+        for g in by_metric.values():
+            n = g.pop("n")
+            total = g.pop("_sum")
+            g["n"] = n
+            g["value_mean"] = round(total / n, 4) if n else None
+
+        return {
+            "incident_type": incident_type,
+            "n_rows": len(rows),
+            "truncated": True,
+            "note": (f"{len(rows)} evidence rows; showing the first {EVIDENCE_HEAD} and last "
+                     f"{EVIDENCE_TAIL}. A detector re-firing every cycle repeats one fact -- "
+                     f"`by_metric` carries the full distribution, so onset time in `first` is "
+                     f"still the earliest sample recorded."),
+            "by_metric": by_metric,
+            "first": rows[:EVIDENCE_HEAD],
+            "last": rows[-EVIDENCE_TAIL:],
+        }
+
+    def evidence_untimed(self, incident_type: str) -> Any:
+        """`detector_evidence` with every temporal field removed. Opt-in (`OPTIONAL_SPECS`).
+
+        Built from the E4 ablation, 2026-08-14. Two things were established there:
+
+        * B3's symptom-as-root count went 9 -> 7 -> 0 as ordering TOOLS were removed, so the
+          error mode tracks the agent's ability to re-query timing;
+        * removing those tools also removed the evidence values and accuracy collapsed
+          (13 misses, flip rate 0.89, `stiff_airframe` 1.00 -> 0.61). Evidence is load-bearing.
+
+        Both travelled through the same tool, so neither could be isolated. This separates them:
+        the values and thresholds stay, `t` does not.
+
+        Note what is deliberately NOT changed. `summarize()` still reports advisories with
+        `t_first`, so this judge sees the same ordering B1 sees -- and B1, which has it, scores
+        0.89 with zero symptom-as-root errors. The hypothesis under test is that *querying and
+        elaborating* the ordering is what does the damage, not knowing it. Hiding it from the
+        summary too would test a different and less interesting claim, and would break parity
+        with B1.
+
+        Rows are aggregated per metric rather than listed, because a per-row list is a timeline
+        with the clock filed off -- position in the list still encodes order.
+        """
+        by_metric: dict[str, dict[str, Any]] = {}
+        severities: set[str] = set()
+        n_rows = 0
+        for cycle in self._b.cycles:
+            for inc in cycle.incidents:
+                if inc.type != incident_type:
+                    continue
+                severities.add(inc.severity)
+                for ev in inc.evidence:
+                    n_rows += 1
+                    g = by_metric.setdefault(ev.metric, {
+                        "n": 0, "min": ev.value, "max": ev.value, "_sum": 0.0,
+                        "threshold": ev.threshold, "unit": ev.unit,
+                        "description": ev.description,
+                    })
+                    g["n"] += 1
+                    if isinstance(ev.value, (int, float)):
+                        g["min"] = min(g["min"], ev.value)
+                        g["max"] = max(g["max"], ev.value)
+                        g["_sum"] += ev.value
+
+        if not by_metric:
+            return {"error": f"{incident_type!r} was never detected in this flight",
+                    "detected_types": sorted(self._types())}
+
+        for g in by_metric.values():
+            total = g.pop("_sum")
+            g["mean"] = round(total / g["n"], 4) if g["n"] else None
+            if isinstance(g.get("threshold"), (int, float)) and isinstance(g["max"], (int, float)):
+                # How far past the line it went, which is the judgement-relevant quantity once
+                # the clock is gone.
+                g["peak_over_threshold"] = round(g["max"] - g["threshold"], 4)
+
+        return {
+            "incident_type": incident_type,
+            "severities_seen": sorted(severities),
+            "samples": n_rows,
+            "by_metric": by_metric,
+            "note": ("Timestamps and ordering are omitted from this tool by design. Decide the "
+                     "root cause from which measurement breached which threshold, and by how "
+                     "much."),
+        }
 
     def signal_window(self, metric: str, t0: float, t1: float) -> dict[str, Any]:
         """Summary statistics for one metric over a time window. Never the raw series.
@@ -154,7 +276,39 @@ class BundleTools:
 
     # ---- dispatch -------------------------------------------------------------------
 
+    # THE DEFAULT TOOL SURFACE, changed 2026-08-14 on measurement.
+    #
+    # This is exactly the configuration measured at accuracy 0.96 / compass 0.89 / 5,239 tok,
+    # not a set assembled by taste. The previous five-tool default measured 0.67 / 0.00 / 9,805
+    # and named a symptom as the root cause in 9 of 27 judgements.
+    #
+    # The four time-bearing tools moved to OPTIONAL_SPECS rather than being deleted: they are
+    # what the ablation manipulates, so the experiment must still be able to offer them. They are
+    # not defaults because every configuration containing them scored worse.
+    #
+    # Ordering is NOT hidden from the judge -- `summarize()` still lists advisories with
+    # `t_first`, exactly as B1 sees them. What the agent no longer has is a way to re-query and
+    # elaborate the order, which is the thing the ablation showed does the damage.
     SPECS: list[dict[str, Any]] = [
+        {"name": "evidence_untimed",
+         "description": ("Measured values and thresholds behind one incident type, with no "
+                         "timestamps and no ordering. Judge what the evidence says, not when "
+                         "it arrived."),
+         "parameters": {"type": "object", "properties": {
+             "incident_type": {"type": "string"}}, "required": ["incident_type"]}},
+        {"name": "get_param",
+         "description": "One vehicle parameter value as captured at flight time.",
+         "parameters": {"type": "object", "properties": {
+             "name": {"type": "string"}}, "required": ["name"]}},
+    ]
+
+    # The time-bearing tools. Retired from the default surface 2026-08-14, kept offerable so the
+    # ablation that retired them can still be reproduced (`--offer-tools`).
+    #
+    # Each measured WORSE as a default. Retained rather than deleted because a result nobody can
+    # re-run is not a result, and because a future detector set with different semantics might
+    # justify revisiting them -- with a measurement, as these were.
+    OPTIONAL_SPECS: list[dict[str, Any]] = [
         {"name": "list_advisories",
          "description": "Every advisory raised, earliest first, with severity and first-seen time.",
          "parameters": {"type": "object", "properties": {}, "required": []}},
@@ -172,19 +326,19 @@ class BundleTools:
          "parameters": {"type": "object", "properties": {
              "metric": {"type": "string"}, "t0": {"type": "number"}, "t1": {"type": "number"}},
              "required": ["metric", "t0", "t1"]}},
-        {"name": "get_param",
-         "description": "One vehicle parameter value as captured at flight time.",
-         "parameters": {"type": "object", "properties": {
-             "name": {"type": "string"}}, "required": ["name"]}},
     ]
+
+    @classmethod
+    def all_specs(cls) -> list[dict[str, Any]]:
+        return cls.SPECS + cls.OPTIONAL_SPECS
 
     def call(self, name: str, arguments: dict[str, Any] | None = None) -> Any:
         """Dispatch one tool call. Unknown names and bad arguments come back as data."""
         args = dict(arguments or {})
         fn = getattr(self, name, None)
-        if name not in {s["name"] for s in self.SPECS} or fn is None:
+        if name not in {s["name"] for s in self.all_specs()} or fn is None:
             return {"error": f"unknown tool {name!r}",
-                    "available": [s["name"] for s in self.SPECS]}
+                    "available": [s["name"] for s in self.all_specs()]}
         try:
             return fn(**args)
         except TypeError as exc:
