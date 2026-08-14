@@ -14,8 +14,8 @@ jobs:
     steps:
       # Actions pinned by commit SHA, not tag: a tag can be moved to point at new code,
       # so pinning by tag is trusting whoever can push a tag.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           repository: RahulRajelli/ardupilot-log-analyzer
           path: _flightdx
