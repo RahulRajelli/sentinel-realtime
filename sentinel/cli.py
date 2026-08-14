@@ -191,10 +191,85 @@ def cmd_analyze(args) -> int:
                   f"(threshold {ev.threshold:g}{unit})")
         print()
 
+    if args.html:
+        from sentinel import report_html
+        out = report_html.write(args.html, source_name=path.name,
+                                params_count=len(log.params), message_types=len(log.messages),
+                                incidents=incidents, explain=EXPLAIN, skipped=skipped)
+        print(f"  report written: {out}   (self-contained HTML -- open it or email it)\n")
+
     print("-" * 72)
     print("  The FIRST alarm is not always the CAUSE. One fault trips several")
     print("  detectors, and the fastest detector is not the root cause -- that")
     print("  judgement is what the agent layer measures. See the README.")
+    return 0
+
+
+# --- replay ---------------------------------------------------------------------------------
+
+def cmd_replay(args) -> int:
+    """Drive the realtime tier from a recorded flight, and write a bundle.
+
+    The honest middle ground between "analyse a log" and "fly SITL": real telemetry, but through
+    the streaming path with the escalation gate, so the advisory stream is what an operator would
+    actually have seen in flight rather than a batch summary written afterwards.
+    """
+    path = Path(args.log)
+    if not path.exists():
+        print(f"no such file: {path}", file=sys.stderr)
+        return 1
+
+    from flightdx.parsers.dataflash import parse_dataflash
+
+    from sentinel.replay import replay_log
+
+    print(f"parsing {path.name} for its parameter block ...")
+    parsed = parse_dataflash(str(path))
+    print(f"  {len(parsed.params)} parameters -- detector thresholds come from the aircraft\n")
+
+    print(f"{'t':>9}  advisory")
+    print("-" * 72)
+    seen: set[str] = set()
+
+    def on_cycle(report, gate):
+        for adv in gate.active.values():
+            if adv.key in seen:
+                continue
+            seen.add(adv.key)
+            inc = adv.incident
+            ev = "; ".join(f"{e.metric}={e.value:g} (thr {e.threshold:g})"
+                           for e in inc.evidence[:1]) or "no evidence"
+            print(f"{report.t:9.1f}s  {MARK.get(inc.severity, '   ')} {inc.type}"
+                  f"[{inc.severity}]  {ev}")
+
+    bundle, reports = replay_log(path, cadence_s=args.cadence, window_s=args.window,
+                                 params=parsed.params, on_cycle=on_cycle)
+
+    m = bundle.metrics
+    print("-" * 72)
+    print(f"  cycles            : {m.cycles}")
+    print(f"  raw detections    : {m.incidents}")
+    print(f"  advisories raised : {m.advisories}   ({m.suppression:.1%} suppressed by the gate)")
+    print(f"  detector cost     : {m.detect_ms_first:.2f} -> {m.detect_ms_last:.2f} ms/cycle")
+    print(f"  worst cycle       : {m.worst_cycle_ms:.1f} ms  (processing cost, not realtime "
+          f"headroom -- replay runs on log time)")
+
+    if args.html:
+        from sentinel import report_html
+        incidents = [i for c in bundle.cycles for i in c.incidents]
+        rep = report_html.write(
+            args.html, source_name=f"{path.name} (replayed through the realtime tier)",
+            params_count=len(parsed.params), message_types=len(parsed.messages),
+            incidents=incidents, explain=EXPLAIN,
+            gate_stats={"suppression": m.suppression, "advisories": m.advisories},
+            bundle_id=bundle.bundle_id)
+        print(f"  report written: {rep}")
+
+    out = Path(args.out or f"bundles/replay_{path.stem}.json")
+    bundle.save(out)
+    print(f"\n  bundle: {out}   id={bundle.bundle_id}")
+    print("  ground truth is NOT set -- a replay records what was seen; a human labels what")
+    print("  it means. Labelling it from the detector output would make the eval circular.")
     return 0
 
 
@@ -274,7 +349,18 @@ def main(argv: list[str] | None = None) -> int:
 
     p = sub.add_parser("analyze", help="analyse a .BIN log you already have")
     p.add_argument("log", help="path to an ArduPilot dataflash .BIN log")
+    p.add_argument("--html", default=None, metavar="FILE",
+                   help="also write a self-contained HTML report you can email")
     p.set_defaults(fn=cmd_analyze)
+
+    p = sub.add_parser("replay", help="replay a real log through the realtime tier")
+    p.add_argument("log", help="path to an ArduPilot dataflash .BIN log")
+    p.add_argument("--cadence", type=float, default=1.0)
+    p.add_argument("--window", type=float, default=120.0)
+    p.add_argument("--out", default=None, help="bundle path (default bundles/replay_<name>.json)")
+    p.add_argument("--html", default=None, metavar="FILE",
+                   help="also write a self-contained HTML report you can email")
+    p.set_defaults(fn=cmd_replay)
 
     p = sub.add_parser("watch", help="live monitoring over MAVLink")
     p.add_argument("--conn", default="tcp:127.0.0.1:5760",

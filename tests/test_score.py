@@ -231,3 +231,28 @@ def test_scoring_a_verdict_against_the_wrong_bundle_refuses(bundles):
     v = Verdict(judge="B0", bundle_id=a.bundle_id, root_cause=None)
     with pytest.raises(ValueError, match="cites bundle"):
         score_verdict(b, v)
+
+
+# --- bundle identity must survive a re-run on the same data ----------------------------------
+
+def test_bundle_id_ignores_wall_clock_timings():
+    """Found 2026-08-14: replaying one log twice produced two different ids, because the hash
+    included per-cycle detect_ms. Identity must fingerprint the flight, not the host."""
+    def make(detect_ms: float) -> RunBundle:
+        return RunBundle(
+            scenario="replay:x", expected_root_cause=None,
+            cycles=[CycleRecord(t=1.0, incidents=[], detect_ms=detect_ms,
+                                build_ms=detect_ms / 2, messages_in=int(detect_ms),
+                                per_detector_ms={"vibration": detect_ms})],
+            advisories=[], params={"P": 1.0},
+        )
+    assert make(0.4).bundle_id == make(97.3).bundle_id
+
+
+def test_bundle_id_still_changes_when_the_flight_changes():
+    """The corollary: loosening identity must not make it blind."""
+    base = RunBundle(scenario="replay:x", cycles=[CycleRecord(t=1.0)], params={"P": 1.0})
+    moved = RunBundle(scenario="replay:x", cycles=[CycleRecord(t=2.0)], params={"P": 1.0})
+    other = RunBundle(scenario="replay:x", cycles=[CycleRecord(t=1.0)], params={"P": 2.0})
+    assert base.bundle_id != moved.bundle_id
+    assert base.bundle_id != other.bundle_id
