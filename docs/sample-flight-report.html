@@ -1,0 +1,27 @@
+<style>
+*{box-sizing:border-box}
+body{font:15px/1.55 -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#111827;
+     margin:0;padding:40px 24px;background:#f3f4f6}
+.page{max-width:860px;margin:0 auto;background:#fff;padding:44px 48px;border-radius:10px;
+      box-shadow:0 1px 3px rgba(0,0,0,.12)}
+h1{font-size:26px;margin:0 0 4px}
+.sub{color:#6b7280;font-size:14px;margin-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:26px;padding:16px 0;border-top:1px solid #e5e7eb;
+      border-bottom:1px solid #e5e7eb;margin-bottom:28px}
+.meta div{font-size:13px;color:#6b7280}
+.meta b{display:block;font-size:19px;color:#111827;font-weight:700}
+.f{border-left:4px solid #d1d5db;padding:16px 20px;margin:0 0 16px;border-radius:0 8px 8px 0}
+.f h3{margin:0 0 4px;font-size:17px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.9px;padding:2px 8px;
+     border-radius:4px;color:#fff;vertical-align:2px;margin-left:8px}
+.when{color:#6b7280;font-size:13px;margin-bottom:10px}
+.row{font-size:14px;margin:5px 0}
+.row span{display:inline-block;min-width:118px;color:#6b7280}
+.ev{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f9fafb;
+    border:1px solid #e5e7eb;border-radius:5px;padding:7px 10px;margin-top:9px}
+.clean{padding:26px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;color:#166534}
+.note{margin-top:30px;padding-top:18px;border-top:1px solid #e5e7eb;color:#6b7280;font-size:13px}
+.warnbox{background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:12px 16px;
+         font-size:13px;color:#92400e;margin-bottom:22px}
+@media print{body{background:#fff;padding:0}.page{box-shadow:none;padding:0}}
+</style><div class='page'><h1>Flight report</h1><div class='sub'>2024-04-30 17-30-57.bin (replayed through the realtime tier)</div><div class='meta'><div><b>2</b>finding types</div><div><b>1088</b>parameters read from aircraft</div><div><b>58</b>message types</div><div><b>96.8%</b>noise suppressed</div><div><b>11</b>advisories raised</div></div><div class='f' style='border-left-color:#92400e;background:#fffbeb'><h3>battery_threshold_misconfigured<span class='tag' style='background:#92400e'>WARNING</span></h3><div class='when'>139 occurrence(s), first at t = 463.6 s</div><div class='row'><span>What it means</span>The configured battery failsafe thresholds look inconsistent with the pack.</div><div class='row'><span>What to check</span>Review BATT_LOW_VOLT / BATT_CRT_VOLT against the pack&#x27;s real chemistry.</div><div class='ev'>BATT_LOW_VOLT = <b>10.5 V</b> &nbsp;·&nbsp; threshold 22.2 V</div><div class='ev'>BATT_ARM_VOLT = <b>22.1 V</b> &nbsp;·&nbsp; threshold 22.2 V</div></div><div class='f' style='border-left-color:#92400e;background:#fffbeb'><h3>compass_inconsistency<span class='tag' style='background:#92400e'>WARNING</span></h3><div class='when'>207 occurrence(s), first at t = 487.0 s</div><div class='row'><span>What it means</span>Magnetometer readings disagree with the rest of the estimate.</div><div class='row'><span>What to check</span>Check compass calibration and separation from power wiring and payload.</div><div class='ev'>MagFieldDeviation = <b>0.523 fraction</b> &nbsp;·&nbsp; threshold 0.35 fraction</div></div><div class='note'><b>The first alarm is not always the cause.</b> One fault trips several detectors, and the fastest detector is not the root cause. Findings above are ordered by severity, not by causality.</div><div class='note'>Generated 2026-08-14 12:24 UTC by SentinelAgent. Thresholds were read from the aircraft's own parameters, not from defaults.<br>Bundle <code>1709e7ad446de490</code> — a content hash; anyone with the same log reproduces the same identifier.<br><b>This report is unsigned and is not a certification artifact.</b> It records what automated checks observed, for a qualified person to act on.</div></div>

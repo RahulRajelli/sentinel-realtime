@@ -144,13 +144,29 @@ class RunBundle(BaseModel):
 
     # ---- identity -------------------------------------------------------------------
 
+    # Wall-clock measurements. Present in the bundle because they are the E1 crossover input,
+    # but EXCLUDED from identity: they record how fast this machine happened to run, not what
+    # the aircraft did.
+    #
+    # Found 2026-08-14 by replaying one log twice and getting two different ids. Left in, the
+    # hash would fingerprint the host rather than the flight -- and the claim printed next to it
+    # ("anyone with the same log reproduces the same identifier") would simply be false. An
+    # identifier that changes when nothing about the flight changed is worse than no identifier.
+    _TIMING_FIELDS = ("detect_ms", "build_ms", "per_detector_ms", "messages_in")
+
     def _identity_payload(self) -> dict:
         """The fields that make this bundle *this* flight.
 
-        `created_utc` is excluded on purpose: it is provenance, not content. Including it would
-        mean re-serialising an unchanged bundle produced a different id, which defeats the point
-        of having one.
+        `created_utc` is excluded for the same reason as the timing fields: it is provenance,
+        not content. Re-serialising an unchanged bundle must produce an unchanged id.
         """
+        cycles = []
+        for c in self.cycles:
+            d = c.model_dump(mode="json")
+            for field in self._TIMING_FIELDS:
+                d.pop(field, None)
+            cycles.append(d)
+
         return {
             "schema_version": self.schema_version,
             "scenario": self.scenario,
@@ -158,7 +174,7 @@ class RunBundle(BaseModel):
             "injection": [p.model_dump(mode="json") for p in self.injection],
             "t_inject": self.t_inject,
             "params_hash": self.params_hash,
-            "cycles": [c.model_dump(mode="json") for c in self.cycles],
+            "cycles": cycles,
             "advisories": [a.model_dump(mode="json") for a in self.advisories],
         }
 
