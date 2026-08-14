@@ -72,8 +72,20 @@ class AgentJudge:
             if budget.tripped:
                 return self._degrade(bundle, budget, variant, budget.reason, t0)
 
-            resp = self.client.complete(
-                messages=messages, tools=BundleTools.SPECS, temperature=0.0, seed=0)
+            try:
+                resp = self.client.complete(
+                    messages=messages, tools=BundleTools.SPECS, temperature=0.0, seed=0)
+            except Exception as exc:
+                # A transport failure -- rate limit, timeout, 5xx -- is a HARNESS failure, not a
+                # model one, and it must not take the sweep down with it. Measured 2026-08-14:
+                # a ~430-call sweep hits provider rate limits reliably, and an uncaught 429 was
+                # killing the whole run and losing every judgement before it.
+                #
+                # Degrading here also keeps the attribution honest: score.attribute reads
+                # `degraded` as HARNESS, so a rate limit is never charged to the model's
+                # reasoning.
+                budget.trip(f"{type(exc).__name__}: {str(exc)[:120]}")
+                return self._degrade(bundle, budget, variant, budget.reason, t0)
             budget.charge(resp.tokens_in, resp.tokens_out)
 
             if resp.wants_tools:

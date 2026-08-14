@@ -3,8 +3,12 @@
  "scenario": "hexa_motor_fail",
  "note": "logistics / cargo. Redundant: should keep flying on 5 motors. | motor 1 produces zero thrust from t+inject onward",
  "created_utc": "2026-08-14T12:34:44+00:00",
- "expected_root_cause": null,
- "expected_symptoms": [],
+ "expected_root_cause": "actuator_saturation",
+ "expected_symptoms": [
+  "vibration_excessive",
+  "ekf_inconsistency",
+  "control_oscillation"
+ ],
  "injection": [
   {
    "name": "SIM_ENGINE_FAIL",
@@ -2089,6 +2093,6 @@
   "detect_ms_last": 5.93,
   "worst_cycle_ms": 9.9
  },
- "bundle_id": "58d91b12fd0b24eb",
+ "bundle_id": "31889bcb4e247f39",
  "params_hash": "a07c6df649221285"
 }

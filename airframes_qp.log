@@ -1,0 +1,21 @@
+
+==============================================================================
+AIRFRAME: quadplane  (4 motors)  |  fault: motor_fail
+  REAL fixed-wing VTOL. Lift motors for hover, wing for cruise -- a motor-out in hover has no wing to fall back on until it transitions.
+  model=quadplane  defaults=quadplane-tilttri.parm  instance 9 -> tcp:127.0.0.1:5850
+==============================================================================
+  takeoff: peak 0.0 m (VTOL)
+
+
+====================================================================================================
+SAME FAULT (motor_fail), DIFFERENT AIRFRAMES
+====================================================================================================
+airframe   mot  booted armed  first advisory             lat  adv   supp  all advised
+----------------------------------------------------------------------------------------------------
+quadplane    4  yes    NO     -                            -    0  0.0%  -
+
+  Read this as: identical injection, different airframe response. A frame that
+  did not boot or arm is reported as such -- absence of findings there means the
+  aircraft never flew, not that the fault was benign.
+
+wrote airframe_results_qp.json
