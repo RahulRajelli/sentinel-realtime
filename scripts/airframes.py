@@ -69,12 +69,18 @@ AIRFRAMES: dict[str, dict] = {
     "octa": {
         "model": "octa", "defaults": "copter-octa.parm", "motors": 8,
         "note": "heavy lift. Most redundancy, least degradation."},
-    "coax": {
-        "model": "coax", "defaults": "copter-coax.parm", "motors": 2,
-        "note": "coaxial. Two motors plus control surfaces -- a different actuator topology."},
-    "tilt": {
+    "vtol": {
         "model": "tilthvec", "defaults": "copter.parm", "motors": 4,
         "note": "tiltrotor VTOL configuration. NOT a quadplane -- arduplane is not built here."},
+    "dodeca": {
+        "model": "dodeca-hexa", "defaults": "copter-hexa.parm", "motors": 12,
+        "note": "coaxial hexa: 6 arms, 2 motors each. The nearest thing to a coaxial layout "
+                "this build can fly."},
+    # "coax" is NOT available. Measured 2026-08-14: `--model coax` exits with
+    # "Vehicle model (coax) not found". copter-coax.parm exists, but it only sets FRAME_CLASS
+    # for the flight code -- the SITL physics layer has no coaxial model, so there is nothing
+    # to fly. Recorded rather than deleted so nobody re-derives it from the .parm file, which
+    # is exactly the mistake made here.
 }
 
 FAULTS: dict[str, dict] = {

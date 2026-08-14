@@ -1,0 +1,178 @@
+
+==============================================================================
+SCENARIO: null   (hallucination gate: nothing injected, nothing may be advised)
+  SITL instance 2 -> tcp:127.0.0.1:5780
+==============================================================================
+  takeoff: peak 7.1 m
+    (null scenario: nothing injected)
+  bundle: null_r0.json  id=76658efc12e53a40  cycles=31 advisories=0
+
+==============================================================================
+SCENARIO: vibration   (amplitude x frequency; accel_clipping is an expected downstream symptom)
+  SITL instance 3 -> tcp:127.0.0.1:5790
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_VIB_MOT_MAX=200.0 -> readback 200.0
+    inject SIM_ACC1_RND=40.0 -> readback 40.0
+     9.0s  vibration_excessive[critical] (new)
+     9.0s  accel_clipping[warning] (new)
+    29.1s  vibration_excessive[critical] (reminder)
+    29.1s  accel_clipping[warning] (reminder)
+    31.0s  accel_clipping[critical] (escalated)
+  bundle: vibration_r0.json  id=194e865293ff2e51  cycles=31 advisories=5
+
+==============================================================================
+SCENARIO: gps_loss   (fix type 0; EKF degradation is the expected cascade, not the root cause)
+  SITL instance 4 -> tcp:127.0.0.1:5800
+==============================================================================
+  takeoff: peak 7.0 m
+    inject SIM_GPS1_FIXTYPE=0.0 -> readback 0.0
+    13.1s  gps_fix_loss[critical] (new)
+  bundle: gps_loss_r0.json  id=74819c605df16145  cycles=31 advisories=1
+
+==============================================================================
+SCENARIO: wind   (confounder: mimics actuator asymmetry; a clean system stays quiet)
+  SITL instance 5 -> tcp:127.0.0.1:5810
+==============================================================================
+  takeoff: peak 7.0 m
+    inject SIM_WIND_SPD=18.0 -> readback 18.0
+    inject SIM_WIND_DIR=90.0 -> readback 90.0
+  bundle: wind_r0.json  id=b0869369f5c7d8a8  cycles=31 advisories=0
+
+==============================================================================
+SCENARIO: null   (hallucination gate: nothing injected, nothing may be advised)
+  SITL instance 2 -> tcp:127.0.0.1:5780
+==============================================================================
+  takeoff: peak 7.0 m
+    (null scenario: nothing injected)
+  bundle: null_r1.json  id=365894119831ae8b  cycles=31 advisories=0
+
+==============================================================================
+SCENARIO: vibration   (amplitude x frequency; accel_clipping is an expected downstream symptom)
+  SITL instance 3 -> tcp:127.0.0.1:5790
+==============================================================================
+  takeoff: peak 7.0 m
+    inject SIM_VIB_MOT_MAX=200.0 -> readback 200.0
+    inject SIM_ACC1_RND=40.0 -> readback 40.0
+     9.1s  vibration_excessive[critical] (new)
+     9.1s  accel_clipping[warning] (new)
+    30.0s  vibration_excessive[critical] (reminder)
+    30.0s  accel_clipping[warning] (reminder)
+  bundle: vibration_r1.json  id=5e84daabda5cd804  cycles=31 advisories=4
+
+==============================================================================
+SCENARIO: gps_loss   (fix type 0; EKF degradation is the expected cascade, not the root cause)
+  SITL instance 4 -> tcp:127.0.0.1:5800
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_GPS1_FIXTYPE=0.0 -> readback 0.0
+    13.0s  gps_fix_loss[critical] (new)
+  bundle: gps_loss_r1.json  id=1ed8211fac02421a  cycles=31 advisories=1
+
+==============================================================================
+SCENARIO: wind   (confounder: mimics actuator asymmetry; a clean system stays quiet)
+  SITL instance 5 -> tcp:127.0.0.1:5810
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_WIND_SPD=18.0 -> readback 18.0
+    inject SIM_WIND_DIR=90.0 -> readback 90.0
+  bundle: wind_r1.json  id=7116df6a7f1a3f7b  cycles=31 advisories=0
+
+==============================================================================
+SCENARIO: null   (hallucination gate: nothing injected, nothing may be advised)
+  SITL instance 2 -> tcp:127.0.0.1:5780
+==============================================================================
+  takeoff: peak 7.1 m
+    (null scenario: nothing injected)
+  bundle: null_r2.json  id=961c0fdf111123bb  cycles=31 advisories=0
+
+==============================================================================
+SCENARIO: vibration   (amplitude x frequency; accel_clipping is an expected downstream symptom)
+  SITL instance 3 -> tcp:127.0.0.1:5790
+==============================================================================
+  takeoff: peak 7.0 m
+    inject SIM_VIB_MOT_MAX=200.0 -> readback 200.0
+    inject SIM_ACC1_RND=40.0 -> readback 40.0
+     9.0s  vibration_excessive[critical] (new)
+     9.0s  accel_clipping[warning] (new)
+    10.0s  accel_clipping[critical] (escalated)
+    30.0s  vibration_excessive[critical] (reminder)
+    31.0s  accel_clipping[critical] (reminder)
+  bundle: vibration_r2.json  id=686f970bd4f96f82  cycles=31 advisories=5
+
+==============================================================================
+SCENARIO: gps_loss   (fix type 0; EKF degradation is the expected cascade, not the root cause)
+  SITL instance 4 -> tcp:127.0.0.1:5800
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_GPS1_FIXTYPE=0.0 -> readback 0.0
+    13.0s  gps_fix_loss[critical] (new)
+  bundle: gps_loss_r2.json  id=a681e807744d83b9  cycles=31 advisories=1
+
+==============================================================================
+SCENARIO: wind   (confounder: mimics actuator asymmetry; a clean system stays quiet)
+  SITL instance 5 -> tcp:127.0.0.1:5810
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_WIND_SPD=18.0 -> readback 18.0
+    inject SIM_WIND_DIR=90.0 -> readback 90.0
+  bundle: wind_r2.json  id=399582bb298e7b44  cycles=31 advisories=0
+
+
+====================================================================================================
+R8 — MEASURED VERIFICATION TABLE
+====================================================================================================
+scenario    injected                           advised                  lat  FP   inc  adv   supp  ok
+----------------------------------------------------------------------------------------------------
+null#0      (nothing)                          -                          -   0     0    0   0.0%  PASS
+vibration#0 SIM_VIB_MOT_MAX=200.0, SIM_ACC1_RN vibration_excessive     1.0s   0   208    5  97.6%  PASS
+gps_loss#0  SIM_GPS1_FIXTYPE=0.0               gps_fix_loss            5.1s   0    21    1  95.2%  PASS
+wind#0      SIM_WIND_SPD=18.0, SIM_WIND_DIR=90 -                          -   0     0    0   0.0%  PASS
+null#1      (nothing)                          -                          -   0     0    0   0.0%  PASS
+vibration#1 SIM_VIB_MOT_MAX=200.0, SIM_ACC1_RN vibration_excessive     1.0s   0   168    4  97.6%  PASS
+gps_loss#1  SIM_GPS1_FIXTYPE=0.0               gps_fix_loss            5.0s   0    21    1  95.2%  PASS
+wind#1      SIM_WIND_SPD=18.0, SIM_WIND_DIR=90 -                          -   0     0    0   0.0%  PASS
+null#2      (nothing)                          -                          -   0     0    0   0.0%  PASS
+vibration#2 SIM_VIB_MOT_MAX=200.0, SIM_ACC1_RN vibration_excessive     1.0s   0   171    5  97.1%  PASS
+gps_loss#2  SIM_GPS1_FIXTYPE=0.0               gps_fix_loss            5.0s   0    21    1  95.2%  PASS
+wind#2      SIM_WIND_SPD=18.0, SIM_WIND_DIR=90 -                          -   0     0    0   0.0%  PASS
+
+--- cascade detail (root cause vs symptoms advised) ---
+  vibration#0 root=vibration_excessive      also advised: ['accel_clipping']
+  gps_loss#0  root=gps_fix_loss             also advised: none
+  vibration#1 root=vibration_excessive      also advised: ['accel_clipping']
+  gps_loss#1  root=gps_fix_loss             also advised: none
+  vibration#2 root=vibration_excessive      also advised: ['accel_clipping']
+  gps_loss#2  root=gps_fix_loss             also advised: none
+
+--- detector cost vs buffer size (E1 crossover input) ---
+  null#0        217 ->  2317 recs     1.08 ->   4.93 ms   worst cycle   27.7 ms of 1000 ms (2.8%)
+  vibration#0   217 ->  2289 recs     0.67 ->   5.37 ms   worst cycle   11.1 ms of 1000 ms (1.1%)
+  gps_loss#0    210 ->  2303 recs     0.42 ->   5.77 ms   worst cycle   10.6 ms of 1000 ms (1.1%)
+  wind#0        210 ->  2289 recs     0.96 ->   3.53 ms   worst cycle    7.6 ms of 1000 ms (0.8%)
+  null#1        217 ->  2310 recs     0.70 ->   3.55 ms   worst cycle    9.4 ms of 1000 ms (0.9%)
+  vibration#1   217 ->  2282 recs     0.48 ->   3.88 ms   worst cycle    8.7 ms of 1000 ms (0.9%)
+  gps_loss#1    217 ->  2303 recs     0.57 ->   4.01 ms   worst cycle    8.8 ms of 1000 ms (0.9%)
+  wind#1        211 ->  2284 recs     0.41 ->   5.58 ms   worst cycle   11.1 ms of 1000 ms (1.1%)
+  null#2        210 ->  2310 recs     0.42 ->   3.61 ms   worst cycle    7.7 ms of 1000 ms (0.8%)
+  vibration#2   217 ->  2282 recs     0.64 ->   4.25 ms   worst cycle    8.3 ms of 1000 ms (0.8%)
+  gps_loss#2    217 ->  2297 recs     0.42 ->   4.11 ms   worst cycle    8.3 ms of 1000 ms (0.8%)
+  wind#2        210 ->  2282 recs     0.43 ->   3.64 ms   worst cycle   10.6 ms of 1000 ms (1.1%)
+
+  note: detect_oscillation cannot fire before ~1.5 s of ATT history (its window),
+        so that is a floor on oscillation latency independent of the network.
+
+wrote r8_new.json
+wrote 12 bundles to bundles/
+
+--- refactor gate vs r8_results.json ---
+  REGRESSION: gps_loss.incidents: 17 -> 21 (moved 4, tolerance 2.55)
+  REGRESSION: gps_loss.cycles: 27 -> 31 (moved 4, tolerance 2)
+  REGRESSION: null.cycles: 27 -> 31 (moved 4, tolerance 2)
+  REGRESSION: vibration.incidents: 130 -> 208 (moved 78, tolerance 19.5)
+  REGRESSION: vibration.cycles: 27 -> 31 (moved 4, tolerance 2)
+  REGRESSION: wind.cycles: 27 -> 31 (moved 4, tolerance 2)
+
+  The refactor changed behaviour. The refactor is wrong, not the baseline.
+
+R7+R8: 12/12 runs passed
