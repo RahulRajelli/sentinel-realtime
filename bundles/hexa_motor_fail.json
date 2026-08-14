@@ -1,0 +1,2094 @@
+{
+ "schema_version": 1,
+ "scenario": "hexa_motor_fail",
+ "note": "logistics / cargo. Redundant: should keep flying on 5 motors. | motor 1 produces zero thrust from t+inject onward",
+ "created_utc": "2026-08-14T12:34:44+00:00",
+ "expected_root_cause": null,
+ "expected_symptoms": [],
+ "injection": [
+  {
+   "name": "SIM_ENGINE_FAIL",
+   "value": 1.0,
+   "readback": 1.0,
+   "applied": true
+  },
+  {
+   "name": "SIM_ENGINE_MUL",
+   "value": 0.0,
+   "readback": 0.0,
+   "applied": true
+  }
+ ],
+ "t_inject": 10.078000000008615,
+ "inject_verified": true,
+ "params": {
+  "MOT_PWM_MIN": 1000.0,
+  "MOT_PWM_MAX": 2000.0,
+  "MOT_SPIN_MIN": 0.15000000596046448,
+  "MOT_SPIN_MAX": 0.949999988079071,
+  "BATT_LOW_VOLT": 10.5,
+  "BATT_CRT_VOLT": 0.0,
+  "BATT_ARM_VOLT": 0.0,
+  "SERVO1_FUNCTION": 33.0,
+  "SERVO2_FUNCTION": 34.0,
+  "SERVO3_FUNCTION": 35.0,
+  "SERVO4_FUNCTION": 36.0,
+  "SERVO5_FUNCTION": 37.0,
+  "SERVO6_FUNCTION": 38.0,
+  "SERVO7_FUNCTION": 0.0,
+  "SERVO8_FUNCTION": 0.0,
+  "SERVO9_FUNCTION": 0.0,
+  "SERVO10_FUNCTION": 0.0,
+  "SERVO11_FUNCTION": 0.0,
+  "SERVO12_FUNCTION": 0.0,
+  "SERVO13_FUNCTION": 0.0,
+  "BARO1_GND_PRESS": 90970.5078125,
+  "BARO2_GND_PRESS": 90970.484375,
+  "INS_GYR_ID": 2752772.0,
+  "INS_ACC_ID": 2753028.0,
+  "INS_GYR2_ID": 2752780.0,
+  "INS_ACC2_ID": 2753036.0,
+  "INS_GYROFFS_X": 3.1337211112258956e-05,
+  "INS_GYROFFS_Y": 2.2285134036792442e-05,
+  "INS_GYROFFS_Z": 3.677543281810358e-05,
+  "INS_GYR1_CALTEMP": 25.018352508544922,
+  "INS_GYR2OFFS_X": 4.861036723013967e-05,
+  "INS_GYR2OFFS_Y": -2.367929664615076e-05,
+  "INS_GYR2OFFS_Z": 3.10860741592478e-05,
+  "INS_GYR2_CALTEMP": 25.018352508544922,
+  "INS_GYR3OFFS_X": 0.0,
+  "INS_GYR3OFFS_Y": 0.0,
+  "INS_GYR3OFFS_Z": 0.0,
+  "INS_GYR3_ID": 0.0,
+  "ARMING_SKIPCHK": 0.0,
+  "EK3_SRC1_POSXY": 3.0,
+  "SERVO14_FUNCTION": 0.0,
+  "SERVO15_FUNCTION": 0.0,
+  "SERVO16_FUNCTION": 0.0
+ },
+ "cycles": [
+  {
+   "t": 3.0,
+   "incidents": [],
+   "buffer_records": 210,
+   "detect_ms": 0.44100001105107367,
+   "build_ms": 0.4419000033522025,
+   "messages_in": 389,
+   "per_detector_ms": {
+    "vibration": 0.06740000389982015,
+    "ekf": 0.03860000288113952,
+    "actuator": 0.15959999291226268,
+    "battery": 0.01829999382607639,
+    "gps": 0.01309999788645655,
+    "compass": 0.05289999535307288,
+    "oscillation": 0.08630000229459256
+   }
+  },
+  {
+   "t": 4.0,
+   "incidents": [],
+   "buffer_records": 280,
+   "detect_ms": 0.6309999880613759,
+   "build_ms": 0.5329999985406175,
+   "messages_in": 519,
+   "per_detector_ms": {
+    "vibration": 0.08670000534038991,
+    "ekf": 0.047600013203918934,
+    "actuator": 0.28449999808799475,
+    "battery": 0.019400002202019095,
+    "gps": 0.01619999238755554,
+    "compass": 0.060000005760230124,
+    "oscillation": 0.11190000805072486
+   }
+  },
+  {
+   "t": 5.0,
+   "incidents": [],
+   "buffer_records": 350,
+   "detect_ms": 0.6463000026997179,
+   "build_ms": 0.6248999998206273,
+   "messages_in": 649,
+   "per_detector_ms": {
+    "vibration": 0.10180000390391797,
+    "ekf": 0.05670000973623246,
+    "actuator": 0.22670000907965004,
+    "battery": 0.022100008209235966,
+    "gps": 0.019199986127205193,
+    "compass": 0.07239999831654131,
+    "oscillation": 0.14239999291021377
+   }
+  },
+  {
+   "t": 6.0,
+   "incidents": [],
+   "buffer_records": 420,
+   "detect_ms": 0.7640999974682927,
+   "build_ms": 0.7078000053297728,
+   "messages_in": 779,
+   "per_detector_ms": {
+    "vibration": 0.11950000771321356,
+    "ekf": 0.06770000618416816,
+    "actuator": 0.26729999808594584,
+    "battery": 0.02239999594166875,
+    "gps": 0.02260001201648265,
+    "compass": 0.08430000161752105,
+    "oscillation": 0.1750999945215881
+   }
+  },
+  {
+   "t": 7.0,
+   "incidents": [],
+   "buffer_records": 491,
+   "detect_ms": 0.9395999950356781,
+   "build_ms": 0.8484999998472631,
+   "messages_in": 911,
+   "per_detector_ms": {
+    "vibration": 0.13959998614154756,
+    "ekf": 0.07920000643935055,
+    "actuator": 0.3615000023273751,
+    "battery": 0.0261999957729131,
+    "gps": 0.026900001103058457,
+    "compass": 0.09690001024864614,
+    "oscillation": 0.2038000093307346
+   }
+  },
+  {
+   "t": 8.094000000011874,
+   "incidents": [],
+   "buffer_records": 567,
+   "detect_ms": 1.0050999990198761,
+   "build_ms": 0.9086999925784767,
+   "messages_in": 1052,
+   "per_detector_ms": {
+    "vibration": 0.15389999316539615,
+    "ekf": 0.086499989265576,
+    "actuator": 0.331600007484667,
+    "battery": 0.04060000355821103,
+    "gps": 0.029999995604157448,
+    "compass": 0.12409999908413738,
+    "oscillation": 0.2330999996047467
+   }
+  },
+  {
+   "t": 9.094000000011874,
+   "incidents": [],
+   "buffer_records": 637,
+   "detect_ms": 1.2583999923663214,
+   "build_ms": 1.0907999967457727,
+   "messages_in": 1182,
+   "per_detector_ms": {
+    "vibration": 0.17290000687353313,
+    "ekf": 0.09809999028220773,
+    "actuator": 0.47539999650325626,
+    "battery": 0.03959999594371766,
+    "gps": 0.047599998652003706,
+    "compass": 0.15049999637994915,
+    "oscillation": 0.2674999996088445
+   }
+  },
+  {
+   "t": 10.078000000008615,
+   "incidents": [],
+   "buffer_records": 707,
+   "detect_ms": 1.3290999922901392,
+   "build_ms": 1.167499998700805,
+   "messages_in": 1312,
+   "per_detector_ms": {
+    "vibration": 0.1866000093286857,
+    "ekf": 0.10689999908208847,
+    "actuator": 0.534999999217689,
+    "battery": 0.036600002204068005,
+    "gps": 0.04230000195093453,
+    "compass": 0.13010000111535192,
+    "oscillation": 0.2852000034181401
+   }
+  },
+  {
+   "t": 11.078000000008615,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 11.188000000009197,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 749,
+   "detect_ms": 1.4690999960293993,
+   "build_ms": 1.2312000035308301,
+   "messages_in": 1396,
+   "per_detector_ms": {
+    "vibration": 0.1993000041693449,
+    "ekf": 0.11279998579993844,
+    "actuator": 0.5899999960092828,
+    "battery": 0.036600002204068005,
+    "gps": 0.05529999907594174,
+    "compass": 0.1551000023027882,
+    "oscillation": 0.3136000013910234
+   }
+  },
+  {
+   "t": 12.078000000008615,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 11.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 819,
+   "detect_ms": 1.5048000059323385,
+   "build_ms": 1.3215999933890998,
+   "messages_in": 1526,
+   "per_detector_ms": {
+    "vibration": 0.2508999896235764,
+    "ekf": 0.1289000065298751,
+    "actuator": 0.5432000034488738,
+    "battery": 0.03239999932702631,
+    "gps": 0.048000001697801054,
+    "compass": 0.15449999773409218,
+    "oscillation": 0.34189999860245734
+   }
+  },
+  {
+   "t": 13.063000000009197,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 12.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 889,
+   "detect_ms": 1.796600001398474,
+   "build_ms": 1.4980000123614445,
+   "messages_in": 1656,
+   "per_detector_ms": {
+    "vibration": 0.2565000031609088,
+    "ekf": 0.13890000991523266,
+    "actuator": 0.5842000100528821,
+    "battery": 0.04569999873638153,
+    "gps": 0.05329999839887023,
+    "compass": 0.15799999528098851,
+    "oscillation": 0.5543000006582588
+   }
+  },
+  {
+   "t": 14.03200000000652,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 959,
+   "detect_ms": 1.7071999900508672,
+   "build_ms": 1.4899999951012433,
+   "messages_in": 1787,
+   "per_detector_ms": {
+    "vibration": 0.27350000164005905,
+    "ekf": 0.14829999417997897,
+    "actuator": 0.6216999900061637,
+    "battery": 0.03700000524986535,
+    "gps": 0.05530001362785697,
+    "compass": 0.1680999994277954,
+    "oscillation": 0.3983999922638759
+   }
+  },
+  {
+   "t": 15.063000000009197,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 14.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1029,
+   "detect_ms": 1.9059000042034313,
+   "build_ms": 1.7165000026579946,
+   "messages_in": 1918,
+   "per_detector_ms": {
+    "vibration": 0.2778999914880842,
+    "ekf": 0.1615999935893342,
+    "actuator": 0.7114999898476526,
+    "battery": 0.03959999594371766,
+    "gps": 0.055800002883188426,
+    "compass": 0.18540000019129366,
+    "oscillation": 0.46779999684076756
+   }
+  },
+  {
+   "t": 16.063000000009197,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 15.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1099,
+   "detect_ms": 2.03200000396464,
+   "build_ms": 1.8377999949734658,
+   "messages_in": 2048,
+   "per_detector_ms": {
+    "vibration": 0.3080000024056062,
+    "ekf": 0.1689000055193901,
+    "actuator": 0.785099997301586,
+    "battery": 0.04190001345705241,
+    "gps": 0.05489999603014439,
+    "compass": 0.2052000054391101,
+    "oscillation": 0.46230001316871494
+   }
+  },
+  {
+   "t": 17.063000000009197,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 16.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1169,
+   "detect_ms": 2.4677999899722636,
+   "build_ms": 1.8649999983608723,
+   "messages_in": 2178,
+   "per_detector_ms": {
+    "vibration": 0.3077000001212582,
+    "ekf": 0.18309999722987413,
+    "actuator": 1.142900000559166,
+    "battery": 0.04820000322069973,
+    "gps": 0.06420000863727182,
+    "compass": 0.21130000823177397,
+    "oscillation": 0.5037000082666054
+   }
+  },
+  {
+   "t": 18.047000000005937,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 17.938000000009197,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1239,
+   "detect_ms": 2.2181999956956133,
+   "build_ms": 2.4248999980045483,
+   "messages_in": 2308,
+   "per_detector_ms": {
+    "vibration": 0.3338999958941713,
+    "ekf": 0.1922000083141029,
+    "actuator": 0.8468999876640737,
+    "battery": 0.044800006435252726,
+    "gps": 0.062399994931183755,
+    "compass": 0.22190000163391232,
+    "oscillation": 0.5101000133436173
+   }
+  },
+  {
+   "t": 19.047000000005937,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 18.938000000009197,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1309,
+   "detect_ms": 3.060199989704415,
+   "build_ms": 2.0674999977927655,
+   "messages_in": 2438,
+   "per_detector_ms": {
+    "vibration": 0.4861000052187592,
+    "ekf": 0.3772999916691333,
+    "actuator": 1.138200008426793,
+    "battery": 0.06579999171663076,
+    "gps": 0.0931999966269359,
+    "compass": 0.31659999513067305,
+    "oscillation": 0.5732999998144805
+   }
+  },
+  {
+   "t": 20.03200000000652,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 19.938000000009197,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1379,
+   "detect_ms": 2.4726000119699165,
+   "build_ms": 2.252599995699711,
+   "messages_in": 2568,
+   "per_detector_ms": {
+    "vibration": 0.3617000038502738,
+    "ekf": 0.21220000053290278,
+    "actuator": 0.9567999950377271,
+    "battery": 0.05250000685919076,
+    "gps": 0.07429999823216349,
+    "compass": 0.24259999918285757,
+    "oscillation": 0.5662000039592385
+   }
+  },
+  {
+   "t": 21.03200000000652,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 20.922000000005937,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1449,
+   "detect_ms": 3.3552999957464635,
+   "build_ms": 2.258099993923679,
+   "messages_in": 2699,
+   "per_detector_ms": {
+    "vibration": 0.5035000067437068,
+    "ekf": 0.3480000013951212,
+    "actuator": 1.2418999976944178,
+    "battery": 0.061399987316690385,
+    "gps": 0.12040000001434237,
+    "compass": 0.2755999885266647,
+    "oscillation": 0.7960999937495217
+   }
+  },
+  {
+   "t": 22.03200000000652,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 21.922000000005937,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1519,
+   "detect_ms": 2.7898999978788197,
+   "build_ms": 2.4879999982658774,
+   "messages_in": 2829,
+   "per_detector_ms": {
+    "vibration": 0.3939000016544014,
+    "ekf": 0.22980000358074903,
+    "actuator": 1.1055999930249527,
+    "battery": 0.05979998968541622,
+    "gps": 0.08490000618621707,
+    "compass": 0.2710000117076561,
+    "oscillation": 0.6381999992299825
+   }
+  },
+  {
+   "t": 23.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 22.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1589,
+   "detect_ms": 2.850800010492094,
+   "build_ms": 2.70019999879878,
+   "messages_in": 2959,
+   "per_detector_ms": {
+    "vibration": 0.4422999918460846,
+    "ekf": 0.24330000451300293,
+    "actuator": 1.068400000804104,
+    "battery": 0.05489999603014439,
+    "gps": 0.08169999637175351,
+    "compass": 0.2995999966515228,
+    "oscillation": 0.6545000069309026
+   }
+  },
+  {
+   "t": 24.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 23.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1659,
+   "detect_ms": 2.9814000008627772,
+   "build_ms": 2.6103999989572912,
+   "messages_in": 3089,
+   "per_detector_ms": {
+    "vibration": 0.4285000031813979,
+    "ekf": 0.25610000011511147,
+    "actuator": 1.1315999872749671,
+    "battery": 0.06029999349266291,
+    "gps": 0.09270000737160444,
+    "compass": 0.3023000026587397,
+    "oscillation": 0.7039999909466133
+   }
+  },
+  {
+   "t": 25.03200000000652,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 24.922000000005937,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1729,
+   "detect_ms": 3.1201999954646453,
+   "build_ms": 2.848199990694411,
+   "messages_in": 3219,
+   "per_detector_ms": {
+    "vibration": 0.4538000066531822,
+    "ekf": 0.2939000114565715,
+    "actuator": 1.1743000068236142,
+    "battery": 0.060999998822808266,
+    "gps": 0.0889000075403601,
+    "compass": 0.305800000205636,
+    "oscillation": 0.7360000017797574
+   }
+  },
+  {
+   "t": 26.063000000009197,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 25.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1799,
+   "detect_ms": 4.365900007542223,
+   "build_ms": 3.590799999074079,
+   "messages_in": 3349,
+   "per_detector_ms": {
+    "vibration": 0.7844000065233558,
+    "ekf": 0.4374999989522621,
+    "actuator": 1.5838999970583245,
+    "battery": 0.09709999721962959,
+    "gps": 0.18149999959859997,
+    "compass": 0.44580000394489616,
+    "oscillation": 0.8252999978139997
+   }
+  },
+  {
+   "t": 27.063000000009197,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 26.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1869,
+   "detect_ms": 3.8102999969851226,
+   "build_ms": 2.882600005250424,
+   "messages_in": 3479,
+   "per_detector_ms": {
+    "vibration": 0.49950000538956374,
+    "ekf": 0.30440000409726053,
+    "actuator": 1.5468999918084592,
+    "battery": 0.07359999290201813,
+    "gps": 0.10580000525806099,
+    "compass": 0.3808000037679449,
+    "oscillation": 0.8929000032367185
+   }
+  },
+  {
+   "t": 28.078000000008615,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 27.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1939,
+   "detect_ms": 3.6952000082237646,
+   "build_ms": 3.5155000077793375,
+   "messages_in": 3609,
+   "per_detector_ms": {
+    "vibration": 0.6938000005902722,
+    "ekf": 0.3352999920025468,
+    "actuator": 1.3246000016806647,
+    "battery": 0.06369999027810991,
+    "gps": 0.10489999840501696,
+    "compass": 0.3318999952170998,
+    "oscillation": 0.8346999966306612
+   }
+  },
+  {
+   "t": 29.094000000011874,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 28.985000000000582,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2009,
+   "detect_ms": 4.505699995206669,
+   "build_ms": 3.039799994439818,
+   "messages_in": 3739,
+   "per_detector_ms": {
+    "vibration": 0.5500999977812171,
+    "ekf": 0.90819998877123,
+    "actuator": 1.5917999990051612,
+    "battery": 0.0754999928176403,
+    "gps": 0.12080000306013972,
+    "compass": 0.375000003259629,
+    "oscillation": 0.873700002557598
+   }
+  },
+  {
+   "t": 30.094000000011874,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 29.985000000000582,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2079,
+   "detect_ms": 3.9213999989442527,
+   "build_ms": 3.129599994281307,
+   "messages_in": 3869,
+   "per_detector_ms": {
+    "vibration": 0.6110000103944913,
+    "ekf": 0.32920000376179814,
+    "actuator": 1.5019999991636723,
+    "battery": 0.0892000098247081,
+    "gps": 0.11850000009872019,
+    "compass": 0.3578000032575801,
+    "oscillation": 0.9081000025616959
+   }
+  },
+  {
+   "t": 31.0,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 30.89100000000326,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2142,
+   "detect_ms": 4.036600003018975,
+   "build_ms": 4.097500001080334,
+   "messages_in": 3987,
+   "per_detector_ms": {
+    "vibration": 0.5686999938916415,
+    "ekf": 0.3723999980138615,
+    "actuator": 1.5623000072082505,
+    "battery": 0.07580000965390354,
+    "gps": 0.11530000483617187,
+    "compass": 0.3724999987753108,
+    "oscillation": 0.9632000001147389
+   }
+  },
+  {
+   "t": 32.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 31.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2212,
+   "detect_ms": 3.966100004618056,
+   "build_ms": 3.9957999979378656,
+   "messages_in": 4117,
+   "per_detector_ms": {
+    "vibration": 0.5838999932166189,
+    "ekf": 0.3443999885348603,
+    "actuator": 1.483400003053248,
+    "battery": 0.07980001100804657,
+    "gps": 0.14119999832473695,
+    "compass": 0.3833999944617972,
+    "oscillation": 0.9428999910596758
+   }
+  },
+  {
+   "t": 33.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 32.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2282,
+   "detect_ms": 4.488099992158823,
+   "build_ms": 3.448300005402416,
+   "messages_in": 4247,
+   "per_detector_ms": {
+    "vibration": 0.6065000052331015,
+    "ekf": 0.3578000032575801,
+    "actuator": 1.938499990501441,
+    "battery": 0.08060000254772604,
+    "gps": 0.12350000906735659,
+    "compass": 0.3988000098615885,
+    "oscillation": 0.9761999972397462
+   }
+  },
+  {
+   "t": 34.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 33.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2352,
+   "detect_ms": 4.165799997281283,
+   "build_ms": 3.5539000091375783,
+   "messages_in": 4377,
+   "per_detector_ms": {
+    "vibration": 0.6253000028664246,
+    "ekf": 0.36980000732000917,
+    "actuator": 1.565899990964681,
+    "battery": 0.08040000102482736,
+    "gps": 0.12430000060703605,
+    "compass": 0.4022000066470355,
+    "oscillation": 0.9926000057021156
+   }
+  },
+  {
+   "t": 35.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 34.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2422,
+   "detect_ms": 4.6547000092687085,
+   "build_ms": 3.868300002068281,
+   "messages_in": 4507,
+   "per_detector_ms": {
+    "vibration": 0.6274999905144796,
+    "ekf": 0.37629999860655516,
+    "actuator": 1.6367999924113974,
+    "battery": 0.07870000263210386,
+    "gps": 0.12460000289138407,
+    "compass": 0.5458999949041754,
+    "oscillation": 1.2575000000651926
+   }
+  },
+  {
+   "t": 36.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 35.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2492,
+   "detect_ms": 4.430300003150478,
+   "build_ms": 4.256400003214367,
+   "messages_in": 4637,
+   "per_detector_ms": {
+    "vibration": 0.6578000029549003,
+    "ekf": 0.3858999989461154,
+    "actuator": 1.6613000043435022,
+    "battery": 0.08149999484885484,
+    "gps": 0.13380000018514693,
+    "compass": 0.44550000166054815,
+    "oscillation": 1.057900008163415
+   }
+  },
+  {
+   "t": 37.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 36.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2562,
+   "detect_ms": 4.618399994797073,
+   "build_ms": 4.454299996723421,
+   "messages_in": 4767,
+   "per_detector_ms": {
+    "vibration": 0.668799999402836,
+    "ekf": 0.42019999818876386,
+    "actuator": 1.7551000055391341,
+    "battery": 0.086499989265576,
+    "gps": 0.13179999950807542,
+    "compass": 0.44999999227002263,
+    "oscillation": 1.0991000017384067
+   }
+  },
+  {
+   "t": 38.01600000000326,
+   "incidents": [
+    {
+     "t_start": 10.688000000009197,
+     "t_end": 13.969000000011874,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 14.15700000000652,
+     "t_end": 37.90700000000652,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4, C5, C6.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2632,
+   "detect_ms": 5.933799999183975,
+   "build_ms": 3.942700001061894,
+   "messages_in": 4897,
+   "per_detector_ms": {
+    "vibration": 0.7812999974703416,
+    "ekf": 0.5655999993905425,
+    "actuator": 1.8498999997973442,
+    "battery": 0.08839998918119818,
+    "gps": 0.155699992319569,
+    "compass": 0.6968999950913712,
+    "oscillation": 1.7878999933600426
+   }
+  }
+ ],
+ "advisories": [
+  {
+   "t": 11.078000000008615,
+   "type": "actuator_saturation",
+   "severity": "critical",
+   "reason": "new",
+   "pre_inject": false
+  },
+  {
+   "t": 32.01600000000326,
+   "type": "actuator_saturation",
+   "severity": "critical",
+   "reason": "reminder",
+   "pre_inject": false
+  }
+ ],
+ "metrics": {
+  "latency_s": 1.0,
+  "false_positives": 0,
+  "incidents": 52,
+  "advisories": 2,
+  "suppression": 0.962,
+  "cycles": 36,
+  "buffer_first": 210,
+  "buffer_last": 2632,
+  "detect_ms_first": 0.44,
+  "detect_ms_last": 5.93,
+  "worst_cycle_ms": 9.9
+ },
+ "bundle_id": "58d91b12fd0b24eb",
+ "params_hash": "a07c6df649221285"
+}

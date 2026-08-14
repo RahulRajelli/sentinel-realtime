@@ -4,3 +4,141 @@ AIRFRAME: quad  (4 motors)  �  fault: motor_fail
   baseline. No spare yaw authority -- a motor-out is not survivable.
   model=quad  defaults=copter.parm  instance 6 -> tcp:127.0.0.1:5820
 ==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_ENGINE_FAIL=1.0 -> readback 1.0
+    inject SIM_ENGINE_MUL=0.0 -> readback 0.0
+    11.1s  actuator_saturation[critical]
+    12.0s  vibration_excessive[warning]
+    12.0s  ekf_inconsistency[warning]
+    32.0s  actuator_saturation[critical]
+    33.0s  vibration_excessive[warning]
+    33.0s  ekf_inconsistency[warning]
+  bundle: quad_motor_fail.json  id=7deeda390b42b3dc
+
+==============================================================================
+AIRFRAME: hexa  (6 motors)  �  fault: motor_fail
+  logistics / cargo. Redundant: should keep flying on 5 motors.
+  model=hexa  defaults=copter-hexa.parm  instance 7 -> tcp:127.0.0.1:5830
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_ENGINE_FAIL=1.0 -> readback 1.0
+    inject SIM_ENGINE_MUL=0.0 -> readback 0.0
+    11.1s  actuator_saturation[critical]
+    32.0s  actuator_saturation[critical]
+  bundle: hexa_motor_fail.json  id=58d91b12fd0b24eb
+
+==============================================================================
+AIRFRAME: octa  (8 motors)  �  fault: motor_fail
+  heavy lift. Most redundancy, least degradation.
+  model=octa  defaults=copter-octa.parm  instance 8 -> tcp:127.0.0.1:5840
+==============================================================================
+  takeoff: peak 7.1 m
+    inject SIM_ENGINE_FAIL=1.0 -> readback 1.0
+    inject SIM_ENGINE_MUL=0.0 -> readback 0.0
+    11.0s  actuator_saturation[warning]
+    31.0s  actuator_saturation[warning]
+  bundle: octa_motor_fail.json  id=5b85ccaf1b91fac5
+
+==============================================================================
+AIRFRAME: coax  (2 motors)  �  fault: motor_fail
+  coaxial. Two motors plus control surfaces -- a different actuator topology.
+  model=coax  defaults=copter-coax.parm  instance 9 -> tcp:127.0.0.1:5850
+==============================================================================
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+[WinError 10061] No connection could be made because the target machine actively refused it sleeping
+  FAILED: no heartbeat -- frame likely unsupported by this build
+
+
+====================================================================================================
+SAME FAULT (motor_fail), DIFFERENT AIRFRAMES
+====================================================================================================
+airframe   mot  booted armed  first advisory             lat  adv   supp  all advised
+----------------------------------------------------------------------------------------------------
+quad         4  yes    yes    actuator_saturation       1.0s    6 95.2%  actuator_saturation, ekf_inconsistency, vibration_excessive
+hexa         6  yes    yes    actuator_saturation       1.0s    2 96.2%  actuator_saturation
+octa         8  yes    yes    actuator_saturation       1.0s    2 92.9%  actuator_saturation
+coax         2  NO     NO     -                            -    0  0.0%  -
+
+  Read this as: identical injection, different airframe response. A frame that
+  did not boot or arm is reported as such -- absence of findings there means the
+  aircraft never flew, not that the fault was benign.
+
+wrote airframe_results.json

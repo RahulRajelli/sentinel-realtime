@@ -1,0 +1,92 @@
+[
+ {
+  "airframe": "quad",
+  "motors": 4,
+  "fault": "motor_fail",
+  "model": "quad",
+  "booted": true,
+  "armed": true,
+  "ok": true,
+  "inject_verified": true,
+  "first_advised": "actuator_saturation",
+  "latency_s": 1.0,
+  "all_advised": [
+   "actuator_saturation",
+   "ekf_inconsistency",
+   "vibration_excessive"
+  ],
+  "pre_inject": 0,
+  "incidents": 125,
+  "advisories": 6,
+  "suppression": 0.952,
+  "cycles": 36,
+  "buffer_first": 211,
+  "buffer_last": 2639,
+  "detect_ms_first": 1.11,
+  "detect_ms_last": 4.43,
+  "worst_cycle_ms": 30.0,
+  "bundle": "bundles\\quad_motor_fail.json"
+ },
+ {
+  "airframe": "hexa",
+  "motors": 6,
+  "fault": "motor_fail",
+  "model": "hexa",
+  "booted": true,
+  "armed": true,
+  "ok": true,
+  "inject_verified": true,
+  "first_advised": "actuator_saturation",
+  "latency_s": 1.0,
+  "all_advised": [
+   "actuator_saturation"
+  ],
+  "pre_inject": 0,
+  "incidents": 52,
+  "advisories": 2,
+  "suppression": 0.962,
+  "cycles": 36,
+  "buffer_first": 210,
+  "buffer_last": 2632,
+  "detect_ms_first": 0.44,
+  "detect_ms_last": 5.93,
+  "worst_cycle_ms": 9.9,
+  "bundle": "bundles\\hexa_motor_fail.json"
+ },
+ {
+  "airframe": "octa",
+  "motors": 8,
+  "fault": "motor_fail",
+  "model": "octa",
+  "booted": true,
+  "armed": true,
+  "ok": true,
+  "inject_verified": true,
+  "first_advised": "actuator_saturation",
+  "latency_s": 1.0,
+  "all_advised": [
+   "actuator_saturation"
+  ],
+  "pre_inject": 0,
+  "incidents": 28,
+  "advisories": 2,
+  "suppression": 0.929,
+  "cycles": 36,
+  "buffer_first": 210,
+  "buffer_last": 2633,
+  "detect_ms_first": 0.93,
+  "detect_ms_last": 4.93,
+  "worst_cycle_ms": 9.1,
+  "bundle": "bundles\\octa_motor_fail.json"
+ },
+ {
+  "airframe": "coax",
+  "motors": 2,
+  "fault": "motor_fail",
+  "model": "coax",
+  "booted": false,
+  "armed": false,
+  "ok": false,
+  "error": "no heartbeat -- frame likely unsupported by this build"
+ }
+]

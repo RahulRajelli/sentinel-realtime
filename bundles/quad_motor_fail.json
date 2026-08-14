@@ -1,0 +1,3442 @@
+{
+ "schema_version": 1,
+ "scenario": "quad_motor_fail",
+ "note": "baseline. No spare yaw authority -- a motor-out is not survivable. | motor 1 produces zero thrust from t+inject onward",
+ "created_utc": "2026-08-14T12:33:08+00:00",
+ "expected_root_cause": null,
+ "expected_symptoms": [],
+ "injection": [
+  {
+   "name": "SIM_ENGINE_FAIL",
+   "value": 1.0,
+   "readback": 1.0,
+   "applied": true
+  },
+  {
+   "name": "SIM_ENGINE_MUL",
+   "value": 0.0,
+   "readback": 0.0,
+   "applied": true
+  }
+ ],
+ "t_inject": 10.047000000005937,
+ "inject_verified": true,
+ "params": {
+  "MOT_PWM_MIN": 1000.0,
+  "MOT_PWM_MAX": 2000.0,
+  "MOT_SPIN_MIN": 0.15000000596046448,
+  "MOT_SPIN_MAX": 0.949999988079071,
+  "BATT_LOW_VOLT": 10.5,
+  "BATT_CRT_VOLT": 0.0,
+  "BATT_ARM_VOLT": 0.0,
+  "SERVO1_FUNCTION": 33.0,
+  "SERVO2_FUNCTION": 34.0,
+  "SERVO3_FUNCTION": 35.0,
+  "SERVO4_FUNCTION": 36.0,
+  "SERVO5_FUNCTION": 0.0,
+  "SERVO6_FUNCTION": 0.0,
+  "SERVO7_FUNCTION": 0.0,
+  "SERVO8_FUNCTION": 0.0,
+  "SERVO9_FUNCTION": 0.0,
+  "SERVO10_FUNCTION": 0.0,
+  "SERVO11_FUNCTION": 0.0,
+  "SERVO12_FUNCTION": 0.0,
+  "SERVO13_FUNCTION": 0.0,
+  "BARO1_GND_PRESS": 90970.5078125,
+  "BARO2_GND_PRESS": 90970.484375,
+  "INS_GYR_ID": 2752772.0,
+  "INS_ACC_ID": 2753028.0,
+  "INS_GYR2_ID": 2752780.0,
+  "INS_ACC2_ID": 2753036.0,
+  "INS_GYROFFS_X": 3.1337211112258956e-05,
+  "INS_GYROFFS_Y": 2.2285134036792442e-05,
+  "INS_GYROFFS_Z": 3.677543281810358e-05,
+  "INS_GYR1_CALTEMP": 25.018352508544922,
+  "INS_GYR2OFFS_X": 4.861036723013967e-05,
+  "INS_GYR2OFFS_Y": -2.367929664615076e-05,
+  "INS_GYR2OFFS_Z": 3.10860741592478e-05,
+  "INS_GYR2_CALTEMP": 25.018352508544922,
+  "INS_GYR3OFFS_X": 0.0,
+  "INS_GYR3OFFS_Y": 0.0,
+  "INS_GYR3OFFS_Z": 0.0,
+  "INS_GYR3_ID": 0.0,
+  "ARMING_SKIPCHK": 0.0,
+  "EK3_SRC1_POSXY": 3.0,
+  "SERVO14_FUNCTION": 0.0,
+  "SERVO15_FUNCTION": 0.0,
+  "SERVO16_FUNCTION": 0.0
+ },
+ "cycles": [
+  {
+   "t": 3.0,
+   "incidents": [],
+   "buffer_records": 211,
+   "detect_ms": 1.1079999967478216,
+   "build_ms": 0.720500000170432,
+   "messages_in": 390,
+   "per_detector_ms": {
+    "vibration": 0.12139999307692051,
+    "ekf": 0.060699996538460255,
+    "actuator": 0.5769999988842756,
+    "battery": 0.0692999892635271,
+    "gps": 0.028700000257231295,
+    "compass": 0.09290000889450312,
+    "oscillation": 0.14709999959450215
+   }
+  },
+  {
+   "t": 4.0,
+   "incidents": [],
+   "buffer_records": 281,
+   "detect_ms": 0.5224000051384792,
+   "build_ms": 0.5054000066593289,
+   "messages_in": 520,
+   "per_detector_ms": {
+    "vibration": 0.08589999924879521,
+    "ekf": 0.04730001091957092,
+    "actuator": 0.16490000416524708,
+    "battery": 0.02379999205004424,
+    "gps": 0.016000005416572094,
+    "compass": 0.06380000559147447,
+    "oscillation": 0.11530000483617187
+   }
+  },
+  {
+   "t": 5.0,
+   "incidents": [],
+   "buffer_records": 351,
+   "detect_ms": 0.6196000031195581,
+   "build_ms": 0.6114999996498227,
+   "messages_in": 650,
+   "per_detector_ms": {
+    "vibration": 0.10099999781232327,
+    "ekf": 0.056500008213333786,
+    "actuator": 0.20099998801015317,
+    "battery": 0.021700005163438618,
+    "gps": 0.018999999156221747,
+    "compass": 0.07280000136233866,
+    "oscillation": 0.14279999595601112
+   }
+  },
+  {
+   "t": 6.078000000008615,
+   "incidents": [],
+   "buffer_records": 427,
+   "detect_ms": 1.1689999955706298,
+   "build_ms": 1.0679000115487725,
+   "messages_in": 792,
+   "per_detector_ms": {
+    "vibration": 0.20680000307038426,
+    "ekf": 0.10310001380275935,
+    "actuator": 0.3763999993680045,
+    "battery": 0.03480000304989517,
+    "gps": 0.03749999450519681,
+    "compass": 0.1272999943466857,
+    "oscillation": 0.27550000231713057
+   }
+  },
+  {
+   "t": 7.062000000005355,
+   "incidents": [],
+   "buffer_records": 497,
+   "detect_ms": 0.8792000007815659,
+   "build_ms": 1.0098000057041645,
+   "messages_in": 922,
+   "per_detector_ms": {
+    "vibration": 0.13800000306218863,
+    "ekf": 0.07780001033097506,
+    "actuator": 0.2502999996067956,
+    "battery": 0.032800002372823656,
+    "gps": 0.025300003471784294,
+    "compass": 0.139000010676682,
+    "oscillation": 0.21100000594742596
+   }
+  },
+  {
+   "t": 8.062000000005355,
+   "incidents": [],
+   "buffer_records": 567,
+   "detect_ms": 0.9203000081470236,
+   "build_ms": 0.9533999982522801,
+   "messages_in": 1052,
+   "per_detector_ms": {
+    "vibration": 0.15490000077988952,
+    "ekf": 0.08759999764151871,
+    "actuator": 0.2783000090857968,
+    "battery": 0.026400011847727,
+    "gps": 0.02820001100189984,
+    "compass": 0.10450000991113484,
+    "oscillation": 0.23540000256616622
+   }
+  },
+  {
+   "t": 9.062000000005355,
+   "incidents": [],
+   "buffer_records": 637,
+   "detect_ms": 1.039800001308322,
+   "build_ms": 2.103999999235384,
+   "messages_in": 1182,
+   "per_detector_ms": {
+    "vibration": 0.1810000103432685,
+    "ekf": 0.10070001007989049,
+    "actuator": 0.32020000799093395,
+    "battery": 0.029099988751113415,
+    "gps": 0.03159999323543161,
+    "compass": 0.11500000255182385,
+    "oscillation": 0.2573999954620376
+   }
+  },
+  {
+   "t": 10.047000000005937,
+   "incidents": [],
+   "buffer_records": 707,
+   "detect_ms": 1.1258000013185665,
+   "build_ms": 1.029699997161515,
+   "messages_in": 1312,
+   "per_detector_ms": {
+    "vibration": 0.18889999773819,
+    "ekf": 0.10789999214466661,
+    "actuator": 0.34240000240970403,
+    "battery": 0.029399991035461426,
+    "gps": 0.03809999907389283,
+    "compass": 0.1311999949393794,
+    "oscillation": 0.28330000350251794
+   }
+  },
+  {
+   "t": 11.062000000005355,
+   "incidents": [
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.156000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 749,
+   "detect_ms": 1.3318000128492713,
+   "build_ms": 1.4211999950930476,
+   "messages_in": 1397,
+   "per_detector_ms": {
+    "vibration": 0.21859999105799943,
+    "ekf": 0.11559999256860465,
+    "actuator": 0.4634000069927424,
+    "battery": 0.03840000135824084,
+    "gps": 0.04169999738223851,
+    "compass": 0.1311999949393794,
+    "oscillation": 0.3169999981764704
+   }
+  },
+  {
+   "t": 12.047000000005937,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 819,
+   "detect_ms": 1.4687999937450513,
+   "build_ms": 1.1953999928664416,
+   "messages_in": 1528,
+   "per_detector_ms": {
+    "vibration": 0.28249999741092324,
+    "ekf": 0.18420000560581684,
+    "actuator": 0.4312000091886148,
+    "battery": 0.03260000084992498,
+    "gps": 0.04030000127386302,
+    "compass": 0.145500001963228,
+    "oscillation": 0.3465999907348305
+   }
+  },
+  {
+   "t": 13.047000000005937,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 12.968000000008033,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 889,
+   "detect_ms": 1.5726999990874901,
+   "build_ms": 1.2647999974433333,
+   "messages_in": 1659,
+   "per_detector_ms": {
+    "vibration": 0.2671999973244965,
+    "ekf": 0.18560000171419233,
+    "actuator": 0.4824999923584983,
+    "battery": 0.03500000457279384,
+    "gps": 0.04680000711232424,
+    "compass": 0.1812999980757013,
+    "oscillation": 0.3694000042742118
+   }
+  },
+  {
+   "t": 14.031000000002678,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 13.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 959,
+   "detect_ms": 1.7328000103589147,
+   "build_ms": 1.3808000076096505,
+   "messages_in": 1789,
+   "per_detector_ms": {
+    "vibration": 0.32389999250881374,
+    "ekf": 0.20719999156426638,
+    "actuator": 0.5469000025186688,
+    "battery": 0.04090000584255904,
+    "gps": 0.05110001075081527,
+    "compass": 0.16590001177974045,
+    "oscillation": 0.39000000106170774
+   }
+  },
+  {
+   "t": 15.031000000002678,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 14.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1029,
+   "detect_ms": 1.7703000048641115,
+   "build_ms": 1.4756000018678606,
+   "messages_in": 1920,
+   "per_detector_ms": {
+    "vibration": 0.2970000059576705,
+    "ekf": 0.17850000585895032,
+    "actuator": 0.5843000108143315,
+    "battery": 0.03780001134146005,
+    "gps": 0.05370000144466758,
+    "compass": 0.17430000298190862,
+    "oscillation": 0.43990000267513096
+   }
+  },
+  {
+   "t": 16.031000000002678,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 15.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1099,
+   "detect_ms": 2.2074000007705763,
+   "build_ms": 1.6468999965582043,
+   "messages_in": 2050,
+   "per_detector_ms": {
+    "vibration": 0.5042999982833862,
+    "ekf": 0.269199998001568,
+    "actuator": 0.6481000018538907,
+    "battery": 0.04949999856762588,
+    "gps": 0.05809999129269272,
+    "compass": 0.2035000070463866,
+    "oscillation": 0.46710000606253743
+   }
+  },
+  {
+   "t": 17.014999999999418,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 16.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1169,
+   "detect_ms": 2.0302999910200015,
+   "build_ms": 1.7497999942861497,
+   "messages_in": 2180,
+   "per_detector_ms": {
+    "vibration": 0.33409999741706997,
+    "ekf": 0.21610000112559646,
+    "actuator": 0.6701000093016773,
+    "battery": 0.04440000338945538,
+    "gps": 0.059600002714432776,
+    "compass": 0.20220001169946045,
+    "oscillation": 0.49819999549072236
+   }
+  },
+  {
+   "t": 18.014999999999418,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 17.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1239,
+   "detect_ms": 2.521799993701279,
+   "build_ms": 1.851099994382821,
+   "messages_in": 2311,
+   "per_detector_ms": {
+    "vibration": 0.4157000075792894,
+    "ekf": 0.2330999996047467,
+    "actuator": 0.898600002983585,
+    "battery": 0.05750000127591193,
+    "gps": 0.07309998909477144,
+    "compass": 0.29320000612642616,
+    "oscillation": 0.5425999988801777
+   }
+  },
+  {
+   "t": 19.014999999999418,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 18.922000000005937,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1309,
+   "detect_ms": 2.227899996796623,
+   "build_ms": 1.8525999912526459,
+   "messages_in": 2441,
+   "per_detector_ms": {
+    "vibration": 0.3809999907389283,
+    "ekf": 0.22709999757353216,
+    "actuator": 0.7151000027079135,
+    "battery": 0.046200002543628216,
+    "gps": 0.06489999941550195,
+    "compass": 0.22080000780988485,
+    "oscillation": 0.5674000130966306
+   }
+  },
+  {
+   "t": 20.014999999999418,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 19.922000000005937,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1379,
+   "detect_ms": 4.067800007760525,
+   "build_ms": 3.669199999421835,
+   "messages_in": 2571,
+   "per_detector_ms": {
+    "vibration": 0.6400999991456047,
+    "ekf": 0.42299999040551484,
+    "actuator": 1.423100009560585,
+    "battery": 0.0805000017862767,
+    "gps": 0.1201999984914437,
+    "compass": 0.40299999818671495,
+    "oscillation": 0.9671000007074326
+   }
+  },
+  {
+   "t": 21.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 20.922000000005937,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1449,
+   "detect_ms": 2.5766999897314236,
+   "build_ms": 2.0883999968646094,
+   "messages_in": 2702,
+   "per_detector_ms": {
+    "vibration": 0.4057000041939318,
+    "ekf": 0.24830001348163933,
+    "actuator": 0.8998999983305112,
+    "battery": 0.05629999213851988,
+    "gps": 0.07829999958630651,
+    "compass": 0.2795999898808077,
+    "oscillation": 0.6027000054018572
+   }
+  },
+  {
+   "t": 22.014999999999418,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 21.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1519,
+   "detect_ms": 4.678500001318753,
+   "build_ms": 25.344599998788908,
+   "messages_in": 2833,
+   "per_detector_ms": {
+    "vibration": 0.9214000019710511,
+    "ekf": 0.515899999300018,
+    "actuator": 1.468099988414906,
+    "battery": 0.10409999231342226,
+    "gps": 0.15320000238716602,
+    "compass": 0.48329999845009297,
+    "oscillation": 1.0236999951303005
+   }
+  },
+  {
+   "t": 23.014999999999418,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 22.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1589,
+   "detect_ms": 4.862100002355874,
+   "build_ms": 3.4559000050649047,
+   "messages_in": 2964,
+   "per_detector_ms": {
+    "vibration": 0.795899992226623,
+    "ekf": 0.5372999876271933,
+    "actuator": 1.67199999850709,
+    "battery": 0.09270000737160444,
+    "gps": 0.14560000272467732,
+    "compass": 0.47389999963343143,
+    "oscillation": 1.135800004703924
+   }
+  },
+  {
+   "t": 24.031000000002678,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 23.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1659,
+   "detect_ms": 3.723100002389401,
+   "build_ms": 2.5729000044520944,
+   "messages_in": 3094,
+   "per_detector_ms": {
+    "vibration": 0.6072000105632469,
+    "ekf": 0.5120999994687736,
+    "actuator": 1.399400003720075,
+    "battery": 0.06910000229254365,
+    "gps": 0.09419998968951404,
+    "compass": 0.3391999925952405,
+    "oscillation": 0.6932999967830256
+   }
+  },
+  {
+   "t": 25.047000000005937,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 24.953000000008615,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1729,
+   "detect_ms": 3.082500013988465,
+   "build_ms": 2.5628000003052875,
+   "messages_in": 3224,
+   "per_detector_ms": {
+    "vibration": 0.4853999998886138,
+    "ekf": 0.3138999891234562,
+    "actuator": 1.061999995727092,
+    "battery": 0.0678999931551516,
+    "gps": 0.09269999281968921,
+    "compass": 0.3212000010535121,
+    "oscillation": 0.7335999980568886
+   }
+  },
+  {
+   "t": 26.062000000005355,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 25.968000000008033,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1799,
+   "detect_ms": 3.131199991912581,
+   "build_ms": 2.6464999973541126,
+   "messages_in": 3354,
+   "per_detector_ms": {
+    "vibration": 0.5024999991292134,
+    "ekf": 0.414399997680448,
+    "actuator": 0.9507000067969784,
+    "battery": 0.06250001024454832,
+    "gps": 0.09040000441018492,
+    "compass": 0.32219999411609024,
+    "oscillation": 0.7818000012775883
+   }
+  },
+  {
+   "t": 27.062000000005355,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 26.968000000008033,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1869,
+   "detect_ms": 3.086500000790693,
+   "build_ms": 2.64239999523852,
+   "messages_in": 3484,
+   "per_detector_ms": {
+    "vibration": 0.5086000019218773,
+    "ekf": 0.3178000042680651,
+    "actuator": 0.9835000091698021,
+    "battery": 0.05879999662283808,
+    "gps": 0.0926000066101551,
+    "compass": 0.32160000409930944,
+    "oscillation": 0.7984999974723905
+   }
+  },
+  {
+   "t": 28.078000000008615,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 27.984000000011292,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1939,
+   "detect_ms": 4.315199999837205,
+   "build_ms": 3.1535000016447157,
+   "messages_in": 3614,
+   "per_detector_ms": {
+    "vibration": 0.5902999982936308,
+    "ekf": 0.6236000044737011,
+    "actuator": 1.6276999958790839,
+    "battery": 0.07760000880807638,
+    "gps": 0.11340000492054969,
+    "compass": 0.40530000114813447,
+    "oscillation": 0.8682000043336302
+   }
+  },
+  {
+   "t": 29.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 28.984000000011292,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2008,
+   "detect_ms": 5.375500011723489,
+   "build_ms": 4.158199997618794,
+   "messages_in": 3741,
+   "per_detector_ms": {
+    "vibration": 0.9729000012157485,
+    "ekf": 0.5909000028623268,
+    "actuator": 1.7533000063849613,
+    "battery": 0.11470000026747584,
+    "gps": 0.1539999939268455,
+    "compass": 0.566999995498918,
+    "oscillation": 1.2122000043746084
+   }
+  },
+  {
+   "t": 30.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 29.889999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2073,
+   "detect_ms": 3.4860000014305115,
+   "build_ms": 2.860700013116002,
+   "messages_in": 3862,
+   "per_detector_ms": {
+    "vibration": 0.5613999965135008,
+    "ekf": 0.36359998921398073,
+    "actuator": 1.0883999930229038,
+    "battery": 0.06669999856967479,
+    "gps": 0.10209999163635075,
+    "compass": 0.3527000080794096,
+    "oscillation": 0.9453000093344599
+   }
+  },
+  {
+   "t": 31.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 30.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2143,
+   "detect_ms": 5.389899990404956,
+   "build_ms": 3.8152000051923096,
+   "messages_in": 3993,
+   "per_detector_ms": {
+    "vibration": 1.1071999906562269,
+    "ekf": 0.6296000065049157,
+    "actuator": 1.8082000024151057,
+    "battery": 0.07739999273326248,
+    "gps": 0.11680000170599669,
+    "compass": 0.5630000086966902,
+    "oscillation": 1.0758999997051433
+   }
+  },
+  {
+   "t": 32.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 31.889999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2213,
+   "detect_ms": 3.7397999985842034,
+   "build_ms": 3.1487999949604273,
+   "messages_in": 4123,
+   "per_detector_ms": {
+    "vibration": 0.6133999995654449,
+    "ekf": 0.3708000003825873,
+    "actuator": 1.1455999920144677,
+    "battery": 0.1117999927373603,
+    "gps": 0.13789998774882406,
+    "compass": 0.4056000034324825,
+    "oscillation": 0.9479000000283122
+   }
+  },
+  {
+   "t": 33.01499999999942,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 32.88999999999942,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2283,
+   "detect_ms": 6.475000001955777,
+   "build_ms": 5.484599998453632,
+   "messages_in": 4253,
+   "per_detector_ms": {
+    "vibration": 1.0986000124830753,
+    "ekf": 0.6731999892508611,
+    "actuator": 2.16829999408219,
+    "battery": 0.11749999248422682,
+    "gps": 0.18859999545384198,
+    "compass": 0.6269000004976988,
+    "oscillation": 1.592300002812408
+   }
+  },
+  {
+   "t": 34.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 33.90600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2353,
+   "detect_ms": 4.225399999995716,
+   "build_ms": 3.472600001259707,
+   "messages_in": 4383,
+   "per_detector_ms": {
+    "vibration": 0.7027999963611364,
+    "ekf": 0.42130000656470656,
+    "actuator": 1.417299994500354,
+    "battery": 0.0881000014487654,
+    "gps": 0.13249999028630555,
+    "compass": 0.4312999953981489,
+    "oscillation": 1.0245000012218952
+   }
+  },
+  {
+   "t": 35.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 34.88999999999942,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2423,
+   "detect_ms": 4.092499992111698,
+   "build_ms": 3.461599990259856,
+   "messages_in": 4513,
+   "per_detector_ms": {
+    "vibration": 0.7302000012714416,
+    "ekf": 0.421199991251342,
+    "actuator": 1.3064999948255718,
+    "battery": 0.08109999180305749,
+    "gps": 0.12409999908413738,
+    "compass": 0.39939999987836927,
+    "oscillation": 1.0238999966531992
+   }
+  },
+  {
+   "t": 36.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 35.88999999999942,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2493,
+   "detect_ms": 4.610000003594905,
+   "build_ms": 4.571400000713766,
+   "messages_in": 4643,
+   "per_detector_ms": {
+    "vibration": 0.9093000116990879,
+    "ekf": 0.484200005303137,
+    "actuator": 1.419100008206442,
+    "battery": 0.09110000974033028,
+    "gps": 0.14820000797044486,
+    "compass": 0.46380001003853977,
+    "oscillation": 1.087199998437427
+   }
+  },
+  {
+   "t": 37.0,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 36.88999999999942,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2563,
+   "detect_ms": 4.750399995828047,
+   "build_ms": 4.106499996851198,
+   "messages_in": 4773,
+   "per_detector_ms": {
+    "vibration": 0.7291000074474141,
+    "ekf": 0.46010001096874475,
+    "actuator": 1.4718000020366162,
+    "battery": 0.08489999163430184,
+    "gps": 0.13299999409355223,
+    "compass": 0.48299999616574496,
+    "oscillation": 1.3816999999107793
+   }
+  },
+  {
+   "t": 38.078000000008615,
+   "incidents": [
+    {
+     "t_start": 11.764999999999418,
+     "t_end": 11.764999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 30.738466262817383,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 11.875,
+     "t_end": 12.375,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.383,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 21.218000000008033,
+     "t_end": 21.718000000008033,
+     "type": "ekf_inconsistency",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "EKF_Magnetometer_Variance",
+       "value": 1.574,
+       "threshold": 1.0,
+       "unit": "ratio",
+       "description": "Peak EKF magnetometer innovation test ratio (XKF4.SM) exceeded the consistency threshold."
+      }
+     ],
+     "notes": [
+      "EKF innovation test ratio above 1.0 means the filter's consistency check is failing: the measurements and the state estimate disagree.",
+      "Usually downstream of a physical cause \u2014 GPS glitch, magnetic interference, or vibration corrupting the accelerometers. Treat as a symptom, not a root cause."
+     ]
+    },
+    {
+     "t_start": 10.656000000002678,
+     "t_end": 11.764999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C1); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    },
+    {
+     "t_start": 12.062000000005355,
+     "t_end": 37.98400000001129,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Saturated_Motor_Count",
+       "value": 1.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Motor output pinned at maximum thrust (C2); saturation begins at 1950 us. A saturated motor has no authority left to correct."
+      },
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 800.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (80% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2639,
+   "detect_ms": 4.431299996213056,
+   "build_ms": 5.120400004670955,
+   "messages_in": 4915,
+   "per_detector_ms": {
+    "vibration": 0.7117000059224665,
+    "ekf": 0.44800000614486635,
+    "actuator": 1.4401000080397353,
+    "battery": 0.07950000872369856,
+    "gps": 0.1292000088142231,
+    "compass": 0.4926000110572204,
+    "oscillation": 1.1233999975956976
+   }
+  }
+ ],
+ "advisories": [
+  {
+   "t": 11.062000000005355,
+   "type": "actuator_saturation",
+   "severity": "critical",
+   "reason": "new",
+   "pre_inject": false
+  },
+  {
+   "t": 12.047000000005937,
+   "type": "vibration_excessive",
+   "severity": "warning",
+   "reason": "new",
+   "pre_inject": false
+  },
+  {
+   "t": 12.047000000005937,
+   "type": "ekf_inconsistency",
+   "severity": "warning",
+   "reason": "new",
+   "pre_inject": false
+  },
+  {
+   "t": 32.0,
+   "type": "actuator_saturation",
+   "severity": "critical",
+   "reason": "reminder",
+   "pre_inject": false
+  },
+  {
+   "t": 33.01499999999942,
+   "type": "vibration_excessive",
+   "severity": "warning",
+   "reason": "reminder",
+   "pre_inject": false
+  },
+  {
+   "t": 33.01499999999942,
+   "type": "ekf_inconsistency",
+   "severity": "warning",
+   "reason": "reminder",
+   "pre_inject": false
+  }
+ ],
+ "metrics": {
+  "latency_s": 1.0,
+  "false_positives": 0,
+  "incidents": 125,
+  "advisories": 6,
+  "suppression": 0.952,
+  "cycles": 36,
+  "buffer_first": 211,
+  "buffer_last": 2639,
+  "detect_ms_first": 1.11,
+  "detect_ms_last": 4.43,
+  "worst_cycle_ms": 30.0
+ },
+ "bundle_id": "7deeda390b42b3dc",
+ "params_hash": "0629c99b8ddfa7fe"
+}
