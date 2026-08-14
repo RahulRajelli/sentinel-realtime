@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Live-run artefacts. Bundles ARE the asset and are committed deliberately;
+# raw simulator logs are machine-specific noise.
+r8_run.log
+r8_run.err
+*.BIN
+*.bin
+*.ulg
