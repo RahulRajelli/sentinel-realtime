@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 940" width="1440" height="940" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7280"/>
+    </marker>
+    <marker id="arwB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1d4ed8"/>
+    </marker>
+  </defs>
+
+  <rect width="1440" height="940" fill="#ffffff"/>
+
+  <!-- ── title ─────────────────────────────────────────────────────────── -->
+  <text x="50" y="52" font-size="27" font-weight="700" fill="#111827">SentinelAgent — root-cause discrimination for UAV telemetry</text>
+  <text x="50" y="80" font-size="15.5" fill="#6b7280">Can an LLM agent tell the <tspan font-weight="600" fill="#111827">cause</tspan> of a flight fault from its <tspan font-weight="600" fill="#111827">symptoms</tspan> — and does it beat a free deterministic baseline at equal cost?</text>
+  <line x1="50" y1="98" x2="1390" y2="98" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <!-- ══ STAGE 1 · CAPTURE ══════════════════════════════════════════════ -->
+  <rect x="50" y="128" width="332" height="352" rx="10" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.8"/>
+  <text x="72" y="160" font-size="12" font-weight="700" fill="#0f766e" letter-spacing="1.4">STAGE 1 · CAPTURE</text>
+  <text x="72" y="182" font-size="14.5" fill="#374151">live ArduPilot SITL · runs once</text>
+
+  <rect x="72" y="200" width="288" height="46" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+  <text x="88" y="220" font-size="13.5" font-weight="600" fill="#111827">arm → take off → fly 30 s</text>
+  <text x="88" y="237" font-size="12" fill="#6b7280">real vehicle dynamics, wall-clock speed</text>
+
+  <rect x="72" y="256" width="288" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+  <text x="88" y="276" font-size="13.5" font-weight="600" fill="#111827">inject fault + read the param back</text>
+  <text x="88" y="293" font-size="12" fill="#0f766e">proof the test condition actually applied</text>
+
+  <rect x="72" y="318" width="288" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+  <text x="88" y="338" font-size="13.5" font-weight="600" fill="#111827">7 detectors, 1 Hz rolling window</text>
+  <text x="88" y="355" font-size="12" fill="#6b7280">worst cycle 18 ms of 1000 ms</text>
+
+  <rect x="72" y="380" width="288" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+  <text x="88" y="400" font-size="13.5" font-weight="600" fill="#111827">escalation gate → advisories</text>
+  <text x="88" y="417" font-size="12" fill="#6b7280">96.9% of detector output suppressed</text>
+
+  <text x="72" y="458" font-size="12.5" fill="#0f766e" font-style="italic">refuses to name a root cause — that is the agent's job</text>
+
+  <!-- ══ STAGE 2 · BUNDLE ══════════════════════════════════════════════ -->
+  <line x1="386" y1="304" x2="428" y2="304" stroke="#6b7280" stroke-width="2" marker-end="url(#arw)"/>
+
+  <rect x="434" y="128" width="266" height="352" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="1.8"/>
+  <text x="456" y="160" font-size="12" font-weight="700" fill="#b45309" letter-spacing="1.4">STAGE 2 · RUNBUNDLE</text>
+  <text x="456" y="182" font-size="14.5" fill="#374151">one flight, frozen to a file</text>
+
+  <rect x="456" y="200" width="222" height="232" rx="6" fill="#ffffff" stroke="#fde68a"/>
+  <text x="470" y="223" font-size="12.5" font-weight="600" fill="#111827">every incident, per cycle</text>
+  <text x="470" y="245" font-size="12.5" font-weight="600" fill="#111827">every advisory + timing</text>
+  <text x="470" y="267" font-size="12.5" font-weight="600" fill="#111827">1 088 params + hash</text>
+  <text x="470" y="289" font-size="12.5" font-weight="600" fill="#111827">injection + readback</text>
+  <text x="470" y="311" font-size="12.5" font-weight="600" fill="#111827">ground truth label</text>
+  <line x1="470" y1="328" x2="664" y2="328" stroke="#fde68a"/>
+  <text x="470" y="350" font-size="12.5" font-weight="700" fill="#b45309">sha256 content id</text>
+  <text x="470" y="369" font-size="11.5" fill="#6b7280">edit the file by hand and</text>
+  <text x="470" y="385" font-size="11.5" fill="#6b7280">loading it fails loudly</text>
+  <text x="470" y="411" font-size="11.5" fill="#6b7280">a verdict carries this id, so it</text>
+  <text x="470" y="427" font-size="11.5" fill="#6b7280">can't be re-attributed later</text>
+
+  <text x="456" y="458" font-size="12.5" fill="#b45309" font-style="italic">fly once (~16 min) · judge 96× (seconds)</text>
+
+  <!-- ══ STAGE 3 · JUDGES ══════════════════════════════════════════════ -->
+  <line x1="704" y1="304" x2="746" y2="304" stroke="#6b7280" stroke-width="2" marker-end="url(#arw)"/>
+
+  <rect x="752" y="128" width="638" height="352" rx="10" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.8"/>
+  <text x="774" y="160" font-size="12" font-weight="700" fill="#1d4ed8" letter-spacing="1.4">STAGE 3 · FOUR JUDGES, ONE INTERFACE</text>
+  <text x="774" y="182" font-size="14.5" fill="#374151">same question, same frozen input, offline — no simulator, no network</text>
+
+  <rect x="774" y="200" width="290" height="56" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+  <text x="790" y="221" font-size="13.5" font-weight="700" fill="#111827">B0 · deterministic</text>
+  <text x="790" y="240" font-size="12" fill="#6b7280">first advisory after injection. 0 tokens</text>
+  <rect x="1074" y="200" width="292" height="56" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+  <text x="1090" y="221" font-size="13.5" font-weight="700" fill="#111827">B1 · single LLM call</text>
+  <text x="1090" y="240" font-size="12" fill="#6b7280">the naive baseline most demos stop at</text>
+
+  <rect x="774" y="266" width="290" height="56" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+  <text x="790" y="287" font-size="13.5" font-weight="700" fill="#111827">B2 · N-sample majority vote</text>
+  <text x="790" y="306" font-size="12" fill="#1d4ed8">held to B3's measured token spend ±10%</text>
+  <rect x="1074" y="266" width="292" height="56" rx="6" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.6"/>
+  <text x="1090" y="287" font-size="13.5" font-weight="700" fill="#1d4ed8">B3 · tool-using agent</text>
+  <text x="1090" y="306" font-size="12" fill="#6b7280">iterative, spend-capped, cites its evidence</text>
+
+  <rect x="774" y="336" width="592" height="96" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+  <text x="790" y="358" font-size="12.5" font-weight="700" fill="#111827">B3's read-only tools</text>
+  <text x="790" y="379" font-size="12" fill="#374151">list_advisories() · ordering(a, b) · detector_evidence(type) · get_param(name)</text>
+  <text x="790" y="399" font-size="12" fill="#374151">signal_window(name, t0, t1) → <tspan fill="#1d4ed8" font-weight="600">summary stats only, never a raw dump</tspan></text>
+  <text x="790" y="420" font-size="11.5" fill="#6b7280">the bundle is a frozen file, so read-only is structural — there is nothing to write to</text>
+
+  <text x="774" y="458" font-size="12.5" fill="#1d4ed8" font-style="italic">a judge reads nothing outside the bundle it is handed — that is what makes the comparison fair</text>
+
+  <!-- ══ STAGE 4 · SCORING ══════════════════════════════════════════════ -->
+  <line x1="1071" y1="486" x2="1071" y2="518" stroke="#6b7280" stroke-width="2" marker-end="url(#arw)"/>
+
+  <rect x="50" y="524" width="1340" height="212" rx="10" fill="#faf5ff" stroke="#6d28d9" stroke-width="1.8"/>
+  <text x="72" y="556" font-size="12" font-weight="700" fill="#6d28d9" letter-spacing="1.4">STAGE 4 · SCORE → STATISTICS → PUBLISHED TABLE</text>
+
+  <rect x="72" y="574" width="418" height="140" rx="6" fill="#ffffff" stroke="#e9d5ff"/>
+  <text x="90" y="597" font-size="13.5" font-weight="700" fill="#111827">Root-cause-only scoring</text>
+  <text x="90" y="620" font-size="12.5" fill="#b91c1c" font-weight="600">naming a symptom scores 0, not partial credit</text>
+  <text x="90" y="641" font-size="12.5" fill="#374151">a citation outside the window scores 0</text>
+  <text x="90" y="662" font-size="12.5" fill="#374151">a non-null verdict with no citation scores 0</text>
+  <text x="90" y="686" font-size="11.5" fill="#6b7280">being right while pointing at something that</text>
+  <text x="90" y="702" font-size="11.5" fill="#6b7280">never happened is not being right</text>
+
+  <rect x="506" y="574" width="418" height="140" rx="6" fill="#ffffff" stroke="#e9d5ff"/>
+  <text x="524" y="597" font-size="13.5" font-weight="700" fill="#111827">Statistics, not vibes</text>
+  <text x="524" y="620" font-size="12.5" fill="#374151">Wilson intervals on every accuracy</text>
+  <text x="524" y="641" font-size="12.5" fill="#374151">Cohen's κ — LLM grader vs. code scorer</text>
+  <text x="524" y="662" font-size="12.5" fill="#374151">flip rate across 3 prompt paraphrases</text>
+  <text x="524" y="686" font-size="11.5" fill="#6b7280">every miss attributed by rule to</text>
+  <text x="524" y="702" font-size="11.5" fill="#6b7280">model · harness · environment</text>
+
+  <rect x="940" y="574" width="428" height="140" rx="6" fill="#ffffff" stroke="#e9d5ff"/>
+  <text x="958" y="597" font-size="13.5" font-weight="700" fill="#111827">The honesty rule</text>
+  <text x="958" y="622" font-size="13" fill="#111827" font-weight="600">If the free baseline wins, publish that.</text>
+  <text x="958" y="646" font-size="12" fill="#6b7280">A negative result honestly measured is a</text>
+  <text x="958" y="663" font-size="12" fill="#6b7280">stronger artifact than a rigged win.</text>
+  <text x="958" y="690" font-size="12" fill="#6d28d9">Measured so far: B0 scores 4/4 at 0 tokens —</text>
+  <text x="958" y="707" font-size="12" fill="#6d28d9">so the fault set is being made harder first.</text>
+
+  <!-- ── the core problem ─────────────────────────────────────────────── -->
+  <rect x="50" y="762" width="1340" height="132" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.8"/>
+  <text x="72" y="792" font-size="12" font-weight="700" fill="#b91c1c" letter-spacing="1.4">THE PROBLEM THE AGENT EXISTS FOR</text>
+
+  <text x="72" y="822" font-size="14" fill="#374151">One fault fires many detectors. The <tspan font-weight="700" fill="#111827">first</tspan> alarm is not always the <tspan font-weight="700" fill="#111827">cause</tspan>:</text>
+
+  <rect x="72" y="836" width="196" height="40" rx="5" fill="#ffffff" stroke="#fecaca"/>
+  <text x="86" y="854" font-size="12.5" font-weight="600" fill="#111827">stiff airframe</text>
+  <text x="86" y="869" font-size="11" fill="#6b7280">the injected root cause</text>
+  <line x1="272" y1="856" x2="306" y2="856" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arw)"/>
+  <rect x="310" y="836" width="196" height="40" rx="5" fill="#ffffff" stroke="#fecaca"/>
+  <text x="324" y="854" font-size="12.5" font-weight="600" fill="#111827">accel clipping</text>
+  <text x="324" y="869" font-size="11" fill="#b91c1c">detected FIRST — a symptom</text>
+  <line x1="510" y1="856" x2="544" y2="856" stroke="#b91c1c" stroke-width="1.8" marker-end="url(#arw)"/>
+  <rect x="548" y="836" width="196" height="40" rx="5" fill="#ffffff" stroke="#fecaca"/>
+  <text x="562" y="854" font-size="12.5" font-weight="600" fill="#111827">EKF inconsistency</text>
+  <text x="562" y="869" font-size="11" fill="#6b7280">downstream cascade</text>
+
+  <text x="776" y="852" font-size="13" fill="#374151">The deterministic tier answers <tspan font-weight="700" fill="#b91c1c">“accel clipping”</tspan> with total confidence.</text>
+  <text x="776" y="872" font-size="13" fill="#374151">An engineer answers <tspan font-weight="700" fill="#0f766e">“stiff airframe”</tspan> — by reasoning about ordering and evidence.</text>
+
+  <text x="50" y="922" font-size="11.5" fill="#9ca3af">Measured on ArduPilot SITL · 4/4 scenarios · 0 false positives · 1.0 s detection latency · 96.9% advisory suppression · worst cycle 18 ms of 1000 ms</text>
+</svg>

@@ -1,0 +1,24 @@
+[project]
+name = "sentinel-realtime"
+version = "0.1.0"
+description = "Root-cause vs symptom discrimination for UAV telemetry: a realtime detector tier and an evaluation harness for LLM agent judges."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Rahul Rajelli" }]
+keywords = ["uav", "ardupilot", "mavlink", "llm-agents", "evaluation", "root-cause-analysis"]
+dependencies = ["pydantic>=2.0"]
+
+[project.optional-dependencies]
+live = ["pymavlink>=2.4"]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["sentinel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
