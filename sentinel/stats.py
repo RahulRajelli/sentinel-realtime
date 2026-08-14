@@ -129,6 +129,27 @@ class JudgeStats:
     accuracy: float = 0.0
     ci: tuple[float, float] = (0.0, 1.0)
 
+    # THE INTERVAL THAT SHOULD BE QUOTED. Added 2026-08-14 after an external review caught the
+    # error, and it had already been repeated in a write-up.
+    #
+    # `n` counts JUDGEMENTS: 9 bundles x 3 prompt variants = 27. Those 27 are not 27 independent
+    # trials -- three of them re-judge the same flight with the wording changed, so they are
+    # repeated measures on one unit. Treating them as independent is pseudo-replication: it
+    # inflates n threefold and shrinks the interval by about sqrt(3).
+    #
+    # It mattered. At n=27 B1 [0.82-0.99] and B3 [0.48-0.81] appear not to overlap, which was
+    # written up as "not noise". At the correct n=9 they are [0.70-1.00] and [0.35-0.88] --
+    # overlapping across [0.70-0.88], and the difference is NOT established.
+    #
+    # The bundle is the independent unit, so a bundle is scored correct when a majority of its
+    # variants are correct, and the interval is computed over bundles. `ci` is kept because the
+    # judgement-level rate is still the right thing for per-call cost and flip analysis -- but
+    # `ci_bundle` is what a claim about accuracy must cite.
+    n_bundles: int = 0
+    correct_bundles: int = 0
+    accuracy_bundle: float = 0.0
+    ci_bundle: tuple[float, float] = (0.0, 1.0)
+
     named_symptom_as_root: int = 0
     hallucinated: int = 0
     missed: int = 0
@@ -186,12 +207,25 @@ def summarize_judge(rows: Sequence[ScoreRow]) -> JudgeStats:
 
     attribution = Counter(r.attribution for r in rows if r.attribution)
 
+    # Cluster by bundle: the independent unit is the flight, not the judgement.
+    by_bundle: dict[str, list[ScoreRow]] = defaultdict(list)
+    for r in rows:
+        by_bundle[r.bundle_id].append(r)
+    n_bundles = len(by_bundle)
+    correct_bundles = sum(
+        1 for rs in by_bundle.values()
+        if sum(1 for r in rs if r.score == 1.0) / len(rs) > 0.5)
+
     return JudgeStats(
         judge=rows[0].judge,
         n=n,
         correct=correct,
         accuracy=correct / n,
         ci=wilson_interval(correct, n),
+        n_bundles=n_bundles,
+        correct_bundles=correct_bundles,
+        accuracy_bundle=correct_bundles / n_bundles if n_bundles else 0.0,
+        ci_bundle=wilson_interval(correct_bundles, n_bundles),
         named_symptom_as_root=sum(1 for r in rows if r.named_symptom_as_root),
         hallucinated=sum(1 for r in rows if r.hallucinated),
         missed=sum(1 for r in rows if r.missed),
