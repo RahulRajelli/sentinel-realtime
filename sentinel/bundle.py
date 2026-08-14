@@ -235,10 +235,27 @@ class RunBundle(BaseModel):
         return bundle
 
 
+def _looks_like_bundle(path: Path) -> bool:
+    """Cheap structural check before strict validation.
+
+    `load_all` globs *.json, and a `verdicts.json` or a stray config sitting in the same
+    directory is not a corrupt bundle -- it is not a bundle at all. Failing on it would make an
+    unrelated file break the report, while skipping everything that fails to parse would hide a
+    genuinely broken capture. So: skip files that lack a bundle's shape, and let everything with
+    that shape go through `load()` and fail loudly if it is wrong.
+    """
+    try:
+        raw = json.loads(path.read_text())
+    except (ValueError, OSError):
+        return False
+    return isinstance(raw, dict) and "scenario" in raw and "cycles" in raw
+
+
 def load_all(directory: str | Path) -> list[RunBundle]:
     """Load every bundle in a directory, in a stable order.
 
     Sorted by filename so a sweep's scenario order is reproducible; an unordered glob would make
     two otherwise identical runs disagree on row order in the published table.
     """
-    return [RunBundle.load(p) for p in sorted(Path(directory).glob("*.json"))]
+    return [RunBundle.load(p) for p in sorted(Path(directory).glob("*.json"))
+            if _looks_like_bundle(p)]
