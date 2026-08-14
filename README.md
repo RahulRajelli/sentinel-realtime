@@ -45,8 +45,36 @@ threshold that was actually loaded on the aircraft, so you can check it rather t
 |---|---|
 | `sentinel doctor` | Checks your machine, names the exact fix for anything missing |
 | `sentinel analyze FLIGHT.BIN` | Analyses a log you already have |
+| `sentinel replay FLIGHT.BIN` | Replays a real flight **through the realtime tier** (below) |
 | `sentinel watch --conn COM5,57600` | Live over a radio, WiFi (`udp:0.0.0.0:14550`) or SITL |
 | `sentinel capture / judge / report` | The research path (below) |
+
+Add `--html report.html` to `analyze` or `replay` for a self-contained report you can email —
+no CDN, no fonts, no scripts, so it opens on a hangar machine with no network.
+
+### `replay` — because injected faults are not real faults
+
+SITL injects a fault by setting a `SIM_*` parameter: a clean synthetic step at a known instant.
+Real faults ramp, intermit, and arrive tangled with wind and throttle changes. A harness measured
+only on injected faults measures how well it detects injections.
+
+`replay` drives the **same** rolling buffer, the **same** seven detectors and the **same**
+escalation gate from a real `.BIN`. It needs no simulator, no WSL and no ArduPilot toolchain, so
+a stranger with the same log can reproduce your result exactly — `bundle_id` is a content hash
+over what the flight contained, deliberately excluding wall-clock timings so it fingerprints the
+flight rather than the machine.
+
+```
+140 cycles · 346 raw detections · 11 advisories · 96.8% suppressed by the gate
+```
+
+**That 96.8% is worth pausing on.** The escalation gate measured **96.9% on injected SITL faults**
+and **96.8% on a real flight** — produced independently, on completely different data. It is the
+first evidence the gate behaves the same on real telemetry as on synthetic.
+
+A replay deliberately does **not** set a ground-truth label. It records what was seen; a human
+labels what it means. Deriving the label from the detector output would grade the system against
+its own opinion.
 
 `watch --passive` listens at whatever rate your ground station already set and skips the
 parameter fetch — for shared radio links where raising stream rates would congest the pilot's
