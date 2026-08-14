@@ -1,0 +1,6 @@
+
+==============================================================================
+AIRFRAME: quad  (4 motors)  ·  fault: motor_fail
+  baseline. No spare yaw authority -- a motor-out is not survivable.
+  model=quad  defaults=copter.parm  instance 6 -> tcp:127.0.0.1:5820
+==============================================================================

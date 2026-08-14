@@ -1,0 +1,601 @@
+{
+ "schema_version": 1,
+ "scenario": "null",
+ "note": "hallucination gate: nothing injected, nothing may be advised",
+ "created_utc": "2026-08-14T12:28:27+00:00",
+ "expected_root_cause": null,
+ "expected_symptoms": [],
+ "injection": [],
+ "t_inject": 8.030999999988126,
+ "inject_verified": true,
+ "params": {
+  "MOT_PWM_MIN": 1000.0,
+  "MOT_PWM_MAX": 2000.0,
+  "MOT_SPIN_MIN": 0.15000000596046448,
+  "MOT_SPIN_MAX": 0.949999988079071,
+  "BATT_LOW_VOLT": 10.5,
+  "BATT_CRT_VOLT": 0.0,
+  "BATT_ARM_VOLT": 0.0,
+  "SERVO1_FUNCTION": 33.0,
+  "SERVO2_FUNCTION": 34.0,
+  "SERVO3_FUNCTION": 35.0,
+  "SERVO4_FUNCTION": 36.0,
+  "SERVO5_FUNCTION": 0.0,
+  "SERVO6_FUNCTION": 0.0,
+  "SERVO7_FUNCTION": 0.0,
+  "SERVO8_FUNCTION": 0.0,
+  "SERVO9_FUNCTION": 0.0,
+  "SERVO10_FUNCTION": 0.0,
+  "SERVO11_FUNCTION": 0.0,
+  "SERVO12_FUNCTION": 0.0,
+  "SERVO13_FUNCTION": 0.0,
+  "SERVO14_FUNCTION": 0.0,
+  "BARO1_GND_PRESS": 90970.5078125,
+  "BARO2_GND_PRESS": 90970.484375,
+  "INS_GYR_ID": 2752772.0,
+  "INS_ACC_ID": 2753028.0,
+  "INS_GYR2_ID": 2752780.0,
+  "INS_ACC2_ID": 2753036.0,
+  "INS_GYROFFS_X": 3.1337211112258956e-05,
+  "INS_GYROFFS_Y": 2.2285134036792442e-05,
+  "INS_GYROFFS_Z": 3.677543281810358e-05,
+  "INS_GYR1_CALTEMP": 25.018352508544922,
+  "INS_GYR2OFFS_X": 4.861036723013967e-05,
+  "INS_GYR2OFFS_Y": -2.367929664615076e-05,
+  "INS_GYR2OFFS_Z": 3.10860741592478e-05,
+  "INS_GYR2_CALTEMP": 25.018352508544922,
+  "INS_GYR3OFFS_X": 0.0,
+  "INS_GYR3OFFS_Y": 0.0,
+  "INS_GYR3OFFS_Z": 0.0,
+  "INS_GYR3_ID": 0.0,
+  "ARMING_SKIPCHK": 0.0,
+  "EK3_SRC1_POSXY": 3.0,
+  "SERVO15_FUNCTION": 0.0,
+  "SERVO16_FUNCTION": 0.0
+ },
+ "cycles": [
+  {
+   "t": 3.0939999999973224,
+   "incidents": [],
+   "buffer_records": 217,
+   "detect_ms": 0.7003000064287335,
+   "build_ms": 0.4830000107176602,
+   "messages_in": 402,
+   "per_detector_ms": {
+    "vibration": 0.06989999383222312,
+    "ekf": 0.038300000596791506,
+    "actuator": 0.18099999579135329,
+    "battery": 0.027900008717551827,
+    "gps": 0.022099993657320738,
+    "compass": 0.08200001320801675,
+    "oscillation": 0.2699000033317134
+   }
+  },
+  {
+   "t": 4.077999999994063,
+   "incidents": [],
+   "buffer_records": 287,
+   "detect_ms": 0.5501999985426664,
+   "build_ms": 0.6733000045642257,
+   "messages_in": 532,
+   "per_detector_ms": {
+    "vibration": 0.0881000014487654,
+    "ekf": 0.047299996367655694,
+    "actuator": 0.1917999907163903,
+    "battery": 0.020399995264597237,
+    "gps": 0.01819999306462705,
+    "compass": 0.06399999256245792,
+    "oscillation": 0.11510000331327319
+   }
+  },
+  {
+   "t": 5.077999999994063,
+   "incidents": [],
+   "buffer_records": 357,
+   "detect_ms": 1.0407999943709,
+   "build_ms": 1.0269999911542982,
+   "messages_in": 662,
+   "per_detector_ms": {
+    "vibration": 0.17929999739862978,
+    "ekf": 0.09499999578110874,
+    "actuator": 0.35039999056607485,
+    "battery": 0.040099999750964344,
+    "gps": 0.04030000127386302,
+    "compass": 0.11579999409150332,
+    "oscillation": 0.21229998674243689
+   }
+  },
+  {
+   "t": 6.0939999999973224,
+   "incidents": [],
+   "buffer_records": 427,
+   "detect_ms": 0.9488999930908903,
+   "build_ms": 0.7915000023785979,
+   "messages_in": 792,
+   "per_detector_ms": {
+    "vibration": 0.1630000042496249,
+    "ekf": 0.07749999349471182,
+    "actuator": 0.2700999903026968,
+    "battery": 0.027799993404187262,
+    "gps": 0.03359999391250312,
+    "compass": 0.09780000254977494,
+    "oscillation": 0.2730000123847276
+   }
+  },
+  {
+   "t": 7.015999999988708,
+   "incidents": [],
+   "buffer_records": 490,
+   "detect_ms": 1.1526000016601756,
+   "build_ms": 0.8745999948587269,
+   "messages_in": 909,
+   "per_detector_ms": {
+    "vibration": 0.14439999358728528,
+    "ekf": 0.07699998968746513,
+    "actuator": 0.3260999947087839,
+    "battery": 0.03789999755099416,
+    "gps": 0.041099992813542485,
+    "compass": 0.19109999993816018,
+    "oscillation": 0.3279999946244061
+   }
+  },
+  {
+   "t": 8.030999999988126,
+   "incidents": [],
+   "buffer_records": 560,
+   "detect_ms": 2.2554999886779115,
+   "build_ms": 1.3660999975400046,
+   "messages_in": 1039,
+   "per_detector_ms": {
+    "vibration": 0.2607000060379505,
+    "ekf": 0.16569999570492655,
+    "actuator": 0.9361999982502311,
+    "battery": 0.055899989092722535,
+    "gps": 0.08670000534038991,
+    "compass": 0.21439998818095773,
+    "oscillation": 0.413799993111752
+   }
+  },
+  {
+   "t": 9.046999999991385,
+   "incidents": [],
+   "buffer_records": 630,
+   "detect_ms": 1.061300004948862,
+   "build_ms": 1.1037000076612458,
+   "messages_in": 1169,
+   "per_detector_ms": {
+    "vibration": 0.17420000222045928,
+    "ekf": 0.09770000178832561,
+    "actuator": 0.32730000384617597,
+    "battery": 0.030100010917522013,
+    "gps": 0.03880000440403819,
+    "compass": 0.12759999663103372,
+    "oscillation": 0.26000000070780516
+   }
+  },
+  {
+   "t": 10.062999999994645,
+   "incidents": [],
+   "buffer_records": 700,
+   "detect_ms": 1.2023000017507002,
+   "build_ms": 1.2167999957455322,
+   "messages_in": 1299,
+   "per_detector_ms": {
+    "vibration": 0.189200000022538,
+    "ekf": 0.10729998757597059,
+    "actuator": 0.3809000045293942,
+    "battery": 0.03850000211969018,
+    "gps": 0.045199994929134846,
+    "compass": 0.1449999981559813,
+    "oscillation": 0.29000001086387783
+   }
+  },
+  {
+   "t": 11.077999999994063,
+   "incidents": [],
+   "buffer_records": 770,
+   "detect_ms": 1.70899998920504,
+   "build_ms": 1.6612000035820529,
+   "messages_in": 1434,
+   "per_detector_ms": {
+    "vibration": 0.21630000264849514,
+    "ekf": 0.1343000039923936,
+    "actuator": 0.6486000056611374,
+    "battery": 0.056899996707215905,
+    "gps": 0.04820000322069973,
+    "compass": 0.18209998961538076,
+    "oscillation": 0.414699999964796
+   }
+  },
+  {
+   "t": 12.077999999994063,
+   "incidents": [],
+   "buffer_records": 840,
+   "detect_ms": 1.6025999939301983,
+   "build_ms": 1.4473000046564266,
+   "messages_in": 1564,
+   "per_detector_ms": {
+    "vibration": 0.24290000146720558,
+    "ekf": 0.1432999997632578,
+    "actuator": 0.5376000044634566,
+    "battery": 0.04539999645203352,
+    "gps": 0.06480001320596784,
+    "compass": 0.19360000442247838,
+    "oscillation": 0.3681999951368198
+   }
+  },
+  {
+   "t": 13.077999999994063,
+   "incidents": [],
+   "buffer_records": 910,
+   "detect_ms": 1.5578000020468608,
+   "build_ms": 1.537299991468899,
+   "messages_in": 1694,
+   "per_detector_ms": {
+    "vibration": 0.3186000103596598,
+    "ekf": 0.15320000238716602,
+    "actuator": 0.4351999959908426,
+    "battery": 0.042800005758181214,
+    "gps": 0.06150000263005495,
+    "compass": 0.1632999919820577,
+    "oscillation": 0.37650000012945384
+   }
+  },
+  {
+   "t": 14.093999999997322,
+   "incidents": [],
+   "buffer_records": 980,
+   "detect_ms": 1.6380000015487894,
+   "build_ms": 1.7478999943705276,
+   "messages_in": 1824,
+   "per_detector_ms": {
+    "vibration": 0.26539999817032367,
+    "ekf": 0.1545999984955415,
+    "actuator": 0.5033000052208081,
+    "battery": 0.041399995097890496,
+    "gps": 0.06629999552387744,
+    "compass": 0.1942999952007085,
+    "oscillation": 0.4064999957336113
+   }
+  },
+  {
+   "t": 15.093999999997322,
+   "incidents": [],
+   "buffer_records": 1050,
+   "detect_ms": 1.9073000003118068,
+   "build_ms": 1.8383999995421618,
+   "messages_in": 1954,
+   "per_detector_ms": {
+    "vibration": 0.2869000018108636,
+    "ekf": 0.1657999964663759,
+    "actuator": 0.640199999907054,
+    "battery": 0.06770000618416816,
+    "gps": 0.08009999874047935,
+    "compass": 0.19839999731630087,
+    "oscillation": 0.45960000716149807
+   }
+  },
+  {
+   "t": 16.093999999997322,
+   "incidents": [],
+   "buffer_records": 1120,
+   "detect_ms": 2.2446000075433403,
+   "build_ms": 2.081800004816614,
+   "messages_in": 2084,
+   "per_detector_ms": {
+    "vibration": 0.2994999958900735,
+    "ekf": 0.28500000189524144,
+    "actuator": 0.7077999907778576,
+    "battery": 0.05359998613130301,
+    "gps": 0.08270000398624688,
+    "compass": 0.27910000062547624,
+    "oscillation": 0.5278000026009977
+   }
+  },
+  {
+   "t": 17.0,
+   "incidents": [],
+   "buffer_records": 1183,
+   "detect_ms": 1.8952999962493777,
+   "build_ms": 2.003900008276105,
+   "messages_in": 2201,
+   "per_detector_ms": {
+    "vibration": 0.31119999766815454,
+    "ekf": 0.18339999951422215,
+    "actuator": 0.5155999970156699,
+    "battery": 0.042799991206265986,
+    "gps": 0.08679999154992402,
+    "compass": 0.2165000041713938,
+    "oscillation": 0.5327000108081847
+   }
+  },
+  {
+   "t": 18.0,
+   "incidents": [],
+   "buffer_records": 1253,
+   "detect_ms": 1.9937000033678487,
+   "build_ms": 2.152200002456084,
+   "messages_in": 2331,
+   "per_detector_ms": {
+    "vibration": 0.35519999801181257,
+    "ekf": 0.19189999147783965,
+    "actuator": 0.5727999960072339,
+    "battery": 0.04539999645203352,
+    "gps": 0.07229999755509198,
+    "compass": 0.22430000535678118,
+    "oscillation": 0.5259999888949096
+   }
+  },
+  {
+   "t": 19.0,
+   "incidents": [],
+   "buffer_records": 1323,
+   "detect_ms": 2.3970000038389117,
+   "build_ms": 2.2403999901143834,
+   "messages_in": 2461,
+   "per_detector_ms": {
+    "vibration": 0.35680001019500196,
+    "ekf": 0.21050000214017928,
+    "actuator": 0.8140999998431653,
+    "battery": 0.06469999789260328,
+    "gps": 0.09790000331122428,
+    "compass": 0.2813000028254464,
+    "oscillation": 0.5644000048050657
+   }
+  },
+  {
+   "t": 20.093999999997322,
+   "incidents": [],
+   "buffer_records": 1400,
+   "detect_ms": 2.196200002799742,
+   "build_ms": 2.2950999991735443,
+   "messages_in": 2604,
+   "per_detector_ms": {
+    "vibration": 0.37229999725241214,
+    "ekf": 0.21909999486524612,
+    "actuator": 0.6373999931383878,
+    "battery": 0.051099996198900044,
+    "gps": 0.0746000005165115,
+    "compass": 0.2502000133972615,
+    "oscillation": 0.585700006922707
+   }
+  },
+  {
+   "t": 21.093999999997322,
+   "incidents": [],
+   "buffer_records": 1470,
+   "detect_ms": 2.374100004089996,
+   "build_ms": 3.197399986675009,
+   "messages_in": 2735,
+   "per_detector_ms": {
+    "vibration": 0.407600004109554,
+    "ekf": 0.26020000223070383,
+    "actuator": 0.6897999992361292,
+    "battery": 0.055800002883188426,
+    "gps": 0.0881000014487654,
+    "compass": 0.26259999140165746,
+    "oscillation": 0.6034999969415367
+   }
+  },
+  {
+   "t": 22.093999999997322,
+   "incidents": [],
+   "buffer_records": 1540,
+   "detect_ms": 2.6821000064956024,
+   "build_ms": 2.613600008771755,
+   "messages_in": 2865,
+   "per_detector_ms": {
+    "vibration": 0.4113999893888831,
+    "ekf": 0.25040000036824495,
+    "actuator": 0.7901999924797565,
+    "battery": 0.14230000670067966,
+    "gps": 0.11140000424347818,
+    "compass": 0.2978999982587993,
+    "oscillation": 0.6706999993184581
+   }
+  },
+  {
+   "t": 23.077999999994063,
+   "incidents": [],
+   "buffer_records": 1610,
+   "detect_ms": 2.526999989640899,
+   "build_ms": 2.9925999988336116,
+   "messages_in": 2995,
+   "per_detector_ms": {
+    "vibration": 0.4270999925211072,
+    "ekf": 0.26679999427869916,
+    "actuator": 0.7310000073630363,
+    "battery": 0.055199998314492404,
+    "gps": 0.08549999620299786,
+    "compass": 0.28079999901819974,
+    "oscillation": 0.6745000137016177
+   }
+  },
+  {
+   "t": 24.077999999994063,
+   "incidents": [],
+   "buffer_records": 1680,
+   "detect_ms": 2.6087000005645677,
+   "build_ms": 2.911200004746206,
+   "messages_in": 3125,
+   "per_detector_ms": {
+    "vibration": 0.44249999336898327,
+    "ekf": 0.27269999554846436,
+    "actuator": 0.7439999899361283,
+    "battery": 0.05950000195298344,
+    "gps": 0.08410000009462237,
+    "compass": 0.2739000046858564,
+    "oscillation": 0.7255999953486025
+   }
+  },
+  {
+   "t": 25.077999999994063,
+   "incidents": [],
+   "buffer_records": 1750,
+   "detect_ms": 2.6070000021718442,
+   "build_ms": 2.8403000032994896,
+   "messages_in": 3255,
+   "per_detector_ms": {
+    "vibration": 0.4606000002240762,
+    "ekf": 0.26840000646188855,
+    "actuator": 0.7356999994954094,
+    "battery": 0.05670000973623246,
+    "gps": 0.08310000703204423,
+    "compass": 0.27490001230034977,
+    "oscillation": 0.7220999978017062
+   }
+  },
+  {
+   "t": 26.062999999994645,
+   "incidents": [],
+   "buffer_records": 1820,
+   "detect_ms": 3.2383999932790175,
+   "build_ms": 3.0150999955367297,
+   "messages_in": 3385,
+   "per_detector_ms": {
+    "vibration": 0.4989000008208677,
+    "ekf": 0.29409999842755497,
+    "actuator": 1.1268000089330599,
+    "battery": 0.07809999806340784,
+    "gps": 0.10029999248217791,
+    "compass": 0.3324999997857958,
+    "oscillation": 0.8011000027181581
+   }
+  },
+  {
+   "t": 27.062999999994645,
+   "incidents": [],
+   "buffer_records": 1890,
+   "detect_ms": 2.9196999967098236,
+   "build_ms": 3.100900008575991,
+   "messages_in": 3515,
+   "per_detector_ms": {
+    "vibration": 0.5036999937146902,
+    "ekf": 0.28559999191202223,
+    "actuator": 0.8152999944286421,
+    "battery": 0.0636000040685758,
+    "gps": 0.09109999518841505,
+    "compass": 0.3321999975014478,
+    "oscillation": 0.8219000010285527
+   }
+  },
+  {
+   "t": 28.062999999994645,
+   "incidents": [],
+   "buffer_records": 1960,
+   "detect_ms": 3.1421000021509826,
+   "build_ms": 3.159800005960278,
+   "messages_in": 3645,
+   "per_detector_ms": {
+    "vibration": 0.5335999885573983,
+    "ekf": 0.2975999959744513,
+    "actuator": 0.8259000023826957,
+    "battery": 0.062000006437301636,
+    "gps": 0.1103000104194507,
+    "compass": 0.39500001003034413,
+    "oscillation": 0.9079999872483313
+   }
+  },
+  {
+   "t": 29.046999999991385,
+   "incidents": [],
+   "buffer_records": 2030,
+   "detect_ms": 3.1241999968187883,
+   "build_ms": 3.2664000027580187,
+   "messages_in": 3775,
+   "per_detector_ms": {
+    "vibration": 0.5481999978655949,
+    "ekf": 0.3373000072315335,
+    "actuator": 0.8785000100033358,
+    "battery": 0.06649999704677612,
+    "gps": 0.09869999485090375,
+    "compass": 0.33660000190138817,
+    "oscillation": 0.8524000004399568
+   }
+  },
+  {
+   "t": 30.046999999991385,
+   "incidents": [],
+   "buffer_records": 2100,
+   "detect_ms": 3.4146999969379976,
+   "build_ms": 3.6289999989094213,
+   "messages_in": 3905,
+   "per_detector_ms": {
+    "vibration": 0.5705999938072637,
+    "ekf": 0.34470000537112355,
+    "actuator": 0.979200005531311,
+    "battery": 0.076299998909235,
+    "gps": 0.10930000280495733,
+    "compass": 0.4037000035168603,
+    "oscillation": 0.9234000026481226
+   }
+  },
+  {
+   "t": 31.030999999988126,
+   "incidents": [],
+   "buffer_records": 2170,
+   "detect_ms": 4.658899997593835,
+   "build_ms": 4.697999989730306,
+   "messages_in": 4036,
+   "per_detector_ms": {
+    "vibration": 0.7216000085463747,
+    "ekf": 0.552800003788434,
+    "actuator": 1.3546999980462715,
+    "battery": 0.1674999948590994,
+    "gps": 0.17860000662039965,
+    "compass": 0.6093999982113019,
+    "oscillation": 1.0660000116331503
+   }
+  },
+  {
+   "t": 32.030999999988126,
+   "incidents": [],
+   "buffer_records": 2240,
+   "detect_ms": 3.6545000039041042,
+   "build_ms": 4.190999999991618,
+   "messages_in": 4166,
+   "per_detector_ms": {
+    "vibration": 0.5896000075154006,
+    "ekf": 0.36890000046696514,
+    "actuator": 1.108099997509271,
+    "battery": 0.08550001075491309,
+    "gps": 0.12589999823831022,
+    "compass": 0.3826000029221177,
+    "oscillation": 0.9868000051937997
+   }
+  },
+  {
+   "t": 33.030999999988126,
+   "incidents": [],
+   "buffer_records": 2310,
+   "detect_ms": 3.5451000003376976,
+   "build_ms": 4.0822000009939075,
+   "messages_in": 4296,
+   "per_detector_ms": {
+    "vibration": 0.6083000043872744,
+    "ekf": 0.368200009688735,
+    "actuator": 1.0268000041833147,
+    "battery": 0.07139999070204794,
+    "gps": 0.11229999654460698,
+    "compass": 0.3564999933587387,
+    "oscillation": 0.9946999925887212
+   }
+  }
+ ],
+ "advisories": [],
+ "metrics": {
+  "latency_s": null,
+  "false_positives": 0,
+  "incidents": 0,
+  "advisories": 0,
+  "suppression": 0.0,
+  "cycles": 31,
+  "buffer_first": 217,
+  "buffer_last": 2310,
+  "detect_ms_first": 0.7,
+  "detect_ms_last": 3.55,
+  "worst_cycle_ms": 9.4
+ },
+ "bundle_id": "365894119831ae8b",
+ "params_hash": "0629c99b8ddfa7fe"
+}
