@@ -89,6 +89,53 @@ class ScriptedClient:
         return json.dumps(self.seen_messages, default=str)
 
 
+class DryRunClient:
+    """A free stand-in that answers with the FIRST advisory it was shown.
+
+    Exists so `e4_judge.py --dry-run` produces a table with the real shape before any key is
+    wired -- the sweep, the scoring, the intervals and the ambiguity check all exercise on real
+    bundles at zero cost.
+
+    It reads only the messages it is handed, exactly like a real client, so it cannot see the
+    ground-truth label. Answering "the first alarm" is deliberate: it is the naive strategy, so
+    a dry run should show it tracking B0 and losing on precisely the ambiguous pairs. A stub
+    that answered correctly would make a broken harness look like it worked.
+    """
+
+    name = "dry-run"
+
+    def __init__(self, tokens_in: int = 900, tokens_out: int = 120) -> None:
+        self._ti, self._to = tokens_in, tokens_out
+        self.calls = 0
+
+    def complete(self, messages, tools=None, temperature=0.0, seed=None) -> ModelResponse:
+        import json as _json
+        self.calls += 1
+        first_type, first_t = None, None
+        for m in messages:
+            content = m.get("content")
+            if not isinstance(content, str):
+                continue
+            try:
+                blob = _json.loads(content)
+            except (ValueError, TypeError):
+                continue
+            advisories = (blob.get("flight") or {}).get("advisories") if isinstance(blob, dict) else None
+            if advisories:
+                first_type = advisories[0].get("type")
+                first_t = advisories[0].get("t_first")
+                break
+        payload = _json.dumps({
+            "root_cause": first_type,
+            "symptoms": [],
+            "confidence": 0.5,
+            "rationale": "dry-run stub: names the earliest advisory.",
+            "citations": ([{"metric": first_type, "t": first_t}]
+                          if first_type and first_t is not None else []),
+        })
+        return ModelResponse(text=payload, tokens_in=self._ti, tokens_out=self._to)
+
+
 def answer(payload: str, tokens_in: int = 400, tokens_out: int = 80) -> ModelResponse:
     """Shorthand: a final answer turn."""
     return ModelResponse(text=payload, tokens_in=tokens_in, tokens_out=tokens_out)
