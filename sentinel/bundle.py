@@ -245,9 +245,23 @@ class RunBundle(BaseModel):
 
         bundle = cls.model_validate(raw)
         if stored_id is not None and stored_id != bundle.bundle_id:
+            # Two very different causes, and the message must not assert the wrong one.
+            #
+            # This said "the file has been edited" until 2026-08-14, when 13 untouched bundles
+            # failed it at once. Nothing had been edited: `_identity_payload` began excluding
+            # _TIMING_FIELDS that day, so bundles written before the change carry an id computed
+            # by the older identity function. They passed the schema_version check because the
+            # version was not bumped alongside it.
+            #
+            # RULE: changing `_identity_payload` or `_TIMING_FIELDS` changes what a bundle_id
+            # MEANS and must bump SCHEMA_VERSION in the same commit. Then a stale archive fails
+            # with "schema_version 1, expects 2" -- which names the cause -- instead of an
+            # accusation that sends the reader hunting for a tamper that never happened.
             raise ValueError(
-                f"{path}: bundle_id mismatch (file says {stored_id}, "
-                f"content hashes to {bundle.bundle_id}) -- the file has been edited")
+                f"{path}: bundle_id mismatch (file says {stored_id}, content hashes to "
+                f"{bundle.bundle_id}). Either the file was edited, or it was written by a build "
+                f"with a different identity function -- re-capture it, or check git log for "
+                f"changes to _identity_payload/_TIMING_FIELDS since {raw.get('created_utc') or 'it was written'}")
         return bundle
 
 
@@ -267,11 +281,22 @@ def _looks_like_bundle(path: Path) -> bool:
     return isinstance(raw, dict) and "scenario" in raw and "cycles" in raw
 
 
-def load_all(directory: str | Path) -> list[RunBundle]:
+def load_all(directory: str | Path, only: list[str] | None = None) -> list[RunBundle]:
     """Load every bundle in a directory, in a stable order.
 
     Sorted by filename so a sweep's scenario order is reproducible; an unordered glob would make
     two otherwise identical runs disagree on row order in the published table.
+
+    `only` filters by FILENAME, before loading. That ordering is the point: bundles are named
+    `{scenario}[_{tag}]_r{rep}.json`, so a name filter is a scenario filter, and applying it
+    first means a scoped sweep cannot be killed by an unrelated bundle it was never going to
+    judge. Measured 2026-08-14: judging the two ambiguous pairs aborted on a `gps_loss` bundle
+    from an older schema -- a file the run had already excluded.
+
+    Integrity is NOT relaxed for the bundles actually selected. A bundle that is in scope and
+    fails its hash still raises, because that is the case the check exists for.
     """
-    return [RunBundle.load(p) for p in sorted(Path(directory).glob("*.json"))
-            if _looks_like_bundle(p)]
+    paths = [p for p in sorted(Path(directory).glob("*.json")) if _looks_like_bundle(p)]
+    if only:
+        paths = [p for p in paths if any(w in p.name for w in only)]
+    return [RunBundle.load(p) for p in paths]

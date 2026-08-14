@@ -110,6 +110,110 @@ SCENARIOS = {
                  "(WARNING_THRESHOLD=1.0 fires on crossing). The symptom therefore leads the "
                  "cause by construction, not by tuning"),
     },
+    # Pair C. Replaces pair B, which is RETIRED -- see the note on `stiff_airframe` below.
+    #
+    # The strongest structural guarantee in the detector set. `oscillation.py` needs
+    # WINDOW_SIZE_S=1.5 of ATT history AND MIN_SUSTAINED_WINDOWS=2 consecutive windows, so
+    # `control_oscillation` CANNOT be raised for ~3 s after onset -- three times pair A's 1.0 s
+    # and, like pair A, a consequence of constants in the source rather than of tuning. Any
+    # detector that fires on threshold crossing therefore leads it automatically.
+    #
+    # This was chosen over the build plan's own fallback candidate (`gps_high_hdop` as root with
+    # `ekf_inconsistency` leading), which cannot be built at all:
+    #   * `gps.py` has NO persistence gate -- its HDOP check fires on the first sample over 2.0,
+    #     so ordering would be decided by physics and, on a tie, by DETECTORS registration order.
+    #     That is the artifact 10.3 exists to avoid, not a mechanism.
+    #   * SITL cannot raise HDOP anyway. `SIM_GPS_UBLOX.cpp:284` hardcodes `dop.hDOP = 121`
+    #     (1.21), below the 2.0 threshold, and no SIM_GPS1_* parameter touches it. Confirmed in
+    #     our own data: `gps_high_hdop` is a declared symptom of `gps_loss` and has never fired.
+    #
+    # `first_advisory` is a LIST here, unlike pair A's single string. The structural claim is
+    # "the root cause is not advised first" -- naming one specific symptom would over-specify it
+    # and could fail a confounder that worked perfectly, just via the other symptom.
+    #
+    # HONEST LIMIT: the gain values below still need one probe flight, because the oscillation
+    # has to be big enough (>=3 deg) and fast enough (>=1.75 Hz) for the detector to see it at a
+    # 10 Hz ATT stream. That tuning decides whether the fault is DETECTED; it does not decide the
+    # ORDERING, which is what separates this from pair B.
+    # STATUS 2026-08-14: BLOCKED, and the block is in SITL's physics, not in this config.
+    #
+    # `control_oscillation` needs, per 1.5 s window: max|desired-actual| >= 3.0 deg AND >= 3.5
+    # zero-crossings/s, over >= 2 consecutive windows. Six probe flights measured the actual
+    # tracking-error signal against exactly those two numbers:
+    #
+    #   gain set                 best amp    zc/s     qualifying windows
+    #   ang15 rat0.45 still        0.96      0.00        0
+    #   ang30 rat0.90 still        1.24      4.10        0
+    #   ang45 rat1.30 still        1.39     23.97        0
+    #   ang30 rat0.90 wind14       1.94     18.18        0
+    #   ang30 rat0.90 wind20       2.44     13.34        0     <- best
+    #   ang30 rat0.90 wind28       1.81     16.53        0
+    #   ang45 rat1.30 wind28       2.19     23.56        0
+    #   ang45 rat1.30 wind36       1.80      5.39        0
+    #
+    # The FREQUENCY criterion is trivially met. The AMPLITUDE criterion never is, and it does not
+    # respond to the obvious levers: 10x the default angle P moved it 0.96 -> 1.39 deg, and wind
+    # is non-monotonic past ~20 m/s. Two reasons, both structural:
+    #   * raising gains makes the controller track MORE tightly, so tracking error shrinks while
+    #     the ringing frequency rises -- gains are the frequency lever, not the amplitude one;
+    #   * in guided flight ATTITUDE_TARGET itself leans into the wind to hold position, so
+    #     desired follows actual and the ERROR stays bounded however hard the air pushes.
+    # 3.0 deg of sustained tracking error is a real airframe with mechanical slop, not clean
+    # SITL physics.
+    #
+    # NOT fixed by lowering OSCILLATION_AMPLITUDE_DEG. Tuning the detector to fit the experiment
+    # would make the pair pass by redefining the fault, which is the one move this project cannot
+    # make.
+    #
+    # The untried avenue, if this is picked up again: drive an oscillating SETPOINT via
+    # SET_ATTITUDE_TARGET at ~2 Hz instead of waiting for the airframe to self-oscillate. That
+    # produces genuine tracking error at a chosen frequency and models pilot-induced oscillation.
+    # It is a different fault story, so it needs its own justification before use.
+    #
+    # Gain choice, measured rather than guessed. Probe 1 used rate-loop P alone
+    # (ATC_RAT_RLL_P/PIT_P = 0.45): actuator_saturation fired at +1.8 s and control_oscillation
+    # NEVER fired. Correct ordering, undetected root cause -- the rate loop buzzes fast and
+    # narrow, so the airframe never swings the >=3 deg of ATTITUDE that oscillation.py needs.
+    # The angle loop is the one that oscillates slowly and widely, so it drives the fault; the
+    # rate gain stays because it is what produced the saturation symptom.
+    "hot_gains": {
+        # Probe 2 (ANG_P=15 + RAT_P=0.45, still air): actuator_saturation escalated to critical,
+        # control_oscillation still absent. Confirmed by probe 3 that the live path DOES supply a
+        # desired attitude (SITL sends ATTITUDE_TARGET and NAV_CONTROLLER_OUTPUT at 10 Hz, and
+        # ATT clears MIN_ATT_RATE_HZ=7.0), so the detector can run -- it simply had no tracking
+        # error to see. detect_oscillation measures desired-minus-actual, and a guided hover
+        # holding a level setpoint in still air never rings.
+        #
+        # Wind is the excitation, not the fault. The `wind` scenario alone is a CONFOUNDER that a
+        # correct system stays quiet through (expect=None, and it does: 0 advisories in all three
+        # re-flown reps). Oscillation here therefore comes from the gains, which is what
+        # `control_oscillation` names -- and it matches how the fault presents in the field,
+        # where a mis-tuned airframe flies fine until it meets air that pushes back.
+        "inject": [("ATC_ANG_RLL_P", 22.0), ("ATC_ANG_PIT_P", 22.0),
+                   ("ATC_RAT_RLL_P", 0.70), ("ATC_RAT_PIT_P", 0.70),
+                   ("SIM_WIND_SPD", 14.0)],
+        "expect": "control_oscillation",
+        "symptoms": ["actuator_saturation", "ekf_inconsistency"],
+        "first_advisory": ["actuator_saturation", "ekf_inconsistency"],
+        "cadence_s": 0.25,
+        "duration_s": 45.0,
+        "note": ("ambiguous pair C: oscillation.py needs WINDOW_SIZE_S=1.5 x "
+                 "MIN_SUSTAINED_WINDOWS=2, so control_oscillation cannot be advised for ~3 s "
+                 "after onset, while actuator_saturation and ekf_inconsistency both fire on "
+                 "threshold crossing with no time gate. The symptom leads the cause by a "
+                 "window length, not by tuning"),
+    },
+
+    # RETIRED 2026-08-14, kept as the record of what was tried. Flown 3x at SIM_ACC1_RND=90 and
+    # 3x at 70: `ambiguity_confirmed` false in all 6, with vibration_excessive and accel_clipping
+    # landing in the SAME 0.25 s cycle every time, so the gate broke the tie on DETECTORS order.
+    #
+    # It cannot be fixed by sweeping the amplitude, and 110 would not have helped either.
+    # accel_clipping needs instantaneous peaks past the ~16 g sensor range; vibration_excessive
+    # needs filtered VIBE >= 30 m/s^2, an RMS-like measure. SIM_ACC1_RND is a Gaussian noise
+    # amplitude, so it moves peak and RMS TOGETHER by the same sigma: any value with frequent
+    # clipping also has VIBE far above threshold, and any value low enough to delay VIBE stops
+    # clipping altogether. One parameter cannot separate the two.
     "stiff_airframe": {
         "inject": [("SIM_ACC1_RND", 90.0), ("SIM_VIB_MOT_MAX", 120.0)],
         "expect": "vibration_excessive",
@@ -123,6 +227,18 @@ SCENARIOS = {
                  "under threshold for at least one cycle. See L1-E4-BUILD-PLAN.md 10.3"),
     },
 }
+
+
+def _leading(cfg: dict) -> tuple[str, ...]:
+    """The symptom(s) that may legitimately be advised before the root cause.
+
+    Accepts a single string (pair A pins one exact symptom) or a list (pair C, where either
+    fast-firing detector satisfies the structural claim). The claim an ambiguous pair makes is
+    "the root cause is NOT first"; pinning one symptom when two qualify would fail a confounder
+    that worked, via the wrong-but-still-correct symptom.
+    """
+    first = cfg["first_advisory"]
+    return (first,) if isinstance(first, str) else tuple(first)
 
 
 def port_for_instance(instance: int) -> int:
@@ -157,6 +273,20 @@ def set_param(conn, name, value):
 
 
 def read_param(conn, name, timeout=4.0):
+    """Read one parameter, ignoring anything already queued for it.
+
+    The drain is load-bearing, and was added after it produced a false failure. `SIM_MAG1_OFS`
+    is an AP_Vector3f (SITL.h:204): writing SIM_MAG1_OFS_X makes ArduPilot broadcast PARAM_VALUE
+    for all three components, so a stale `SIM_MAG1_OFS_Y = 13` (its default, SITL.h:156) sits in
+    the buffer. Setting Y next and reading it back then matched that stale message and returned
+    13 -- reporting the injection as not applied when it had applied fine. Measured 2026-08-14:
+    undrained read 13.0, drained read 400.0, same connection, same instant.
+
+    Scenarios injecting unrelated params never saw this, which is why it survived 12 flights:
+    only a vector param broadcasts siblings the reader is about to ask for.
+    """
+    while conn.recv_match(type="PARAM_VALUE", blocking=False) is not None:
+        pass
     conn.mav.param_request_read_send(
         conn.target_system, conn.target_component, name.encode("utf-8"), -1)
     end = time.time() + timeout
@@ -262,7 +392,8 @@ def arm_and_takeoff(conn, alt=10.0):
 
 def run_scenario(name: str, cfg: dict, instance: int,
                  inject_at: float, duration: float,
-                 bundles_dir: Path | None = None, rep: int = 0) -> dict:
+                 bundles_dir: Path | None = None, rep: int = 0,
+                 tag: str | None = None) -> dict:
     port = port_for_instance(instance)
     print(f"\n{'=' * 78}\nSCENARIO: {name}   ({cfg['note']})")
     print(f"  SITL instance {instance} -> tcp:127.0.0.1:{port}\n{'=' * 78}")
@@ -364,7 +495,7 @@ def run_scenario(name: str, cfg: dict, instance: int,
             # An ambiguous scenario is CORRECT when the symptom leads and the cause follows.
             # Scoring it by "did the gate name the root cause" would mark a working confounder
             # as a failure -- the gate is supposed to be wrong here. That is the point.
-            ok = (state["first"] == cfg["first_advisory"]
+            ok = (state["first"] in _leading(cfg)
                   and cfg["expect"] in raised_types
                   and not state["pre_inject"])
         else:
@@ -395,14 +526,15 @@ def run_scenario(name: str, cfg: dict, instance: int,
             # to be retuned -- grading judges against it would measure nothing.
             result["ambiguous"] = True
             result["expected_first"] = cfg["first_advisory"]
-            result["ambiguity_confirmed"] = (state["first"] == cfg["first_advisory"]
+            result["ambiguity_confirmed"] = (state["first"] in _leading(cfg)
                                              and cfg["expect"] in raised_types)
             result["cadence_s"] = cadence
 
         if bundles_dir is not None:
             bundle = recorder.finish(params=runner.params,
                                      metrics=metrics_from_result(result))
-            path = bundle.save(Path(bundles_dir) / f"{name}_r{rep}.json")
+            stem = f"{name}_{tag}_r{rep}" if tag else f"{name}_r{rep}"
+            path = bundle.save(Path(bundles_dir) / f"{stem}.json")
             result["bundle"] = str(path)
             result["bundle_id"] = bundle.bundle_id
             print(f"  bundle: {path.name}  id={bundle.bundle_id}  "
@@ -434,6 +566,16 @@ def main():
     ap.add_argument("--repeat", type=int, default=1,
                     help="flights per scenario. n=4 makes every confidence interval "
                          "embarrassing; 3 repeats gives n=12 for ~48 min of SITL and no code")
+    ap.add_argument("--tune", action="append", default=[], metavar="SCEN:PARAM=VALUE",
+                    help="override one injection value for a tuning sweep (repeatable), e.g. "
+                         "--tune stiff_airframe:SIM_ACC1_RND=70. Pair B's procedure is a sweep "
+                         "(L1-E4-BUILD-PLAN.md 10.3), and hand-editing the SCENARIOS dict "
+                         "between runs is how a sweep loses track of which value produced "
+                         "which bundle. Implies --tag unless one is given")
+    ap.add_argument("--tag", default=None,
+                    help="suffix for bundle filenames, e.g. 'a70' -> stiff_airframe_a70_r0.json. "
+                         "Without it a re-tuned flight silently overwrites the bundle it is "
+                         "meant to be compared against")
     ap.add_argument("--compare", default=None,
                     help="baseline r8_results.json to diff against. Exact on the claim-bearing "
                          "fields, toleranced on the wall-clock ones -- see capture.py")
@@ -441,6 +583,40 @@ def main():
 
     names = [s.strip() for s in args.scenarios.split(",") if s.strip()]
     bundles_dir = Path(args.bundles) if args.bundles else None
+
+    # Tuning overrides. Applied to a COPY: SCENARIOS is module state and a mutated entry would
+    # leak into anything that imports this module (the tests do), making the fault library depend
+    # on whether a sweep had been run first.
+    scenarios = {n: dict(SCENARIOS[n]) for n in names}
+    tag = args.tag
+    for spec in args.tune:
+        try:
+            scen, assignment = spec.split(":", 1)
+            pname, pval = assignment.split("=", 1)
+            pval = float(pval)
+        except ValueError:
+            print(f"bad --tune {spec!r}; want SCEN:PARAM=VALUE", file=sys.stderr)
+            return 1
+        if scen not in scenarios:
+            print(f"--tune names {scen!r}, not in --scenarios {names}", file=sys.stderr)
+            return 1
+        inject = [list(p) for p in scenarios[scen]["inject"]]
+        hits = [p for p in inject if p[0] == pname]
+        if not hits:
+            # Adding a parameter the scenario never injected is almost always a typo, and
+            # silently accepting it would produce a bundle labelled as a tuning point of a
+            # scenario it does not belong to.
+            print(f"--tune {scen}:{pname} -- that scenario injects "
+                  f"{[p[0] for p in inject]}", file=sys.stderr)
+            return 1
+        for p in hits:
+            print(f"tune: {scen}.{pname} {p[1]} -> {pval}")
+            p[1] = pval
+        scenarios[scen]["inject"] = [tuple(p) for p in inject]
+        if tag is None:
+            tag = f"{pname.split('_')[-1].lower()}{pval:g}"
+    if tag:
+        print(f"bundle tag: {tag}  (bundles land as SCENARIO_{tag}_rN.json)")
 
     # Load the baseline BEFORE flying. --out defaults to r8_results.json, which is also the
     # obvious thing to pass to --compare, and results are written before the comparison runs --
@@ -457,8 +633,8 @@ def main():
     # its simulator in the `finally` before the next starts.
     for rep in range(args.repeat):
         for i, name in enumerate(names):
-            r = run_scenario(name, SCENARIOS[name], 2 + i,
-                             args.inject_at, args.duration, bundles_dir, rep)
+            r = run_scenario(name, scenarios[name], 2 + i,
+                             args.inject_at, args.duration, bundles_dir, rep, tag)
             r["rep"] = rep
             results.append(r)
 
