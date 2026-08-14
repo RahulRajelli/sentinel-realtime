@@ -3,24 +3,69 @@
 Can an LLM agent tell the **cause** of a flight fault from its **symptoms** — and does it beat a
 free deterministic baseline **at equal cost**?
 
-This repository is the harness that answers that question honestly, including the case where the
-answer is "no".
+This repository is two things: a fault-detection tool you can point at a flight log today, and
+the harness that answers that question honestly — including when the answer is "no".
 
 ![architecture](docs/e4-architecture.svg)
 
 ---
 
-## The problem
+## Start here
+
+```bash
+pip install -e .          # plus flightdx, see Dependency below
+sentinel doctor           # tells you what's installed and what's missing
+sentinel analyze YOURFLIGHT.BIN
+```
+
+No simulator, no MAVLink link, no API key. It reads the `.BIN` files already on your SD card.
+Real output, from a real 3.4 MB log:
+
+```
+FLIGHT REPORT  |  2024-04-30 17-30-57.bin
+  parameters loaded : 1088
+  message types     : 58
+
+  2 finding(s), most serious first:
+
+  !  battery_threshold_misconfigured   [warning]   1 occurrence(s), first at t=463.6s
+       what it means : The configured battery failsafe thresholds look inconsistent with the pack.
+       what to check : Review BATT_LOW_VOLT / BATT_CRT_VOLT against the pack's real chemistry.
+       evidence      : BATT_LOW_VOLT = 10.5 V (threshold 22.2 V)
+
+  !  compass_inconsistency   [warning]   3 occurrence(s), first at t=488.6s
+       evidence      : MagFieldDeviation = 0.397 fraction (threshold 0.35 fraction)
+```
+
+That first finding is a 3S low-voltage failsafe left configured on a 6S pack — the failsafe
+would never have fired. **Every finding prints its evidence**: the measured value against the
+threshold that was actually loaded on the aircraft, so you can check it rather than trust it.
+
+| Command | What it does |
+|---|---|
+| `sentinel doctor` | Checks your machine, names the exact fix for anything missing |
+| `sentinel analyze FLIGHT.BIN` | Analyses a log you already have |
+| `sentinel watch --conn COM5,57600` | Live over a radio, WiFi (`udp:0.0.0.0:14550`) or SITL |
+| `sentinel capture / judge / report` | The research path (below) |
+
+`watch --passive` listens at whatever rate your ground station already set and skips the
+parameter fetch — for shared radio links where raising stream rates would congest the pilot's
+own telemetry. It says so, rather than quietly degrading: without the aircraft's parameters,
+actuator and battery verdicts are unreliable.
+
+---
+
+## The problem the agent layer exists for
 
 One fault trips several detectors. A stiff airframe clips the accelerometer *before* the
 vibration detector has enough window to call it. A magnetometer offset raises EKF variance
 immediately, while the compass detector waits a full second to confirm the anomaly is sustained.
 
 In both cases the **first** alarm is a symptom, and the deterministic tier answers it with total
-confidence. Telling the operator "accelerometer clipping" when the fix is a loose motor mount is
+confidence. Telling an operator "accelerometer clipping" when the fix is a loose motor mount is
 the difference between a wasted maintenance day and a corrected aircraft.
 
-## How it works
+## How the measurement works
 
 **Capture and judgment are separated.** Flying an ArduPilot SITL scenario takes ~4 minutes;
 comparing four judges across three prompt paraphrases takes ~96 judgments. So a flight is
@@ -28,9 +73,9 @@ captured once into a content-hashed `RunBundle`, and every judge runs offline ag
 
 | Stage | What |
 |---|---|
-| **Capture** | Live SITL → 7 detectors at 1 Hz over a rolling window → escalation gate → advisories. Fault injected with **parameter readback**, so the test condition is proven, not assumed |
+| **Capture** | Live SITL → 7 detectors at 1 Hz → escalation gate → advisories. Fault injected with **parameter readback**, so the test condition is proven, not assumed |
 | **RunBundle** | Every incident, advisory, parameter and timing from one flight, sha256-identified. Hand-edit it and loading fails |
-| **Judge** | Four judges, one interface, all offline: **B0** deterministic · **B1** single LLM call · **B2** N-sample at B3's measured spend · **B3** tool-using agent |
+| **Judge** | **B0** deterministic · **B1** single LLM call · **B2** N-sample at B3's measured spend · **B3** tool-using agent |
 | **Score** | Root-cause-only. Naming a symptom scores 0 |
 | **Stats** | Wilson intervals, Cohen's κ, bootstrap CI, prompt flip rate, rule-based failure attribution |
 
@@ -41,11 +86,52 @@ captured once into a content-hashed `RunBundle`, and every judge runs offline ag
   something that never happened is not being right.
 - **B2 is held to B3's measured token spend.** A comparison that doesn't control for spend
   measures spend. The *achieved* match is published, not the intended one.
-- **A degraded run stays labelled B3.** Relabelling it would delete the agent's failures from the
-  table.
-- **The ground-truth label is unreachable.** The tool surface is an allow-list and no prompt names
-  a fault type; tests assert it against the full transcript the model saw.
+- **A degraded run stays labelled B3.** Relabelling it would delete the agent's failures.
+- **The ground-truth label is unreachable.** The tool surface is an allow-list and no prompt
+  names a fault type; tests assert it against the full transcript the model saw.
 - **If the free baseline wins, that gets published.**
+
+---
+
+## Model choice and running cost
+
+**The escalation gate is what makes this cheap.** It absorbs **96.9%** of raw detector output, so
+the LLM is invoked per *escalation*, not per cycle — on the order of tens of calls a day for a
+100-aircraft fleet, not tens of thousands.
+
+**Every judge talks to a one-method interface** (`ModelClient.complete()` in
+`sentinel/judges/model.py`). Swapping the model — or the provider entirely — is implementing that
+one method. `ScriptedClient` and `DryRunClient` already do, which is how the whole test suite
+runs at zero cost.
+
+**Estimated cost — not yet measured.** No LLM judge has been run against a live model, so these
+are arithmetic from published per-token prices and expected prompt sizes, not observations. The
+harness reports real `tok/judgement` once a sweep runs; trust that column, not this table.
+
+| | Opus-tier ($5/$25 per MTok) | Haiku-tier ($1/$5 per MTok) |
+|---|---|---|
+| One agent judgement (~5 calls) | ~$0.12 | ~$0.025 |
+| Full sweep (12 bundles × 3 variants × 4 judges + grader) | **~$10** | ~$2 |
+| Fleet operation (~40 escalations/day) | ~$5/day | ~$1/day |
+
+**So cost is not the binding constraint here — capability is.** A full experimental sweep costs
+about what a coffee does. Picking a cheaper model *before* measuring which model can do the task
+at all would be optimising the wrong variable. Run the sweep on the capable model first; the
+table will tell you how much headroom a cheaper one has.
+
+**On free and local models.** The interface is provider-agnostic, so a local server (llama.cpp,
+Ollama, vLLM) is a legitimate `ModelClient`. Two honest caveats: small local models are
+substantially weaker at *reliable tool use*, which is exactly what B3 needs, and an 8 GB consumer
+GPU limits you to ~8B quantised. The realistic use is a local model as an **extra B1-style row**
+in the table — a cheap single-shot baseline — not as the agent. And that is a measurement, not a
+guess: add the row and the scorer will tell you.
+
+**On fine-tuning.** Not yet viable, and worth saying plainly: fine-tuning needs training data,
+and this repo has a handful of scenarios. Anything trained on that overfits. Revisit when the
+task set is 60–150 items — at which point the more valuable artifact is the *labelled set*
+itself, not the tuned model.
+
+---
 
 ## Status — honest
 
@@ -53,7 +139,7 @@ captured once into a content-hashed `RunBundle`, and every judge runs offline ag
 (vibration), 5.0 s (GPS loss) · 96.9% advisory suppression · worst cycle **18 ms of 1000 ms**.
 
 **Not yet measured:** every judge comparison. B1/B2/B3 have not been run against a live model —
-the loop is proven end-to-end against a scripted client, at zero tokens. **No accuracy, κ, or
+the loops are proven end-to-end against a scripted client, at zero tokens. **No accuracy, κ, or
 cost number for any LLM judge exists yet, and none is claimed.**
 
 **Known and recorded:** on the original four scenarios the deterministic baseline **B0 scores
@@ -62,41 +148,43 @@ cost. Two ambiguous faults (`compass_offset`, `stiff_airframe`) were added speci
 the comparison headroom, and `stats.ambiguity_worked()` fails the report if a future fault set
 loses it again.
 
+**Two things the API does not provide, recorded because they change what the numbers mean:**
+sampling parameters are rejected on the current model, so **B2's k samples vary only by the
+model's own non-determinism** — it publishes its observed disagreement rate, and a rate of 0
+means B2 collapsed into B1 at k× the cost. And there is **no seed**: bundles are deterministic,
+verdicts are not, so this is not end-to-end reproducible and does not claim to be.
+
 ```
 74 tests, all offline — no simulator, no network, no API key
 ```
 
-## Running it
+## Running the research path
 
 ```bash
-pip install -e .                    # plus flightdx, see below
-pytest                              # 74 tests, offline
+sentinel capture --bundles bundles --repeat 3 --compare r8_results.json   # needs WSL + SITL
+sentinel judge   --bundles bundles --dry-run                              # free, exercises everything
+sentinel judge   --bundles bundles                                        # needs an API key
+sentinel report  --bundles bundles --verdicts verdicts.json --markdown
 ```
 
-Live capture needs ArduPilot SITL (WSL2) and `pymavlink`:
-
-```bash
-python scripts/r7_r8_scenarios.py --bundles bundles --repeat 3 --compare r8_results.json
-python run_live.py --conn tcp:127.0.0.1:5760 --duration 30
-```
-
-`--conn` takes any pymavlink connection string, so `COM5,57600` (SiK radio) or
-`udp:0.0.0.0:14550` work against a real aircraft. Note that a SiK link cannot carry 13 message
-types at 10 Hz; below `MIN_ATT_RATE_HZ = 7.0` the oscillation detector **declines to run** rather
-than emit an aliased result.
+`--dry-run` runs the entire sweep against a stub that answers "the first advisory" — the naive
+strategy — so you see the real shape of the table before spending a token.
 
 ### Dependency
 
 The detector tier lives in [`flightdx`](https://github.com/RahulRajelli/ardupilot-log-analyzer)
-(ArduPilot log analysis: parsers, 7 detectors, evidence schema). This repository is the realtime
-runner, the escalation gate and the agent evaluation harness on top of it.
+(ArduPilot log parsing, 7 detectors, evidence schema). This repository is the realtime runner,
+the escalation gate, the CLI and the agent evaluation harness on top of it.
+
+A SiK radio cannot carry 13 message types at 10 Hz; below `MIN_ATT_RATE_HZ = 7.0` the oscillation
+detector **declines to run** rather than emit an aliased result. That is why the on-vehicle
+companion-computer topology exists — detect at full rate, send events down the link, not telemetry.
 
 ## Design rules that do not bend
 
 - **No LLM anywhere near flight control.** Judges are offline and read-only *structurally* — the
   bundle is a frozen file, so there is no write path to expose.
-- **No RAG, no vector database.** There is no corpus here; adding one would be architecture
-  theater.
+- **No RAG, no vector database.** There is no corpus here; adding one would be architecture theater.
 - **The uplink is read-and-configure only** — stream rates and parameter fetch. Nothing commands
   the aircraft.
 

@@ -9,8 +9,12 @@ authors = [{ name = "Rahul Rajelli" }]
 keywords = ["uav", "ardupilot", "mavlink", "llm-agents", "evaluation", "root-cause-analysis"]
 dependencies = ["pydantic>=2.0"]
 
+[project.scripts]
+sentinel = "sentinel.cli:main"
+
 [project.optional-dependencies]
 live = ["pymavlink>=2.4"]
+agent = ["anthropic>=0.40"]
 dev = ["pytest>=8.0"]
 
 [build-system]
