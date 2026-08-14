@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="1200" fill="#0f172a"/>
+
+  <!-- title -->
+  <text x="80" y="130" font-size="62" font-weight="800" fill="#f8fafc">The first alarm</text>
+  <text x="80" y="204" font-size="62" font-weight="800" fill="#f8fafc">is not the cause.</text>
+  <text x="80" y="262" font-size="25" fill="#94a3b8">One fault trips several detectors. The fastest one wins the race, not the right one.</text>
+  <line x1="80" y1="300" x2="1120" y2="300" stroke="#334155" stroke-width="2"/>
+
+  <!-- timeline -->
+  <text x="80" y="356" font-size="18" font-weight="700" fill="#64748b" letter-spacing="2.5">ONE FAULT, TWO DETECTORS</text>
+
+  <line x1="120" y1="470" x2="1080" y2="470" stroke="#475569" stroke-width="3"/>
+  <circle cx="330" cy="470" r="15" fill="#ef4444"/>
+  <circle cx="800" cy="470" r="15" fill="#14b8a6"/>
+  <text x="120" y="516" font-size="19" fill="#64748b">t = 8.0 s</text>
+  <text x="300" y="516" font-size="19" fill="#64748b">t = 9.0 s</text>
+  <text x="770" y="516" font-size="19" fill="#64748b">t = 10.0 s</text>
+
+  <rect x="150" y="356" width="360" height="86" rx="10" fill="#450a0a" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="172" y="392" font-size="25" font-weight="700" fill="#fca5a5">ekf_inconsistency</text>
+  <text x="172" y="422" font-size="19" fill="#fecaca">fires FIRST — but it is a symptom</text>
+
+  <rect x="620" y="356" width="400" height="86" rx="10" fill="#042f2e" stroke="#14b8a6" stroke-width="2.5"/>
+  <text x="642" y="392" font-size="25" font-weight="700" fill="#5eead4">compass_inconsistency</text>
+  <text x="642" y="422" font-size="19" fill="#99f6e4">the actual cause, 1 s later</text>
+
+  <text x="120" y="580" font-size="21" fill="#94a3b8">A magnetometer offset raises EKF variance <tspan font-weight="700" fill="#e2e8f0">immediately</tspan>. The compass detector</text>
+  <text x="120" y="612" font-size="21" fill="#94a3b8">waits a full second to confirm the anomaly is sustained. So the symptom leads</text>
+  <text x="120" y="644" font-size="21" fill="#94a3b8">the cause <tspan font-weight="700" fill="#e2e8f0">by construction</tspan> — a constant in the detector source, not a tuning artifact.</text>
+
+  <!-- verdicts -->
+  <line x1="80" y1="700" x2="1120" y2="700" stroke="#334155" stroke-width="2"/>
+  <text x="80" y="756" font-size="18" font-weight="700" fill="#64748b" letter-spacing="2.5">WHAT EACH ONE ANSWERS</text>
+
+  <rect x="80" y="786" width="500" height="170" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="108" y="828" font-size="20" font-weight="700" fill="#94a3b8">DETERMINISTIC RULE · 0 tokens</text>
+  <text x="108" y="886" font-size="31" font-weight="800" fill="#fca5a5">"ekf_inconsistency"</text>
+  <text x="108" y="926" font-size="21" fill="#fecaca">confidently wrong — it answers the symptom</text>
+
+  <rect x="620" y="786" width="500" height="170" rx="12" fill="#1e293b" stroke="#14b8a6" stroke-width="2.5"/>
+  <text x="648" y="828" font-size="20" font-weight="700" fill="#94a3b8">AN ENGINEER · reasons about ordering</text>
+  <text x="648" y="886" font-size="31" font-weight="800" fill="#5eead4">"compass_inconsistency"</text>
+  <text x="648" y="926" font-size="21" fill="#99f6e4">check the calibration, not the estimator</text>
+
+  <line x1="580" y1="871" x2="612" y2="871" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- the finding -->
+  <rect x="80" y="1000" width="1040" height="118" rx="12" fill="#1c1917" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="108" y="1042" font-size="20" font-weight="700" fill="#fbbf24" letter-spacing="2">WHY THIS FAULT EXISTS AT ALL</text>
+  <text x="108" y="1080" font-size="22" fill="#e7e5e4">On my original four scenarios the free deterministic baseline scored <tspan font-weight="800" fill="#ffffff">4/4 at zero cost</tspan>.</text>
+  <text x="108" y="1108" font-size="22" fill="#e7e5e4">No agent could beat it. So I made the problem harder instead of publishing the tie.</text>
+
+  <text x="80" y="1168" font-size="19" fill="#475569">Measured on ArduPilot SITL · 74 offline tests · github.com/RahulRajelli/sentinel-realtime</text>
+</svg>
