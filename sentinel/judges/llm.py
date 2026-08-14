@@ -308,7 +308,13 @@ def _one_shot(client: ModelClient, bundle: RunBundle, variant: str,
         {"role": "user", "content": json.dumps({"flight": tools.summarize()},
                                                indent=1, default=str)},
     ]
-    resp = client.complete(messages=messages, tools=None)
+    try:
+        resp = client.complete(messages=messages, tools=None)
+    except Exception as exc:
+        # Same reasoning as agent.py: a transport failure is a harness failure. Returning None
+        # lets the caller degrade and be scored as such, instead of aborting the sweep.
+        budget.trip(f"{type(exc).__name__}: {str(exc)[:120]}")
+        return None, None
     budget.charge(resp.tokens_in, resp.tokens_out)
 
     if not resp.text:

@@ -1,0 +1,12 @@
+[
+ {
+  "airframe": "quadplane",
+  "motors": 4,
+  "fault": "motor_fail",
+  "model": "quadplane",
+  "booted": true,
+  "armed": false,
+  "ok": false,
+  "error": "peak 0.0 m (VTOL)"
+ }
+]

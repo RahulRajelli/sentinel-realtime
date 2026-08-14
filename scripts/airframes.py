@@ -69,9 +69,13 @@ AIRFRAMES: dict[str, dict] = {
     "octa": {
         "model": "octa", "defaults": "copter-octa.parm", "motors": 8,
         "note": "heavy lift. Most redundancy, least degradation."},
-    "vtol": {
-        "model": "tilthvec", "defaults": "copter.parm", "motors": 4,
-        "note": "tiltrotor VTOL configuration. NOT a quadplane -- arduplane is not built here."},
+    "quadplane": {
+        "model": "quadplane", "defaults": "quadplane-tilttri.parm", "motors": 4,
+        "binary": "arduplane", "vtol": True,
+        "note": "REAL fixed-wing VTOL. Lift motors for hover, wing for cruise -- a motor-out "
+                "in hover has no wing to fall back on until it transitions."},
+    # "vtol" (tilthvec on arducopter) is NOT flyable: measured 2026-08-14, it booted no
+    # heartbeat. Kept as a note so it is not re-attempted as if untried.
     "dodeca": {
         "model": "dodeca-hexa", "defaults": "copter-hexa.parm", "motors": 12,
         "note": "coaxial hexa: 6 arms, 2 motors each. The nearest thing to a coaxial layout "
@@ -83,25 +87,89 @@ AIRFRAMES: dict[str, dict] = {
     # is exactly the mistake made here.
 }
 
+# `expect` / `symptoms` are the ground truth a judge is scored against. Without them a bundle
+# records what was seen and nothing can be graded -- which is what the first airframe run
+# produced, and why these are here now.
+#
+# For motor_fail the root cause is the dead motor. `actuator_saturation` is the detector that
+# represents it: the survivors run out of authority compensating. Vibration and EKF degradation
+# are consequences of the airframe fighting the asymmetry, so they are symptoms -- naming either
+# of them as the root cause is the failure mode E4 measures.
 FAULTS: dict[str, dict] = {
     "motor_fail": {
         "inject": [("SIM_ENGINE_FAIL", 1.0), ("SIM_ENGINE_MUL", 0.0)],
+        "expect": "actuator_saturation",
+        "symptoms": ["vibration_excessive", "ekf_inconsistency", "control_oscillation"],
         "note": "motor 1 produces zero thrust from t+inject onward"},
     "vibration": {
         "inject": [("SIM_VIB_MOT_MAX", 200.0), ("SIM_ACC1_RND", 40.0)],
+        "expect": "vibration_excessive", "symptoms": ["accel_clipping"],
         "note": "airframe vibration, identical injection across frames"},
-    "null": {"inject": [], "note": "nothing injected -- the hallucination control"},
+    "null": {"inject": [], "expect": None, "symptoms": [],
+             "note": "nothing injected -- the hallucination control"},
 }
 
 
-def launch(model: str, defaults: str, instance: int) -> subprocess.Popen:
+def launch(model: str, defaults: str, instance: int, binary: str = "arducopter") -> subprocess.Popen:
     cmd = (
         f"mkdir -p /root/sitl_a{instance} && cd /root/sitl_a{instance} && rm -f eeprom.bin && "
-        f"{AP}/build/sitl/bin/arducopter -S -I{instance} --model {model} --speedup 1 "
+        f"{AP}/build/sitl/bin/{binary} -I{instance} --model {model} --speedup 1 "
         f"--defaults {AP}/Tools/autotest/default_params/{defaults} "
         f"--home 12.9716,77.5946,900,0")
     return subprocess.Popen(["wsl", "-d", WSL_DISTRO, "--", "bash", "-c", cmd],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def vtol_takeoff(conn, alt: float = 15.0) -> tuple[bool, str]:
+    """Get a quadplane airborne on its lift motors.
+
+    A quadplane does not arm into GUIDED and climb like a copter: it hovers in QLOITER and
+    takes off with MAV_CMD_NAV_VTOL_TAKEOFF. Reusing the copter path here silently fails at the
+    mode change, which reads as "could not arm" and hides the real cause.
+    """
+    fix, ekf_ok = 0, False
+    end = time.time() + 180
+    while time.time() < end and not (fix >= 3 and ekf_ok):
+        m = conn.recv_match(blocking=True, timeout=5)
+        if m is None:
+            continue
+        if m.get_type() == "GPS_RAW_INT":
+            fix = m.fix_type
+        elif m.get_type() == "EKF_STATUS_REPORT":
+            ekf_ok = bool(m.flags & 16) and bool(m.flags & 512) and not (m.flags & 128)
+    if fix < 3 or not ekf_ok:
+        return False, f"no fix/EKF (fix={fix}, ekf={ekf_ok})"
+
+    conn.set_mode("QLOITER")
+    time.sleep(1)
+    reasons: list[str] = []
+    for _ in range(12):
+        conn.mav.command_long_send(conn.target_system, conn.target_component,
+                                   mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0,
+                                   1, 0, 0, 0, 0, 0, 0)
+        deadline = time.time() + 4
+        while time.time() < deadline:
+            m = conn.recv_match(blocking=True, timeout=1)
+            if m is None:
+                continue
+            if m.get_type() == "STATUSTEXT":
+                txt = m.text.decode() if isinstance(m.text, bytes) else str(m.text)
+                if ("arm" in txt.lower() or "prearm" in txt.lower()) and txt not in reasons:
+                    reasons.append(txt)
+            elif (m.get_type() == "COMMAND_ACK"
+                  and m.command == mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM
+                  and m.result == 0):
+                conn.mav.command_long_send(
+                    conn.target_system, conn.target_component,
+                    mavutil.mavlink.MAV_CMD_NAV_VTOL_TAKEOFF, 0, 0, 0, 0, 0, 0, 0, alt)
+                peak, t_end = 0.0, time.time() + 90
+                while time.time() < t_end and peak < alt * 0.5:
+                    g = conn.recv_match(type="GLOBAL_POSITION_INT", blocking=True, timeout=5)
+                    if g:
+                        peak = max(peak, g.relative_alt / 1000.0)
+                return peak >= alt * 0.35, f"peak {peak:.1f} m (VTOL)"
+        time.sleep(1.5)
+    return False, f"could not arm -- {'; '.join(reasons[-2:]) or 'no reason reported'}"
 
 
 def fly(name: str, cfg: dict, fault: str, instance: int,
@@ -115,7 +183,8 @@ def fly(name: str, cfg: dict, fault: str, instance: int,
 
     result = {"airframe": name, "motors": cfg["motors"], "fault": fault,
               "model": cfg["model"], "booted": False, "armed": False, "ok": False}
-    proc = launch(cfg["model"], cfg["defaults"], instance)
+    proc = launch(cfg["model"], cfg["defaults"], instance,
+                  cfg.get("binary", "arducopter"))
 
     try:
         time.sleep(6)
@@ -137,7 +206,7 @@ def fly(name: str, cfg: dict, fault: str, instance: int,
         runner.request_streams(rate_hz=10.0)
         runner.fetch_params()
 
-        ok, why = arm_and_takeoff(conn)
+        ok, why = (vtol_takeoff(conn) if cfg.get("vtol") else arm_and_takeoff(conn))
         print(f"  takeoff: {why}")
         result["armed"] = ok
         if not ok:
@@ -146,7 +215,9 @@ def fly(name: str, cfg: dict, fault: str, instance: int,
 
         gate = EscalationGate(cooldown_s=20.0, clear_after_s=8.0)
         recorder = BundleRecorder(scenario=f"{name}_{fault}",
-                                  note=f"{cfg['note']} | {fcfg['note']}")
+                                  note=f"{cfg['note']} | {fcfg['note']}",
+                                  expected_root_cause=fcfg.get("expect"),
+                                  expected_symptoms=fcfg.get("symptoms", []))
         state = {"t_inject": None, "verified": False, "first": None, "first_t": None}
         advisories: list[dict] = []
 

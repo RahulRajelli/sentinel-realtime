@@ -3,8 +3,12 @@
  "scenario": "octa_motor_fail",
  "note": "heavy lift. Most redundancy, least degradation. | motor 1 produces zero thrust from t+inject onward",
  "created_utc": "2026-08-14T12:36:20+00:00",
- "expected_root_cause": null,
- "expected_symptoms": [],
+ "expected_root_cause": "actuator_saturation",
+ "expected_symptoms": [
+  "vibration_excessive",
+  "ekf_inconsistency",
+  "control_oscillation"
+ ],
  "injection": [
   {
    "name": "SIM_ENGINE_FAIL",
@@ -1269,6 +1273,6 @@
   "detect_ms_last": 4.93,
   "worst_cycle_ms": 9.1
  },
- "bundle_id": "5b85ccaf1b91fac5",
+ "bundle_id": "d095e8d703db1337",
  "params_hash": "9d2f2f40da4cc67f"
 }

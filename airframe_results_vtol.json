@@ -1,0 +1,22 @@
+[
+ {
+  "airframe": "vtol",
+  "motors": 4,
+  "fault": "motor_fail",
+  "model": "tilthvec",
+  "booted": false,
+  "armed": false,
+  "ok": false,
+  "error": "no heartbeat -- frame likely unsupported by this build"
+ },
+ {
+  "airframe": "dodeca",
+  "motors": 12,
+  "fault": "motor_fail",
+  "model": "dodeca-hexa",
+  "booted": true,
+  "armed": false,
+  "ok": false,
+  "error": "peak 0.1 m"
+ }
+]
