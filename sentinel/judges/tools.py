@@ -235,6 +235,25 @@ class BundleTools:
                      "no detector recorded this metric then, not that the signal was zero."),
         }
 
+    def detector_coverage(self) -> dict[str, Any]:
+        """Which detectors could evaluate this flight, and which could not look at all.
+
+        The question this answers: **does a quiet detector mean nothing was wrong, or that
+        nothing was watching?** Until coverage was recorded those were the same observation.
+
+        `detect_oscillation` returns nothing when ATT arrives below 7 Hz, when no commanded
+        attitude is present, or below 20 samples. Each is the right call -- counting zero
+        crossings on aliased data would invent oscillations -- and each is silent. A judge
+        concluding "no oscillation" from a flight where that detector never ran is reasoning
+        from an absence that carries no information.
+        """
+        cov = self._b.detector_coverage or {}
+        if not cov:
+            return {"error": "this flight predates coverage recording",
+                    "note": "silence from any detector here is ambiguous: it may mean no fault, "
+                            "or that the detector never had its inputs"}
+        return cov
+
     def prior_incidents(self) -> dict[str, Any]:
         """What this airframe has done on earlier flights. Durable memory, opt-in.
 
@@ -402,6 +421,11 @@ class BundleTools:
     # re-run is not a result, and because a future detector set with different semantics might
     # justify revisiting them -- with a measurement, as these were.
     OPTIONAL_SPECS: list[dict[str, Any]] = [
+        {"name": "detector_coverage",
+         "description": ("Which detectors could evaluate this flight and which could not look "
+                         "at all. Use it before concluding that a quiet detector means nothing "
+                         "was wrong."),
+         "parameters": {"type": "object", "properties": {}, "required": []}},
         {"name": "signal_trajectory",
          "description": ("How one metric changed across the flight, summarised into a fixed "
                          "number of time buckets. Distinguishes a signal that climbed steadily "
