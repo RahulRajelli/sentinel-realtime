@@ -1,0 +1,236 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gemini-3.7-flash @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 5.967800000007628,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Actuator saturation occurred when a motor saturated with an 800 us PWM imbalance, causing a loss of control authority that led to severe control tracking oscillations.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3620,
+   "tokens_out": 275,
+   "calls": 3,
+   "wall_ms": 8782.257500000014,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Motor PWM imbalance reached 800 us with one motor pinned at maximum saturation, depleting control authority. This loss of actuator headroom induced severe attitude tracking oscillations reaching 45.12 degrees in roll.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2122,
+   "tokens_out": 263,
+   "calls": 2,
+   "wall_ms": 6019.359800000075,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Severe actuator saturation occurred with Motor_PWM_Imbalance reaching 800 us and pinning a motor at maximum output. This loss of control authority directly caused severe control oscillations on roll and pitch.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2259,
+   "tokens_out": 260,
+   "calls": 2,
+   "wall_ms": 4526.914499999975,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.85,
+   "rationale": "Severe control oscillation drove extreme control demands that saturated the actuators. Actuator saturation was detected at 11.062s as oscillation peaks reached motor limits before the oscillation detector confirmed periodic behavior at 12.781s.",
+   "citations": [
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 706,
+   "tokens_out": 187,
+   "calls": 1,
+   "wall_ms": 13597.020199999974,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Actuator saturation initiated at 11.062 s, depleting control authority and triggering downstream control oscillations starting at 12.781 s.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.062,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 733,
+   "tokens_out": 138,
+   "calls": 1,
+   "wall_ms": 5473.765800000024,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Actuator saturation occurred first at 11.062s, leading to a loss of control authority that subsequently induced critical control oscillation at 12.781s.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 785,
+   "tokens_out": 176,
+   "calls": 1,
+   "wall_ms": 7533.391199999983,
+   "seed": 0
+  }
+ ]
+}

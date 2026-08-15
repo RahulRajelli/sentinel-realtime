@@ -1,0 +1,246 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 5.895300000020143,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.96,
+   "rationale": "A motor was pinned at maximum thrust, with Saturated_Motor_Count at 1, while Motor_PWM_Imbalance reached 800 us against a 300 us threshold. This loss of control authority explains the large pitch and roll tracking oscillations.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2087,
+   "tokens_out": 227,
+   "calls": 2,
+   "wall_ms": 6841.815899999972,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Actuator saturation is the root cause: one motor was pinned at maximum thrust while Motor_PWM_Imbalance reached 800 us, indicating exhausted and asymmetric control authority. The resulting loss of authority explains the control oscillation, with roll and pitch error amplitudes reaching 45.12 deg and 42.48 deg.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2143,
+   "tokens_out": 241,
+   "calls": 2,
+   "wall_ms": 9469.37269999995,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.96,
+   "rationale": "The system raised actuator_saturation first at 11.062 s and control_oscillation at 12.781 s, 1.719 s later. Actuator saturation best explains the oscillation because Motor_PWM_Imbalance reached 800 \u00b5s against a 300 \u00b5s threshold and one motor was saturated, while pitch and roll error amplitudes subsequently reached 42.48\u00b0 and 45.12\u00b0 against 3\u00b0 thresholds.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2247,
+   "tokens_out": 267,
+   "calls": 2,
+   "wall_ms": 9120.737399999996,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.78,
+   "rationale": "Actuator saturation was detected at 11.062 s, preceding the control oscillation detected at 12.781 s. Saturated actuation can prevent commanded corrections and induce the subsequent oscillatory control response.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 634,
+   "tokens_out": 115,
+   "calls": 1,
+   "wall_ms": 8266.198799999984,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.76,
+   "rationale": "Actuator saturation was detected at 11.062 s, preceding the control oscillation detected at 12.781 s. This ordering supports saturation as the initiating fault and oscillation as its consequence.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 662,
+   "tokens_out": 113,
+   "calls": 1,
+   "wall_ms": 7765.127200000052,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation",
+    "control_oscillation"
+   ],
+   "confidence": 0.18,
+   "rationale": "Actuator saturation was detected 1.719 seconds before control oscillation, but detection order does not establish causality. No measured metric values or thresholds were provided to determine which detected incident explains the other.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 714,
+   "tokens_out": 100,
+   "calls": 1,
+   "wall_ms": 5152.180199999975,
+   "seed": 0
+  }
+ ]
+}

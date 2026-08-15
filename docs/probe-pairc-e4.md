@@ -70,3 +70,82 @@ precision will not be, and no confidence interval computed over one bundle shoul
 The fix is **more flights, not more runs** — 2 more `hot_gains_lowd` repeats, minutes each in SITL.
 Re-running the same bundle more times measures the judge's variance, not the fault's generality,
 and those two have been confused in this project before.
+
+---
+
+# RESULT — run 2026-08-15. The falsifier fired.
+
+**Prediction 2 is dead and prediction 3 is inverted.** No judge beat B0 on pair C. The tool agent
+did not merely fail to beat it — it reproduced the deterministic baseline's exact answer on
+**every single judgement**.
+
+`gpt-5.6-sol @ https://api.llmapi.ai/v1`, 5 runs, 0 degraded:
+
+| run | B0 | B1 | B3 |
+|---|---|---|---|
+| 1 | 0.00 | 0.00 | 0.00 |
+| 2 | 0.00 | 0.33 | 0.00 |
+| 3 | 0.00 | 0.00 | 0.00 |
+| 4 | 0.00 | 0.00 | 0.00 |
+| 5 | 0.00 | 0.33 | 0.00 |
+| **mean** | **0.00** | **0.13** | **0.00** |
+
+Prediction 1 held: B0 = 0.00 in all 5 runs, so the cell is readable.
+
+## What they actually answered
+
+| judge | `actuator_saturation` (the symptom) | `control_oscillation` (the cause) | no answer |
+|---|---|---|---|
+| B0 | 5 / 5 | 0 | 0 |
+| B1 | 7 / 15 | **2** | 6 |
+| B3 | **15 / 15** | **0** | 0 |
+
+**B3 named the symptom on 15 of 15 judgements.** Giving the judge tools did not move it toward the
+cause; it moved it to answering exactly like the free rule, every time, at 2,401 tokens per
+judgement against B1's 778. Cost per correct answer for B3 on this fault is undefined — there are
+no correct answers to divide by.
+
+## Is it the judge or the fault? — the disambiguation run
+
+A single model failing proves little, so the arm was repeated on **`gemini-3.7-flash`**, the one
+model in the 9-model prevalence sweep that **never** fell for the ordering trap on pair A
+(`sym 0.00/9`, `acc 1.00` — the best row in that table). Same route, same arm, 5 runs, 0 degraded:
+
+| judge | mean | `actuator_saturation` | `control_oscillation` |
+|---|---|---|---|
+| B0 | 0.00 | 5 / 5 | 0 |
+| B1 | 0.07 | 14 / 15 | 1 |
+| B3 | **0.00** | **15 / 15** | 0 |
+
+**The model that never falls for the trap falls for it on 100% of tool-agent judgements here.**
+
+Across both models: **30 of 30 B3 judgements named the symptom. Zero exceptions.**
+
+## What this settles, and what it costs
+
+1. **The 0.96 was a property of `compass_offset`, not of the judge.** Every published accuracy in
+   this repository was measured on one fault. Moved to a second mechanism, gpt's B3 goes 0.96 ->
+   0.00 and gemini-3.7-flash's 1.00 -> 0.00. This is retraction 8.
+2. **The ordering trap is not (only) a model weakness.** On pair A it was graded — 4 of 9 models
+   fell for it, 4 never did, and capability tracked resistance within families. On pair C it is
+   universal across the two models tried, including the most resistant one. Something about this
+   fault, or about what the tool surface exposes of it, defeats all of them.
+3. **Tools made it strictly worse.** B1, with no tools, is the only arm that was ever right
+   (3 of 30 judgements across both models). B3, with tools, was never right, at 3-4x the tokens.
+   The prompt-variant finding from session 2 pointed this way; this is the sharp version.
+4. **The honest headline is a negative one.** "Pair C gives the agent a gap to close" was correct
+   about the gap and wrong about the closing: B0 = 0.00 leaves room, and nothing measured so far
+   occupies it. Per the project's own rule, that gets published rather than buried.
+
+## What this does NOT establish
+
+* **n = 1 flight**, as stated before the run. This is one pair C capture. Two more repeats are
+  cheap and should be flown before any of the above is written into the whitepaper as a rate.
+* **Two models, not nine.** The prevalence sweep should be re-run on pair C to see whether the
+  4-of-9 split collapses to 0-of-9, which is what these two suggest but do not prove.
+* **It is not established that the fault is unsolvable.** The most likely mechanism is that the
+  tool surface reports `actuator_saturation` first and nothing the judge can call distinguishes a
+  saturating actuator that is *causing* a limit cycle from one *responding* to it. That is a
+  hypothesis, and it is testable: pair C is severe (53.5 deg), so amplitude and zero-crossing rate
+  are both visible in the data the tools already return. If a tool that exposes them fixes this,
+  the finding becomes "the tool surface was wrong", not "agents cannot do this".

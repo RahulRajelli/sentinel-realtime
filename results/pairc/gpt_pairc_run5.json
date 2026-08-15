@@ -1,0 +1,236 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 6.301500000063243,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.97,
+   "rationale": "Actuator saturation is the root cause: one motor was pinned at maximum thrust while Motor_PWM_Imbalance reached 800 us, leaving inadequate control authority. The resulting loss of authority explains the severe pitch and roll tracking oscillations.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2087,
+   "tokens_out": 223,
+   "calls": 2,
+   "wall_ms": 7340.558200000032,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.97,
+   "rationale": "Actuator saturation is the root cause: Saturated_Motor_Count was 1 and Motor_PWM_Imbalance reached 800 us, indicating exhausted and strongly asymmetric control authority. The resulting control_oscillation is a consequence, evidenced by peak roll and pitch errors of 45.12\u00b0 and 42.48\u00b0 respectively.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2143,
+   "tokens_out": 243,
+   "calls": 2,
+   "wall_ms": 5482.842000000005,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.97,
+   "rationale": "Actuator saturation was detected first by 1.719 s and is supported by a motor PWM imbalance of 800 us versus a 300 us threshold and one motor pinned at maximum thrust. The resulting loss of control authority explains the later pitch and roll oscillations, whose peak error amplitudes reached 42.48\u00b0 and 45.12\u00b0 versus 3.0\u00b0 thresholds.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2247,
+   "tokens_out": 255,
+   "calls": 2,
+   "wall_ms": 8620.358799999962,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation",
+    "control_oscillation"
+   ],
+   "confidence": 0.18,
+   "rationale": "Both incident types were detected, but no metric values or metric timestamps were provided to establish which one caused the other. The advisory ordering alone is insufficient to identify the root cause.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 634,
+   "tokens_out": 75,
+   "calls": 1,
+   "wall_ms": 7998.6043999999765,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.72,
+   "rationale": "Control oscillation best explains repeated commands reaching actuator limits; saturation can cross its threshold before enough cycles accumulate for the oscillation detector. Actuator saturation was detected at 11.062 s, followed by control oscillation at 12.781 s.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 662,
+   "tokens_out": 123,
+   "calls": 1,
+   "wall_ms": 13693.743100000007,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation",
+    "control_oscillation"
+   ],
+   "confidence": 0.2,
+   "rationale": "Actuator saturation was detected 1.719 seconds before control oscillation, but arrival order does not establish causality. No measured metric values or thresholds were provided to determine which detected incident explains the other.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 714,
+   "tokens_out": 100,
+   "calls": 1,
+   "wall_ms": 7100.1547999999275,
+   "seed": 0
+  }
+ ]
+}

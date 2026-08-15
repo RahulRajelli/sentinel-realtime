@@ -1,0 +1,247 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 6.422400000019479,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.96,
+   "rationale": "Actuator saturation is the root cause: Saturated_Motor_Count reached 1 motor while Motor_PWM_Imbalance reached 800 us, indicating exhausted control authority. This explains the resulting control oscillation, with Peak_Roll_Error_Amp reaching 45.12 deg against a 3.0 deg threshold.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2087,
+   "tokens_out": 221,
+   "calls": 2,
+   "wall_ms": 7440.411299999994,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.97,
+   "rationale": "Actuator saturation is supported by a motor PWM imbalance of 800 us and one motor pinned at maximum thrust, indicating loss of corrective authority. The resulting control oscillation reached a 45.12 deg peak roll-error amplitude and is therefore classified as a consequence.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2143,
+   "tokens_out": 210,
+   "calls": 2,
+   "wall_ms": 6475.053500000002,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.96,
+   "rationale": "The system raised actuator_saturation first at 11.062 s and control_oscillation at 12.781 s, 1.719 s later. Actuator saturation best explains the later oscillation because Motor_PWM_Imbalance reached 800 us against a 300 us threshold and one motor was pinned at saturation, while pitch and roll error amplitudes reached 42.48\u00b0 and 45.12\u00b0 against 3\u00b0 thresholds.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2247,
+   "tokens_out": 267,
+   "calls": 2,
+   "wall_ms": 9297.30569999998,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.76,
+   "rationale": "Actuator saturation was detected at 11.062 s, before control oscillation appeared at 12.781 s. Saturated actuation can prevent control-error correction and induce the subsequent oscillation.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 634,
+   "tokens_out": 113,
+   "calls": 1,
+   "wall_ms": 7297.030000000006,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.76,
+   "rationale": "Control oscillation explains the actuator saturation: oscillatory control demand can drive actuators to their limits, while oscillation detection may lag because it requires multiple cycles. Actuator saturation was detected at 11.062 s and control oscillation at 12.781 s, but detection order alone does not establish causality.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 662,
+   "tokens_out": 137,
+   "calls": 1,
+   "wall_ms": 7066.212199999995,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation",
+    "control_oscillation"
+   ],
+   "confidence": 0.05,
+   "rationale": "Actuator saturation was detected first at 11.062 s, followed by control oscillation at 12.781 s (1.719 s later). No measured metric values or thresholds were provided, so the causal fault cannot be established without inventing evidence.",
+   "citations": [
+    {
+     "metric": "actuator_saturation advisory",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation advisory",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 714,
+   "tokens_out": 129,
+   "calls": 1,
+   "wall_ms": 17163.305899999956,
+   "seed": 0
+  }
+ ]
+}
