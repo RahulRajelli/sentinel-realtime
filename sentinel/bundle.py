@@ -35,15 +35,21 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, ClassVar
 
 from pydantic import BaseModel, Field
 
 from flightdx.schema import Incident
 
-# Bumped whenever a field changes meaning. A judge that reads a bundle it does not understand
-# must refuse rather than guess -- see `load()`. L2 widens the task set, so this will move.
-SCHEMA_VERSION = 1
+# Bumped whenever a field changes meaning OR the identity function changes. A judge that reads a
+# bundle it does not understand must refuse rather than guess -- but refusing is not enough on its
+# own, because a refusal orphans an archive. `load()` migrates forward; see MIGRATIONS.
+#
+# v1 -> v2 (2026-08-15): `_identity_payload` began excluding `_TIMING_FIELDS`, which changed what
+# a bundle_id MEANS without anything recording that it had. 13 untouched bundles started failing
+# their hash and reported themselves as edited. The version was owed on 2026-08-14 and is being
+# paid now, with a migrator so no capture is lost to it.
+SCHEMA_VERSION = 2
 
 
 class InjectedParam(BaseModel):
@@ -199,6 +205,31 @@ class RunBundle(BaseModel):
             "advisories": [a.model_dump(mode="json") for a in self.advisories],
         }
 
+    def _identity_hash(self, schema_version: int, include_timing: bool) -> str:
+        """One identity function, parameterised by the two things that have ever varied.
+
+        Three combinations are legitimate in this archive, which is exactly the mess that made
+        migration necessary:
+
+          (1, timing INCLUDED)   written before 2026-08-14
+          (1, timing EXCLUDED)   written after the identity fix but before the version was bumped
+          (2, timing EXCLUDED)   current
+
+        Migration must accept all three and nothing else. Hand-rolling each one invited the bug
+        where the middle case was forgotten and 27 authentic bundles were declared altered.
+        """
+        payload = self._identity_payload()
+        if include_timing:
+            payload["cycles"] = [c.model_dump(mode="json") for c in self.cycles]
+        payload["schema_version"] = schema_version
+        canon = json.dumps(payload, sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(canon.encode()).hexdigest()[:16]
+
+    def legacy_identities(self) -> set[str]:
+        """Every id a previous build of this code would legitimately have written."""
+        return {self._identity_hash(1, include_timing=True),
+                self._identity_hash(1, include_timing=False)}
+
     @property
     def params_hash(self) -> str:
         """Hash of the parameter set the detectors ran against.
@@ -214,8 +245,7 @@ class RunBundle(BaseModel):
     def bundle_id(self) -> str:
         """Content hash. A verdict cites this, so a result can never be silently re-attributed
         to a different flight than the one it was made against."""
-        canon = json.dumps(self._identity_payload(), sort_keys=True, separators=(",", ":"))
-        return hashlib.sha256(canon.encode()).hexdigest()[:16]
+        return self._identity_hash(self.schema_version, include_timing=False)
 
     # ---- window ---------------------------------------------------------------------
 
@@ -251,6 +281,24 @@ class RunBundle(BaseModel):
         p.write_text(json.dumps(payload, indent=1))
         return p
 
+    # ---- migration ------------------------------------------------------------------
+
+    @staticmethod
+    def _migrate_1_to_2(raw: dict) -> dict:
+        """v1 -> v2. No field changed; only what `bundle_id` means changed.
+
+        So the migrator rewrites nothing except the version. Authenticity is checked separately
+        in `load()`, against BOTH identity functions, because two kinds of v1 file exist in the
+        wild: those written before the identity change (hash under v1) and those written after it
+        but before the version was bumped (hash under v2). Both are genuine captures. Only a file
+        matching neither has actually been altered.
+        """
+        raw["schema_version"] = 2
+        return raw
+
+    # ClassVar, or pydantic reads it as a model field.
+    MIGRATIONS: ClassVar[dict[int, Callable[[dict], dict]]] = {1: _migrate_1_to_2}
+
     @classmethod
     def load(cls, path: str | Path) -> RunBundle:
         raw = json.loads(Path(path).read_text())
@@ -258,14 +306,34 @@ class RunBundle(BaseModel):
         raw.pop("params_hash", None)
 
         version = raw.get("schema_version", 0)
-        if version != SCHEMA_VERSION:
-            # Refuse rather than coerce. A judge silently reading a bundle whose fields changed
-            # meaning would produce numbers that look fine and are wrong.
+        migrated_from = None
+        while version < SCHEMA_VERSION:
+            migrator = cls.MIGRATIONS.get(version)
+            if migrator is None:
+                raise ValueError(
+                    f"{path}: schema_version {version} has no migrator to "
+                    f"{SCHEMA_VERSION}. Re-capture the flight, or add one to MIGRATIONS")
+            if migrated_from is None:
+                migrated_from = version
+            raw = migrator.__func__(raw) if hasattr(migrator, "__func__") else migrator(raw)
+            version = raw.get("schema_version", 0)
+
+        if version > SCHEMA_VERSION:
+            # Forward-incompatible. Guessing at a field this build has never seen is how a judge
+            # produces numbers that look fine and are wrong.
             raise ValueError(
-                f"{path}: schema_version {version}, this build expects {SCHEMA_VERSION}")
+                f"{path}: schema_version {version} is newer than this build ({SCHEMA_VERSION}). "
+                f"Update the code rather than downgrading the file")
 
         bundle = cls.model_validate(raw)
-        if stored_id is not None and stored_id != bundle.bundle_id:
+        # Authenticity across a migration. A migrated file legitimately hashes under the OLDER
+        # identity function, so both are accepted -- and nothing else is. This is the line that
+        # keeps migration from becoming a laundering path.
+        legitimate = {bundle.bundle_id}
+        if migrated_from is not None:
+            legitimate |= bundle.legacy_identities()
+
+        if stored_id is not None and stored_id not in legitimate:
             # Two very different causes, and the message must not assert the wrong one.
             #
             # This said "the file has been edited" until 2026-08-14, when 13 untouched bundles
@@ -279,10 +347,12 @@ class RunBundle(BaseModel):
             # with "schema_version 1, expects 2" -- which names the cause -- instead of an
             # accusation that sends the reader hunting for a tamper that never happened.
             raise ValueError(
-                f"{path}: bundle_id mismatch (file says {stored_id}, content hashes to "
-                f"{bundle.bundle_id}). Either the file was edited, or it was written by a build "
-                f"with a different identity function -- re-capture it, or check git log for "
-                f"changes to _identity_payload/_TIMING_FIELDS since {raw.get('created_utc') or 'it was written'}")
+                f"{path}: bundle_id mismatch. The file says {stored_id}; it hashes to "
+                f"{bundle.bundle_id} under the current identity function"
+                + (f" and {sorted(bundle.legacy_identities())} under earlier ones"
+                   if migrated_from is not None else "")
+                + ". Every identity this build knows about has been tried, so this file has "
+                  "genuinely been altered since it was written. Re-capture the flight.")
         return bundle
 
 
