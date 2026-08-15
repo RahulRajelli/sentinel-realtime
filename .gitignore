@@ -14,3 +14,7 @@ r8_run.err
 *.BIN
 *.bin
 *.ulg
+
+# per-test scratch for the history store (see tests/test_memory.py)
+tests/.tmp-memory/
+history/
