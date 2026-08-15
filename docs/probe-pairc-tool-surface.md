@@ -141,6 +141,31 @@ spread the variance study measured. So the tool is not trading pair A away to bu
   Quote the direction; do not quote 0.53 to two decimals as if it were stable.
 * **One model.** `gemini-3.7-flash` scored 0.00 on pair C without the tool and has not been re-run
   with it. Until it is, "the tool surface was the bottleneck" is demonstrated for one judge.
+
+---
+
+## FOLLOW-UP, predicted before running: the same arm on `gemini-3.7-flash`
+
+Identical cell to the gpt one — `--only hot_gains_lowd`, `v1,v2,v3`, `B0,B1,B3`,
+`--offer-tools exceedance_ranking`, 5 runs, same route — with only the model changed.
+
+`gemini-3.7-flash` is the sharpest available test of the claim, for the same reason it was chosen
+as the control earlier: it is the **one model of nine** that never fell for the ordering trap on
+pair A, and it still scored **0.00** on pair C with the default surface. If the bottleneck is the
+surface rather than the judge, giving it the ranking should move it too.
+
+**Prediction:** B3 > 0.00, and B0 stays 0.00.
+
+**Falsifiers, both of which would matter:**
+
+* **If it stays at 0.00**, then `exceedance_ranking` helps `gpt-5.6-sol` specifically, and
+  "the tool surface was the bottleneck" is a claim about one judge, not about the harness. The
+  headline gets narrowed to name the model it applies to.
+* **If B0 moves off 0.00**, stop — the scenario has changed underneath the comparison and nothing
+  in the cell is readable.
+
+Either way this is the difference between "a model did better with a better tool" and "the tool
+surface was the limiting factor", and only the second is a finding about agent design.
 * **The promotion criterion is met but promotion has NOT been made.** The stated bar was "pair C
   improves AND pair A does not regress", and both held. `exceedance_ranking` nonetheless stays in
   `OPTIONAL_SPECS`, because moving it into the default changes what every published figure means
