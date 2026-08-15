@@ -12,6 +12,13 @@ the harness that answers that question honestly — including when the answer is
 
 ## Start here
 
+> ### → **[QUICKSTART.md](QUICKSTART.md) — five minutes, no drone, no API key**
+>
+> You do not need hardware to check that any of this is true. The flights are captured and
+> committed, so you can install it, run 215 offline tests, and reproduce the headline result
+> (`B0 = 0.00`) entirely on your own machine. Start there if you want to verify the claim before
+> reading the argument for it.
+
 > **ArduPilot only.** Live telemetry uses the `ardupilotmega` dialect and log analysis reads
 > ArduPilot dataflash `.BIN` files. **PX4 is not supported** — it would run and find nothing,
 > which is worse than refusing. Full setup, per-platform connection recipes and troubleshooting:
