@@ -204,6 +204,77 @@ SCENARIOS = {
                  "threshold crossing with no time gate. The symptom leads the cause by a "
                  "window length, not by tuning"),
     },
+    # Pair C, UNBLOCKED -- 2026-08-15. Added as a separate scenario rather than by editing
+    # `hot_gains` above, because the eight probe measurements recorded in that entry's comments
+    # describe ITS parameter set. Mutating it would silently invalidate every one of them.
+    #
+    # Those eight probes swept proportional gain and wind and peaked at 2.44 deg against a 3.0 deg
+    # threshold, and recorded two structural reasons it could not be beaten: raising P makes the
+    # controller track more tightly (P is the frequency lever), and in guided flight the attitude
+    # target leans with the airframe so error stays bounded.
+    #
+    # None of them varied DAMPING. A four-point sweep (docs/probe-hot-gains-damping.md, written
+    # and committed BEFORE flying, with its falsifier stated) measured:
+    #
+    #   ATC_RAT_*_D   INS_GYRO_FILTER   best amp   verdict
+    #   0.0036 (dflt) default            2.36 deg   no
+    #   0.0010        default            2.33 deg   no
+    #   0.0000        default            2.62 deg   no
+    #   0.0000        4 Hz              53.51 deg   FIRES
+    #
+    # Damping alone was worth +11% and was not enough. The decisive lever was the phase lag from
+    # over-filtering the gyro -- a common real mistuning, since people filter hard to hide
+    # vibration and destabilise the loop doing it.
+    #
+    # VERIFIED NOT A CRASH. 53 deg of tracking error is departure territory, so it was checked
+    # rather than assumed: altitude held (7.20 m start, 7.20 m minimum, 8.71 m end), the vehicle
+    # stayed armed for the full 30 s, and the error alternates sign continuously instead of
+    # diverging. It is a violent but genuine limit cycle.
+    #
+    # OSCILLATION_AMPLITUDE_DEG is untouched at 3.0. The fault was made larger; the bar was not
+    # lowered. Those are different actions and only the second is forbidden.
+    #
+    # HONEST LIMIT: this is a severe fault, not a subtle one. A +-40 deg limit cycle would alarm
+    # any operator, where pair A's compass offset is invisible until the advisory. Whether the
+    # ORDERING holds is what this scenario exists to measure.
+    #
+    # FLOWN 2026-08-15 -- bundles/hot_gains_lowd_pairc_r0.json. The ordering holds:
+    #
+    #   t =  8.000   inject
+    #   t = 11.062   actuator_saturation   SYMPTOM   critical   (+3.062)
+    #   t = 12.781   control_oscillation   CAUSE     critical   (+4.781)
+    #                gap 1.719 s, 0 pre-injection false positives
+    #                repeats within the same flight at +23.062 / +24.828, gap 1.766 s
+    #
+    # THE GAP IS 1.72 s, NOT THE ~3 s THIS COMMENT ORIGINALLY PREDICTED. The 3 s gate is real --
+    # 2 x 1.5 s windows after the amplitude first crosses 3.0 deg -- but it was wrong to compare
+    # it against pair A's 1.0 s, because that 1.0 s is a measured GAP and this 3 s is a detector
+    # LATENCY. They are not the same quantity. The symptom is not instantaneous either:
+    # actuator_saturation needs the oscillation to drive the outputs to their limits, which took
+    # 3.062 s, so most of the gate elapses before either detector speaks. Ordering is guaranteed
+    # by construction; the visible margin is what the flight measures, and it is 1.72 s -- larger
+    # than pair A's, but for a different reason than the one predicted here.
+    "hot_gains_lowd": {
+        "inject": [("ATC_ANG_RLL_P", 30.0), ("ATC_ANG_PIT_P", 30.0),
+                   ("ATC_RAT_RLL_P", 0.90), ("ATC_RAT_PIT_P", 0.90),
+                   ("ATC_RAT_RLL_D", 0.0), ("ATC_RAT_PIT_D", 0.0),
+                   ("INS_GYRO_FILTER", 4.0),
+                   ("SIM_WIND_SPD", 20.0)],
+        "expect": "control_oscillation",
+        "symptoms": ["actuator_saturation", "ekf_inconsistency"],
+        "first_advisory": ["actuator_saturation", "ekf_inconsistency"],
+        "cadence_s": 0.25,
+        "duration_s": 45.0,
+        "note": ("pair C unblocked by removing rate-loop damping and over-filtering the gyro. "
+                 "oscillation.py still needs WINDOW_SIZE_S=1.5 x MIN_SUSTAINED_WINDOWS=2, so "
+                 "control_oscillation cannot be advised until 3.0 s after the amplitude first "
+                 "crosses, while actuator_saturation and ekf_inconsistency fire on threshold "
+                 "crossing with no gate. MEASURED GAP 1.719 s (repeat 1.766 s in the same "
+                 "flight), not the ~3 s that gate suggests: the symptom is itself delayed "
+                 "3.062 s while the oscillation builds, so most of the gate elapses before "
+                 "either detector speaks. Amplitude measured at 53.5 deg, verified as a "
+                 "sustained limit cycle rather than a departure (altitude held, stayed armed)"),
+    },
 
     # RETIRED 2026-08-14, kept as the record of what was tried. Flown 3x at SIM_ACC1_RND=90 and
     # 3x at 70: `ambiguity_confirmed` false in all 6, with vibration_excessive and accel_clipping

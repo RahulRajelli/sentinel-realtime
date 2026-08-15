@@ -1,0 +1,366 @@
+{
+ "injected_at": 12.024,
+ "inject": {
+  "SIM_MAG1_OFS_X": 400.0,
+  "SIM_MAG1_OFS_Y": 400.0
+ },
+ "events": [
+  {
+   "t": 0.58,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "Barometer 1 calibration complete"
+  },
+  {
+   "t": 0.58,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "Barometer 2 calibration complete"
+  },
+  {
+   "t": 1.109,
+   "kind": "MAGHEALTH",
+   "healthy": false,
+   "text": "3D_MAG health -> UNHEALTHY"
+  },
+  {
+   "t": 1.11,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "ArduPilot Ready"
+  },
+  {
+   "t": 1.202,
+   "kind": "MAGHEALTH",
+   "healthy": true,
+   "text": "3D_MAG health -> OK"
+  },
+  {
+   "t": 1.4,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "RC7: SaveWaypoint LOW"
+  },
+  {
+   "t": 3.074,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU0 initialised"
+  },
+  {
+   "t": 3.074,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU1 initialised"
+  },
+  {
+   "t": 3.074,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "AHRS: EKF3 active"
+  },
+  {
+   "t": 4.315,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU0 tilt alignment complete"
+  },
+  {
+   "t": 4.315,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU1 tilt alignment complete"
+  },
+  {
+   "t": 4.407,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"
+  },
+  {
+   "t": 4.407,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"
+  },
+  {
+   "t": 8.017,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "GPS 1: probing for u-blox at 230400 baud"
+  },
+  {
+   "t": 8.034,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "GPS 1: detected u-blox"
+  },
+  {
+   "t": 12.024,
+   "kind": "INJECT",
+   "text": "SIM_MAG1_OFS_X/Y = 400 (magnetometer biased)"
+  },
+  {
+   "t": 12.529,
+   "kind": "EKF",
+   "compass_variance": 0.933,
+   "flags": 167,
+   "text": "EKF compass_variance=0.933"
+  },
+  {
+   "t": 12.531,
+   "kind": "EKF",
+   "compass_variance": 0.965,
+   "flags": 167,
+   "text": "EKF compass_variance=0.965"
+  },
+  {
+   "t": 12.578,
+   "kind": "EKF",
+   "compass_variance": 0.952,
+   "flags": 167,
+   "text": "EKF compass_variance=0.952"
+  },
+  {
+   "t": 12.671,
+   "kind": "EKF",
+   "compass_variance": 0.939,
+   "flags": 167,
+   "text": "EKF compass_variance=0.939"
+  },
+  {
+   "t": 12.764,
+   "kind": "EKF",
+   "compass_variance": 0.926,
+   "flags": 167,
+   "text": "EKF compass_variance=0.926"
+  },
+  {
+   "t": 12.857,
+   "kind": "EKF",
+   "compass_variance": 0.913,
+   "flags": 167,
+   "text": "EKF compass_variance=0.913"
+  },
+  {
+   "t": 12.946,
+   "kind": "EKF",
+   "compass_variance": 0.9,
+   "flags": 167,
+   "text": "EKF compass_variance=0.900"
+  },
+  {
+   "t": 13.041,
+   "kind": "EKF",
+   "compass_variance": 0.887,
+   "flags": 167,
+   "text": "EKF compass_variance=0.887"
+  },
+  {
+   "t": 13.131,
+   "kind": "EKF",
+   "compass_variance": 0.873,
+   "flags": 167,
+   "text": "EKF compass_variance=0.873"
+  },
+  {
+   "t": 13.224,
+   "kind": "EKF",
+   "compass_variance": 0.86,
+   "flags": 167,
+   "text": "EKF compass_variance=0.860"
+  },
+  {
+   "t": 13.224,
+   "kind": "STATUSTEXT",
+   "sev": 2,
+   "text": "PreArm: Compasses inconsistent"
+  },
+  {
+   "t": 13.316,
+   "kind": "EKF",
+   "compass_variance": 0.846,
+   "flags": 167,
+   "text": "EKF compass_variance=0.846"
+  },
+  {
+   "t": 13.409,
+   "kind": "EKF",
+   "compass_variance": 0.832,
+   "flags": 167,
+   "text": "EKF compass_variance=0.832"
+  },
+  {
+   "t": 13.501,
+   "kind": "EKF",
+   "compass_variance": 0.819,
+   "flags": 167,
+   "text": "EKF compass_variance=0.819"
+  },
+  {
+   "t": 13.594,
+   "kind": "EKF",
+   "compass_variance": 0.805,
+   "flags": 167,
+   "text": "EKF compass_variance=0.805"
+  },
+  {
+   "t": 13.685,
+   "kind": "EKF",
+   "compass_variance": 0.791,
+   "flags": 167,
+   "text": "EKF compass_variance=0.791"
+  },
+  {
+   "t": 13.779,
+   "kind": "EKF",
+   "compass_variance": 0.777,
+   "flags": 167,
+   "text": "EKF compass_variance=0.777"
+  },
+  {
+   "t": 13.869,
+   "kind": "EKF",
+   "compass_variance": 0.763,
+   "flags": 167,
+   "text": "EKF compass_variance=0.763"
+  },
+  {
+   "t": 13.962,
+   "kind": "EKF",
+   "compass_variance": 0.749,
+   "flags": 167,
+   "text": "EKF compass_variance=0.749"
+  },
+  {
+   "t": 14.054,
+   "kind": "EKF",
+   "compass_variance": 0.735,
+   "flags": 167,
+   "text": "EKF compass_variance=0.735"
+  },
+  {
+   "t": 14.147,
+   "kind": "EKF",
+   "compass_variance": 0.72,
+   "flags": 167,
+   "text": "EKF compass_variance=0.720"
+  },
+  {
+   "t": 14.239,
+   "kind": "EKF",
+   "compass_variance": 0.706,
+   "flags": 167,
+   "text": "EKF compass_variance=0.706"
+  },
+  {
+   "t": 14.332,
+   "kind": "EKF",
+   "compass_variance": 0.691,
+   "flags": 167,
+   "text": "EKF compass_variance=0.691"
+  },
+  {
+   "t": 14.425,
+   "kind": "EKF",
+   "compass_variance": 0.677,
+   "flags": 167,
+   "text": "EKF compass_variance=0.677"
+  },
+  {
+   "t": 14.518,
+   "kind": "EKF",
+   "compass_variance": 0.662,
+   "flags": 167,
+   "text": "EKF compass_variance=0.662"
+  },
+  {
+   "t": 14.611,
+   "kind": "EKF",
+   "compass_variance": 0.648,
+   "flags": 167,
+   "text": "EKF compass_variance=0.648"
+  },
+  {
+   "t": 14.698,
+   "kind": "EKF",
+   "compass_variance": 0.633,
+   "flags": 167,
+   "text": "EKF compass_variance=0.633"
+  },
+  {
+   "t": 14.792,
+   "kind": "EKF",
+   "compass_variance": 0.618,
+   "flags": 167,
+   "text": "EKF compass_variance=0.618"
+  },
+  {
+   "t": 14.885,
+   "kind": "EKF",
+   "compass_variance": 0.604,
+   "flags": 167,
+   "text": "EKF compass_variance=0.604"
+  },
+  {
+   "t": 14.977,
+   "kind": "EKF",
+   "compass_variance": 0.589,
+   "flags": 167,
+   "text": "EKF compass_variance=0.589"
+  },
+  {
+   "t": 15.07,
+   "kind": "EKF",
+   "compass_variance": 0.574,
+   "flags": 167,
+   "text": "EKF compass_variance=0.574"
+  },
+  {
+   "t": 15.164,
+   "kind": "EKF",
+   "compass_variance": 0.559,
+   "flags": 167,
+   "text": "EKF compass_variance=0.559"
+  },
+  {
+   "t": 15.256,
+   "kind": "EKF",
+   "compass_variance": 0.544,
+   "flags": 167,
+   "text": "EKF compass_variance=0.544"
+  },
+  {
+   "t": 15.349,
+   "kind": "EKF",
+   "compass_variance": 0.529,
+   "flags": 167,
+   "text": "EKF compass_variance=0.529"
+  },
+  {
+   "t": 15.441,
+   "kind": "EKF",
+   "compass_variance": 0.514,
+   "flags": 167,
+   "text": "EKF compass_variance=0.514"
+  },
+  {
+   "t": 17.441,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU0 origin set"
+  },
+  {
+   "t": 17.471,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "Field Elevation Set: 900m"
+  },
+  {
+   "t": 17.623,
+   "kind": "STATUSTEXT",
+   "sev": 6,
+   "text": "EKF3 IMU1 origin set"
+  }
+ ]
+}

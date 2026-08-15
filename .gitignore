@@ -34,3 +34,9 @@ prevalence_run.log
 prevalence_flash.log
 prevalence_gemini37.log
 prevalence_gemini25.log
+
+# SITL/probe console transcripts. The bundles and results JSON are the record.
+sitl_capture.log
+pairc_capture.log
+ardupilot_says.log
+probe_damping.log
