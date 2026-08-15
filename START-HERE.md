@@ -19,10 +19,10 @@ python          ..\ardupilot-log-analyzer\.venv\Scripts\python.exe
 The system Python has no deps. **Always use that venv.** Verify in one command:
 
 ```bash
-../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # expect 110 passed, ~2s
+../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # expect 118 passed, ~2s
 ```
 
-All 110 tests are offline — no simulator, no network, no API key. If they pass, the checkout is
+All 118 tests are offline — no simulator, no network, no API key. If they pass, the checkout is
 healthy and you can work without touching hardware.
 
 SITL (the flight simulator) lives in WSL and is **only** needed to capture new flights. You almost
@@ -36,82 +36,75 @@ wsl -d Ubuntu-24.04 -- bash -c "ls /root/ardupilot/build/sitl/bin/"
 
 ## 2. The one job
 
-**Run the judge comparison on a NON-Gemini model.**
+**Find a SECOND discriminating fault scenario.**
 
-Every result in this project was measured on `gemini-2.5-flash`. The headline finding may be a
-property of that one model rather than of LLM agents in general, and nobody knows which. That is
-the single highest-value open question, and it needs no simulator and no new code.
+Everything measured here rests on ONE fault, `compass_offset`, which is 3 flights. Every other
+scenario scores 1.00 for every judge and separates nothing. Adding models does not fix this —
+two have already been run and they disagree with each other (see HANDOFF section 1).
+
+A discriminating scenario is one where the SYMPTOM is detected before the CAUSE, so that the
+deterministic baseline B0 — whose rule is literally "the first advisory after injection is the
+root cause" — is wrong by construction. `compass_offset` achieves that because
+`compass.py:45 MIN_ANOMALY_S = 1.0` forces the compass detector to wait a second while `ekf.py`
+fires immediately.
+
+**Read HANDOFF section 4 before designing one.** Three candidates are already ruled out with
+measurements, and `compass.py` / `oscillation.py` hold the only two time gates in the whole
+detector set — one of which is unreachable. A new pair most likely needs a new DETECTOR with its
+own persistence gate, not a new scenario file.
+
+**Never make a scenario work by lowering a detector threshold.** That makes the experiment pass
+by redefining the fault, which is the one move this project cannot make.
+
+### Verifying anything you build
+
+Judge it on two models and five runs each — never one of either:
 
 ```bash
-export OPENAI_API_KEY=...        # any OpenAI-compatible provider
+export OPENAI_BASE_URL="https://api.llmapi.ai/v1"
+export OPENAI_API_KEY=...     # opencode stores it under `llmapi` in auth.json
 
-../ardupilot-log-analyzer/.venv/Scripts/python.exe scripts/e4_judge.py \
-  --bundles bundles --only compass_offset \
-  --judges B0,B1,B3 \
-  --provider openai --model gpt-5.6 \
-  --out verdicts_gpt_run1.json
+PY=../ardupilot-log-analyzer/.venv/Scripts/python.exe
 
-../ardupilot-log-analyzer/.venv/Scripts/python.exe scripts/e4_report.py \
-  --bundles bundles --verdicts verdicts_gpt_run1.json --only compass_offset
+$PY scripts/e4_judge.py --bundles bundles --only YOUR_SCENARIO     --judges B0,B1,B3 --provider openai --model gpt-5.6-sol --out verdicts_x1.json
+
+$PY scripts/e4_report.py --bundles bundles --verdicts verdicts_x1.json --only YOUR_SCENARIO
 ```
 
-Other providers — only `--base-url` changes:
+Swap `--model` for `claude-opus-5`, `qwen3.8-max`, `kimi-k3` — ~389 models on that gateway. Or
+`--provider gemini` for Gemini via Google ADC. **No Anthropic key is needed or wanted.**
 
-| provider | flags |
-|---|---|
-| OpenAI | *(omit `--base-url`)* |
-| Grok | `--model grok-4.6 --base-url https://api.x.ai/v1` |
-| OpenRouter | `--base-url https://openrouter.ai/api/v1` |
-| local (Ollama/vLLM) | `--base-url http://localhost:11434/v1`, `OPENAI_API_KEY=none` |
-
-**Run it FIVE times and report a mean and spread.** This is not optional. The models are not
-deterministic even at `temperature=0`; measured spread is 0.11 (one judgement in nine), and a
-single run already produced one wrong published claim here. Change only the `--out` filename
-between runs.
-
-### What the answer means
-
-On `compass_offset`, measured on gemini-2.5-flash over five runs:
-
-| judge | what it is | mean |
-|---|---|---|
-| B0 | deterministic rule: "first advisory after injection is the root cause" | **0.00** |
-| B1 | one LLM call, no tools | **0.91** |
-| B3 | tool-using agent | **0.69** |
-
-* **If your model reproduces roughly this shape** — B1 > B3, B0 at zero — the finding is about
-  agents, and that is publishable.
-* **If B3 matches or beats B1** — the finding was gemini-specific. Equally valuable, and it means
-  the current write-up must be narrowed. Report it; do not bury it.
-
-B0 must come out at exactly **0.00** every time. It is deterministic code with no model in it.
-If it does not, something is wrong with the harness and nothing else in the run can be trusted.
-
----
+**B0 must score 0.00 on a good ambiguous scenario, on every model, every run.** It is
+deterministic code with no model in it. If B0 is not 0.00, the scenario is not ambiguous and
+nothing else in the run means anything.
 
 ## 3. Rules that are not style preferences
 
 1. **Name the model in anything you publish.** Every table must say which model produced it. This
    project's entire argument is that its numbers can be checked; "an LLM agent" is unfalsifiable.
-2. **Never quote a single run.** Five repeats, mean and spread.
-3. **Quote the BUNDLE-level interval** (`ci_bundle`), not the judgement-level one. 9 bundles x 3
+   Measured 2026-08-15: gemini-2.5-flash and gpt-5.6-sol rank the judges in OPPOSITE order on the
+   same bundles. A finding without a model name attached is not just vague, it may be false.
+2. **Never quote a single run.** Five repeats, mean and spread. Spread is 0.11 — one judgement
+   in nine — and single runs produced two retracted claims here.
+3. **Never edit code while an experiment is running.** It crashed a sweep mid-run and left five
+   runs straddling a scoring change; the whole set was discarded.
+4. **Quote the BUNDLE-level interval** (`ci_bundle`), not the judgement-level one. 9 bundles x 3
    prompt variants is 27 judgements but only 9 independent flights — treating them as 27 inflates
    n threefold. This exact error was made here and had to be retracted.
-4. **Never lower a detector threshold to make a scenario pass.** That makes the experiment succeed
+5. **Never lower a detector threshold to make a scenario pass.** That makes the experiment succeed
    by redefining the fault. If a fault cannot be produced, record why and move on — three already
    have been (see HANDOFF section 2).
-5. **Console output must stay ASCII.** Windows cp1252 renders anything else as `?`.
-6. Use `-u` on backgrounded Python or the log stays empty and looks hung.
+6. **Console output must stay ASCII.** Windows cp1252 renders anything else as `?`.
+7. Use `-u` on backgrounded Python or the log stays empty and looks hung.
 
 ---
 
 ## 4. Known-open, in value order
 
-1. **`evidence_untimed` verdicts cannot carry a citation.** Every run has ~2 of 9 agent verdicts
-   naming the CORRECT root cause and scoring 0 because they have no citation — `Citation` requires
-   a timestamp that resolves inside the flight window, and that tool removes all timestamps. This
-   single defect is the entire remaining B3-vs-B1 gap. Three candidate fixes and their tradeoffs
-   are in HANDOFF section 4. **This is a design decision — ask the owner, do not just pick one.**
+1. **Which tool surface should be the DEFAULT is undecided.** `SPECS` was set to the
+   timestamp-free surface on gemini-only evidence. Measured since: it rescues gemini
+   (0.11 -> 0.67) and very slightly costs gpt-5.6-sol (1.00 -> 0.96). **Do not flip it again
+   without measuring both models.** HANDOFF section 1 has the full 2x2.
 2. **Only one scenario discriminates.** `compass_offset` is the sole fault where the judges differ;
    everything else scores 1.00 for everyone. A second mechanism probably needs a new *detector*,
    not a new scenario — three candidates are already ruled out with measurements.

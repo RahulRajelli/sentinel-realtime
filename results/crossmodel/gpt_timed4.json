@@ -1,0 +1,289 @@
+{
+ "bundles": [
+  "208f0c138b8eb274",
+  "3404617f357fb1fa",
+  "34c046b569ac3636"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B3"
+ ],
+ "withheld_tools": [
+  "evidence_untimed"
+ ],
+ "offered_optional_tools": [
+  "detector_evidence"
+ ],
+ "verdicts": [
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.97,
+   "rationale": "The EKF magnetometer innovation ratio was 2.619, above its 1.0 consistency threshold, indicating compass rejection. This magnetometer inconsistency explains the broader EKF inconsistency even though the EKF detector fired first.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062,
+     "value": 2.619
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 2.619
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 48.031,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4094,
+   "tokens_out": 238,
+   "calls": 2,
+   "wall_ms": 7011.913900001673,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.93,
+   "rationale": "The EKF magnetometer innovation ratio was 2.619 at 10.016 s, above the 1.0 consistency threshold, specifically indicating that the filter rejected the compass. Thus the compass inconsistency caused the broader EKF inconsistency rather than resulting from it.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4150,
+   "tokens_out": 202,
+   "calls": 2,
+   "wall_ms": 6537.053400010336,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.94,
+   "rationale": "The system raised ekf_inconsistency first at 9.062 s and compass_inconsistency 0.954 s later at 10.016 s. Both detectors were driven by EKF_Magnetometer_Variance of 2.619 against a 1.0 threshold, and the compass evidence says the filter was rejecting the compass, making compass_inconsistency the fault explaining the EKF symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062,
+     "value": 2.619
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4203,
+   "tokens_out": 232,
+   "calls": 2,
+   "wall_ms": 6981.669399974635,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The EKF magnetometer innovation ratio was 2.616 at 10.063 s, indicating that the filter rejected inconsistent compass data. This magnetometer-specific fault explains the broader EKF inconsistency observed at 9.078 s on the same metric.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.063,
+     "value": 2.616
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.078,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4086,
+   "tokens_out": 221,
+   "calls": 2,
+   "wall_ms": 5169.566900003701,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The magnetometer innovation ratio was 2.616, above the 1.0 consistency threshold, and the EKF subsequently rejected the compass. Thus the compass inconsistency caused the broader EKF inconsistency rather than vice versa.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.078,
+     "value": 2.616
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.063,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4142,
+   "tokens_out": 215,
+   "calls": 2,
+   "wall_ms": 5173.3213999832515,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.97,
+   "rationale": "The system raised ekf_inconsistency first at 9.078 s and compass_inconsistency 0.985 s later at 10.063 s. Both were driven by EKF_Magnetometer_Variance of 2.616 against a 1.0 threshold, and the compass detector identifies this as the EKF rejecting the compass, so compass_inconsistency best explains the broader EKF symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.078,
+     "value": 2.616
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.063,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4195,
+   "tokens_out": 233,
+   "calls": 2,
+   "wall_ms": 6901.561400009086,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The EKF magnetometer innovation test ratio was 2.616 at 10.0 s, indicating that the filter rejected inconsistent compass data. This compass inconsistency explains the broader EKF inconsistency, which registered the same elevated metric at 9.0 s.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 2.616
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4096,
+   "tokens_out": 223,
+   "calls": 2,
+   "wall_ms": 6417.061900021508,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The EKF_Magnetometer_Variance ratio was 2.616 at 10.0 s, above the 1.0 consistency threshold and indicating compass rejection. The resulting EKF inconsistency is therefore a consequence of the compass inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4152,
+   "tokens_out": 197,
+   "calls": 2,
+   "wall_ms": 7006.715299998177,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The advisories were ekf_inconsistency and compass_inconsistency; EKF was detected first at 9.0 s, 1.0 s before compass at 10.0 s. Both were driven by EKF_Magnetometer_Variance at 2.616 versus the 1.0 threshold, and the compass detector identifies this as the filter rejecting the compass, making EKF inconsistency the secondary symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 2.616
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4205,
+   "tokens_out": 236,
+   "calls": 2,
+   "wall_ms": 6861.827399989124,
+   "seed": 0
+  }
+ ]
+}

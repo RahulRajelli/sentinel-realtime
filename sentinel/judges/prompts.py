@@ -27,8 +27,11 @@ earliest symptom. If the evidence shows nothing actually went wrong, say so; a c
 valid and expected answer, and inventing a fault for one is worse than staying silent.
 
 Every claim must be supported by something you actually observed through the tools. Cite the
-metric name and the timestamp you saw it at. Do not cite a metric you did not look up, and do
-not cite a time outside the flight window."""
+metric name, and anchor it to EITHER the timestamp you saw it at OR the measured value you saw --
+whichever your tools actually gave you. Some tools deliberately report no timestamps; when you
+use those, cite the value. Do not cite a metric you did not look up, do not cite a time outside
+the flight window, and do not cite a value you did not observe. A citation with neither a time
+nor a value points at nothing and does not count."""
 
 OUTPUT_CONTRACT = """\
 Reply with a single JSON object and nothing else:
@@ -38,11 +41,12 @@ Reply with a single JSON object and nothing else:
   "symptoms":  ["<incident_type>", ...],
   "confidence": <number between 0 and 1>,
   "rationale": "<two sentences at most>",
-  "citations": [{"metric": "<name>", "t": <seconds>, "value": <number or null>}]
+  "citations": [{"metric": "<name>", "t": <seconds or null>, "value": <number or null>}]
 }
 
 `root_cause` must be an incident type that this flight actually detected, or null.
-`citations` must contain at least one entry whenever `root_cause` is not null."""
+`citations` must contain at least one entry whenever `root_cause` is not null, and each entry
+must carry a `t`, a `value`, or both -- at least one of the two, never neither."""
 
 _V1 = """\
 Identify the root cause of this flight's fault.

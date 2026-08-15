@@ -233,7 +233,9 @@ class BundleTools:
             "by_metric": by_metric,
             "note": ("Timestamps and ordering are omitted from this tool by design. Decide the "
                      "root cause from which measurement breached which threshold, and by how "
-                     "much."),
+                     "much. To cite this evidence, give the metric name and one of the VALUES "
+                     "shown here (min, max or mean) and leave `t` null -- a value anchor is "
+                     "checked against the recording exactly as a timestamp would be."),
         }
 
     def signal_window(self, metric: str, t0: float, t1: float) -> dict[str, Any]:
