@@ -20,3 +20,10 @@ tests/.tmp-memory/
 history/
 tests/.tmp-migration/
 tests/.tmp-manifest/
+
+# Internal operating files. They are the agent handoff state and the working log of what was
+# tried, retracted and why -- useful to whoever is building this, noise (and occasionally
+# half-retracted claims) to anyone reading the public repo. Kept on disk, out of the remote.
+# The published write-ups in docs/ are the outward-facing version of the same material.
+HANDOFF.md
+START-HERE.md
