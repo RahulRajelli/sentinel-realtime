@@ -12,6 +12,11 @@ the harness that answers that question honestly — including when the answer is
 
 ## Start here
 
+> **ArduPilot only.** Live telemetry uses the `ardupilotmega` dialect and log analysis reads
+> ArduPilot dataflash `.BIN` files. **PX4 is not supported** — it would run and find nothing,
+> which is worse than refusing. Full setup, per-platform connection recipes and troubleshooting:
+> **[docs/SETUP.md](docs/SETUP.md)**.
+
 ```bash
 pip install -e .          # plus flightdx, see Dependency below
 sentinel doctor           # tells you what's installed and what's missing

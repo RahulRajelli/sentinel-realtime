@@ -14,7 +14,11 @@ sentinel = "sentinel.cli:main"
 
 [project.optional-dependencies]
 live = ["pymavlink>=2.4"]
+# Judge backends. `agent` was anthropic-only, which stopped matching reality once every measured
+# number came from Gemini or an OpenAI-compatible gateway. Install the one you will actually use.
 agent = ["anthropic>=0.40"]
+gemini = ["google-genai>=1.0"]
+openai = ["openai>=1.0"]
 dev = ["pytest>=8.0"]
 
 [build-system]
