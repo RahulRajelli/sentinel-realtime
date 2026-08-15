@@ -104,6 +104,10 @@ def main() -> int:
                     help="which tiers to run. B2 needs B1 in the same run -- its k is derived "
                          "from B1's measured per-sample cost, and reusing a number from a "
                          "different run would silently break the matched-spend control")
+    ap.add_argument("--history", default=None,
+                    help="path to a cross-flight history JSONL (see sentinel/memory.py). Only "
+                         "has an effect together with --offer-tools prior_incidents; a store "
+                         "attached without the tool offered changes nothing")
     ap.add_argument("--offer-tools", default=None,
                     help="comma-separated OPTIONAL tools added to B3's offered set (e.g. "
                          "evidence_untimed). Kept separate from the default five so the "
@@ -153,6 +157,12 @@ def main() -> int:
             return 1
         print(f"ABLATION: B3 runs without {list(withheld)} "
               f"({len(known) - len(withheld)} of {len(known)} default tools offered)")
+    history = None
+    if args.history:
+        from sentinel.memory import FlightHistory
+        history = FlightHistory(args.history)
+        if "prior_incidents" not in (args.offer_tools or ""):
+            print("  note: --history set but prior_incidents is not offered; it will be unused")
     offered = tuple(t.strip() for t in (args.offer_tools or "").split(",") if t.strip())
     if offered:
         optional = {s["name"] for s in BundleTools.OPTIONAL_SPECS}
@@ -181,7 +191,7 @@ def main() -> int:
         # ---- B3 first, to measure what the agent actually costs.
         b3_tokens: list[int] = []
         if "B3" in judges:
-            b3 = AgentJudge(client, withhold=withheld, offer=offered)
+            b3 = AgentJudge(client, withhold=withheld, offer=offered, history=history)
             for b in bundles:
                 for v in variants:
                     verdict = b3.judge(b, Budget(max_tokens=args.max_tokens,
@@ -252,6 +262,7 @@ def main() -> int:
         "judges": sorted(judges),
         "withheld_tools": list(withheld),
         "offered_optional_tools": list(offered),
+        "history": args.history,
         "verdicts": [v.model_dump(mode="json") for v in verdicts],
     }
     Path(args.out).write_text(json.dumps(payload, indent=1))

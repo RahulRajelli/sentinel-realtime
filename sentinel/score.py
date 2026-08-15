@@ -26,6 +26,8 @@ bundle handed to someone else is self-contained and independently scoreable.
 
 from __future__ import annotations
 
+import re
+
 from pydantic import BaseModel, Field
 
 from sentinel.bundle import RunBundle
@@ -54,6 +56,12 @@ class ScoreRow(BaseModel):
 
     citations_resolve: bool = True
     citation_count: int = 0
+
+    # Do the measurements quoted in the PROSE exist in the flight? Reported by default and only
+    # score-affecting under strict_rationale, because gating on it would change the meaning of
+    # every accuracy number measured before it existed.
+    rationale_grounded: bool = True
+    ungrounded_quotes: int = 0
 
     score: float = 0.0
     degraded: bool = False
@@ -133,6 +141,82 @@ def check_citations(bundle: RunBundle, verdict: Verdict) -> tuple[bool, list[str
     return (not problems), problems
 
 
+# Numbers in prose that are worth checking. A bare small integer ("two sensors", "8 of 9") is
+# ordinary English and flagging it would bury the real finding in noise. A decimal, or a number
+# carrying a unit, is a claim about a measurement.
+_MEASUREMENT = re.compile(
+    r"(?<![\w.])(\d+\.\d+|\d+(?=\s*(?:s\b|sec|ms\b|V\b|Hz\b|deg\b|m/s|mGauss)))")
+_UNIT_SUFFIX = re.compile(r"\s*(?:s\b|sec|ms\b|V\b|Hz\b|deg\b|m/s\S*|mGauss)")
+
+
+def observable_numbers(bundle: RunBundle) -> set[float]:
+    """Every number the flight actually recorded, which prose may legitimately quote."""
+    out: set[float] = set()
+    for c in bundle.cycles:
+        out.add(round(c.t, 3))
+        for inc in c.incidents:
+            out.update({round(inc.t_start, 3), round(inc.t_end, 3)})
+            for ev in inc.evidence:
+                for v in (ev.value, ev.threshold):
+                    if isinstance(v, (int, float)):
+                        out.add(round(float(v), 3))
+    for a in bundle.advisories:
+        out.add(round(a.t, 3))
+    for v in bundle.params.values():
+        if isinstance(v, (int, float)):
+            out.add(round(float(v), 3))
+    if bundle.t_inject is not None:
+        out.add(round(bundle.t_inject, 3))
+    out.update({round(bundle.t_start, 3), round(bundle.t_end, 3)})
+    return out
+
+
+def check_rationale_grounding(bundle: RunBundle, verdict: Verdict) -> tuple[bool, list[str]]:
+    """Do the measurements quoted in the RATIONALE exist in the flight?
+
+    The gap this closes. `check_citations` validates the structured `citations` field, and
+    nothing validated the prose. Measured 2026-08-14: gemini-2.5-flash wrote *"exceeded its
+    threshold at 9.062s, leading to... the compass inconsistency at 10.016s"* while its
+    structured citation was perfectly valid. The narrative a human actually reads was unchecked,
+    and the narrative is where a confident wrong detail hides.
+
+    Only decimals and unit-bearing numbers are checked. "8 of 9" and "two sensors" are English,
+    not measurements, and flagging them would bury real findings in noise.
+
+    Compared with a tolerance, and against ROUNDED observables, because a model quoting 9.06 for
+    a recorded 9.062 is reading correctly rather than inventing.
+
+    **Reported, not scored, by default.** Turning this into a pass/fail gate changes what every
+    accuracy number in this repo means, and the honest order is to measure how often it fires
+    before making it decide anything. `strict_rationale=True` on the scorer enables enforcement.
+    """
+    text = verdict.rationale or ""
+    if not text.strip():
+        return True, []
+
+    observable = observable_numbers(bundle)
+    problems: list[str] = []
+    seen: set[float] = set()
+
+    for raw in _MEASUREMENT.findall(text):
+        try:
+            val = float(raw)
+        except ValueError:
+            continue
+        if val in seen:
+            continue
+        seen.add(val)
+        tol = max(1e-3, abs(val) * 1e-2)
+        if any(abs(val - o) <= tol for o in observable):
+            continue
+        # A rounded quote of a real number is honest reading, so check the rounded forms too.
+        if any(abs(round(val, 1) - round(o, 1)) <= 1e-9 for o in observable):
+            continue
+        problems.append(f"rationale quotes {raw}, which the flight never recorded")
+
+    return (not problems), problems
+
+
 def attribute(bundle: RunBundle, verdict: Verdict, citations_ok: bool) -> str:
     """Why did this verdict fail? Assigned by rule, in priority order.
 
@@ -156,7 +240,8 @@ def attribute(bundle: RunBundle, verdict: Verdict, citations_ok: bool) -> str:
     return "model"
 
 
-def score_verdict(bundle: RunBundle, verdict: Verdict) -> ScoreRow:
+def score_verdict(bundle: RunBundle, verdict: Verdict,
+                  strict_rationale: bool = False) -> ScoreRow:
     if verdict.bundle_id != bundle.bundle_id:
         # Refuse rather than score. Silently grading a verdict against the wrong flight is the
         # one bug that would corrupt every downstream number without failing anything.
@@ -177,13 +262,17 @@ def score_verdict(bundle: RunBundle, verdict: Verdict) -> ScoreRow:
     citations_ok, problems = check_citations(bundle, verdict)
     notes.extend(problems)
 
+    grounded, ground_problems = check_rationale_grounding(bundle, verdict)
+    notes.extend(ground_problems)
+
     # A null-expected scenario needs no citation: "nothing was wrong" has nothing to point at.
     needs_citation = predicted is not None
     has_citation = len(verdict.citations) > 0
     if needs_citation and not has_citation:
         notes.append("non-null verdict with no citation")
 
-    score = 1.0 if (correct and citations_ok and (not needs_citation or has_citation)) else 0.0
+    score = 1.0 if (correct and citations_ok and (not needs_citation or has_citation)
+                    and (grounded or not strict_rationale)) else 0.0
 
     if named_symptom:
         notes.append(f"named symptom {predicted!r} as root cause of {expected!r}")
@@ -201,6 +290,8 @@ def score_verdict(bundle: RunBundle, verdict: Verdict) -> ScoreRow:
         missed=missed,
         citations_resolve=citations_ok,
         citation_count=len(verdict.citations),
+        rationale_grounded=grounded,
+        ungrounded_quotes=len(ground_problems),
         score=score,
         degraded=verdict.degraded,
         tokens=verdict.tokens,
@@ -210,7 +301,8 @@ def score_verdict(bundle: RunBundle, verdict: Verdict) -> ScoreRow:
     )
 
 
-def score_all(bundles: list[RunBundle], verdicts: list[Verdict]) -> list[ScoreRow]:
+def score_all(bundles: list[RunBundle], verdicts: list[Verdict],
+              strict_rationale: bool = False) -> list[ScoreRow]:
     """Score every verdict against the bundle it cites.
 
     Keyed by `bundle_id` rather than by list position, so a partial verdict set (one judge
@@ -223,5 +315,5 @@ def score_all(bundles: list[RunBundle], verdicts: list[Verdict]) -> list[ScoreRo
         bundle = by_id.get(v.bundle_id)
         if bundle is None:
             raise ValueError(f"verdict cites unknown bundle {v.bundle_id}")
-        rows.append(score_verdict(bundle, v))
+        rows.append(score_verdict(bundle, v, strict_rationale=strict_rationale))
     return rows
