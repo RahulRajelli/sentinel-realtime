@@ -31,3 +31,4 @@ START-HERE.md
 # Prevalence sweep console log. The verdict files under results/prevalence/ are the record;
 # this is just the terminal transcript of the run that produced them.
 prevalence_run.log
+prevalence_flash.log
