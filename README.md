@@ -98,6 +98,14 @@ In both cases the **first** alarm is a symptom, and the deterministic tier answe
 confidence. Telling an operator "accelerometer clipping" when the fix is a loose motor mount is
 the difference between a wasted maintenance day and a corrected aircraft.
 
+> **The generalisable part is not about drones.** Most evaluations beat a baseline that is weak by
+> accident, so "the expensive method won" is a sampling result rather than a structural one. Here
+> the free rule is wrong *by construction*: a detector's persistence gate places the causal
+> advisory 1.0 s after the symptom it produced, so "the first alarm is the cause" scores 0.00 and
+> cannot be tuned into agreement. That method transfers to any domain with a cheap heuristic worth
+> beating — **[docs/METHOD.md](docs/METHOD.md)** is how to build one, including the shortcut that
+> makes it worthless (adjusting the system until the baseline fails).
+
 ## How the measurement works
 
 **Capture and judgment are separated.** Flying an ArduPilot SITL scenario takes ~4 minutes;
