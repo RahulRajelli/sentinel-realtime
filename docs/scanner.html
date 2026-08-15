@@ -1,0 +1,343 @@
+<title>Sentinel Scanner</title>
+
+<style>
+  /*
+    Deliberately single-theme and true-neutral. This is an instrument, and it exists to be
+    screen-recorded at a fixed size, so it paints every colour explicitly instead of inheriting
+    anything. The ground is neutral black rather than the blueprint blue used by the write-ups --
+    a different object, so a different world.
+
+    THREE COLOURS, and each one means something:
+      grey   nominal / monitored / not the answer
+      amber  the SYMPTOM -- the alarm that fires first and is wrong
+      white  the ROOT CAUSE -- literally the brightest thing on screen
+    Red is used once, on the rule under the wrong verdict. Nothing else is coloured, because a
+    fourth colour would make the first three stop meaning anything.
+  */
+  :root {
+    --bg:      #08080A;
+    --panel:   #0E0E11;
+    --line:    #1D1D23;
+    --line-2:  #141419;
+    --txt:     #F2F2F4;
+    --dim:     #6A6A74;
+    --dimmer:  #3C3C45;
+    --symptom: #FFB020;
+    --root:    #FFFFFF;
+    --wrong:   #FF3B30;
+    --mono: ui-monospace, 'Cascadia Mono', 'SF Mono', 'JetBrains Mono', Consolas, monospace;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--txt);
+    font-family: var(--mono); -webkit-font-smoothing: antialiased;
+    display: flex; align-items: center; justify-content: center; min-height: 100vh;
+  }
+
+  .rig {
+    width: min(100vw, 1280px);
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    grid-template-rows: auto 1fr auto;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+
+  /* ---------- header ---------- */
+  .hdr {
+    grid-column: 1 / 3; display: flex; align-items: center; gap: 1.4rem;
+    padding: .7rem 1.1rem; border-bottom: 1px solid var(--line);
+  }
+  .brand { font-weight: 700; letter-spacing: .22em; font-size: .95rem; }
+  .hdr .meta { color: var(--dim); font-size: .8rem; letter-spacing: .08em; }
+  .clock {
+    margin-left: auto; font-size: 2.1rem; font-variant-numeric: tabular-nums;
+    letter-spacing: -.02em; line-height: 1;
+  }
+  .clock small { font-size: .72rem; color: var(--dim); letter-spacing: .14em; margin-right: .4rem; }
+
+  /* ---------- left: airframe ---------- */
+  .frame {
+    border-right: 1px solid var(--line); position: relative;
+    display: flex; flex-direction: column;
+  }
+  #quad { flex: 1; width: 100%; display: block; min-height: 0; }
+  .frame-cap {
+    padding: .55rem 1.1rem .8rem; border-top: 1px solid var(--line-2);
+    font-size: .82rem; color: var(--dim); letter-spacing: .04em; line-height: 1.55;
+  }
+  .frame-cap b { color: var(--txt); }
+
+  /* ---------- right column ---------- */
+  .right { display: flex; flex-direction: column; min-height: 0; }
+
+  .sig { padding: .85rem 1.1rem; border-bottom: 1px solid var(--line); }
+  .row { display: flex; align-items: baseline; gap: .7rem; }
+  .k { font-size: .78rem; letter-spacing: .14em; color: var(--dim); }
+  .v {
+    font-size: 3.6rem; font-variant-numeric: tabular-nums; letter-spacing: -.03em;
+    line-height: 1; margin-left: auto;
+  }
+  .v.over { color: var(--symptom); }
+  .thr { font-size: .64rem; color: var(--dim); }
+  .bar { height: 5px; background: var(--line); margin-top: .6rem; position: relative; }
+  .bar i { position: absolute; inset: 0 auto 0 0; background: var(--dimmer); width: 0%; }
+  .bar i.over { background: var(--symptom); }
+  .bar u {
+    position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--dim);
+    left: 38%;
+  }
+  .barcap { display: flex; justify-content: space-between; font-size: .72rem; color: var(--dim); margin-top: .4rem; letter-spacing: .08em; }
+
+  /* ---------- detector channels: the mechanism ---------- */
+  .chans { padding: .8rem 1.1rem; border-bottom: 1px solid var(--line); }
+  .chan { margin-bottom: .75rem; }
+  .chan:last-child { margin-bottom: 0; }
+  .chan-top { display: flex; align-items: baseline; gap: .6rem; font-size: .95rem; }
+  .chan-name { letter-spacing: .06em; color: var(--dim); }
+  .chan.fired .chan-name { color: var(--txt); }
+  .chan-state { margin-left: auto; font-size: .76rem; letter-spacing: .14em; color: var(--dimmer); }
+  .gate { height: 20px; margin-top: .35rem; border: 1px solid var(--line); position: relative; }
+  .gate i { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--line); }
+  .gate span {
+    position: absolute; inset: 0; display: flex; align-items: center; padding-left: .4rem;
+    font-size: .68rem; letter-spacing: .12em; color: var(--dim);
+  }
+  .chan.sym.fired .chan-state { color: var(--symptom); }
+  .chan.sym.fired .gate { border-color: var(--symptom); }
+  .chan.root.fired .chan-state { color: var(--root); }
+  .chan.root.fired .gate { border-color: var(--root); }
+  .chan.root.fired .gate i { background: var(--root); }
+
+  /* ---------- verdict split ---------- */
+  .verdicts { display: grid; grid-template-columns: 1fr 1fr; flex: 1; min-height: 0; }
+  .vp { padding: .8rem 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
+  .vp + .vp { border-left: 1px solid var(--line); }
+  .vp h3 { margin: 0; font-size: .76rem; letter-spacing: .18em; color: var(--dim); font-weight: 400; }
+  .feed { display: flex; flex-direction: column; gap: .4rem; font-size: .88rem; }
+  .ev { color: var(--dimmer); display: flex; gap: .55rem; opacity: 0; transition: opacity .12s linear; }
+  .ev.on { opacity: 1; }
+  .ev.sym { color: var(--symptom); }
+  .ev.root { color: var(--root); }
+  .ev t { color: var(--dim); font-variant-numeric: tabular-nums; }
+  .out { margin-top: auto; font-size: 1.15rem; letter-spacing: .04em; opacity: 0; transition: opacity .15s; }
+  .out.on { opacity: 1; }
+  .out .lab { font-size: .68rem; letter-spacing: .18em; color: var(--dim); display: block; margin-bottom: .2rem; }
+  .out.bad { color: var(--wrong); border-top: 2px solid var(--wrong); padding-top: .4rem; }
+  .out.good { color: var(--root); border-top: 2px solid var(--root); padding-top: .4rem; }
+
+  /* ---------- footer scrubber ---------- */
+  .foot {
+    grid-column: 1 / 3; display: flex; align-items: center; gap: 1rem;
+    padding: .55rem 1.1rem; border-top: 1px solid var(--line); font-size: .74rem;
+    color: var(--dim); letter-spacing: .1em;
+  }
+  .track { flex: 1; height: 2px; background: var(--line); position: relative; }
+  .track i { position: absolute; inset: 0 auto 0 0; background: var(--dim); width: 0%; }
+  .track b { position: absolute; top: -4px; bottom: -4px; width: 1px; background: var(--dimmer); }
+  .track b.sym { background: var(--symptom); }
+  .track b.root { background: var(--root); }
+
+  @media (prefers-reduced-motion: reduce) { #quad { opacity: .9; } }
+</style>
+
+<div class="rig">
+  <div class="hdr">
+    <span class="brand">SENTINEL</span>
+    <span class="meta">compass_offset · bundle 34c046b5 · replayed from captured flight</span>
+    <span class="clock"><small>T +</small><span id="clk">00.00</span>s</span>
+  </div>
+
+  <div class="frame">
+    <canvas id="quad"></canvas>
+    <div class="frame-cap">
+      Airframe schematic. Nodes are the sensors each detector watches.
+      <b id="nodenote">All channels nominal.</b>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="sig">
+      <div class="row">
+        <span class="k">EKF_MAGNETOMETER_VARIANCE</span>
+        <span class="v" id="val">—</span>
+      </div>
+      <div class="bar"><i id="barfill"></i><u></u></div>
+      <div class="barcap"><span>0.0</span><span>THRESHOLD 1.000</span><span>3.0</span></div>
+    </div>
+
+    <div class="chans">
+      <div class="chan sym" id="ch-ekf">
+        <div class="chan-top">
+          <span class="chan-name">ekf_inconsistency</span>
+          <span class="chan-state" id="st-ekf">WATCHING</span>
+        </div>
+        <div class="gate"><i></i><span>NO PERSISTENCE GATE — FIRES ON CROSSING</span></div>
+      </div>
+      <div class="chan root" id="ch-mag">
+        <div class="chan-top">
+          <span class="chan-name">compass_inconsistency</span>
+          <span class="chan-state" id="st-mag">WATCHING</span>
+        </div>
+        <div class="gate"><i id="gatefill"></i><span>MIN_ANOMALY_S = 1.0 — MUST PERSIST</span></div>
+      </div>
+    </div>
+
+    <div class="verdicts">
+      <div class="vp">
+        <h3>ANY SCANNER · FIRST CODE WINS</h3>
+        <div class="feed">
+          <div class="ev sym" id="a1"><t>09.0</t><span>EKF INCONSISTENT</span></div>
+        </div>
+        <div class="out bad" id="o1"><span class="lab">VERDICT</span>NAVIGATION FILTER ✕</div>
+      </div>
+      <div class="vp">
+        <h3>SENTINEL · WAITS FOR THE CAUSE</h3>
+        <div class="feed">
+          <div class="ev sym" id="b1"><t>09.0</t><span>ekf inconsistent · symptom</span></div>
+          <div class="ev root" id="b2"><t>10.0</t><span>COMPASS INCONSISTENT</span></div>
+        </div>
+        <div class="out good" id="o2"><span class="lab">VERDICT</span>COMPASS — ROOT CAUSE ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>REPLAY · REAL TIME</span>
+    <div class="track"><i id="prog"></i><b class="sym" style="left:25%"></b><b class="root" style="left:41.7%"></b></div>
+    <span id="phase">ARMED</span>
+  </div>
+</div>
+
+<script>
+// ---- real capture, extracted from bundles/compass_offset_r2.json ----------------------------
+// Both detectors cite the SAME metric with the SAME threshold. The variance steps to 2.616 at
+// t=9.0 and both see it at that instant. The only thing that differs is the persistence gate,
+// which is exactly why this scenario defeats "the first alarm is the cause".
+const T_INJECT = 8.0, T_SYM = 9.0, T_ROOT = 10.0, THRESH = 1.0, PEAK = 2.616;
+const T0 = 6.0, T1 = 14.0, HOLD = 2.0;          // loop window + hold on the finished frame
+
+const $ = (id) => document.getElementById(id);
+const clk = $('clk'), val = $('val'), barfill = $('barfill'), gatefill = $('gatefill');
+const prog = $('prog'), phase = $('phase'), nodenote = $('nodenote');
+
+// ---- 3D wireframe airframe -------------------------------------------------------------------
+// Hand-rolled projection: no library, because the artifact host blocks external scripts and a
+// bundled 3D engine would be six figures of bytes to draw eleven lines.
+const cv = $('quad'), cx2 = cv.getContext('2d');
+const ARM = 1.0;
+const NODES = {
+  MAG: { p: [0, 0.30, 0.52], label: 'MAG' },
+  IMU: { p: [0, 0.02, 0],    label: 'IMU' },
+  GPS: { p: [0, 0.62, -0.18],label: 'GPS' },
+};
+const MOTORS = [[ ARM,0.10, ARM],[ ARM,0.10,-ARM],[-ARM,0.10,-ARM],[-ARM,0.10, ARM]];
+
+function project(p, yaw, pitch, s, ox, oy) {
+  const [X,Y,Z] = p;
+  const x1 =  X*Math.cos(yaw) - Z*Math.sin(yaw);
+  const z1 =  X*Math.sin(yaw) + Z*Math.cos(yaw);
+  const y2 =  Y*Math.cos(pitch) - z1*Math.sin(pitch);
+  const z2 =  Y*Math.sin(pitch) + z1*Math.cos(pitch);
+  const d = 5, f = d / (d + z2);
+  return [ox + x1*s*f, oy - y2*s*f, f];
+}
+
+function drawQuad(t, magState) {
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (cv.width !== w*2 || cv.height !== h*2) { cv.width = w*2; cv.height = h*2; }
+  cx2.setTransform(2,0,0,2,0,0);
+  cx2.clearRect(0,0,w,h);
+  const yaw = t*0.45, pitch = -0.42, s = Math.min(w,h)*0.30, ox = w/2, oy = h/2 + 6;
+
+  // arms
+  cx2.lineWidth = 1.2; cx2.strokeStyle = '#2A2A32';
+  const c = project([0,0,0], yaw, pitch, s, ox, oy);
+  MOTORS.forEach((m) => {
+    const p = project(m, yaw, pitch, s, ox, oy);
+    cx2.beginPath(); cx2.moveTo(c[0],c[1]); cx2.lineTo(p[0],p[1]); cx2.stroke();
+    cx2.beginPath(); cx2.arc(p[0],p[1], 7*p[2], 0, 6.284);
+    cx2.strokeStyle = '#33333D'; cx2.stroke(); cx2.strokeStyle = '#2A2A32';
+  });
+
+  // sensor nodes
+  Object.entries(NODES).forEach(([key, n]) => {
+    const p = project(n.p, yaw, pitch, s, ox, oy);
+    let col = '#4A4A55', r = 3.2, glow = 0;
+    if (key === 'MAG') {
+      if (magState === 'sym')  { col = '#FFB020'; r = 5; glow = 14; }
+      if (magState === 'root') { col = '#FFFFFF'; r = 5.6; glow = 22; }
+    }
+    if (glow) { cx2.shadowColor = col; cx2.shadowBlur = glow; }
+    cx2.beginPath(); cx2.arc(p[0],p[1], r*p[2], 0, 6.284);
+    cx2.fillStyle = col; cx2.fill(); cx2.shadowBlur = 0;
+    cx2.font = 'bold 13px ui-monospace, monospace';
+    cx2.fillStyle = (key === 'MAG' && magState) ? col : '#55555F';
+    cx2.fillText(n.label, p[0] + 9*p[2], p[1] + 3);
+  });
+
+  // callout to the failing part, drawn only once it is the answer
+  if (magState === 'root') {
+    const p = project(NODES.MAG.p, yaw, pitch, s, ox, oy);
+    cx2.strokeStyle = '#FFFFFF'; cx2.lineWidth = 1;
+    cx2.beginPath(); cx2.moveTo(p[0], p[1]); cx2.lineTo(w-90, h-26); cx2.stroke();
+    cx2.font = 'bold 14px ui-monospace, monospace'; cx2.fillStyle = '#FFFFFF';
+    cx2.fillText('MAGNETOMETER', w-86, h-22);
+  }
+}
+
+// ---- playback --------------------------------------------------------------------------------
+let start = null;
+function frame(ts) {
+  if (start === null) start = ts;
+  let el = (ts - start) / 1000;
+  const span = (T1 - T0) + HOLD;
+  if (el > span) { start = ts; el = 0; }
+  const t = Math.min(T0 + el, T1);
+
+  clk.textContent = t.toFixed(2).padStart(5, '0');
+  prog.style.width = (((t - T0) / (T1 - T0)) * 100).toFixed(1) + '%';
+
+  const over = t >= T_SYM;
+  const v = over ? PEAK : 0;
+  val.textContent = over ? v.toFixed(3) : '—';
+  val.classList.toggle('over', over);
+  barfill.style.width = ((v / 3.0) * 100).toFixed(1) + '%';
+  barfill.classList.toggle('over', over);
+
+  // symptom channel: no gate, fires on crossing
+  const symFired = t >= T_SYM;
+  $('ch-ekf').classList.toggle('fired', symFired);
+  $('st-ekf').textContent = symFired ? 'ADVISED' : 'WATCHING';
+
+  // root channel: the gate fills for exactly 1.0s, then fires
+  const gate = symFired ? Math.min((t - T_SYM) / (T_ROOT - T_SYM), 1) : 0;
+  gatefill.style.width = (gate * 100).toFixed(1) + '%';
+  const rootFired = t >= T_ROOT;
+  $('ch-mag').classList.toggle('fired', rootFired);
+  $('st-mag').textContent = rootFired ? 'ADVISED · ROOT CAUSE'
+                          : symFired ? 'HOLDING ' + (T_ROOT - t).toFixed(2) + 's'
+                          : 'WATCHING';
+
+  $('a1').classList.toggle('on', symFired);
+  $('o1').classList.toggle('on', symFired);
+  $('b1').classList.toggle('on', symFired);
+  $('b2').classList.toggle('on', rootFired);
+  $('o2').classList.toggle('on', rootFired);
+
+  phase.textContent = rootFired ? 'ROOT CAUSE IDENTIFIED'
+                    : symFired ? 'GATE HOLDING'
+                    : t >= T_INJECT ? 'FAULT INJECTED' : 'NOMINAL';
+  nodenote.textContent = rootFired ? 'Magnetometer named as root cause.'
+                       : symFired ? 'Magnetometer anomaly seen — not yet confirmed.'
+                       : 'All channels nominal.';
+
+  drawQuad(t, rootFired ? 'root' : symFired ? 'sym' : null);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
