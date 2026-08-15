@@ -9,6 +9,29 @@ authors = [{ name = "Rahul Rajelli" }]
 keywords = ["uav", "ardupilot", "mavlink", "llm-agents", "evaluation", "root-cause-analysis"]
 dependencies = ["pydantic>=2.0"]
 
+# Trove classifiers. Only ones that are actually true: "Production/Stable" on a project whose own
+# write-up says its central claims rest on 3 flights would be the first dishonest line in it.
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+  "Topic :: System :: Monitoring",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/RahulRajelli/sentinel-realtime"
+Repository = "https://github.com/RahulRajelli/sentinel-realtime"
+Quickstart = "https://github.com/RahulRajelli/sentinel-realtime/blob/main/QUICKSTART.md"
+Whitepaper = "https://github.com/RahulRajelli/sentinel-realtime/blob/main/WHITEPAPER.md"
+Method = "https://github.com/RahulRajelli/sentinel-realtime/blob/main/docs/METHOD.md"
+Issues = "https://github.com/RahulRajelli/sentinel-realtime/issues"
+
 [project.scripts]
 sentinel = "sentinel.cli:main"
 

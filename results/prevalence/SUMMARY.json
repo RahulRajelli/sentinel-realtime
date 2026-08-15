@@ -1,0 +1,24 @@
+{
+ "arm": {
+  "only": "compass_offset",
+  "variants": "v1,v2,v3",
+  "judges": "B0,B3",
+  "withhold_tools": "evidence_untimed",
+  "offer_tools": "detector_evidence"
+ },
+ "runs": 10,
+ "base_url": "https://api.llmapi.ai/v1",
+ "rows": [
+  {
+   "model": "gemini-2.5-flash",
+   "runs": 10,
+   "status": "ok",
+   "acc_mean": 0.45555555555555555,
+   "acc_spread": 0.4444444444444444,
+   "sym_mean": 4.8,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  }
+ ]
+}

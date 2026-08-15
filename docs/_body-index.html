@@ -1,0 +1,102 @@
+<title>SentinelAgent Realtime</title>
+
+<div class="sheet">
+
+  <div class="tb">
+    <div class="tb-top">
+      <span class="tb-no">SENTINEL / E4</span>
+      <h2 class="tb-title">Root-cause discrimination for UAV telemetry</h2>
+    </div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">measured</span><span class="tb-v">2026-08-15</span></div>
+      <div class="tb-f"><span class="tb-k">tests</span><span class="tb-v">215 offline</span></div>
+      <div class="tb-f"><span class="tb-k">rests on</span><span class="tb-v no">3 flights</span></div>
+      <div class="tb-f"><span class="tb-k">licence</span><span class="tb-v">Apache-2.0</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <h1>The first alarm is not the fault</h1>
+    <p class="deck">
+      A drone fault where the true cause is reported one second <em>after</em> the symptom it
+      caused &mdash; so the free rule &ldquo;the first alarm is the cause&rdquo; is wrong by
+      construction, and anything more expensive has to earn its cost.
+    </p>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-n">0.00</span>
+    <span class="verdict-t">
+      <b>What the free rule scores on this fault.</b> Ten-plus runs, two model families, every
+      configuration tested, no exceptions. A test the cheap answer passes measures nothing.
+    </span>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">READ</span><h2 class="tb-title">Three depths, same evidence</h2></div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">Page</th><th scope="col">For</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="whitepaper-plain.html">Why the first warning lies</a></th>
+            <td class="d">No jargon. The argument, a single diagram, and the limits. Start here if you do not work on drones or evaluation.</td></tr>
+        <tr><th scope="row"><a href="whitepaper.html">The first alarm is not the fault</a></th>
+            <td class="d">The general write-up: the mechanism, what two named models did with it, and every claim that was retracted.</td></tr>
+        <tr><th scope="row"><a href="whitepaper-technical.html">The discriminating pair</a></th>
+            <td class="d">Method, measurements and limits. Experimental design, detector state, integrity model, and the standing of each claim.</td></tr>
+        <tr><th scope="row"><a href="figure1-animated.html">The one-second gap</a></th>
+            <td class="d">A 12-second loop. The gap is a duration, and this spends it rather than describing it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">USE</span><h2 class="tb-title">Check it yourself</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">hardware</span><span class="tb-v hi">not needed</span></div>
+      <div class="tb-f"><span class="tb-k">api key</span><span class="tb-v hi">not needed</span></div>
+      <div class="tb-f"><span class="tb-k">time</span><span class="tb-v">~5 minutes</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      The flights are captured and committed, so the headline result reproduces offline on your
+      own machine &mdash; no drone, no simulator, no account.
+    </p>
+    <pre>git clone https://github.com/RahulRajelli/sentinel-realtime
+git clone https://github.com/RahulRajelli/ardupilot-log-analyzer
+pip install -e sentinel-realtime && pip install -e ardupilot-log-analyzer
+
+cd sentinel-realtime
+pytest -q                                 # 215 passed
+python scripts/e4_report.py --bundles bundles \
+  --verdicts results/crossmodel/gpt2_run1.json --only compass_offset</pre>
+    <p class="note">
+      Full walkthrough with expected output at every step:
+      <a href="https://github.com/RahulRajelli/sentinel-realtime/blob/main/QUICKSTART.md">QUICKSTART.md</a>.
+      Building a test like this in your own domain:
+      <a href="https://github.com/RahulRajelli/sentinel-realtime/blob/main/docs/METHOD.md">METHOD.md</a>
+      &mdash; nothing in it is about drones.
+    </p>
+  </div>
+
+  <div class="verdict limit">
+    <span class="verdict-n">3</span>
+    <span class="verdict-t">
+      <b>Flights. Everything here about AI judgement rests on them.</b> The fault itself is robust
+      and I will defend it. What it implies about models is <b>not established</b> &mdash; stated
+      here rather than left for you to find.
+    </span>
+  </div>
+
+  <footer>
+    <a href="https://github.com/RahulRajelli/sentinel-realtime">github.com/RahulRajelli/sentinel-realtime</a>
+    &middot; Apache-2.0 &middot; all figures measured 2026-08-15<br />
+    Models are named throughout because two of them ranked the same judges in opposite orders on
+    identical data. An unnamed finding on this test may simply be false.
+  </footer>
+
+</div>
