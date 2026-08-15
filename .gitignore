@@ -40,3 +40,9 @@ sitl_capture.log
 pairc_capture.log
 ardupilot_says.log
 probe_damping.log
+
+# Raw screen captures the published clip was cut from. sentinel_demo_9x16.mp4 (0.7 MB) is the
+# deliverable and is committed; these are 14 MB of unedited grabs that would sit in every clone
+# forever, and both are reproducible from scripts/r7_r8_scenarios.py plus the capture commands.
+pairc_missionplanner.mp4
+pairc_demo_stitched.mp4
