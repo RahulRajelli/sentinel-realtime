@@ -59,6 +59,13 @@ def build_client(args):
         if args.provider == "gemini":
             from sentinel.judges.gemini import build_gemini_client
             return build_gemini_client(args.model, min_interval_s=args.min_interval)
+        if args.provider == "openai":
+            # Any OpenAI-compatible endpoint: GPT, Grok, OpenRouter, a local server. This is the
+            # path to a SECOND model, which is what decides whether the ordering finding is a
+            # property of agents or of one model.
+            from sentinel.judges.openai_compat import build_openai_client
+            return build_openai_client(args.model, base_url=args.base_url,
+                                       min_interval_s=args.min_interval)
         from sentinel.judges.llm import build_default_client
         return build_default_client(args.model)
     except (ImportError, RuntimeError) as exc:
@@ -72,11 +79,16 @@ def main() -> int:
     ap.add_argument("--out", default="verdicts.json")
     ap.add_argument("--dry-run", action="store_true",
                     help="use the free stub client; exercises the whole sweep at zero cost")
-    ap.add_argument("--provider", choices=("anthropic", "gemini"), default="anthropic",
+    ap.add_argument("--provider", choices=("anthropic", "gemini", "openai"), default="anthropic",
                     help="which model backend B1/B2/B3 speak to. The provider is written into "
                          "the output as `client` -- a published table must name the model it "
                          "measured, and gemini is not claude")
     ap.add_argument("--model", default=None)
+    ap.add_argument("--base-url", default=None,
+                    help="OpenAI-compatible endpoint (--provider openai). Omit for OpenAI; "
+                         "https://api.x.ai/v1 for Grok, https://openrouter.ai/api/v1 for "
+                         "OpenRouter, http://localhost:11434/v1 for Ollama. Also read from "
+                         "OPENAI_BASE_URL")
     ap.add_argument("--min-interval", type=float, default=1.0,
                     help="seconds between API requests, enforced across all judge tiers "
                          "(gemini only). Raise it if degradations reappear -- a degraded "
