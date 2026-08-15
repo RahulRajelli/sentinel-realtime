@@ -1,0 +1,215 @@
+<title>The One-Second Gap</title>
+
+<style>
+  /* Deliberately single-theme. This is a VIDEO asset -- it exists to be screen-recorded at a
+     fixed size, so it commits to the blueprint look and paints every colour explicitly rather
+     than inheriting anything from a host page. */
+  :root {
+    --paper:   #0B1A2E;
+    --grid:    #12263D;
+    --ink:     #D2E2F1;
+    --ink-2:   #9BB2CB;
+    --ink-3:   #7A91AC;
+    --rule:    #26425F;
+    --cause:   #7FB2EC;
+    --symptom: #DCB253;
+    --mark:    #EE8067;
+    --mono: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, 'JetBrains Mono', monospace;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+    /* One clock for the whole sequence. Every step below is a delay into this, so retiming the
+       piece means editing one number instead of chasing twenty. */
+    --T: 12s;
+  }
+
+  body {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(to right,  var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 26px 26px;
+    color: var(--ink);
+    font-family: var(--sans);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .stage {
+    width: min(96vw, 1180px);
+    padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 2rem;
+  }
+
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.1rem; margin-bottom: .2rem; }
+  .tag {
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--mark); font-weight: 700;
+  }
+  h1 {
+    font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.025em;
+    text-transform: uppercase; margin: 0; color: var(--ink);
+  }
+  .sub {
+    font-family: var(--mono); font-size: .74rem; color: var(--ink-3);
+    margin: .1rem 0 .9rem;
+  }
+
+  svg { display: block; width: 100%; height: auto; }
+
+  .lbl  { font-family: var(--mono); font-size: 11px; fill: var(--ink-3); }
+  .evt  { font-family: var(--mono); font-size: 15px; fill: var(--ink); }
+  .tagl { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; }
+  .num  { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+
+  /* --- everything starts hidden; each step fades in on the shared clock --- */
+  .step { opacity: 0; animation: appear var(--T) linear infinite; }
+  @keyframes appear {
+    0%,   var(--in, 0%) { opacity: 0; }
+    /* the +2% is the fade itself; short, because this is instrumentation, not a title sequence */
+    100% { opacity: 1; }
+  }
+
+  /* Per-step delays as a percentage of the shared clock. Using separate keyframes per step
+     rather than animation-delay, so the whole thing loops as one piece with no drift. */
+  .s-axis   { animation-name: k-axis; }
+  .s-inject { animation-name: k-inject; }
+  .s-sym    { animation-name: k-sym; }
+  .s-b0     { animation-name: k-b0; }
+  .s-cause  { animation-name: k-cause; }
+  .s-gap    { animation-name: k-gap; }
+  .s-wrong  { animation-name: k-wrong; }
+
+  @keyframes k-axis   { 0%,2% {opacity:0} 6%,100% {opacity:1} }
+  @keyframes k-inject { 0%,10% {opacity:0} 14%,100% {opacity:1} }
+  @keyframes k-sym    { 0%,30% {opacity:0} 34%,100% {opacity:1} }
+  @keyframes k-b0     { 0%,40% {opacity:0} 45%,100% {opacity:1} }
+  @keyframes k-cause  { 0%,58% {opacity:0} 62%,100% {opacity:1} }
+  @keyframes k-gap    { 0%,68% {opacity:0} 72%,100% {opacity:1} }
+  @keyframes k-wrong  { 0%,80% {opacity:0} 84%,100% {opacity:1} }
+
+  /* The playhead is the whole point: the gap is a DURATION, and a static diagram makes the
+     reader imagine it. Here it is spent in real time. */
+  .playhead { animation: sweep var(--T) linear infinite; }
+  @keyframes sweep {
+    0%,  10% { transform: translateX(0); opacity: 0; }
+    14%      { opacity: 1; }
+    30%      { transform: translateX(238px); }
+    58%      { transform: translateX(528px); }
+    76%      { transform: translateX(528px); opacity: 1; }
+    82%,100% { transform: translateX(528px); opacity: 0; }
+  }
+
+  .pulse { animation: pulse var(--T) linear infinite; transform-origin: center; }
+  @keyframes pulse {
+    0%,29%  { r: 0; }
+    32%     { r: 13; }
+    36%,100%{ r: 5.5; }
+  }
+  .pulse-c { animation: pulse-c var(--T) linear infinite; }
+  @keyframes pulse-c {
+    0%,57%  { r: 0; }
+    60%     { r: 13; }
+    64%,100%{ r: 5.5; }
+  }
+
+  .caption {
+    font-family: var(--mono); font-size: .78rem; line-height: 1.6; color: var(--ink-2);
+    border-top: 1px solid var(--rule); padding-top: .7rem; margin-top: .5rem; max-width: 46rem;
+  }
+  .caption b { color: var(--mark); }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Show the finished frame rather than nothing. The diagram is still readable static --
+       it just costs the reader the one thing the animation buys. */
+    .step, .playhead, .pulse, .pulse-c { animation: none; opacity: 1; }
+    .playhead { opacity: 0; }
+    .pulse { r: 5.5; } .pulse-c { r: 5.5; }
+  }
+</style>
+
+<div class="stage">
+  <div class="head">
+    <span class="tag">SentinelAgent / compass_offset</span>
+    <h1>The first alarm is not the fault</h1>
+  </div>
+  <p class="sub">One simulated flight. The compass is broken at t = 8.0 s. Watch which alarm arrives first.</p>
+
+  <svg viewBox="0 0 1100 330" role="img"
+       aria-label="Animated timeline of one compass_offset flight. The compass is deliberately biased at 8.0 seconds. At 8.8 seconds the navigation-filter advisory fires -- the symptom. The deterministic baseline B0 selects that first advisory as the root cause. At 9.8 seconds the compass advisory fires -- the true cause -- one full second later, because the compass detector requires the anomaly to persist for a second before reporting it. B0 is therefore wrong by construction and scores 0.00.">
+
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5"
+              orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#EE8067" />
+      </marker>
+    </defs>
+
+    <!-- axis -->
+    <g class="step s-axis">
+      <line x1="60" y1="190" x2="1040" y2="190" stroke="#26425F" stroke-width="1.5" />
+      <line x1="150" y1="184" x2="150" y2="196" stroke="#26425F" stroke-width="1.5" />
+      <line x1="388" y1="184" x2="388" y2="196" stroke="#26425F" stroke-width="1.5" />
+      <line x1="678" y1="184" x2="678" y2="196" stroke="#26425F" stroke-width="1.5" />
+      <text class="lbl" x="150" y="214" text-anchor="middle">8.0 s</text>
+      <text class="lbl" x="388" y="214" text-anchor="middle">8.8 s</text>
+      <text class="lbl" x="678" y="214" text-anchor="middle">9.8 s</text>
+    </g>
+
+    <!-- playhead: real time being spent -->
+    <g class="playhead">
+      <line x1="150" y1="70" x2="150" y2="196" stroke="#7A91AC" stroke-width="1.5" stroke-dasharray="3 4" />
+      <circle cx="150" cy="190" r="3.5" fill="#7A91AC" />
+    </g>
+
+    <!-- injection -->
+    <g class="step s-inject">
+      <line x1="150" y1="112" x2="150" y2="184" stroke="#9BB2CB" stroke-width="1.5" stroke-dasharray="2 4" />
+      <circle cx="150" cy="190" r="4" fill="#9BB2CB" />
+      <text class="lbl" x="150" y="100" text-anchor="middle" fill="#9BB2CB">compass biased on purpose</text>
+    </g>
+
+    <!-- symptom -->
+    <circle class="pulse" cx="388" cy="190" fill="#DCB253" />
+    <g class="step s-sym">
+      <line x1="388" y1="128" x2="388" y2="182" stroke="#DCB253" stroke-width="2.5" />
+      <text class="tagl" x="388" y="86" text-anchor="middle" fill="#DCB253">SYMPTOM</text>
+      <text class="evt"  x="388" y="112" text-anchor="middle">navigation filter inconsistent</text>
+    </g>
+
+    <!-- B0 grabs the first one -->
+    <g class="step s-b0">
+      <path d="M196,258 C260,258 320,236 378,206" fill="none" stroke="#EE8067"
+            stroke-width="1.6" marker-end="url(#ar)" />
+      <text class="evt" x="60" y="254" fill="#EE8067">B0 picks the first alarm</text>
+      <text class="lbl" x="60" y="274" fill="#EE8067">the free rule, no AI</text>
+    </g>
+
+    <!-- cause -->
+    <circle class="pulse-c" cx="678" cy="190" fill="#7FB2EC" />
+    <g class="step s-cause">
+      <line x1="678" y1="128" x2="678" y2="182" stroke="#7FB2EC" stroke-width="2.5" />
+      <text class="tagl" x="678" y="86" text-anchor="middle" fill="#7FB2EC">THE REAL CAUSE</text>
+      <text class="evt"  x="678" y="112" text-anchor="middle">compass inconsistent</text>
+    </g>
+
+    <!-- the gap -->
+    <g class="step s-gap">
+      <path d="M388,238 L388,248 L678,248 L678,238" fill="none" stroke="#7FB2EC" stroke-width="1.5" />
+      <text class="num" x="533" y="272" text-anchor="middle" fill="#7FB2EC">1.0 second late</text>
+      <text class="lbl" x="533" y="292" text-anchor="middle">the compass check waits, to avoid crying wolf</text>
+    </g>
+
+    <!-- verdict -->
+    <g class="step s-wrong">
+      <text class="num" x="1040" y="258" text-anchor="end" fill="#EE8067" style="font-size:34px;font-weight:700">0.00</text>
+      <text class="lbl" x="1040" y="280" text-anchor="end" fill="#EE8067">what the free rule scores here</text>
+    </g>
+  </svg>
+
+  <p class="caption">
+    The careful engineering choice is exactly what puts the true cause last in the queue &mdash;
+    and it is a constant in the source, so it happens on <b>every</b> flight.
+  </p>
+</div>
