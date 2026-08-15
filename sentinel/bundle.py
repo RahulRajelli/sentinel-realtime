@@ -235,6 +235,30 @@ class RunBundle(BaseModel):
         return {self._identity_hash(1, include_timing=True),
                 self._identity_hash(1, include_timing=False)}
 
+    def resolvable_identities(self) -> set[str]:
+        """Every id by which this flight may legitimately be REFERRED TO from outside.
+
+        Distinct from `legacy_identities`, which answers "is this file authentic". This answers
+        "does that citation mean this flight", and the two must not be conflated: authenticity is
+        a property of the bytes on disk and is still enforced in `load()`, unconditionally.
+
+        Needed because `bundle_id` is a foreign key. Every verdict in `results/` and `variance/`
+        stores the id it was scored against, and the v1 -> v2 migration recomputed that id for
+        every bundle -- so on 2026-08-15 all 60 committed verdict files began citing ids that no
+        longer resolved and `e4_report.py` failed on every one of them. Nothing was wrong with the
+        data; the join key had moved underneath it.
+
+        RULE, alongside the one in `load()`: changing `_identity_payload` or `_TIMING_FIELDS` also
+        breaks every stored REFERENCE to a bundle. Bumping SCHEMA_VERSION and adding a migrator
+        covers the bundles and does nothing for the things that point at them. Widen this set in
+        the same commit.
+
+        Deliberately NOT the fix: rewriting ids inside the verdict files (destroys the record of
+        what was actually scored) or dropping timing back into the identity (re-fingerprints the
+        host instead of the flight). Both trade away something load-bearing to avoid a lookup.
+        """
+        return {self.bundle_id} | self.legacy_identities()
+
     @property
     def params_hash(self) -> str:
         """Hash of the parameter set the detectors ran against.

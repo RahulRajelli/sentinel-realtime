@@ -242,11 +242,17 @@ def attribute(bundle: RunBundle, verdict: Verdict, citations_ok: bool) -> str:
 
 def score_verdict(bundle: RunBundle, verdict: Verdict,
                   strict_rationale: bool = False) -> ScoreRow:
-    if verdict.bundle_id != bundle.bundle_id:
+    if verdict.bundle_id not in bundle.resolvable_identities():
         # Refuse rather than score. Silently grading a verdict against the wrong flight is the
         # one bug that would corrupt every downstream number without failing anything.
+        #
+        # Checked against every id this flight legitimately answers to, not just the current one:
+        # a verdict written before the v1 -> v2 migration cites the id that was correct when it
+        # was scored, and that citation is accurate history rather than a mismatch. The guard is
+        # unchanged in strength -- a verdict for a DIFFERENT flight still matches nothing here.
         raise ValueError(
-            f"verdict cites bundle {verdict.bundle_id}, scoring against {bundle.bundle_id}")
+            f"verdict cites bundle {verdict.bundle_id}, scoring against {bundle.bundle_id} "
+            f"(known also as {sorted(bundle.legacy_identities())})")
 
     expected = bundle.expected_root_cause
     predicted = verdict.root_cause
@@ -301,6 +307,45 @@ def score_verdict(bundle: RunBundle, verdict: Verdict,
     )
 
 
+def _identity_index(bundles: list[RunBundle]) -> tuple[dict[str, RunBundle],
+                                                       dict[str, RunBundle],
+                                                       set[str]]:
+    """Build (current-id index, legacy-alias index, ambiguous aliases).
+
+    Two levels, never one flat dict, because they carry different guarantees. A current
+    `bundle_id` is the identity this build computes and must be unique. A legacy id is a
+    historical name for the same flight, kept resolvable so that verdicts written before the
+    v1 -> v2 migration still join -- but it is weaker evidence, so it never shadows a current id
+    and an ambiguous one is refused rather than guessed at.
+    """
+    primary: dict[str, RunBundle] = {}
+    for b in bundles:
+        clash = primary.get(b.bundle_id)
+        if clash is not None and clash is not b:
+            raise ValueError(
+                f"two bundles share bundle_id {b.bundle_id} ({clash.scenario} and {b.scenario}). "
+                f"The archive cannot be scored until one is re-captured")
+        primary[b.bundle_id] = b
+
+    alias: dict[str, RunBundle] = {}
+    ambiguous: set[str] = set()
+    for b in bundles:
+        for ident in b.resolvable_identities():
+            if ident in primary:
+                continue                      # a current id always wins
+            held = alias.get(ident)
+            if held is not None and held is not b:
+                # Two flights that once hashed alike. Picking either would silently score a
+                # verdict against the wrong flight, which is the exact failure this project
+                # exists to catch. Refuse at use, and say which flights collided.
+                ambiguous.add(ident)
+                continue
+            alias[ident] = b
+    for ident in ambiguous:
+        alias.pop(ident, None)
+    return primary, alias, ambiguous
+
+
 def score_all(bundles: list[RunBundle], verdicts: list[Verdict],
               strict_rationale: bool = False) -> list[ScoreRow]:
     """Score every verdict against the bundle it cites.
@@ -308,12 +353,31 @@ def score_all(bundles: list[RunBundle], verdicts: list[Verdict],
     Keyed by `bundle_id` rather than by list position, so a partial verdict set (one judge
     crashed on one bundle) scores what exists instead of silently misaligning everything after
     the gap.
+
+    A verdict may cite a bundle by a legacy id (see `RunBundle.resolvable_identities`). That
+    resolves, and the row is annotated so the substitution appears in the report rather than
+    happening invisibly -- a join that quietly repairs itself is one you stop being able to audit.
     """
-    by_id = {b.bundle_id: b for b in bundles}
+    primary, alias, ambiguous = _identity_index(bundles)
     rows: list[ScoreRow] = []
     for v in verdicts:
-        bundle = by_id.get(v.bundle_id)
+        bundle = primary.get(v.bundle_id)
+        via_alias = False
         if bundle is None:
-            raise ValueError(f"verdict cites unknown bundle {v.bundle_id}")
-        rows.append(score_verdict(bundle, v, strict_rationale=strict_rationale))
+            if v.bundle_id in ambiguous:
+                raise ValueError(
+                    f"verdict cites {v.bundle_id}, which is a legacy id claimed by more than one "
+                    f"bundle. Refusing to guess which flight was scored")
+            bundle = alias.get(v.bundle_id)
+            via_alias = bundle is not None
+        if bundle is None:
+            raise ValueError(
+                f"verdict cites unknown bundle {v.bundle_id}. It matches no current id and no "
+                f"legacy id of any loaded bundle -- check the --bundles directory covers the "
+                f"flights this verdict set was scored against")
+        row = score_verdict(bundle, v, strict_rationale=strict_rationale)
+        if via_alias:
+            row.notes.append(
+                f"matched via legacy bundle_id {v.bundle_id} (now {bundle.bundle_id})")
+        rows.append(row)
     return rows

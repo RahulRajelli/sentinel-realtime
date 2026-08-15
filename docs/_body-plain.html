@@ -1,0 +1,291 @@
+<title>Why the First Warning Lies</title>
+
+<div class="sheet">
+
+  <div class="tb">
+    <div class="tb-top">
+      <span class="tb-no">SENTINEL</span>
+      <h2 class="tb-title">Drone fault diagnosis &mdash; plain-language version</h2>
+    </div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">measured</span><span class="tb-v">2026-08-15</span></div>
+      <div class="tb-f"><span class="tb-k">code</span><span class="tb-v">open, Apache-2.0</span></div>
+      <div class="tb-f"><span class="tb-k">rests on</span><span class="tb-v no">3 flights</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <h1>Why the first warning lies</h1>
+    <p class="deck">
+      I broke a drone on purpose to build a test that a free, obvious rule cannot pass. Then I gave
+      the test to two AI models.
+    </p>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">01</span><h2 class="tb-title">Four lights, one problem</h2></div>
+  </div>
+
+  <div class="body">
+    <p>
+      Your car&rsquo;s dashboard lights up all at once: engine, temperature, oil pressure, battery.
+      Four warnings, all of them real. But they are not four problems. They are one problem and
+      three consequences.
+    </p>
+    <p>
+      A mechanic who fixes whichever light came on <strong>first</strong> replaces the wrong part and
+      sends you back out with the actual fault still there.
+    </p>
+    <p>
+      Spotting that something is wrong is easy. Working out <strong>which</strong> wrong thing caused
+      the others is what decides whether the repair works. A drone in flight has the same problem,
+      with a few hundred lights, no dashboard, and seconds to act.
+    </p>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">02</span><h2 class="tb-title">So I broke a compass</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">broke</span><span class="tb-v">the compass, on purpose</span></div>
+      <div class="tb-f"><span class="tb-k">warned about</span><span class="tb-v">navigation, first</span></div>
+      <div class="tb-f"><span class="tb-k">warned about</span><span class="tb-v hi">the compass, second</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      I build software that watches a drone while it flies and tells the operator what is failing. To
+      test whether it can find the real cause, I needed a fault where the obvious answer is the wrong
+      answer.
+    </p>
+    <p>
+      So in a simulator I broke the drone&rsquo;s compass &mdash; the sensor that tells it which way
+      is north &mdash; and nudged it to point slightly wrong. Then I watched the order the warnings
+      came out in.
+    </p>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 244" role="img"
+           aria-label="Timeline. The compass is broken at 8 seconds. At 8.8 seconds the drone warns that its navigation is confused, the symptom. At 9.8 seconds it warns that the compass itself is wrong, the real cause, arriving one second later. The obvious guess, which picks whichever warning came first, therefore always picks the wrong one.">
+        <defs>
+          <marker id="p-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+          </marker>
+        </defs>
+        <line x1="40" y1="144" x2="726" y2="144" stroke="currentColor" stroke-width="1" opacity=".38" />
+
+        <line x1="92" y1="68" x2="92" y2="144" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity=".45" />
+        <circle cx="92" cy="144" r="3" fill="currentColor" opacity=".55" />
+        <text class="svg-s" x="92" y="60" text-anchor="middle" opacity=".8">compass broken</text>
+        <text class="svg-s" x="92" y="164" text-anchor="middle" opacity=".8">8.0 s</text>
+
+        <line x1="330" y1="100" x2="330" y2="138" stroke="var(--symptom)" stroke-width="2" />
+        <circle cx="330" cy="144" r="5.5" fill="var(--symptom)" />
+        <text class="svg-t" x="330" y="62" text-anchor="middle" fill="var(--symptom)">FIRST WARNING</text>
+        <text class="svg-b" x="330" y="84" text-anchor="middle">&ldquo;navigation is confused&rdquo;</text>
+        <text class="svg-s" x="330" y="164" text-anchor="middle" fill="var(--symptom)">8.8 s</text>
+
+        <line x1="620" y1="100" x2="620" y2="138" stroke="var(--cause)" stroke-width="2" />
+        <circle cx="620" cy="144" r="5.5" fill="var(--cause)" />
+        <text class="svg-t" x="620" y="62" text-anchor="middle" fill="var(--cause)">THE REAL FAULT</text>
+        <text class="svg-b" x="620" y="84" text-anchor="middle">&ldquo;the compass is wrong&rdquo;</text>
+        <text class="svg-s" x="620" y="164" text-anchor="middle" fill="var(--cause)">9.8 s</text>
+
+        <path d="M330,184 L330,192 L620,192 L620,184" fill="none" stroke="var(--cause)" stroke-width="1" opacity=".8" />
+        <text class="svg-n" x="475" y="210" text-anchor="middle" fill="var(--cause)">1 second late</text>
+        <text class="svg-s" x="475" y="228" text-anchor="middle" opacity=".8">the compass check waits a second before speaking up</text>
+
+        <path d="M126,200 C200,200 262,186 322,160" fill="none" stroke="var(--mark)" stroke-width="1.2" opacity=".8" marker-end="url(#p-ar)" />
+        <text class="svg-l" x="40" y="198" fill="var(--mark)">the obvious guess</text>
+        <text class="svg-s" x="40" y="216" fill="var(--mark)">picks this, and is wrong</text>
+      </svg>
+    </div>
+    <figcaption>
+      The compass is the thing I broke &mdash; and the compass warning arrives last, a full second
+      after the warning it caused.
+    </figcaption>
+  </figure>
+
+  <div class="body">
+    <p>
+      The reason is not luck. The compass check is deliberately patient: it waits a full second to
+      make sure the problem is real before crying wolf. The navigation check has no such patience and
+      fires immediately.
+    </p>
+    <p>
+      So the honest, careful design choice is exactly what puts the true cause <em>last</em> in the
+      queue. And because that patience is a fixed number written into the code, it happens on every
+      single flight.
+    </p>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">03</span><h2 class="tb-title">The free rule that usually works</h2></div>
+  </div>
+
+  <div class="body">
+    <p>There is an obvious rule that costs nothing and needs no AI at all:</p>
+    <p class="note mark">The first warning after something changed is the cause.</p>
+    <p>
+      On most faults it is simply right. Motor fails, motor alarm first. GPS drops out, GPS alarm
+      first. Any expensive system has to beat this free rule to be worth paying for &mdash; and
+      usually it cannot.
+    </p>
+    <p>On this one fault, the free rule gets it wrong every single time.</p>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-n">0.00</span>
+    <span class="verdict-t">
+      <b>What the free rule scores here.</b> Not sometimes &mdash; in more than ten separate runs,
+      across two different AI models and every setup I tried, without a single exception. A test the
+      cheap answer passes tells you nothing, which is the whole reason this one exists.
+    </span>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">04</span><h2 class="tb-title">What the AI did with it</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">one model</span><span class="tb-v hi">digging helped</span></div>
+      <div class="tb-f"><span class="tb-k">other model</span><span class="tb-v no">digging hurt</span></div>
+      <div class="tb-f"><span class="tb-k">same test</span><span class="tb-v">same data, same wording</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      I gave the same test to two AI models, and asked each in two ways: once as a single question,
+      and once as an assistant that could dig through the flight data itself.
+    </p>
+    <p>
+      The expectation is that digging beats asking. <strong>For one model it did. For the other it
+      made things worse.</strong> Same test, same data, same wording &mdash; opposite result.
+    </p>
+    <p>
+      The one that got worse had a clear reason. When it could see the times each warning came out,
+      it read the order as the answer &mdash; it decided the first warning caused the second. Which
+      is precisely backwards, and precisely the trap.
+    </p>
+    <p class="note said">
+      &ldquo;The navigation problem was detected first&hellip; this likely caused the compass
+      problem.&rdquo;
+    </p>
+    <p>
+      So the tempting headline &mdash; <em>AI gets worse when you give it more tools</em> &mdash; is
+      not true. One model fell for the trap. The other read the same data and got it right.
+      <strong>Which model you use is the finding.</strong>
+    </p>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">05</span><h2 class="tb-title">They are not making things up. That is the bad news.</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">answers checked</span><span class="tb-v">595</span></div>
+      <div class="tb-f"><span class="tb-k">invented a number</span><span class="tb-v">2</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      Everyone&rsquo;s first question about AI in a safety setting is whether it invents facts. So I
+      checked every number these models wrote against what the flight actually recorded. Out of 595
+      answers, <strong>two</strong> quoted a number that never happened. Almost nothing.
+    </p>
+    <p>
+      The uncomfortable part is what that leaves. The models are not inventing evidence &mdash;
+      <strong>they are reading real evidence correctly and drawing the wrong conclusion from
+      it</strong>, confidently. No amount of fact-checking the numbers catches that. The only thing
+      that catches it is a test where the right answer and the believable answer are different
+      things.
+    </p>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">06</span><h2 class="tb-title">Six things I got wrong</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">withdrawn</span><span class="tb-v no">6 of 6</span></div>
+      <div class="tb-f"><span class="tb-k">caught by a check</span><span class="tb-v">6</span></div>
+      <div class="tb-f"><span class="tb-k">caught by an argument</span><span class="tb-v">0</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">I claimed</th><th scope="col">What killed it</th></tr></thead>
+      <tbody>
+        <tr><td class="strike">The difference is statistically significant</td>
+            <td class="d">I counted 27 samples where there were really only 9. Corrected, the results overlap.</td></tr>
+        <tr><td class="strike">The fix raised the weaker model to 0.89</td>
+            <td class="d">That was one lucky run. Its true average is 0.69.</td></tr>
+        <tr><td class="strike">AI mistakes order for cause</td>
+            <td class="d">True of one model, false of the other.</td></tr>
+        <tr><td class="strike">The rest of the gap is a bug in my code</td>
+            <td class="d">I fixed the bug. The gap did not move.</td></tr>
+        <tr><td class="strike">Hide the timings from the AI</td>
+            <td class="d">It helps the weaker model and slightly hurts the stronger one.</td></tr>
+        <tr><td class="strike">One model's score was 0.89</td>
+            <td class="d">Found while re-checking on 2026-08-15: that was its most common run, not its average. The average is 0.91.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p>
+      Every one was killed by a check, not by an argument &mdash; running things five times instead
+      of once, testing a second model, having an outside model review my work.
+    </p>
+    <p>
+      A monitor that quietly reports the wrong cause is worse than one that crashes, because you act
+      on it. The same is true of my own conclusions, which is why those checks run whether or not I
+      expect them to find anything.
+    </p>
+  </div>
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">07</span><h2 class="tb-title">If you fly ArduPilot, you can run it</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">needs</span><span class="tb-v hi">a log file</span></div>
+      <div class="tb-f"><span class="tb-k">ai account</span><span class="tb-v">not needed</span></div>
+      <div class="tb-f"><span class="tb-k">px4</span><span class="tb-v no">not supported</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      The part that finds faults is free, open, and needs no AI account &mdash; it reads the
+      <code>.BIN</code> log files already sitting on your SD card and prints what it found alongside
+      the evidence, so you can check it rather than trust it. That is how the misconfigured battery
+      alarm above was caught.
+    </p>
+    <pre>sentinel doctor                    # tells you what's missing
+sentinel analyze YOURFLIGHT.BIN    # findings, each with its evidence</pre>
+    <p class="note">
+      <b>ArduPilot only.</b> PX4 uses different logs and different parameter names &mdash; it would
+      run and find nothing, which is worse than refusing. Setup is two clones rather than one,
+      because the detectors live in a second repository.
+    </p>
+  </div>
+
+  <div class="verdict limit">
+    <span class="verdict-n">3</span>
+    <span class="verdict-t">
+      <b>Flights. That is what all of this rests on.</b> Three recordings of one broken compass. The
+      test works and I will defend that. Whether anything here about AI holds up beyond three
+      flights is <b>not established</b> &mdash; and two of the best models available already disagree
+      with each other about it.
+    </span>
+  </div>
+
+  <footer>
+    The code is open:
+    <a href="https://github.com/RahulRajelli/sentinel-realtime">github.com/RahulRajelli/sentinel-realtime</a>,
+    Apache-2.0, with 186 tests that run with no simulator and no AI account.<br />
+    All figures measured 2026-08-15. The two models were gemini-2.5-flash and gpt-5.6-sol &mdash;
+    named because they disagreed, so an unnamed version of this page could simply be false.<br />
+    There is a <a href="https://claude.ai/code/artifact/554679d7-96b3-4a94-806c-7f7376891953">version with the numbers in it</a>
+    and a <a href="https://claude.ai/code/artifact/84d6b921-530b-475f-879a-3524c0af2d32">full method write-up</a>.
+  </footer>
+
+</div>

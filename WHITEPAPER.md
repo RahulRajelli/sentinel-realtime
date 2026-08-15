@@ -25,7 +25,7 @@ decides whether the repair works.
 I build a monitor that watches a drone while it flies and tells the operator what is failing.
 The code is at
 [github.com/RahulRajelli/sentinel-realtime](https://github.com/RahulRajelli/sentinel-realtime),
-Apache-2.0. It ships 118 automated tests that need no simulator and no AI account, which you
+Apache-2.0. It ships 186 automated tests that need no simulator and no AI account, which you
 can confirm with `pytest -q` after cloning.
 
 A flight log is that dashboard with a few hundred lights and no dashboard. Sensors disagree,
@@ -127,9 +127,12 @@ flight rather than per judgement:
 | judge | Gemini-2.5-flash | GPT-5.6-sol |
 |---|---|---|
 | B0, free rule | 0.00 | 0.00 |
-| B1, one call | **0.89** | 0.71 |
-| B2, repeated sampling | 0.89 | not run |
+| B1, one call | **0.91** | 0.71 |
 | B3, tool agent | 0.67 | **0.96** |
+
+B2 (repeated sampling) is deliberately absent. Its 0.89 comes from the 9- and 22-bundle sweeps,
+not from this 5-run protocol, so putting it in a column beside these cells would compare two
+different experiments. It is reported separately or not at all.
 
 Same code, same flights, same prompts. **On Gemini the agent loses to a single prompt. On GPT it
 wins.** The ranking inverts.

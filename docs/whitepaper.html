@@ -1,0 +1,739 @@
+<title>The First Alarm Is Not the Fault</title>
+
+<style>
+/* Shared drafting-sheet design system for the SentinelAgent write-ups.
+   Inlined into each page (artifact CSP blocks external stylesheets); kept here as the source. */
+
+:root {
+  /* white-print */
+  --paper:   #FBFAF7;
+  --grid:    #E7EBF2;
+  --sunk:    #F2F1EC;
+  --ink:     #16233A;
+  --ink-2:   #46566F;
+  --ink-3:   #6F7E93;
+  --rule:    #BFC8D6;
+  --rule-2:  #DBE1EA;
+  --cause:   #1B4E8C;   /* the true signal - blueprint ink */
+  --symptom: #8A6410;   /* ochre - the alarm that fires first */
+  --mark:    #B33F2B;   /* drafting red - corrections, retractions, the verdict */
+  --alt:     #17696F;   /* second series */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* blueprint */
+    --paper:   #0B1A2E;
+    --grid:    #12263D;
+    --sunk:    #112339;
+    --ink:     #D2E2F1;
+    --ink-2:   #9BB2CB;
+    --ink-3:   #7A91AC;
+    --rule:    #26425F;
+    --rule-2:  #1A3149;
+    --cause:   #7FB2EC;
+    --symptom: #DCB253;
+    --mark:    #EE8067;
+    --alt:     #5FC2C9;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:   #0B1A2E;
+  --grid:    #12263D;
+  --sunk:    #112339;
+  --ink:     #D2E2F1;
+  --ink-2:   #9BB2CB;
+  --ink-3:   #7A91AC;
+  --rule:    #26425F;
+  --rule-2:  #1A3149;
+  --cause:   #7FB2EC;
+  --symptom: #DCB253;
+  --mark:    #EE8067;
+  --alt:     #5FC2C9;
+}
+
+:root {
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, 'JetBrains Mono', 'Liberation Mono', monospace;
+}
+
+body {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to right,  var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(.85rem, 3vw, 2rem) 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* ---- title block: the bordered field header on an engineering drawing ---- */
+
+.tb { border: 1.5px solid var(--ink); background: var(--paper); }
+.tb-top {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .9rem;
+  padding: .5rem .8rem; border-bottom: 1px solid var(--rule);
+}
+.tb-no {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .16em;
+  color: var(--mark); font-weight: 700;
+}
+.tb-title {
+  font-family: var(--sans); font-size: .95rem; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase; margin: 0; line-height: 1.3;
+}
+.tb-fields {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+}
+.tb-f {
+  padding: .4rem .8rem .5rem;
+  border-right: 1px solid var(--rule-2);
+  display: flex; flex-direction: column; gap: .1rem;
+}
+.tb-f:last-child { border-right: 0; }
+.tb-k {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.tb-v {
+  font-family: var(--mono); font-size: .78rem; color: var(--ink);
+  font-variant-numeric: tabular-nums; line-height: 1.35;
+}
+.tb-v.hi { color: var(--cause); font-weight: 600; }
+.tb-v.no { color: var(--mark); font-weight: 600; }
+
+/* ---- body ---- */
+
+.body { display: flex; flex-direction: column; gap: .95rem; padding: 0 .1rem; }
+p { margin: 0; max-width: 40rem; }
+strong { font-weight: 650; }
+
+h1 {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(1.85rem, 5.2vw, 3rem); line-height: 1.03;
+  letter-spacing: -.025em; text-transform: uppercase; margin: 0; max-width: 18ch;
+}
+h2 { font: inherit; margin: 0; }
+.deck { font-size: 1.03rem; color: var(--ink-2); max-width: 32rem; margin: 0; }
+
+a { color: var(--cause); text-decoration: underline; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .13em; }
+a:focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+code { font-family: var(--mono); font-size: .85em; color: var(--ink-2); }
+
+.note {
+  font-family: var(--mono); font-size: .8rem; line-height: 1.55;
+  background: var(--sunk); border: 1px solid var(--rule);
+  padding: .75rem .9rem; margin: 0; max-width: 44rem; color: var(--ink-2);
+}
+.note b { color: var(--ink); }
+.note.mark { border-left: 4px solid var(--mark); }
+.note.said { font-family: var(--sans); font-style: italic; font-size: .96rem; }
+
+/* ---- the one bold moment ---- */
+
+.verdict {
+  border: 1.5px solid var(--mark);
+  display: flex; flex-wrap: wrap; align-items: center; gap: .2rem 1.6rem;
+  padding: 1.1rem 1.1rem 1.2rem;
+}
+.verdict-n {
+  font-family: var(--mono); font-weight: 700;
+  font-size: clamp(3rem, 10vw, 5.2rem); line-height: .85;
+  letter-spacing: -.05em; font-variant-numeric: tabular-nums; color: var(--mark);
+}
+.verdict-t { font-family: var(--mono); font-size: .78rem; line-height: 1.6; color: var(--ink-2); max-width: 30rem; }
+.verdict-t b { color: var(--ink); }
+.verdict.limit { border-color: var(--ink); }
+.verdict.limit .verdict-n { color: var(--ink); }
+
+/* ---- figures ---- */
+
+figure { margin: 0; }
+.plot { overflow-x: auto; border: 1px solid var(--rule); background: var(--paper); padding: .5rem; }
+.plot svg { display: block; width: 100%; min-width: 31rem; height: auto; color: var(--ink); }
+figcaption {
+  font-family: var(--mono); font-size: .68rem; line-height: 1.62;
+  color: var(--ink-3); padding-top: .5rem; max-width: 44rem;
+}
+.svg-l { font-family: var(--mono); font-size: 11.5px; fill: currentColor; }
+.svg-s { font-family: var(--mono); font-size: 10px; fill: currentColor; }
+.svg-t { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; }
+.svg-b { font-family: var(--mono); font-size: 12.5px; fill: currentColor; }
+.svg-n { font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+/* ---- tables ---- */
+
+.tbl { overflow-x: auto; border: 1px solid var(--rule); background: var(--paper); }
+table { border-collapse: collapse; width: 100%; font-size: .82rem; font-family: var(--mono); }
+th, td { padding: .4rem .85rem; text-align: left; vertical-align: top; }
+thead th {
+  font-size: .6rem; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3);
+  font-weight: 400; border-bottom: 1.5px solid var(--ink); white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--rule-2); }
+tbody tr:last-child { border-bottom: 0; }
+tbody th { font-weight: 400; color: var(--ink); white-space: nowrap; }
+td.d { font-family: var(--sans); font-size: .87rem; line-height: 1.45; color: var(--ink-2); }
+td.n { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td.n.win { color: var(--cause); font-weight: 700; }
+td.n.zero { color: var(--ink-3); }
+td.n .sub { color: var(--ink-3); }
+td.n .bad { color: var(--mark); }
+td.na { text-align: right; color: var(--ink-3); }
+.strike { color: var(--ink-3); text-decoration: line-through; }
+.critt { color: var(--mark); }
+.warnt { color: var(--symptom); }
+
+pre {
+  margin: 0; background: var(--sunk); border: 1px solid var(--rule);
+  padding: .8rem .95rem; overflow-x: auto;
+  font-family: var(--mono); font-size: .74rem; line-height: 1.62; color: var(--ink);
+}
+
+footer {
+  font-family: var(--mono); font-size: .67rem; line-height: 1.72; color: var(--ink-3);
+  border-top: 1.5px solid var(--ink); padding-top: .9rem; max-width: 44rem;
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+
+<div class="sheet">
+
+  <!-- ============ MASTHEAD ============ -->
+
+  <div class="tb">
+    <div class="tb-top">
+      <span class="tb-no">SENTINEL / E4</span>
+      <h2 class="tb-title">Root-cause discrimination on injected UAV faults</h2>
+    </div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">measured</span><span class="tb-v">2026-08-15</span></div>
+      <div class="tb-f"><span class="tb-k">flights</span><span class="tb-v">3</span></div>
+      <div class="tb-f"><span class="tb-k">runs per cell</span><span class="tb-v">5</span></div>
+      <div class="tb-f"><span class="tb-k">models</span><span class="tb-v">gemini-2.5-flash<br />gpt-5.6-sol</span></div>
+      <div class="tb-f"><span class="tb-k">tests</span><span class="tb-v">186 offline</span></div>
+      <div class="tb-f"><span class="tb-k">licence</span><span class="tb-v">Apache-2.0</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <h1>The first alarm is not the fault</h1>
+    <p class="deck">
+      Building a test that a cheap rule cannot pass, and what two AI models did with it.
+    </p>
+  </div>
+
+  <!-- ============ FIG 1 ============ -->
+
+  <div class="tb">
+    <div class="tb-top">
+      <span class="tb-no">FIG 1</span>
+      <h2 class="tb-title">One second between the symptom and its cause</h2>
+    </div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">scenario</span><span class="tb-v">compass_offset</span></div>
+      <div class="tb-f"><span class="tb-k">gap</span><span class="tb-v hi">1.0 s on 3/3</span></div>
+      <div class="tb-f"><span class="tb-k">source</span><span class="tb-v">compass.py:45</span></div>
+      <div class="tb-f"><span class="tb-k">false pre-inject</span><span class="tb-v">0</span></div>
+    </div>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 244" role="img"
+           aria-label="Timeline of one compass_offset flight. Compass bias is injected at 8.0 seconds. The navigation-filter advisory, the symptom, fires at 8.8 seconds. The compass advisory, the true root cause, fires at 9.8 seconds, one second later, because its detector requires the anomaly to persist for a full second. B0 selects the first advisory after injection and is therefore wrong by construction.">
+        <defs>
+          <marker id="b-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+          </marker>
+        </defs>
+        <line x1="40" y1="144" x2="726" y2="144" stroke="currentColor" stroke-width="1" opacity=".38" />
+
+        <line x1="92" y1="68" x2="92" y2="144" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity=".45" />
+        <circle cx="92" cy="144" r="3" fill="currentColor" opacity=".55" />
+        <text class="svg-s" x="92" y="60" text-anchor="middle" opacity=".8">compass biased</text>
+        <text class="svg-s" x="92" y="164" text-anchor="middle" opacity=".8">8.0 s</text>
+
+        <line x1="330" y1="100" x2="330" y2="138" stroke="var(--symptom)" stroke-width="2" />
+        <circle cx="330" cy="144" r="5.5" fill="var(--symptom)" />
+        <text class="svg-t" x="330" y="62" text-anchor="middle" fill="var(--symptom)">SYMPTOM</text>
+        <text class="svg-b" x="330" y="84" text-anchor="middle">navigation filter inconsistent</text>
+        <text class="svg-s" x="330" y="164" text-anchor="middle" fill="var(--symptom)">8.8 s</text>
+
+        <line x1="620" y1="100" x2="620" y2="138" stroke="var(--cause)" stroke-width="2" />
+        <circle cx="620" cy="144" r="5.5" fill="var(--cause)" />
+        <text class="svg-t" x="620" y="62" text-anchor="middle" fill="var(--cause)">CAUSE</text>
+        <text class="svg-b" x="620" y="84" text-anchor="middle">compass inconsistent</text>
+        <text class="svg-s" x="620" y="164" text-anchor="middle" fill="var(--cause)">9.8 s</text>
+
+        <path d="M330,184 L330,192 L620,192 L620,184" fill="none" stroke="var(--cause)" stroke-width="1" opacity=".8" />
+        <text class="svg-n" x="475" y="210" text-anchor="middle" fill="var(--cause)">1.0 s</text>
+        <text class="svg-s" x="475" y="228" text-anchor="middle" opacity=".8">MIN_ANOMALY_S = 1.0 &mdash; a source constant, not a tuning choice</text>
+
+        <path d="M126,200 C200,200 262,186 322,160" fill="none" stroke="var(--mark)" stroke-width="1.2" opacity=".8" marker-end="url(#b-ar)" />
+        <text class="svg-l" x="40" y="198" fill="var(--mark)">B0 picks the first</text>
+        <text class="svg-s" x="40" y="216" fill="var(--mark)">wrong by construction</text>
+      </svg>
+    </div>
+    <figcaption>
+      The fault is in the compass &mdash; and the compass alarm arrives second, one full second
+      after the alarm it caused. The navigation filter fires on threshold crossing; the compass
+      detector must first watch the anomaly persist.
+    </figcaption>
+  </figure>
+
+  <!-- ============ VERDICT ============ -->
+
+  <div class="verdict">
+    <span class="verdict-n">0.00</span>
+    <span class="verdict-t">
+      <b>What the free rule scores on this fault.</b> Not sometimes &mdash; in more than ten
+      separate runs, across two model families and every tool configuration tested, without a
+      single exception. A test the cheap answer passes measures nothing.
+    </span>
+  </div>
+
+  <!-- ============ WARNING LIGHTS ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">01</span><h2 class="tb-title">Six warning lights</h2></div>
+  </div>
+
+  <div class="body">
+    <p>
+      Your car&rsquo;s dashboard lights up at once: engine, temperature, oil pressure, battery.
+      Four warnings, all of them real. But they are not four problems. They are one problem and
+      three consequences. A mechanic who fixes the light that came on <em>first</em> replaces the
+      wrong part and sends you back out with the actual fault still there.
+    </p>
+    <p>
+      Noticing that something is wrong is easy. Working out <strong>which</strong> wrong thing
+      caused the others decides whether the repair works. A drone in flight has the same problem,
+      with a few hundred lights, no dashboard, and seconds to act.
+    </p>
+  </div>
+
+  <!-- ============ ON A DRONE ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">02</span><h2 class="tb-title">The same problem, on a drone</h2></div>
+  </div>
+
+  <div class="body">
+    <p>
+      I build a monitor that watches a drone while it flies and tells the operator what is failing.
+      Sensors disagree, motors run out of headroom and stop being able to correct, the navigation
+      filter that combines the sensors loses confidence, vibration climbs. Most of it is downstream
+      of one root cause.
+    </p>
+    <p>
+      The easy half already works. Run <code>sentinel analyze</code> on a flight log and it reports
+      settings that contradict the hardware. On one 2024 log it flagged a low-battery warning set to
+      10.5&nbsp;volts on a 22.2&nbsp;volt pack &mdash; a threshold left over from a smaller battery.
+      The alarm could never have fired, so that aircraft flew with no working low-battery protection.
+    </p>
+    <p class="note">
+      That log is private. Treat the battery case as an illustration, not a claim you can check.
+      Every other figure on this page regenerates from committed files.
+    </p>
+    <p>Ranking is the hard half, and it is what the rest of this measures.</p>
+  </div>
+
+  <!-- ============ THE GAP ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">03</span><h2 class="tb-title">The one-second gap</h2></div>
+  </div>
+
+  <div class="body">
+    <p>
+      To test ranking I needed a fault where the obvious answer is the wrong answer. So I broke a
+      drone&rsquo;s compass on purpose in simulation &mdash; a magnetometer, the sensor that reads
+      the Earth&rsquo;s magnetic field, biased by a fixed amount so it pointed slightly wrong.
+    </p>
+    <p>
+      The gap is not luck and not tuning. The compass detector must see the anomaly persist for a
+      full second before calling it, a deliberate guard against false alarms written in the source as
+      <code>MIN_ANOMALY_S = 1.0</code>, in
+      <a href="https://github.com/RahulRajelli/ardupilot-log-analyzer/blob/main/src/flightdx/detectors/compass.py">compass.py:45</a>.
+      The navigation filter has no such guard. <strong>So the careful design choice is exactly what
+      puts the true cause last in the queue</strong> &mdash; every flight, for as long as that line
+      exists.
+    </p>
+  </div>
+
+  <!-- ============ THE FREE RULE ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">04</span><h2 class="tb-title">Why the obvious rule fails</h2></div>
+  </div>
+
+  <div class="body">
+    <p>There is a free rule that needs no AI:</p>
+    <p class="note mark">The first alarm after something changed is the cause.</p>
+    <p>
+      It costs nothing and on most faults it is simply right. When a motor fails, the motor alarm
+      fires first. When GPS drops out, the GPS alarm fires first. Any expensive system has to beat
+      this rule to justify itself, and usually it cannot. On <code>compass_offset</code> it cannot be
+      tuned out of being wrong &mdash; its rule and the persistence gate point in opposite directions
+      by construction.
+    </p>
+  </div>
+
+  <!-- ============ DESIGN ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">05</span><h2 class="tb-title">A test that can be failed</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">bundles</span><span class="tb-v">3</span></div>
+      <div class="tb-f"><span class="tb-k">prompt variants</span><span class="tb-v">3</span></div>
+      <div class="tb-f"><span class="tb-k">repeats</span><span class="tb-v">5</span></div>
+      <div class="tb-f"><span class="tb-k">scored on</span><span class="tb-v hi">bundles, not judgements</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">Judge</th><th scope="col">What it does</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">B0</th><td class="d">the free rule above, no AI</td></tr>
+        <tr><th scope="row">B1</th><td class="d">one AI call, no tools</td></tr>
+        <tr><th scope="row">B3</th><td class="d">an AI agent that can query the flight with tools</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p>
+      Each flight is recorded once into a single fingerprinted file, so it cannot change unnoticed,
+      and every judge runs against that file rather than against the aircraft. Scoring is strict:
+      naming a <em>symptom</em> scores zero rather than partial credit, and every answer must cite
+      evidence that exists in the flight, so a correct answer pointing at something that never
+      happened also scores zero.
+    </p>
+    <p class="note">
+      <b>B2 (repeated sampling, cost-matched to B3) is deliberately absent from the table below.</b>
+      Its 0.89 comes from a different set &mdash; the 9- and 22-bundle sweeps &mdash; not from this
+      5-run protocol. Putting it in a neighbouring column would compare two different experiments.
+    </p>
+  </div>
+
+  <!-- ============ RESULTS ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">06</span><h2 class="tb-title">What the AI did</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">gemini-2.5-flash</span><span class="tb-v">B1 0.91 &rarr; B3 0.67</span></div>
+      <div class="tb-f"><span class="tb-k">gpt-5.6-sol</span><span class="tb-v">B1 0.71 &rarr; B3 0.96</span></div>
+      <div class="tb-f"><span class="tb-k">result</span><span class="tb-v no">ranking inverts</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col">Judge</th>
+            <th scope="col" style="text-align:right">gemini-2.5-flash</th>
+            <th scope="col" style="text-align:right">gpt-5.6-sol</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">B0 &mdash; free rule</th><td class="n zero">0.00</td><td class="n zero">0.00</td></tr>
+        <tr><th scope="row">B1 &mdash; one call</th><td class="n win">0.91</td><td class="n">0.71</td></tr>
+        <tr><th scope="row">B3 &mdash; tool agent</th><td class="n">0.67</td><td class="n win">0.96</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 292" role="img"
+           aria-label="Slope chart. From judge B1 to judge B3, gemini-2.5-flash falls from 0.91 to 0.67 while gpt-5.6-sol rises from 0.71 to 0.96. The two lines cross, so the ranking of the judges inverts between the models. B0 is flat at 0.00 for both.">
+        <line x1="150" y1="50"  x2="500" y2="50"  stroke="currentColor" stroke-width="1" opacity=".18" />
+        <line x1="150" y1="150" x2="500" y2="150" stroke="currentColor" stroke-width="1" opacity=".18" stroke-dasharray="2 4" />
+        <line x1="150" y1="250" x2="500" y2="250" stroke="currentColor" stroke-width="1" opacity=".32" stroke-dasharray="4 4" />
+        <text class="svg-s" x="132" y="54"  text-anchor="end" opacity=".75">1.00</text>
+        <text class="svg-s" x="132" y="154" text-anchor="end" opacity=".75">0.50</text>
+        <text class="svg-s" x="132" y="254" text-anchor="end" opacity=".75">0.00</text>
+        <text class="svg-l" x="150" y="30" text-anchor="middle" opacity=".85">B1 &mdash; one call</text>
+        <text class="svg-l" x="500" y="30" text-anchor="middle" opacity=".85">B3 &mdash; tool agent</text>
+        <line x1="150" y1="38" x2="150" y2="262" stroke="currentColor" stroke-width="1" opacity=".2" />
+        <line x1="500" y1="38" x2="500" y2="262" stroke="currentColor" stroke-width="1" opacity=".2" />
+
+        <line x1="150" y1="68" x2="500" y2="117" stroke="var(--alt)" stroke-width="2.5" />
+        <circle cx="150" cy="68"  r="5" fill="var(--alt)" />
+        <circle cx="500" cy="117" r="5" fill="var(--alt)" />
+        <text class="svg-n" x="138" y="72" text-anchor="end" fill="var(--alt)">0.91</text>
+        <text class="svg-s" x="516" y="114" fill="var(--alt)">gemini-2.5-flash</text>
+        <text class="svg-n" x="516" y="132" fill="var(--alt)">0.67</text>
+
+        <line x1="150" y1="108" x2="500" y2="59" stroke="var(--cause)" stroke-width="2.5" />
+        <circle cx="150" cy="108" r="5" fill="var(--cause)" />
+        <circle cx="500" cy="59"  r="5" fill="var(--cause)" />
+        <text class="svg-n" x="138" y="112" text-anchor="end" fill="var(--cause)">0.71</text>
+        <text class="svg-s" x="516" y="56" fill="var(--cause)">gpt-5.6-sol</text>
+        <text class="svg-n" x="516" y="74" fill="var(--cause)">0.96</text>
+
+        <circle cx="293" cy="88" r="7.5" fill="none" stroke="var(--mark)" stroke-width="1.5" />
+        <line x1="293" y1="96" x2="293" y2="182" stroke="var(--mark)" stroke-width="1" opacity=".5" stroke-dasharray="2 3" />
+        <text class="svg-l" x="293" y="200" text-anchor="middle" fill="var(--mark)">the ranking inverts</text>
+
+        <circle cx="150" cy="250" r="4" fill="currentColor" opacity=".45" />
+        <circle cx="500" cy="250" r="4" fill="currentColor" opacity=".45" />
+        <text class="svg-s" x="516" y="254" opacity=".7">B0 &mdash; 0.00, both</text>
+      </svg>
+    </div>
+    <figcaption>
+      Same code, same flights, same prompts &mdash; and the two judges swap places depending on
+      which model reads them. Mean of 5 runs per point. The crossing is the finding; its size is
+      not established.
+    </figcaption>
+  </figure>
+
+  <div class="body">
+    <p>
+      Gemini&rsquo;s agent had a legible failure. When its tools were allowed to report <em>when</em>
+      each alarm fired, it treated that ordering as causation:
+    </p>
+    <p class="note said">
+      &ldquo;The EKF inconsistency was detected first&hellip; this likely caused the compass
+      inconsistency.&rdquo;
+    </p>
+    <p>
+      Exactly backwards &mdash; EKF is the navigation filter, the symptom. Removing the timing from
+      its tools, changing nothing else, cut the mistake from eight judgements out of nine to one.
+    </p>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col">Model</th>
+            <th scope="col" style="text-align:right">timed tools</th>
+            <th scope="col" style="text-align:right">untimed tools</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">gpt-5.6-sol</th>
+            <td class="n win">1.00 <span class="sub">(0/9)</span></td>
+            <td class="n">0.96 <span class="sub">(0/9)</span></td></tr>
+        <tr><th scope="row">gemini-2.5-flash</th>
+            <td class="n">0.11 <span class="bad">(8/9)</span></td>
+            <td class="n">0.67 <span class="sub">(1/9)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p>
+      GPT never named a symptom as the root cause in any configuration tested, and is marginally
+      <em>better</em> with timestamps. So the tempting headline &mdash; <em>&ldquo;AI agents get
+      worse when you give them more tools&rdquo;</em> &mdash; is not supported. One model confused
+      ordering with causation. A stronger model read the same ordering and drew the correct
+      conclusion.
+    </p>
+    <p class="note mark">
+      <b>A caveat I would rather state than have you find.</b> This rests on three flights of one
+      fault. An inverted ranking on that little data could be partly noise. What I can defend is the
+      mechanism, because the misreading is visible in the model's own words and it disappeared when
+      the ordering data was removed. What I cannot yet defend is the size of the gap.
+    </p>
+  </div>
+
+  <!-- ============ GROUNDING ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">07</span><h2 class="tb-title">Are the models making things up?</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">verdicts checked</span><span class="tb-v">595</span></div>
+      <div class="tb-f"><span class="tb-k">ungrounded</span><span class="tb-v">2</span></div>
+      <div class="tb-f"><span class="tb-k">rate</span><span class="tb-v hi">0.34%</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      This is the question everyone asks about AI in a safety context, so I measured it rather than
+      reasoning about it. Every number a judge writes in its explanation is checked against what the
+      flight actually recorded. Invent a reading and it is caught; quote a real one, even rounded,
+      and it passes.
+    </p>
+    <p>
+      The case that made me build the check was Gemini writing <em>&ldquo;exceeded its threshold at
+      9.062 seconds, causing the compass inconsistency at 10.016 seconds.&rdquo;</em> Both of those
+      times are real. It read the data correctly and drew the wrong conclusion from it.
+    </p>
+    <p>
+      That is the more uncomfortable finding. <strong>These models are not inventing evidence. They
+      are misreading accurate evidence with confidence</strong>, and no amount of fact-checking the
+      numbers can catch that. The only thing that catches it is a test where the correct answer and
+      the plausible answer are different.
+    </p>
+  </div>
+
+  <!-- ============ RETRACTIONS ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">08</span><h2 class="tb-title">Six things I was wrong about</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">retracted</span><span class="tb-v no">6</span></div>
+      <div class="tb-f"><span class="tb-k">caught by a check</span><span class="tb-v">6</span></div>
+      <div class="tb-f"><span class="tb-k">caught by an argument</span><span class="tb-v">0</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">I claimed</th><th scope="col">What killed it</th></tr></thead>
+      <tbody>
+        <tr><td class="strike">The difference is statistically significant</td>
+            <td class="d">I counted 27 samples where there were 9 independent flights. Corrected, the ranges overlap</td></tr>
+        <tr><td class="strike">Removing timestamps raised Gemini's agent to 0.89</td>
+            <td class="d">That was one run. Its five-run mean is 0.69</td></tr>
+        <tr><td class="strike">AI agents mistake ordering for causation</td>
+            <td class="d">True of Gemini, false of GPT</td></tr>
+        <tr><td class="strike">The rest of the gap is a scoring bug in my code</td>
+            <td class="d">I fixed the bug. The gap did not move</td></tr>
+        <tr><td class="strike">Remove timestamps from the tools</td>
+            <td class="d">Helps the weaker model, slightly hurts the stronger one</td></tr>
+        <tr><td class="strike">Gemini's B1 scores 0.89</td>
+            <td class="d">Found 2026-08-15 while re-scoring: 0.89 was its <em>modal</em> run quoted as a mean. The five-run mean is <strong>0.91</strong>. Corrected above</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p>
+      Each was caught by a check rather than an argument: an outside model reviewing the work against
+      a written rubric, running things five times instead of once, testing a second model, and
+      building comparisons that could have come out either way.
+    </p>
+    <p>
+      A monitor that quietly reports the wrong root cause is worse than one that crashes, because you
+      act on it. The same applies to my own conclusions, which is why those checks run whether or not
+      I expect them to find anything.
+    </p>
+  </div>
+
+  <!-- ============ USE IT ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">09</span><h2 class="tb-title">Using it on your own aircraft</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">stack</span><span class="tb-v">ArduPilot only</span></div>
+      <div class="tb-f"><span class="tb-k">px4</span><span class="tb-v no">not supported</span></div>
+      <div class="tb-f"><span class="tb-k">needs</span><span class="tb-v">python 3.11+</span></div>
+      <div class="tb-f"><span class="tb-k">ai account</span><span class="tb-v hi">not for analysis</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      The detection half needs no simulator, no AI account and no hardware &mdash; it reads the
+      <code>.BIN</code> files already on your SD card. The detectors ship in a sibling repo that is
+      not on PyPI, so it is two clones rather than one:
+    </p>
+    <pre>git clone https://github.com/RahulRajelli/sentinel-realtime
+git clone https://github.com/RahulRajelli/ardupilot-log-analyzer
+
+pip install -e sentinel-realtime
+pip install -e ardupilot-log-analyzer
+
+cd sentinel-realtime
+sentinel doctor                    # names anything missing, and the exact fix
+sentinel analyze YOURFLIGHT.BIN    # findings, each printed with its evidence
+sentinel analyze YOURFLIGHT.BIN --html report.html</pre>
+    <p class="note">
+      <b>ArduPilot only, and that is deliberate.</b> Live telemetry uses the
+      <code>ardupilotmega</code> dialect; log analysis reads ArduPilot dataflash. PX4 uses a
+      different dialect, log format and parameter names &mdash; it would run and find nothing, which
+      is worse than refusing. Betaflight and INAV are not supported either.
+    </p>
+    <p>
+      For a live link rather than a log: <code>sentinel watch --conn COM5,57600</code>, or
+      <code>udp:0.0.0.0:14550</code> for WiFi or a simulator. The HTML report is self-contained
+      &mdash; no CDN, no fonts, no scripts &mdash; so it opens on a hangar machine with no network.
+    </p>
+  </div>
+
+  <!-- ============ STANDING ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">10</span><h2 class="tb-title">What survived, and what I do not know</h2></div>
+  </div>
+
+  <div class="body">
+    <p>
+      <strong>Survived:</strong> the fault works. The free rule scores 0.00 on it, on every model and
+      every configuration tested. That is what this phase set out to build.
+    </p>
+    <p>
+      <strong>Not established:</strong> whether anything here about AI judgement holds beyond one
+      fault and three flights. Two frontier models already disagree about it.
+    </p>
+    <p>
+      More models would not fix that. A second fault of the same kind would &mdash; and building one
+      most likely requires a new detector rather than a new test, because only two detectors in the
+      current set carry the built-in delay that makes a cause arrive after its own symptom. That work
+      is not done.
+    </p>
+  </div>
+
+  <div class="verdict limit">
+    <span class="verdict-n">3</span>
+    <span class="verdict-t">
+      <b>Flights. Everything above about AI judgement rests on them.</b> Stated here rather than
+      left for a reader to discover.
+    </span>
+  </div>
+
+  <!-- ============ REPRODUCE ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">11</span><h2 class="tb-title">Reproduce any figure</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">status</span><span class="tb-v hi">working</span></div>
+      <div class="tb-f"><span class="tb-k">each cell</span><span class="tb-v">mean of run1&ndash;run5</span></div>
+      <div class="tb-f"><span class="tb-k">api key</span><span class="tb-v">not needed</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <pre>python -m pytest -q                       # 186 passed, no simulator, no API key
+python scripts/manifest.py --verify       # 28/28 bundles intact
+
+# the free rule at 0.00, and the tool agent's score
+python scripts/e4_report.py --bundles bundles \
+  --verdicts results/crossmodel/gpt2_run1.json --only compass_offset</pre>
+    <p class="note">
+      Scoring was broken for part of 2026-08-15 and is fixed. The schema-2 migration recomputed
+      every <code>bundle_id</code>, which the 60 verdict files store as a foreign key, so every one
+      of them stopped resolving. A verdict may now cite any id its flight legitimately answered to;
+      the substitution is recorded on the row rather than applied silently. No verdict file was
+      rewritten and <code>bundle_id</code> was not weakened.
+    </p>
+  </div>
+
+  <footer>
+    Models named throughout because they disagree: gemini-2.5-flash via Google ADC, gpt-5.6-sol via
+    the llmapi gateway. An unnamed finding on this test may simply be false.<br />
+    All figures measured 2026-08-15 &middot; Apache-2.0 &middot;
+    <a href="https://github.com/RahulRajelli/sentinel-realtime">github.com/RahulRajelli/sentinel-realtime</a><br />
+    Also available: a <a href="https://claude.ai/code/artifact/c3c723db-7b07-4922-9834-2f46ad62ba83">plain-language version</a>
+    and a <a href="https://claude.ai/code/artifact/84d6b921-530b-475f-879a-3524c0af2d32">full method write-up</a>.
+  </footer>
+
+</div>

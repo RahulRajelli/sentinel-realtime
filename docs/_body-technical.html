@@ -1,0 +1,562 @@
+<title>The Discriminating Pair</title>
+
+<div class="sheet">
+
+  <div class="tb">
+    <div class="tb-top">
+      <span class="tb-no">SENTINEL / E4</span>
+      <h2 class="tb-title">Method, measurements and limits &mdash; compass_offset</h2>
+    </div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">measured</span><span class="tb-v">2026-08-15</span></div>
+      <div class="tb-f"><span class="tb-k">design</span><span class="tb-v">3 &times; 3 &times; 5</span></div>
+      <div class="tb-f"><span class="tb-k">scored on</span><span class="tb-v hi">bundles</span></div>
+      <div class="tb-f"><span class="tb-k">models</span><span class="tb-v">gemini-2.5-flash<br />gpt-5.6-sol</span></div>
+      <div class="tb-f"><span class="tb-k">tests</span><span class="tb-v">186 offline</span></div>
+      <div class="tb-f"><span class="tb-k">archive</span><span class="tb-v">28/28, unsigned</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <h1>The discriminating pair</h1>
+    <p class="deck">
+      The one injected fault in this archive on which a deterministic root-cause baseline is wrong
+      by construction &mdash; and everything that is therefore still unproven.
+    </p>
+  </div>
+
+  <!-- ============ 1 MECHANISM ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">01</span><h2 class="tb-title">Why B0 cannot win</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">gate</span><span class="tb-v">MIN_ANOMALY_S = 1.0</span></div>
+      <div class="tb-f"><span class="tb-k">source</span><span class="tb-v">compass.py:45</span></div>
+      <div class="tb-f"><span class="tb-k">gap</span><span class="tb-v hi">1.0 s on 3/3</span></div>
+      <div class="tb-f"><span class="tb-k">pre-inject FP</span><span class="tb-v">0</span></div>
+    </div>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 244" role="img"
+           aria-label="Timeline of one compass_offset flight. Compass bias is injected at 8.0 seconds. The ekf_inconsistency advisory, the symptom, fires at 8.8 seconds on threshold crossing. The compass_inconsistency advisory, the true root cause, fires at 9.8 seconds because its detector requires the anomaly to persist for one full second. B0 selects the first advisory after injection and is therefore wrong by construction.">
+        <defs>
+          <marker id="t-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+          </marker>
+        </defs>
+        <line x1="40" y1="144" x2="726" y2="144" stroke="currentColor" stroke-width="1" opacity=".38" />
+
+        <line x1="92" y1="68" x2="92" y2="144" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity=".45" />
+        <circle cx="92" cy="144" r="3" fill="currentColor" opacity=".55" />
+        <text class="svg-s" x="92" y="60" text-anchor="middle" opacity=".8">inject compass bias</text>
+        <text class="svg-s" x="92" y="164" text-anchor="middle" opacity=".8">8.0 s</text>
+
+        <line x1="330" y1="100" x2="330" y2="138" stroke="var(--symptom)" stroke-width="2" />
+        <circle cx="330" cy="144" r="5.5" fill="var(--symptom)" />
+        <text class="svg-t" x="330" y="62" text-anchor="middle" fill="var(--symptom)">SYMPTOM</text>
+        <text class="svg-b" x="330" y="84" text-anchor="middle">ekf_inconsistency</text>
+        <text class="svg-s" x="330" y="164" text-anchor="middle" fill="var(--symptom)">8.8 s</text>
+
+        <line x1="620" y1="100" x2="620" y2="138" stroke="var(--cause)" stroke-width="2" />
+        <circle cx="620" cy="144" r="5.5" fill="var(--cause)" />
+        <text class="svg-t" x="620" y="62" text-anchor="middle" fill="var(--cause)">ROOT CAUSE</text>
+        <text class="svg-b" x="620" y="84" text-anchor="middle">compass_inconsistency</text>
+        <text class="svg-s" x="620" y="164" text-anchor="middle" fill="var(--cause)">9.8 s</text>
+
+        <path d="M330,184 L330,192 L620,192 L620,184" fill="none" stroke="var(--cause)" stroke-width="1" opacity=".8" />
+        <text class="svg-n" x="475" y="210" text-anchor="middle" fill="var(--cause)">1.0 s persistence gate</text>
+        <text class="svg-s" x="475" y="228" text-anchor="middle" opacity=".8">ekf.py fires on threshold crossing &mdash; no gate</text>
+
+        <path d="M126,200 C200,200 262,186 322,160" fill="none" stroke="var(--mark)" stroke-width="1.2" opacity=".8" marker-end="url(#t-ar)" />
+        <text class="svg-l" x="40" y="198" fill="var(--mark)">B0: first advisory</text>
+        <text class="svg-s" x="40" y="216" fill="var(--mark)">after injection = root</text>
+      </svg>
+    </div>
+    <figcaption>
+      B0's decision rule and the persistence gate point in opposite directions. The gate is a source
+      constant, so the ordering holds on every flight and cannot be tuned away without redefining
+      the fault.
+    </figcaption>
+  </figure>
+
+  <!-- ============ 2 DESIGN ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">02</span><h2 class="tb-title">Experimental design</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">bundles</span><span class="tb-v">3</span></div>
+      <div class="tb-f"><span class="tb-k">prompt variants</span><span class="tb-v">3</span></div>
+      <div class="tb-f"><span class="tb-k">repeats</span><span class="tb-v">5</span></div>
+      <div class="tb-f"><span class="tb-k">interval</span><span class="tb-v hi">ci_bundle</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      Capture and judgement are separated: fly once, freeze a <code>RunBundle</code>, judge offline
+      against the frozen file. <code>bundle_id</code> excludes wall-clock timings so it fingerprints
+      the flight rather than the host; replay sets no ground-truth label; transport failures degrade
+      to the deterministic baseline and are attributed to <code>HARNESS</code>, never to the model.
+    </p>
+    <p>
+      Scoring is strict and binary per bundle. Naming a symptom scores zero rather than partial
+      credit. Every answer must cite evidence present in the flight, so a correct root cause anchored
+      to an event that never happened also scores zero. The correct answer is withheld by
+      construction and a test asserts it never appears in any judge-visible surface.
+    </p>
+    <p class="note mark">
+      <b>Statistics are per bundle</b> (<code>ci_bundle</code>), never per judgement. 9 bundles
+      &times; 3 prompt variants is 27 judgements but only 9 independent flights; treating them as 27
+      inflates n threefold. That exact error was made here and the significance claim built on it
+      was retracted.
+    </p>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">Judge</th><th scope="col">Construction</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">B0</th><td class="d">deterministic &mdash; first advisory after injection is the root cause. No model.</td></tr>
+        <tr><th scope="row">B1</th><td class="d">single-shot LLM call, no tools</td></tr>
+        <tr><th scope="row">B2</th><td class="d">self-consistency &mdash; repeated sampling, majority vote, budget-matched to B3. <span class="critt">Measured on the 9/22-bundle sweeps only</span>, so it is excluded from the 5-run table below rather than compared across protocols.</td></tr>
+        <tr><th scope="row">B3</th><td class="d">tool-using agent, may query the frozen bundle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ 3 CROSS-MODEL ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">03</span><h2 class="tb-title">The ranking inverts across model families</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">gemini B1&rarr;B3</span><span class="tb-v">0.911 &rarr; 0.667</span></div>
+      <div class="tb-f"><span class="tb-k">gpt B1&rarr;B3</span><span class="tb-v">0.711 &rarr; 0.956</span></div>
+      <div class="tb-f"><span class="tb-k">B0</span><span class="tb-v">0.000 both</span></div>
+      <div class="tb-f"><span class="tb-k">re-scored</span><span class="tb-v hi">2026-08-15</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col">Judge</th>
+            <th scope="col" style="text-align:right">gemini-2.5-flash</th>
+            <th scope="col" style="text-align:right">gpt-5.6-sol</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">B0 deterministic</th><td class="n zero">0.00</td><td class="n zero">0.00</td></tr>
+        <tr><th scope="row">B1 single-shot</th><td class="n win">0.91</td><td class="n">0.71</td></tr>
+        <tr><th scope="row">B3 tool agent</th><td class="n">0.67</td><td class="n win">0.96</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 292" role="img"
+           aria-label="Slope chart. From judge B1 to judge B3, gemini-2.5-flash falls from 0.91 to 0.67 while gpt-5.6-sol rises from 0.71 to 0.96. The lines cross, so judge ranking inverts between model families. B0 is flat at 0.00 for both.">
+        <line x1="150" y1="50"  x2="500" y2="50"  stroke="currentColor" stroke-width="1" opacity=".18" />
+        <line x1="150" y1="150" x2="500" y2="150" stroke="currentColor" stroke-width="1" opacity=".18" stroke-dasharray="2 4" />
+        <line x1="150" y1="250" x2="500" y2="250" stroke="currentColor" stroke-width="1" opacity=".32" stroke-dasharray="4 4" />
+        <text class="svg-s" x="132" y="54"  text-anchor="end" opacity=".75">1.00</text>
+        <text class="svg-s" x="132" y="154" text-anchor="end" opacity=".75">0.50</text>
+        <text class="svg-s" x="132" y="254" text-anchor="end" opacity=".75">0.00</text>
+        <text class="svg-l" x="150" y="30" text-anchor="middle" opacity=".85">B1 single-shot</text>
+        <text class="svg-l" x="500" y="30" text-anchor="middle" opacity=".85">B3 tool agent</text>
+        <line x1="150" y1="38" x2="150" y2="262" stroke="currentColor" stroke-width="1" opacity=".2" />
+        <line x1="500" y1="38" x2="500" y2="262" stroke="currentColor" stroke-width="1" opacity=".2" />
+
+        <line x1="150" y1="68" x2="500" y2="117" stroke="var(--alt)" stroke-width="2.5" />
+        <circle cx="150" cy="68"  r="5" fill="var(--alt)" />
+        <circle cx="500" cy="117" r="5" fill="var(--alt)" />
+        <text class="svg-n" x="138" y="72" text-anchor="end" fill="var(--alt)">0.91</text>
+        <text class="svg-s" x="516" y="114" fill="var(--alt)">gemini-2.5-flash</text>
+        <text class="svg-n" x="516" y="132" fill="var(--alt)">0.67</text>
+
+        <line x1="150" y1="108" x2="500" y2="59" stroke="var(--cause)" stroke-width="2.5" />
+        <circle cx="150" cy="108" r="5" fill="var(--cause)" />
+        <circle cx="500" cy="59"  r="5" fill="var(--cause)" />
+        <text class="svg-n" x="138" y="112" text-anchor="end" fill="var(--cause)">0.71</text>
+        <text class="svg-s" x="516" y="56" fill="var(--cause)">gpt-5.6-sol</text>
+        <text class="svg-n" x="516" y="74" fill="var(--cause)">0.96</text>
+
+        <circle cx="293" cy="88" r="7.5" fill="none" stroke="var(--mark)" stroke-width="1.5" />
+        <line x1="293" y1="96" x2="293" y2="182" stroke="var(--mark)" stroke-width="1" opacity=".5" stroke-dasharray="2 3" />
+        <text class="svg-l" x="293" y="200" text-anchor="middle" fill="var(--mark)">inversion</text>
+
+        <circle cx="150" cy="250" r="4" fill="currentColor" opacity=".45" />
+        <circle cx="500" cy="250" r="4" fill="currentColor" opacity=".45" />
+        <text class="svg-s" x="516" y="254" opacity=".7">B0 &mdash; 0.00 both</text>
+      </svg>
+    </div>
+    <figcaption>
+      &ldquo;The tool-using agent loses to single-shot&rdquo; is a property of gemini-2.5-flash, not
+      of agents. n = 3 bundles; the crossing is the finding, the magnitude is not established.
+    </figcaption>
+  </figure>
+
+  <!-- ============ 4 ISOLATION ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">04</span><h2 class="tb-title">The timestamp effect is model-specific</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">tools held at</span><span class="tb-v">2</span></div>
+      <div class="tb-f"><span class="tb-k">varying</span><span class="tb-v">presence of t</span></div>
+      <div class="tb-f"><span class="tb-k">(n/9)</span><span class="tb-v">symptom-as-root</span></div>
+      <div class="tb-f"><span class="tb-k">SPECS default</span><span class="tb-v no">open decision</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col">Model</th>
+            <th scope="col" style="text-align:right">timed tools</th>
+            <th scope="col" style="text-align:right">untimed (SPECS)</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">gpt-5.6-sol</th>
+            <td class="n win">1.00 <span class="sub">(0/9)</span></td>
+            <td class="n">0.96 <span class="sub">(0/9)</span></td></tr>
+        <tr><th scope="row">gemini-2.5-flash</th>
+            <td class="n">0.11 <span class="bad">(8/9)</span></td>
+            <td class="n">0.67 <span class="sub">(1/9)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p class="note said">
+      &ldquo;The EKF inconsistency was detected first&hellip; this likely caused the compass
+      inconsistency.&rdquo;
+    </p>
+    <p>
+      gemini reads advisory ordering as causal ordering &mdash; exactly the trap the fault is built
+      from. gpt-5.6-sol never names a symptom as root in any configuration tested, and is marginally
+      <em>better</em> with timestamps present. So &ldquo;give a diagnostic model evidence, not the
+      alarm log&rdquo; does not generalise.
+    </p>
+    <p class="note mark">
+      <b>Open decision.</b> <code>SPECS</code> is currently the timestamp-free surface, selected on
+      gemini-only evidence. Measured since: it rescues gemini (0.11 &rarr; 0.67) and costs
+      gpt-5.6-sol (1.00 &rarr; 0.96). Revert it, keep it as the safer floor, or select per model
+      &mdash; but <b>do not flip it again without measuring both models</b>.
+    </p>
+  </div>
+
+  <!-- ============ 5 VARIANCE ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">05</span><h2 class="tb-title">Run-to-run variance at temperature 0</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">spread</span><span class="tb-v no">0.11</span></div>
+      <div class="tb-f"><span class="tb-k">equals</span><span class="tb-v">1 judgement in 9</span></div>
+      <div class="tb-f"><span class="tb-k">B0</span><span class="tb-v hi">0.00 &times;5, exact</span></div>
+      <div class="tb-f"><span class="tb-k">affects</span><span class="tb-v">both families</span></div>
+    </div>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 258" role="img"
+           aria-label="Strip plot of five identical repeat runs. B0 returns 0.00 on all five. Gemini B1 returns 0.89 four times and 1.00 once, mean 0.911. Gemini B3 returns 0.67 four times and 0.78 once, mean 0.689. GPT B3 returns 0.89 twice and 1.00 three times, mean 0.956. Spread is 0.11 for every non-deterministic arm.">
+        <text class="svg-s" x="128" y="62"  text-anchor="end" opacity=".85">B0</text>
+        <text class="svg-s" x="128" y="108" text-anchor="end" opacity=".85">B1 gemini</text>
+        <text class="svg-s" x="128" y="154" text-anchor="end" opacity=".85">B3 gemini</text>
+        <text class="svg-s" x="128" y="200" text-anchor="end" opacity=".85">B3 gpt</text>
+
+        <line x1="140" y1="222" x2="620" y2="222" stroke="currentColor" stroke-width="1" opacity=".38" />
+        <text class="svg-s" x="140" y="240" text-anchor="middle" opacity=".7">0.00</text>
+        <text class="svg-s" x="380" y="240" text-anchor="middle" opacity=".7">0.50</text>
+        <text class="svg-s" x="620" y="240" text-anchor="middle" opacity=".7">1.00</text>
+        <line x1="140" y1="46" x2="140" y2="222" stroke="currentColor" stroke-width="1" opacity=".2" />
+        <line x1="380" y1="46" x2="380" y2="222" stroke="currentColor" stroke-width="1" opacity=".12" stroke-dasharray="2 4" />
+        <line x1="620" y1="46" x2="620" y2="222" stroke="currentColor" stroke-width="1" opacity=".2" />
+
+        <circle cx="140" cy="58" r="6" fill="var(--mark)" />
+        <text class="svg-s" x="154" y="62" fill="var(--mark)">&times;5 &mdash; exactly deterministic</text>
+
+        <line x1="567" y1="104" x2="620" y2="104" stroke="var(--alt)" stroke-width="1.5" opacity=".55" />
+        <circle cx="567" cy="104" r="6" fill="var(--alt)" />
+        <circle cx="620" cy="104" r="4.5" fill="var(--alt)" opacity=".6" />
+        <text class="svg-s" x="567" y="90" text-anchor="middle" fill="var(--alt)">&times;4</text>
+        <text class="svg-s" x="624" y="90" fill="var(--alt)">&times;1</text>
+        <text class="svg-n" x="553" y="108" text-anchor="end" fill="var(--alt)">mean 0.911</text>
+
+        <line x1="462" y1="150" x2="514" y2="150" stroke="var(--alt)" stroke-width="1.5" opacity=".55" />
+        <circle cx="462" cy="150" r="6" fill="var(--alt)" />
+        <circle cx="514" cy="150" r="4.5" fill="var(--alt)" opacity=".6" />
+        <text class="svg-s" x="462" y="136" text-anchor="middle" fill="var(--alt)">&times;4</text>
+        <text class="svg-s" x="518" y="136" fill="var(--alt)">&times;1</text>
+        <text class="svg-n" x="448" y="154" text-anchor="end" fill="var(--alt)">mean 0.689</text>
+
+        <line x1="567" y1="196" x2="620" y2="196" stroke="var(--cause)" stroke-width="1.5" opacity=".55" />
+        <circle cx="567" cy="196" r="4.5" fill="var(--cause)" opacity=".6" />
+        <circle cx="620" cy="196" r="6" fill="var(--cause)" />
+        <text class="svg-s" x="567" y="182" text-anchor="middle" fill="var(--cause)">&times;2</text>
+        <text class="svg-s" x="624" y="182" fill="var(--cause)">&times;3</text>
+        <text class="svg-n" x="553" y="200" text-anchor="end" fill="var(--cause)">mean 0.956</text>
+      </svg>
+    </div>
+    <figcaption>
+      Five identical repeats per arm. Large dot = modal value, small dot = the minority runs. B0
+      returns 0.00 five times out of five, as deterministic code must. Every model arm moves by
+      0.11 &mdash; one judgement in nine &mdash; so <strong>&ldquo;gemini is the noisy one&rdquo; is
+      not supported</strong>. Single runs produced three of the six retractions in this project.
+    </figcaption>
+  </figure>
+
+  <!-- ============ 6 GROUNDING ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">06</span><h2 class="tb-title">Fabrication is not the failure mode</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">verdicts</span><span class="tb-v">595</span></div>
+      <div class="tb-f"><span class="tb-k">ungrounded</span><span class="tb-v">2</span></div>
+      <div class="tb-f"><span class="tb-k">rate</span><span class="tb-v hi">0.34%</span></div>
+      <div class="tb-f"><span class="tb-k">gating</span><span class="tb-v">reported, not scored</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      <code>check_rationale_grounding</code> validates every measurement quoted in a verdict's
+      rationale prose against everything the flight recorded. Across 595 verdicts spanning four
+      judges and two model families: <strong>2 ungrounded quotes, 0.34%</strong>.
+    </p>
+    <p>
+      The case that motivated the check &mdash; gemini writing <em>&ldquo;at 9.062s&rdquo;</em>
+      &mdash; turns out to cite a real advisory time. <strong>The models are not inventing numbers;
+      they draw wrong conclusions from real ones.</strong> No grounding check catches that. Only a
+      scenario where the correct and the plausible answer diverge does.
+    </p>
+    <p class="note">
+      Grounding reports rather than gates by default (<code>strict_rationale=True</code> switches
+      it). Gating would silently change what every earlier number means.
+    </p>
+  </div>
+
+  <!-- ============ 7 DETECTORS ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">07</span><h2 class="tb-title">Detector state</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">flights</span><span class="tb-v">27</span></div>
+      <div class="tb-f"><span class="tb-k">raw detections</span><span class="tb-v">13,485</span></div>
+      <div class="tb-f"><span class="tb-k">advisories</span><span class="tb-v hi">79</span></div>
+      <div class="tb-f"><span class="tb-k">worst cycle</span><span class="tb-v">29.6 / 1,000 ms</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th scope="col">Detector</th>
+            <th scope="col" style="text-align:right">detections</th>
+            <th scope="col" style="text-align:right">advisories</th>
+            <th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">accel_clipping</th><td class="n">6,937</td><td class="n">17</td><td class="d">proven</td></tr>
+        <tr><th scope="row">vibration_excessive</th><td class="n">3,734</td><td class="n">20</td><td class="d">proven</td></tr>
+        <tr><th scope="row">actuator_saturation</th><td class="n">1,777</td><td class="n">23</td><td class="d">proven</td></tr>
+        <tr><th scope="row">ekf_inconsistency</th><td class="n">515</td><td class="n">8</td><td class="d">proven</td></tr>
+        <tr><th scope="row">compass_inconsistency</th><td class="n">459</td><td class="n">6</td><td class="d">proven</td></tr>
+        <tr><th scope="row">gps_fix_loss</th><td class="n">63</td><td class="n">5</td><td class="d">proven</td></tr>
+        <tr><th scope="row">gps_high_hdop</th><td class="n zero">0</td><td class="n zero">0</td>
+            <td class="d"><span class="critt">unreachable</span> &mdash; <code>SIM_GPS_UBLOX.cpp:284</code> hardcodes hDOP 1.21</td></tr>
+        <tr><th scope="row">control_oscillation</th><td class="n zero">0</td><td class="n zero">0</td>
+            <td class="d"><span class="critt">unreachable</span> &mdash; tracking error caps ~2.44&deg; against a 3.0&deg; threshold</td></tr>
+        <tr><th scope="row">battery_*</th><td class="n zero">0</td><td class="na">&mdash;</td>
+            <td class="d"><span class="warnt">SITL-silent</span> &mdash; fired once on a real log, never in simulation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p class="note mark">
+      <b>Six advisory types is the vocabulary ceiling.</b> A fault outside it produces silence, and
+      that miss rate is unmeasurable with injected faults &mdash; injection can only exercise
+      vocabulary the detectors already have.
+    </p>
+    <p>
+      <code>null</code>, <code>vibration</code>, <code>gps_loss</code> and <code>wind</code> are the
+      base four and pass 12/12; <code>null</code> and <code>wind</code> are the hallucination
+      controls and score 1.00 for all judges, separating nothing. <code>stiff_airframe</code> is
+      <span class="strike">retired</span> and <code>hot_gains</code> is
+      <span class="strike">blocked</span>. <strong><code>compass_offset</code> is the only
+      discriminating fault in the archive.</strong>
+    </p>
+    <p class="note">
+      Rule, not preference: <b>never lower a detector threshold to make a scenario pass.</b> Three
+      faults are recorded as unreachable rather than tuned into existence.
+    </p>
+  </div>
+
+  <!-- ============ 8 ARCHITECTURE ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">08</span><h2 class="tb-title">Context tiers, and disambiguating silence</h2></div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">Tier</th><th scope="col">Span</th><th scope="col">Mechanism</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">live</th><td class="d">120 s</td><td class="d"><code>RollingBuffer</code> &mdash; within-flight detection</td></tr>
+        <tr><th scope="row">bundle</th><td class="d">one flight</td><td class="d">frozen, hash-fingerprinted file</td></tr>
+        <tr><th scope="row">history</th><td class="d">30-day window</td><td class="d"><code>memory.py</code> &mdash; append-only JSONL per airframe; stores counts and dates, never the earlier flights</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">A quiet screen means</th><th scope="col">Reported by</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">nothing is wrong</th><td class="d">both green</td></tr>
+        <tr><th scope="row">nobody was listening</th><td class="d"><code>coverage.py</code> &mdash; detector preconditions unmet</td></tr>
+        <tr><th scope="row">the monitor fell behind</th><td class="d"><code>health.py</code> &mdash; link stall, packet loss, cycle overrun</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p>
+      <code>health.py</code> is reported and <strong>never corrective</strong> &mdash; a monitor that
+      quietly repairs itself is one whose degradation you learn about after the flight.
+    </p>
+    <p class="note">
+      <b>Unmeasured capabilities, not results:</b> <code>prior_incidents</code> and
+      <code>signal_trajectory</code>. No scenario repeats a fault on one airframe, and trajectory has
+      never been offered to a live model. <code>signal_trajectory</code> is bounded by construction
+      (1,056 samples render to 863 characters; 999 buckets clamp to 60), and
+      <code>detector_evidence</code> is capped &mdash; unbounded it returned 191,465 characters in a
+      single call.
+    </p>
+  </div>
+
+  <!-- ============ 9 INTEGRITY ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">09</span><h2 class="tb-title">What the archive does and does not prove</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">schema</span><span class="tb-v">version 2</span></div>
+      <div class="tb-f"><span class="tb-k">files verified</span><span class="tb-v hi">28 / 28</span></div>
+      <div class="tb-f"><span class="tb-k">signature</span><span class="tb-v no">unsigned</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <p>
+      <code>SCHEMA_VERSION = 2</code> ships with a migrator, so an old capture upgrades rather than
+      being orphaned. Three identities are legitimate here &mdash; <code>(v1, timing included)</code>,
+      <code>(v1, timing excluded)</code>, <code>(v2, timing excluded)</code>. Migration proves
+      authenticity against all three and <strong>nothing else</strong>, so it cannot launder a
+      tampered file. <code>manifest.py</code> adds full-length SHA-256 over file bytes, catching
+      edits that <code>bundle_id</code> is designed to ignore.
+    </p>
+    <p class="note mark">
+      <b>It is not a signature.</b> The optional HMAC is a shared secret, so anyone who can verify
+      can also forge. This archive verifies as <b>unsigned</b> &mdash; tamper-evident against
+      accidental drift, not against a motivated editor. Claiming otherwise would be the security
+      theatre this project exists to avoid.
+    </p>
+    <p class="note">
+      <b>What that rule still failed to prevent.</b> On 2026-08-15 the v1&rarr;v2 migration
+      recomputed every <code>bundle_id</code> &mdash; and the 60 verdict files store it as a foreign
+      key, so all of them stopped resolving and no figure regenerated. Bumping the version and
+      adding a migrator covers the bundles and nothing that points at them. Fixed by letting a
+      verdict cite any id its flight legitimately answered to, recorded on the row rather than
+      applied silently; no verdict file was rewritten and <code>bundle_id</code> was not weakened.
+      The rule is now three clauses, not two.
+    </p>
+  </div>
+
+  <!-- ============ 10 STANDING ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">10</span><h2 class="tb-title">Standing of each claim</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">discriminating faults</span><span class="tb-v no">1</span></div>
+      <div class="tb-f"><span class="tb-k">flights behind AI claims</span><span class="tb-v no">3</span></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th scope="col">Claim</th><th scope="col">Standing</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">B0 = 0.00</th>
+            <td class="d"><strong>Robust.</strong> 10+ runs, both model families, every configuration, zero exceptions. Wrong by construction, not by measurement.</td></tr>
+        <tr><th scope="row">Ranking inverts</th>
+            <td class="d">Observed on 3 bundles. Mechanism defensible &mdash; visible in the model's own words, disappears when ordering is removed. Magnitude not established.</td></tr>
+        <tr><th scope="row">Fabrication rare (0.34%)</th>
+            <td class="d">595 verdicts. Solid as a rate; says nothing about reasoning quality.</td></tr>
+        <tr><th scope="row">Anything about &ldquo;agents&rdquo; generally</th>
+            <td class="d"><span class="critt">Not established.</span> Every agent-level claim tested here turned out to be a property of one model.</td></tr>
+        <tr><th scope="row">prior_incidents, signal_trajectory</th>
+            <td class="d"><span class="critt">Unmeasured.</span> Capabilities, never exercised against a live model.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="body">
+    <p>
+      More models will not fix the base problem. A <strong>second discriminating fault</strong>
+      would, and it most likely requires a new <em>detector</em> carrying its own persistence gate
+      rather than a new scenario file &mdash; only <code>compass.py</code> and
+      <code>oscillation.py</code> have time gates today, and one of those is unreachable. Three
+      candidate scenarios are already ruled out with measurements.
+    </p>
+  </div>
+
+  <!-- ============ 11 RUN IT ============ -->
+
+  <div class="tb">
+    <div class="tb-top"><span class="tb-no">11</span><h2 class="tb-title">Running it yourself</h2></div>
+    <div class="tb-fields">
+      <div class="tb-f"><span class="tb-k">detection path</span><span class="tb-v hi">no API key</span></div>
+      <div class="tb-f"><span class="tb-k">research path</span><span class="tb-v">needs a gateway key</span></div>
+      <div class="tb-f"><span class="tb-k">stack</span><span class="tb-v">ArduPilot only</span></div>
+    </div>
+  </div>
+
+  <div class="body">
+    <pre>git clone https://github.com/RahulRajelli/sentinel-realtime
+git clone https://github.com/RahulRajelli/ardupilot-log-analyzer   # the detectors, not on PyPI
+pip install -e sentinel-realtime && pip install -e ardupilot-log-analyzer
+
+# offline, no API key
+python -m pytest -q                       # 186 passed
+python scripts/manifest.py --verify       # 28/28, signature: unsigned
+sentinel analyze YOURFLIGHT.BIN           # your own ArduPilot dataflash log
+
+# re-score the published figures from the committed verdicts
+python scripts/e4_report.py --bundles bundles \
+  --verdicts results/crossmodel/gpt2_run1.json --only compass_offset
+
+# judge a new scenario - two models, five runs each, never one of either
+export OPENAI_BASE_URL="https://api.llmapi.ai/v1"; export OPENAI_API_KEY=...
+python scripts/e4_judge.py --bundles bundles --only YOUR_SCENARIO \
+  --judges B0,B1,B3 --provider openai --model gpt-5.6-sol --out verdicts.json</pre>
+    <p class="note mark">
+      <b>B0 must score 0.00 on any scenario you claim is ambiguous</b>, on every model and every
+      run. It is deterministic code with no model in it. If B0 is not 0.00, the scenario is not
+      ambiguous and nothing else in the run means anything.
+    </p>
+  </div>
+
+  <footer>
+    Models named throughout because they disagree: gemini-2.5-flash via Google ADC, gpt-5.6-sol via
+    the llmapi gateway. An unnamed finding on this test may simply be false.<br />
+    Figures measured 2026-08-15, re-scored the same day after the identity-alias fix &middot;
+    Apache-2.0 &middot;
+    <a href="https://github.com/RahulRajelli/sentinel-realtime">github.com/RahulRajelli/sentinel-realtime</a><br />
+    Also available: a <a href="https://claude.ai/code/artifact/c3c723db-7b07-4922-9834-2f46ad62ba83">plain-language version</a>
+    and the <a href="https://claude.ai/code/artifact/554679d7-96b3-4a94-806c-7f7376891953">general write-up</a>.
+  </footer>
+
+</div>
