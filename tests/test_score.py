@@ -256,3 +256,89 @@ def test_bundle_id_still_changes_when_the_flight_changes():
     other = RunBundle(scenario="replay:x", cycles=[CycleRecord(t=1.0)], params={"P": 2.0})
     assert base.bundle_id != moved.bundle_id
     assert base.bundle_id != other.bundle_id
+
+
+# --- citation anchors -----------------------------------------------------------------------
+#
+# Added 2026-08-15 with the value anchor. Before it, `Citation.t` was mandatory, so a judge
+# reading `evidence_untimed` -- which removes every timestamp by design -- could not produce a
+# valid citation at all. Measured: 2 of 9 agent verdicts per run named the CORRECT root cause and
+# scored zero for it, in all five repeats.
+#
+# The risk in relaxing a validation rule is that it stops validating. These tests exist to prove
+# it still does: a fabricated value must fail exactly as a fabricated timestamp does.
+
+from sentinel.score import check_citations, recorded_values  # noqa: E402
+
+
+def _cited_bundle() -> RunBundle:
+    """One flight with a single known evidence value: mag_variance = 2.619 at t=10.0."""
+    inc = Incident(t_start=9.75, t_end=10.0, type="compass_inconsistency", severity="warning",
+                   evidence=[Evidence(metric="EKF_Magnetometer_Variance", value=2.619,
+                                      threshold=1.0, unit="ratio")])
+    return RunBundle(
+        scenario="compass_offset", expected_root_cause="compass_inconsistency",
+        t_inject=8.0, inject_verified=True,
+        cycles=[CycleRecord(t=9.0, incidents=[]), CycleRecord(t=10.0, incidents=[inc])],
+        advisories=[AdvisoryRecord(t=10.0, type="compass_inconsistency",
+                                   severity="warning", reason="new")],
+    )
+
+
+def _verdict(citations) -> Verdict:
+    return Verdict(judge="B3", bundle_id="x", root_cause="compass_inconsistency",
+                   citations=citations)
+
+
+def test_value_anchored_citation_is_accepted():
+    """The whole point: no timestamp, but the value is real."""
+    ok, problems = check_citations(_cited_bundle(), _verdict(
+        [Citation(metric="EKF_Magnetometer_Variance", value=2.619)]))
+    assert ok, problems
+
+
+def test_fabricated_value_is_rejected():
+    """The anti-relaxation test. An invented number must fail like an invented timestamp."""
+    ok, problems = check_citations(_cited_bundle(), _verdict(
+        [Citation(metric="EKF_Magnetometer_Variance", value=99.9)]))
+    assert not ok
+    assert "matches no recorded value" in problems[0]
+
+
+def test_citation_with_neither_anchor_is_rejected():
+    """Newly expressible, and newly the main risk: a bare metric name points at nothing."""
+    ok, problems = check_citations(_cited_bundle(), _verdict(
+        [Citation(metric="EKF_Magnetometer_Variance")]))
+    assert not ok
+    assert "neither a timestamp nor a value" in problems[0]
+
+
+def test_temporal_citation_still_works():
+    ok, _ = check_citations(_cited_bundle(), _verdict(
+        [Citation(metric="EKF_Magnetometer_Variance", t=10.0)]))
+    assert ok
+
+
+def test_timestamp_outside_the_window_still_fails():
+    ok, problems = check_citations(_cited_bundle(), _verdict(
+        [Citation(metric="EKF_Magnetometer_Variance", t=999.0)]))
+    assert not ok and "outside window" in problems[0]
+
+
+def test_unknown_metric_fails_whichever_anchor_is_used():
+    for cite in (Citation(metric="not_a_metric", t=10.0),
+                 Citation(metric="not_a_metric", value=2.619)):
+        ok, problems = check_citations(_cited_bundle(), _verdict([cite]))
+        assert not ok and "never appears" in problems[0]
+
+
+def test_value_anchor_tolerates_a_json_round_trip():
+    """Both sides have been through JSON; exact float equality would reject honest citations."""
+    ok, _ = check_citations(_cited_bundle(), _verdict(
+        [Citation(metric="EKF_Magnetometer_Variance", value=2.6190001)]))
+    assert ok
+
+
+def test_recorded_values_reads_the_flight():
+    assert recorded_values(_cited_bundle(), "EKF_Magnetometer_Variance") == [2.619]
+    assert recorded_values(_cited_bundle(), "nope") == []

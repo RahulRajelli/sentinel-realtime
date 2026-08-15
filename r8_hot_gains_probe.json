@@ -1,0 +1,37 @@
+[
+ {
+  "scenario": "hot_gains",
+  "expected": "control_oscillation",
+  "ok": false,
+  "injected": [
+   "ATC_RAT_RLL_P=0.45",
+   "ATC_RAT_PIT_P=0.45"
+  ],
+  "inject_verified": true,
+  "first_advised": "actuator_saturation",
+  "latency_s": 1.8,
+  "all_advised": [
+   "actuator_saturation"
+  ],
+  "false_positives": 0,
+  "incidents": 306,
+  "advisories": 2,
+  "suppression": 0.993,
+  "cycles": 181,
+  "buffer_first": 217,
+  "buffer_last": 3312,
+  "detect_ms_first": 0.73,
+  "detect_ms_last": 5.9,
+  "worst_cycle_ms": 19.9,
+  "ambiguous": true,
+  "expected_first": [
+   "actuator_saturation",
+   "ekf_inconsistency"
+  ],
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\hot_gains_r0.json",
+  "bundle_id": "79759aa3c198a814",
+  "rep": 0
+ }
+]

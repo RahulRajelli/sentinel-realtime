@@ -67,7 +67,9 @@ VERDICT_SCHEMA: dict[str, Any] = {
                     "t": {"type": "number"},
                     "value": {"type": ["number", "null"]},
                 },
-                "required": ["metric", "t"],
+                # `t` is optional: a judge reading a timestamp-free tool anchors on
+                # `value` instead. check_citations rejects a citation carrying neither.
+                "required": ["metric"],
                 "additionalProperties": False,
             },
         },
@@ -336,10 +338,13 @@ def _verdict(judge_id: str, bundle: RunBundle, budget: Budget, variant: str,
         if not isinstance(c, dict):
             continue
         try:
-            citations.append(Citation(metric=str(c["metric"]), t=float(c["t"]),
-                                      value=_opt_float(c.get("value"))))
+            cite = Citation(metric=str(c["metric"]), t=_opt_float(c.get("t")),
+                            value=_opt_float(c.get("value")))
         except (KeyError, TypeError, ValueError):
             continue
+        # Same rule as agent.py: `t` is optional, but an anchor is not.
+        if cite.anchored:
+            citations.append(cite)
 
     snap = budget.snapshot()
     snap["wall_ms"] = (time.perf_counter() - t0) * 1000.0

@@ -1,0 +1,767 @@
+{
+ "bundles": [
+  "208f0c138b8eb274",
+  "3404617f357fb1fa",
+  "34c046b569ac3636",
+  "402239eaf6ed326b",
+  "90d7c50c2486d8a5",
+  "b4cf4b11ce47dcfb",
+  "5737e7818788d367",
+  "a935333bb24792d1",
+  "b1b9f96896136032"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "vertex/gemini-2.5-flash",
+ "judges": [
+  "B3"
+ ],
+ "withheld_tools": [
+  "list_advisories",
+  "ordering",
+  "detector_evidence",
+  "signal_window"
+ ],
+ "verdicts": [
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.0,
+   "rationale": "The available tools do not provide access to time-series metric data, which is necessary to support a root cause claim with specific observations and timestamps.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 611,
+   "tokens_out": 3146,
+   "calls": 1,
+   "wall_ms": 22083.390400002827,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.1,
+   "rationale": "The available tools do not allow querying of relevant metrics to determine the root cause. Without additional sensor or EKF state data, it is not possible to distinguish between cause and effect for the reported advisories.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 638,
+   "tokens_out": 3730,
+   "calls": 1,
+   "wall_ms": 25907.05949999392,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.0,
+   "rationale": "No metric data was captured to evaluate the thresholds for the detected advisories. Therefore, a definitive root cause cannot be determined from the available information.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1417,
+   "tokens_out": 2769,
+   "calls": 2,
+   "wall_ms": 17571.529799999553,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.7,
+   "rationale": "A compass inconsistency directly impacts the Extended Kalman Filter's ability to maintain a consistent state estimate, leading to the observed EKF inconsistency. The EKF relies on accurate magnetic heading data.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.078,
+     "value": 1.0
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.063,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 597,
+   "tokens_out": 2738,
+   "calls": 1,
+   "wall_ms": 16085.282100000768,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.0,
+   "rationale": "The available tools do not allow querying of time-series metrics, such as EKF_Magnetometer_Variance, which would be necessary to determine the root cause of the observed advisories. Therefore, a definitive root cause cannot be established based on the provided information and tools.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 624,
+   "tokens_out": 4856,
+   "calls": 1,
+   "wall_ms": 30230.42809999606,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.0,
+   "rationale": "The system detected 'ekf_inconsistency' and 'compass_inconsistency' advisories. However, the necessary metric 'EKF_Magnetometer_Variance' was not captured, preventing a thorough analysis of the underlying cause.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1389,
+   "tokens_out": 1694,
+   "calls": 2,
+   "wall_ms": 12536.889500013785,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.8,
+   "rationale": "Compass inconsistency directly affects the EKF's state estimation, leading to an EKF inconsistency. Although EKF inconsistency was detected first, compass issues are a common underlying cause for EKF errors.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 609,
+   "tokens_out": 2139,
+   "calls": 1,
+   "wall_ms": 13344.193800003268,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.0,
+   "rationale": "The available tools do not allow for querying time-series metric data, thus preventing the identification of a root cause for the reported advisories. While 'EKF_Magnetometer_Variance' was an available metric, its values could not be observed.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 636,
+   "tokens_out": 1122,
+   "calls": 1,
+   "wall_ms": 7042.492300010053,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.7,
+   "rationale": "Compass inconsistency directly impacts the Extended Kalman Filter's ability to estimate attitude and position accurately, leading to EKF inconsistency. Therefore, compass inconsistency is the underlying fault explaining both advisories.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 688,
+   "tokens_out": 2648,
+   "calls": 1,
+   "wall_ms": 20134.961100004148,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration and accelerometer clipping occurred simultaneously at 8.766s, followed by actuator saturation at 10.578s. Excessive vibration is a common cause of accelerometer clipping, which can then lead to control system instability and actuator saturation.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 10.578,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 699,
+   "tokens_out": 2649,
+   "calls": 1,
+   "wall_ms": 27633.15259999945,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration and accelerometer clipping occurred simultaneously, suggesting vibration caused the clipping. Actuator saturation followed, likely as a consequence of the flight controller struggling with clipped accelerometer data.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 10.578,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 726,
+   "tokens_out": 2061,
+   "calls": 1,
+   "wall_ms": 12784.982600001968,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "vibration_excessive",
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.0,
+   "rationale": "The system raised advisories for excessive vibration, accelerometer clipping, and actuator saturation. However, attempts to retrieve the measured values for the relevant metrics (ClipCountTotal, Saturated_Motor_Count, VibeX, VibeY, VibeZ) using the `get_param` tool failed, indicating these parameters were not captured. Without access to the underlying metric values, it is not possible to determine the root cause of these advisories.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1707,
+   "tokens_out": 3576,
+   "calls": 2,
+   "wall_ms": 22468.190999992657,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.8,
+   "rationale": "Excessive vibration was detected at 8.766 seconds, which is a common cause for accelerometer clipping, also detected at 8.766 seconds. The subsequent actuator saturation at 11.532 seconds is likely a secondary effect as the flight controller attempts to compensate for the instability.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 700,
+   "tokens_out": 3982,
+   "calls": 1,
+   "wall_ms": 22004.17529999686,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration occurred simultaneously with accelerometer clipping, indicating the vibration caused the clipping. Actuator saturation followed, likely as a consequence of the flight controller attempting to stabilize the UAV with corrupted sensor data.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 11.532,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 727,
+   "tokens_out": 1803,
+   "calls": 1,
+   "wall_ms": 12368.513800000073,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "vibration_excessive",
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.0,
+   "rationale": "Cannot determine the root cause as the relevant metric data for the detected incidents (ClipCountTotal, Saturated_Motor_Count, VibeX, VibeY, VibeZ) is not available through the provided tools.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1709,
+   "tokens_out": 2857,
+   "calls": 2,
+   "wall_ms": 17576.14070001,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first, which likely caused the accelerometers to clip. Both issues then contributed to the flight controller demanding more from the actuators, leading to saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 718,
+   "tokens_out": 3243,
+   "calls": 1,
+   "wall_ms": 18701.42610000039,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first, simultaneously with accelerometer clipping. This vibration likely caused the clipping, which in turn led to actuator saturation as the flight controller tried to compensate for faulty sensor data.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 10.562,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 745,
+   "tokens_out": 2410,
+   "calls": 1,
+   "wall_ms": 17811.77810000372,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "vibration_excessive",
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.0,
+   "rationale": "The system raised advisories for excessive vibration, accelerometer clipping, and actuator saturation. However, the tool was unable to retrieve any measured values for the available metrics, preventing a determination of the root cause.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1745,
+   "tokens_out": 2235,
+   "calls": 2,
+   "wall_ms": 14700.034599998617,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first, coinciding with accelerometer clipping. This vibration likely caused the clipping and contributed to the later actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 712,
+   "tokens_out": 5865,
+   "calls": 1,
+   "wall_ms": 33626.04499999725,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first, which likely caused the accelerometer clipping. The flight controller's response to these issues then led to actuator saturation.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 9.75,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 739,
+   "tokens_out": 1796,
+   "calls": 1,
+   "wall_ms": 10625.455300003523,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation",
+    "vibration_excessive"
+   ],
+   "confidence": 0.0,
+   "rationale": "The system detected several advisories, but the underlying metric data was not captured. Therefore, it is not possible to determine the root cause or verify the advisories.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1733,
+   "tokens_out": 1940,
+   "calls": 2,
+   "wall_ms": 14328.76240000769,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected early in the flight, which likely led to accelerometer clipping. The flight controller's attempts to stabilize the vehicle under these conditions then resulted in actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 724,
+   "tokens_out": 2501,
+   "calls": 1,
+   "wall_ms": 18114.119800011395,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 0.0,
+   "rationale": "The available tool 'get_param' does not allow retrieving time-series metric data or values at specific timestamps, which is necessary to support claims about root causes and symptoms with required citations.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 751,
+   "tokens_out": 3642,
+   "calls": 1,
+   "wall_ms": 23437.11220000114,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation",
+    "vibration_excessive"
+   ],
+   "confidence": 0.0,
+   "rationale": "The system detected several advisories, but the necessary metric data to investigate their causes was not captured. Therefore, a root cause cannot be determined from the available information.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2746,
+   "tokens_out": 3205,
+   "calls": 3,
+   "wall_ms": 20132.05630000448,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Both excessive vibration and accelerometer clipping were detected simultaneously. Excessive vibration is a common cause for accelerometers to clip, as the sensor's measurement limits can be exceeded.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.016,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 615,
+   "tokens_out": 3038,
+   "calls": 1,
+   "wall_ms": 18956.53599999787,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration at 9.016s likely caused the accelerometer to clip, as accelerometers can saturate under strong vibrations.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.016,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 642,
+   "tokens_out": 3056,
+   "calls": 1,
+   "wall_ms": 19149.707000004128,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "vibration_excessive",
+    "accel_clipping"
+   ],
+   "confidence": 0.0,
+   "rationale": "The system detected both excessive vibration and accelerometer clipping simultaneously. However, the relevant metric data (ClipCountTotal, VibeX, VibeY, VibeZ) was not captured, preventing a determination of the root cause.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1446,
+   "tokens_out": 3446,
+   "calls": 2,
+   "wall_ms": 23235.387900000205,
+   "seed": 0
+  }
+ ]
+}

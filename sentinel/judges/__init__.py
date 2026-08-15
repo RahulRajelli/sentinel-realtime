@@ -33,14 +33,31 @@ if TYPE_CHECKING:  # avoids a circular import; Budget arrives in step 3
 class Citation(BaseModel):
     """One pointer into the bundle supporting a verdict.
 
-    `t` is checked against the captured window by the scorer. A citation to a moment the flight
-    never observed is a fabrication however plausible the value looks -- spec section 11's
-    fabrication probe, applied to the judge instead of to the advisory.
+    **Two anchors are accepted, and exactly one must be present.**
+
+    * *temporal* -- `t` is checked against the captured window. A citation to a moment the flight
+      never observed is a fabrication however plausible the value looks: spec section 11's
+      fabrication probe, applied to the judge instead of to the advisory.
+    * *value* -- `value` is checked against the evidence actually recorded for `metric`. Added
+      2026-08-15, because `evidence_untimed` deliberately removes every timestamp and a judge
+      reading it therefore has no `t` to cite. Measured before the fix: 2 of 9 agent verdicts per
+      run named the CORRECT root cause and scored zero for carrying no citation -- the judge was
+      failing a rule it structurally could not satisfy, which `attribute()` correctly blamed on
+      the harness.
+
+    **The value anchor is not a relaxation.** A fabricated number fails it just as a fabricated
+    timestamp fails the temporal one: the scorer looks the value up in recorded evidence. What
+    changes is *which* coordinate has to be real, not whether one does. A citation carrying
+    neither is still rejected.
     """
 
     metric: str                    # a signal/evidence metric name, or an incident type
-    t: float
+    t: float | None = None
     value: float | None = None
+
+    @property
+    def anchored(self) -> bool:
+        return self.t is not None or self.value is not None
 
 
 class Verdict(BaseModel):
