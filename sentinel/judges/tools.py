@@ -50,8 +50,12 @@ EVIDENCE_TAIL = 5
 class BundleTools:
     """The whole world a judge is allowed to observe, for one bundle."""
 
-    def __init__(self, bundle: RunBundle) -> None:
+    def __init__(self, bundle: RunBundle, history: Any | None = None) -> None:
         self._b = bundle
+        # A `memory.FlightHistory`, or None. Optional so every existing caller, every test and
+        # every offline judgement keeps working with no store on disk -- a judge with no history
+        # is the normal case, not a degraded one.
+        self._history = history
 
     # ---- tools ----------------------------------------------------------------------
 
@@ -169,6 +173,32 @@ class BundleTools:
             "first": rows[:EVIDENCE_HEAD],
             "last": rows[-EVIDENCE_TAIL:],
         }
+
+    def prior_incidents(self) -> dict[str, Any]:
+        """What this airframe has done on earlier flights. Durable memory, opt-in.
+
+        The only tool that reaches outside the frozen bundle. Everything else this class exposes
+        is bounded by one flight and 120 seconds of buffer; a maintainer's most useful question
+        is older than that. "Third compass anomaly in eight flights" is frequently the whole
+        diagnosis, and no within-flight evidence can produce it.
+
+        Returns counts and dates, never the earlier flights themselves. Handing a judge four
+        previous bundles multiplies its input by four and re-creates the payload failure measured
+        on 2026-08-14, where one unbounded tool result exhausted the token ceiling before the
+        agent reasoned at all.
+
+        The flight under judgement is excluded from its own history, or every fault would look
+        like a recurrence of itself.
+        """
+        if self._history is None:
+            return {"error": "no flight history is attached to this judgement",
+                    "note": "the judge is seeing a single flight with no prior record; "
+                            "absence of history is not evidence of a healthy airframe"}
+        if not self._b.airframe_id:
+            return {"error": "this flight records no airframe_id, so it cannot be matched "
+                             "against a history"}
+        return self._history.prior_incidents(
+            self._b.airframe_id, exclude_bundle_id=self._b.bundle_id)
 
     def evidence_untimed(self, incident_type: str) -> Any:
         """`detector_evidence` with every temporal field removed. Opt-in (`OPTIONAL_SPECS`).
@@ -311,6 +341,11 @@ class BundleTools:
     # re-run is not a result, and because a future detector set with different semantics might
     # justify revisiting them -- with a measurement, as these were.
     OPTIONAL_SPECS: list[dict[str, Any]] = [
+        {"name": "prior_incidents",
+         "description": ("What this same airframe did on earlier flights: which advisory types "
+                         "recurred, on how many flights, and how recently. Use it to tell a "
+                         "recurring airframe fault from something new to this flight."),
+         "parameters": {"type": "object", "properties": {}, "required": []}},
         {"name": "list_advisories",
          "description": "Every advisory raised, earliest first, with severity and first-seen time.",
          "parameters": {"type": "object", "properties": {}, "required": []}},

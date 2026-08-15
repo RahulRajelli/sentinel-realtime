@@ -128,6 +128,17 @@ class RunBundle(BaseModel):
     note: str = ""
     created_utc: str = ""
 
+    # Which aircraft this flight was flown on. The key `memory.FlightHistory` groups by, so a
+    # judge can ask whether a fault is recurring on this airframe or new to this flight.
+    #
+    # EXCLUDED from `_identity_payload` on purpose, and this is the one decision here that could
+    # break the archive if got wrong. It is provenance, not content -- the same class as
+    # `created_utc`. Two identical flights labelled with different airframes are still the same
+    # flight, and including it would change every existing bundle_id and orphan the archive.
+    # Because it is excluded and defaults to "", bundles written before this field still load
+    # and still hash to their stored ids, so no SCHEMA_VERSION bump is required.
+    airframe_id: str = ""
+
     # None means "a clean system stays quiet" -- the null and wind scenarios. Any non-null
     # verdict on those is a hallucination, which is the same gate `r7_r8_scenarios.py:272` runs.
     expected_root_cause: str | None = None

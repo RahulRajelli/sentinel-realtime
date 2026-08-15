@@ -38,6 +38,7 @@ from pymavlink import mavutil
 from sentinel.bundle import InjectedParam
 from sentinel.capture import BundleRecorder, compare_results, metrics_from_result
 from sentinel.gate import EscalationGate
+from sentinel.memory import FlightHistory
 from sentinel.runner import LiveRunner
 
 WSL_DISTRO = "Ubuntu-24.04"
@@ -393,7 +394,7 @@ def arm_and_takeoff(conn, alt=10.0):
 def run_scenario(name: str, cfg: dict, instance: int,
                  inject_at: float, duration: float,
                  bundles_dir: Path | None = None, rep: int = 0,
-                 tag: str | None = None) -> dict:
+                 tag: str | None = None, airframe_id: str = "sitl-quad") -> dict:
     port = port_for_instance(instance)
     print(f"\n{'=' * 78}\nSCENARIO: {name}   ({cfg['note']})")
     print(f"  SITL instance {instance} -> tcp:127.0.0.1:{port}\n{'=' * 78}")
@@ -533,8 +534,16 @@ def run_scenario(name: str, cfg: dict, instance: int,
         if bundles_dir is not None:
             bundle = recorder.finish(params=runner.params,
                                      metrics=metrics_from_result(result))
+            # Airframe identity, so the flight can join a cross-flight history. Set BEFORE save
+            # so the file on disk carries it; excluded from bundle_id by design (bundle.py), so
+            # setting it does not change the fingerprint of the flight.
+            bundle.airframe_id = airframe_id
             stem = f"{name}_{tag}_r{rep}" if tag else f"{name}_r{rep}"
             path = bundle.save(Path(bundles_dir) / f"{stem}.json")
+            # Durable memory. Append-only, and appended AFTER the bundle is safely written so a
+            # crash between the two leaves history short rather than claiming a flight that has
+            # no file behind it.
+            FlightHistory().record_flight(bundle, airframe_id)
             result["bundle"] = str(path)
             result["bundle_id"] = bundle.bundle_id
             print(f"  bundle: {path.name}  id={bundle.bundle_id}  "
