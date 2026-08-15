@@ -46,6 +46,12 @@ class BundleRecorder:
         self.expected_root_cause = expected_root_cause
         self.expected_symptoms = list(expected_symptoms or [])
 
+        # Detectors seen OK at least once, and the last reason each blind one gave. A detector
+        # blind for part of a flight and fine for the rest is NOT blind -- it observed. Only a
+        # detector that never once had its inputs is reported as blind.
+        self._ever_ok: set[str] = set()
+        self._blind_reason: dict[str, str] = {}
+
         self._cycles: list[CycleRecord] = []
         self._advisories: list[AdvisoryRecord] = []
         self._injection: list[InjectedParam] = []
@@ -56,6 +62,11 @@ class BundleRecorder:
 
     def on_cycle(self, report) -> None:
         """Record one `runner.CycleReport`. Called from the harness's existing `on_cycle`."""
+        for name, status in (getattr(report, "coverage", None) or {}).items():
+            if status == "ok":
+                self._ever_ok.add(name)
+            else:
+                self._blind_reason[name] = status
         self._cycles.append(CycleRecord(
             t=report.t,
             incidents=list(report.incidents),
@@ -97,7 +108,21 @@ class BundleRecorder:
             cycles=self._cycles,
             advisories=self._advisories,
             metrics=metrics,
+            detector_coverage=self._coverage_summary(),
         )
+
+    def _coverage_summary(self) -> dict:
+        """Flight-level: who could look, who never could, and what that means for silence."""
+        blind = {n: r for n, r in self._blind_reason.items() if n not in self._ever_ok}
+        return {
+            "ok": sorted(self._ever_ok),
+            "blind": blind,
+            "note": ("A blind detector raised nothing because it could not look, not because "
+                     "the aircraft was healthy."
+                     if blind else
+                     "Every detector had its inputs at some point, so silence from any of "
+                     "them is a real observation."),
+        }
 
 
 def metrics_from_result(result: dict) -> RunMetrics:

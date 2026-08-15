@@ -207,3 +207,76 @@ def test_trajectory_never_leaks_ground_truth():
     visible = json.dumps(BundleTools(_climbing()).signal_trajectory("VibeX"))
     for key in FORBIDDEN_KEYS:
         assert key not in visible
+
+
+# --- detector coverage --------------------------------------------------------------------
+#
+# A detector that RAISES is loud (per_detector_ms = -1.0). A detector that returns [] because its
+# inputs were missing or too slow is silent, and indistinguishable from one that found nothing.
+# detect_oscillation does that below 7 Hz of ATT. These tests pin the distinction.
+
+from sentinel.coverage import (  # noqa: E402
+    BLIND, NO_DATA, NO_DESIRED_ATTITUDE, OK, RATE_TOO_LOW, blind_detectors, detector_coverage,
+    summarise,
+)
+
+
+class _Log:
+    def __init__(self, messages):
+        self.messages = messages
+
+
+def _att(n, hz, desired=True):
+    step = 1.0 / hz
+    return [{"t": i * step, "Roll": 0.0, "Pitch": 0.0,
+             **({"DesRoll": 0.0, "DesPitch": 0.0} if desired else {})} for i in range(n)]
+
+
+def test_a_detector_with_no_inputs_is_reported_blind_not_healthy():
+    cov = detector_coverage(_Log({"ATT": _att(60, 10)}))
+    assert cov["vibration"]["status"] == NO_DATA
+    assert "vibration" in blind_detectors(cov)
+
+
+def test_oscillation_below_the_rate_floor_is_reported_not_silent():
+    """The actual vulnerability: slow the link and this detector switches itself off."""
+    cov = detector_coverage(_Log({"ATT": _att(60, 4.0)}))
+    assert cov["oscillation"]["status"] == RATE_TOO_LOW
+    assert "4.0 Hz" in cov["oscillation"]["detail"]
+
+
+def test_oscillation_without_a_commanded_attitude_is_reported():
+    cov = detector_coverage(_Log({"ATT": _att(60, 10, desired=False)}))
+    assert cov["oscillation"]["status"] == NO_DESIRED_ATTITUDE
+
+
+def test_a_fully_fed_detector_reads_ok():
+    cov = detector_coverage(_Log({"ATT": _att(60, 10), "VIBE": [{"t": 0.0}]}))
+    assert cov["oscillation"]["status"] == OK
+    assert cov["vibration"]["status"] == OK
+
+
+def test_every_blind_status_is_declared_in_BLIND():
+    """A new blind state that nobody added to BLIND would read as healthy."""
+    cov = detector_coverage(_Log({"ATT": _att(60, 4.0)}))
+    for name, c in cov.items():
+        if c["status"] != OK:
+            assert c["status"] in BLIND, f"{name} has an undeclared non-ok status"
+
+
+def test_summary_says_what_silence_means():
+    blind_sum = summarise(detector_coverage(_Log({"ATT": _att(60, 4.0)})))
+    assert "could not look" in blind_sum["note"]
+    ok_sum = summarise({"vibration": {"status": OK, "detail": ""}})
+    assert "real observation" in ok_sum["note"]
+
+
+def test_the_tool_states_the_ambiguity_for_older_flights():
+    b = _bundle("old", ["compass_inconsistency"], NOW)
+    out = BundleTools(b).detector_coverage()
+    assert "error" in out and "ambiguous" in out["note"]
+
+
+def test_coverage_tool_is_opt_in():
+    assert "detector_coverage" not in {s["name"] for s in BundleTools.SPECS}
+    assert "detector_coverage" in {s["name"] for s in BundleTools.OPTIONAL_SPECS}

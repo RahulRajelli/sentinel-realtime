@@ -35,6 +35,7 @@ import hashlib
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -138,6 +139,15 @@ class RunBundle(BaseModel):
     # Because it is excluded and defaults to "", bundles written before this field still load
     # and still hash to their stored ids, so no SCHEMA_VERSION bump is required.
     airframe_id: str = ""
+
+    # Flight-level detector coverage: which detectors could evaluate, and why not where they
+    # could not. Stored as a summary rather than per cycle, because 181 cycles x 7 detectors of
+    # near-identical status strings is payload with no extra information in it -- the same
+    # reasoning that capped `detector_evidence`.
+    #
+    # EXCLUDED from `_identity_payload`, like `airframe_id`: it describes the observing
+    # conditions, not what the aircraft did, and including it would change every existing hash.
+    detector_coverage: dict[str, Any] = Field(default_factory=dict)
 
     # None means "a clean system stays quiet" -- the null and wind scenarios. Any non-null
     # verdict on those is a hallucination, which is the same gate `r7_r8_scenarios.py:272` runs.

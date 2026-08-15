@@ -31,6 +31,7 @@ from flightdx.live.adapter import MavlinkAdapter
 from flightdx.schema import Incident, ParsedLog
 from flightdx.signals import build_signals
 
+from sentinel.coverage import detector_coverage
 from sentinel.params import ParamCache
 
 # timeline and errors are omitted: they read log.modes / log.events, which are built by the
@@ -68,6 +69,15 @@ class CycleReport:
     build_ms: float
     messages_in: int
     per_detector_ms: dict[str, float] = field(default_factory=dict)
+
+    # Which detectors could evaluate this window, and why not where they could not.
+    #
+    # A detector that RAISES is already loud: per_detector_ms records -1.0 and the loop prints.
+    # A detector that returns [] because its inputs were missing or too slow is silent, and
+    # indistinguishable from one that looked and found nothing. `detect_oscillation` does exactly
+    # that below 7 Hz of ATT. Absence of an advisory has meant two opposite things; this field
+    # separates them.
+    coverage: dict[str, str] = field(default_factory=dict)
 
     @property
     def total_ms(self) -> float:
@@ -159,6 +169,10 @@ class LiveRunner:
         log = self.build_log()
         build_ms = (time.perf_counter() - t_build) * 1000.0
 
+        # Computed once per cycle from the same log the detectors are about to read, so it
+        # reflects what they were actually given rather than what the link looked like earlier.
+        coverage = detector_coverage(log)
+
         incidents: list[Incident] = []
         per_detector: dict[str, float] = {}
         t_detect = time.perf_counter()
@@ -181,6 +195,7 @@ class LiveRunner:
             build_ms=build_ms,
             messages_in=self.messages_seen,
             per_detector_ms=per_detector,
+            coverage={k: v["status"] for k, v in coverage.items()},
         )
 
     def run(
