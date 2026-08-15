@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sentinel — what the detector saw, and what the agent said</title>
+<style>
+  :root{
+    --bg:#ffffff; --fg:#16181d; --muted:#5c6370; --line:#dfe3e8;
+    --wrong:#b3261e; --right:#146c43; --panel:#f6f7f9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#101216; --fg:#e8eaed; --muted:#9aa1ab; --line:#2a2f37;
+      --wrong:#f2857c; --right:#6fce9f; --panel:#171a20;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  main{max-width:760px; margin:0 auto; padding:48px 20px 72px}
+  h1{font-size:24px; line-height:1.25; margin:0 0 6px; letter-spacing:-.01em}
+  .sub{color:var(--muted); margin:0 0 40px; font-size:15px}
+  h2{font-size:13px; text-transform:uppercase; letter-spacing:.08em;
+     color:var(--muted); font-weight:600; margin:44px 0 14px}
+  p{margin:0 0 14px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+  /* timeline */
+  .tl{border-left:2px solid var(--line); margin:0; padding:2px 0 2px 20px}
+  .tl div{position:relative; padding:9px 0}
+  .tl div::before{content:""; position:absolute; left:-25px; top:16px;
+    width:8px; height:8px; border-radius:50%; background:var(--line)}
+  .tl div.sym::before{background:var(--wrong)}
+  .tl div.cause::before{background:var(--right)}
+  .t{display:inline-block; min-width:66px; color:var(--muted)}
+  .tag{font-size:11px; letter-spacing:.06em; padding:1px 6px; border-radius:3px;
+       border:1px solid var(--line); color:var(--muted); margin-left:8px}
+  .gap{margin-top:10px; padding-left:20px; color:var(--muted); font-size:14px}
+
+  table{border-collapse:collapse; width:100%; font-size:14.5px; margin:0 0 6px}
+  th,td{text-align:left; padding:10px 10px 10px 0; border-bottom:1px solid var(--line);
+        vertical-align:top}
+  th{font-weight:600; color:var(--muted); font-size:12.5px; text-transform:uppercase;
+     letter-spacing:.05em}
+  td.answer{white-space:nowrap}
+  .no{color:var(--wrong)} .yes{color:var(--right)}
+  .score{font-variant-numeric:tabular-nums}
+
+  .who{background:var(--panel); border:1px solid var(--line); border-radius:6px;
+       padding:14px 16px; margin:16px 0 0; font-size:14px}
+  .who dt{color:var(--muted); font-size:12.5px; text-transform:uppercase;
+          letter-spacing:.05em; margin-top:10px}
+  .who dt:first-child{margin-top:0}
+  .who dd{margin:2px 0 0}
+  .note{color:var(--muted); font-size:14px; border-left:2px solid var(--line);
+        padding-left:14px; margin:16px 0}
+  footer{margin-top:52px; padding-top:18px; border-top:1px solid var(--line);
+         color:var(--muted); font-size:13px}
+  a{color:inherit}
+
+  /* isometric airframe */
+  .fig{margin:0 0 34px; padding:0}
+  .fig svg{width:100%; max-width:420px; display:block; margin:0 auto;
+           color:var(--fg); overflow:visible}
+  .fig figcaption{text-align:center; color:var(--muted); font-size:12.5px; margin-top:2px}
+  .fig .arm{stroke:currentColor; stroke-width:2; fill:none; stroke-linecap:round}
+  .fig .body{stroke:currentColor; stroke-width:2; fill:none; stroke-linejoin:round}
+  .fig .rotor line{stroke:currentColor; stroke-width:2; stroke-linecap:round}
+  .fig .rotor ellipse{stroke:currentColor; stroke-width:1.5; fill:none; opacity:.55}
+  .fig .ref{stroke:currentColor; stroke-width:1; stroke-dasharray:4 5; opacity:.35}
+  .fig .sweep{stroke:currentColor; stroke-width:1.5; fill:none; stroke-dasharray:3 4; opacity:.5}
+  .fig .tip{stroke:currentColor; stroke-width:1.5; fill:none; stroke-linecap:round; opacity:.5}
+  .fig .cap{fill:currentColor; opacity:.5; font-size:9px;
+            font-family:ui-monospace,Menlo,Consolas,monospace}
+  .fig .cap.mid{text-anchor:middle}
+</style>
+</head>
+<body>
+<main>
+
+  <h1>One fault, three judges, and only one of them gets it right</h1>
+  <p class="sub">Flight <span class="mono">hot_gains_lowd</span> — a control-loop limit cycle,
+     captured in SITL on 2026-08-15. Everything below is measured, not illustrated.</p>
+
+  <figure class="fig">
+    <svg viewBox="0 0 300 186" role="img" aria-label="Isometric quadrotor rocking either side of level">
+      <!-- level reference -->
+      <line class="ref" x1="30" y1="96" x2="270" y2="96"/>
+      <text class="cap" x="30" y="88">level</text>
+
+      <!-- the airframe, tilted off level -->
+      <g transform="rotate(-11 150 96)">
+        <!-- arms -->
+        <path class="arm" d="M150 96 L236 96 M150 96 L64 96 M150 96 L150 146 M150 96 L150 46"/>
+        <!-- body -->
+        <path class="body" d="M150 80 L174 96 L150 112 L126 96 Z"/>
+        <!-- motors + rotor discs -->
+        <g class="rotor">
+          <line x1="236" y1="96" x2="236" y2="86"/><ellipse cx="236" cy="86" rx="24" ry="9"/>
+          <line x1="64"  y1="96" x2="64"  y2="86"/><ellipse cx="64"  cy="86" rx="24" ry="9"/>
+          <line x1="150" y1="146" x2="150" y2="136"/><ellipse cx="150" cy="136" rx="24" ry="9"/>
+          <line x1="150" y1="46" x2="150" y2="36"/><ellipse cx="150" cy="36" rx="24" ry="9"/>
+        </g>
+      </g>
+
+      <!-- oscillation sweep -->
+      <path class="sweep" d="M74 128 A 84 84 0 0 1 226 128"/>
+      <path class="tip" d="M74 128 l 9 -5 M74 128 l 1 -10"/>
+      <path class="tip" d="M226 128 l -9 -5 M226 128 l -1 -10"/>
+      <text class="cap mid" x="150" y="172">rocking +-26 to 29 deg, sign alternating, ~30 s</text>
+    </svg>
+    <figcaption>Schematic, not plotted data. The measured excursions are in the table below.</figcaption>
+  </figure>
+
+  <h2>What the detectors reported</h2>
+  <div class="tl">
+    <div><span class="t mono">t = 8.000</span> fault injected</div>
+    <div class="sym"><span class="t mono">t = 11.062</span> actuator_saturation
+      <span class="tag">SYMPTOM</span></div>
+    <div class="cause"><span class="t mono">t = 12.781</span> control_oscillation
+      <span class="tag">ROOT CAUSE</span></div>
+  </div>
+  <p class="gap">The cause is reported <strong>1.719 s after</strong> the symptom it caused —
+     because the oscillation detector waits two windows before speaking, and the saturation
+     detector does not wait at all. Zero false positives before injection.</p>
+
+  <p>So anything that answers &ldquo;what failed?&rdquo; by taking the first alarm is wrong here,
+     every single time. That is the trap this flight exists to set.</p>
+
+  <h2>Who answered what</h2>
+  <table>
+    <thead>
+      <tr><th>Judge</th><th>Model</th><th>Answer</th><th class="score">Accuracy</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>B0 — deterministic rule</td>
+        <td class="mono" style="color:var(--muted)">none</td>
+        <td class="answer mono no">actuator_saturation</td>
+        <td class="score">0.00</td>
+      </tr>
+      <tr>
+        <td>B3 — tool agent<br><span style="color:var(--muted);font-size:13px">default tool surface</span></td>
+        <td class="mono">gpt-5.6-sol</td>
+        <td class="answer mono no">actuator_saturation</td>
+        <td class="score">0.00</td>
+      </tr>
+      <tr>
+        <td>B3 — tool agent<br><span style="color:var(--muted);font-size:13px">+ exceedance_ranking</span></td>
+        <td class="mono">gpt-5.6-sol</td>
+        <td class="answer mono yes">control_oscillation</td>
+        <td class="score">0.53</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">B0 named the symptom on 5 of 5 runs. B3 on the default surface named it on
+     <strong>15 of 15</strong> judgements. With one extra read-only tool it named the cause on
+     8 of 15. Same model, same prompts, same flight — the difference is what the agent could
+     look at.</p>
+
+  <h2>Which model, and over which route</h2>
+  <dl class="who">
+    <dt>Model</dt><dd class="mono">gpt-5.6-sol</dd>
+    <dt>Route</dt><dd class="mono">https://api.llmapi.ai/v1</dd>
+    <dt>Protocol</dt><dd>5 runs &times; 3 prompt wordings. 0 harness failures.</dd>
+    <dt>Cross-check</dt>
+    <dd><span class="mono">gemini-3.7-flash</span> over the same route also scored
+        <span class="mono">0.00</span> on the default surface — symptom named 15 of 15.</dd>
+  </dl>
+  <p class="note">The route is named because it changes the answer. The same model measured
+     <span class="mono">0.11</span> through one provider and <span class="mono">0.46</span>
+     through another, on identical prompts. &ldquo;We used GPT&rdquo; is not a reproducible claim.</p>
+
+  <h2>How much of this is the model</h2>
+  <p>Most of it. Across the committed verdict files:</p>
+  <table>
+    <tbody>
+      <tr>
+        <td style="width:38%"><strong>1,080</strong> judgements</td>
+        <td>made by a language model — B1 single-shot and B3 tool-calling agent</td>
+      </tr>
+      <tr>
+        <td><strong>270</strong> judgements</td>
+        <td>made by the deterministic rule, which exists to be the baseline the agent
+            must beat</td>
+      </tr>
+      <tr>
+        <td><strong>11</strong> model/route pairs</td>
+        <td>gpt-5.6-sol, gemini-2.5/3.7-flash, claude-sonnet-5, deepseek-v4 pro and flash,
+            grok-4.6, qwen3.8-max, kimi-k3, zai-glm-5.2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Where the model deliberately is not</h2>
+  <table>
+    <tbody>
+      <tr>
+        <td style="width:38%">In flight, real time</td>
+        <td>Deterministic detectors. Worst cycle 18 ms of a 1000 ms budget.
+            <strong>No model.</strong></td>
+      </tr>
+      <tr>
+        <td>After the flight, on the recording</td>
+        <td>The agent reads the captured bundle and names a root cause.
+            <strong>This is where the model runs.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">No language model is anywhere near flight control, and a test in the suite
+     asserts it. That boundary is the engineering claim, not a limitation: the agent gets the
+     job where being slow is free and being wrong is auditable, and is kept out of the one loop
+     where neither is true.</p>
+
+  <footer>
+    Every figure regenerates from the committed verdict files; a test fails if any of them
+    stops reproducing. Accuracy is a mean over 5 runs — this fault has one captured flight,
+    so read the ranking, not the second decimal.
+  </footer>
+
+</main>
+</body>
+</html>
