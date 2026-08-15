@@ -130,6 +130,28 @@ def pick_spread(available: list[str], n: int) -> list[str]:
     return picked
 
 
+def pick_families(available: list[str], families: list[str], per_family: int) -> list[str]:
+    """Resolve named families to real gateway ids.
+
+    Ids are matched against what the gateway actually offers rather than written down here:
+    a hardcoded id that has been renamed or retired is a 404, which costs a slot and looks in
+    the results table exactly like a model that failed the task.
+
+    A family that matches nothing is returned as an explicit miss by the caller, not dropped --
+    silently sweeping 5 families when 6 were asked for is how a coverage claim stops being true.
+    """
+    usable = [m for m in available if not any(s in m.lower() for s in _SKIP)]
+    picked: list[str] = []
+    for fam in families:
+        hits = [m for m in usable if fam.lower() in m.lower()]
+        # Prefer the plainest id in the family: fewest separators, then shortest, then
+        # alphabetical. Dated or size-suffixed variants ("-2026-01-14", "-32b-instruct") are
+        # usually checkpoints of the same model, and one representative per family is the point.
+        hits.sort(key=lambda m: (m.count("-") + m.count("_") + m.count(":"), len(m), m))
+        picked.extend(hits[:per_family])
+    return picked
+
+
 # ---------------------------------------------------------------- running
 
 def cell_path(outdir: Path, model: str, run: int) -> Path:
@@ -278,6 +300,13 @@ def main() -> int:
     ap.add_argument("--models-file", default=None, help="one model id per line; # comments ok")
     ap.add_argument("--models-from-gateway", type=int, default=None,
                     help="discover ids from {base-url}/models and pick N spread across families")
+    ap.add_argument("--families", default=None,
+                    help="comma-separated family substrings (e.g. "
+                         "deepseek,qwen,grok,kimi,sonnet,devstral). Ids are resolved against "
+                         "what the gateway actually offers; a family matching nothing is "
+                         "reported, not silently skipped")
+    ap.add_argument("--per-family", type=int, default=1,
+                    help="how many ids to take per family (default 1 representative)")
     ap.add_argument("--list-models", action="store_true",
                     help="print every id the gateway offers, then exit")
     ap.add_argument("--base-url", default=os.environ.get("OPENAI_BASE_URL", DEFAULT_BASE_URL))
@@ -306,6 +335,28 @@ def main() -> int:
         text = Path(args.models_file).read_text(encoding="utf-8")
         models = [ln.strip() for ln in text.splitlines()
                   if ln.strip() and not ln.strip().startswith("#")]
+    elif args.families:
+        wanted_fams = [f.strip() for f in args.families.split(",") if f.strip()]
+        if args.dry_run:
+            models = [f"dry-{f}" for f in wanted_fams for _ in range(args.per_family)]
+        else:
+            if not key:
+                print("OPENAI_API_KEY is not set; cannot discover models", file=sys.stderr)
+                return 2
+            available = fetch_models(args.base_url, key)
+            models = pick_families(available, wanted_fams, args.per_family)
+            found = {f for f in wanted_fams
+                     if any(f.lower() in m.lower() for m in models)}
+            missing = [f for f in wanted_fams if f not in found]
+            print(f"gateway offers {len(available)} ids; resolved {len(models)} "
+                  f"across {len(found)} of {len(wanted_fams)} families")
+            for m in models:
+                print(f"    {m}")
+            if missing:
+                # Loud, because a family that silently vanished turns "6 families tested" into
+                # a false statement in whatever gets published from this.
+                print(f"  NO MATCH for {missing} -- these families were NOT swept. "
+                      f"Run --list-models to see what the gateway calls them.")
     elif args.models_from_gateway:
         if args.dry_run:
             models = [f"dry-model-{i:02d}" for i in range(1, args.models_from_gateway + 1)]
