@@ -154,12 +154,22 @@
         <td class="answer mono yes">control_oscillation</td>
         <td class="score">0.53</td>
       </tr>
+      <tr>
+        <td>B3 — tool agent<br><span style="color:var(--muted);font-size:13px">+ exceedance_ranking</span></td>
+        <td class="mono">gemini-3.7-flash</td>
+        <td class="answer mono no">actuator_saturation</td>
+        <td class="score">0.00</td>
+      </tr>
     </tbody>
   </table>
   <p class="note">B0 named the symptom on 5 of 5 runs. B3 on the default surface named it on
-     <strong>15 of 15</strong> judgements. With one extra read-only tool it named the cause on
-     8 of 15. Same model, same prompts, same flight — the difference is what the agent could
-     look at.</p>
+     <strong>15 of 15</strong> judgements. With one extra read-only tool, <span class="mono">gpt-5.6-sol</span>
+     named the cause on 8 of 15 — and <span class="mono">gemini-3.7-flash</span>, offered the very
+     same tool, still named the symptom <strong>15 of 15</strong>.</p>
+  <p class="note">So the tool is decisive for one model and inert for another. The tempting
+     headline — &ldquo;better tools fix agents&rdquo; — is not what was measured. What was measured
+     is that <strong>a tool surface cannot be evaluated apart from the model that consumes it</strong>.
+     That is the less comfortable result, and it is the one the runs support.</p>
 
   <h2>Which model, and over which route</h2>
   <dl class="who">

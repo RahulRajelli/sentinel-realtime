@@ -166,6 +166,39 @@ surface rather than the judge, giving it the ranking should move it too.
 
 Either way this is the difference between "a model did better with a better tool" and "the tool
 surface was the limiting factor", and only the second is a finding about agent design.
+
+### RESULT — the falsifier fired. It is one judge, not the harness.
+
+`gemini-3.7-flash @ https://api.llmapi.ai/v1`, same arm, 5 runs, 0 degraded:
+
+| | without the tool | with `exceedance_ranking` |
+|---|---|---|
+| B3 mean | 0.00 | **0.00** |
+| symptom named | 15 / 15 | **15 / 15** |
+| B1 (no tools, control) | 0.07 | 0.13 |
+| B0 | 0.00 | 0.00 |
+
+**Not one judgement moved.** The tool was offered, the model had the same ranking available that
+took gpt from 0/15 to 8/15, and it named the symptom every single time. B0 held at 0.00, so the
+cell is readable and the scenario did not shift underneath it.
+
+**So the headline narrows, and this is the honest version:**
+
+* ~~The tool surface was the bottleneck.~~
+* **For `gpt-5.6-sol`, the tool surface was the bottleneck** — 0.00 to 0.53, with pair A holding
+  at 0.98.
+* **For `gemini-3.7-flash`, it was not.** Same tool, same route, same flight, no movement at all.
+
+That distinction matters more than the win did. "Better tools fix agents" would have been a claim
+about harness design; what is actually measured is that **the same tool is decisive for one model
+and inert for another**, which means a tool surface cannot be evaluated apart from the model that
+consumes it. That is a sharper and less comfortable result, and it is the one the data supports.
+
+**What it does not license:** concluding gemini-3.7-flash is worse. It scored **1.00** on pair A's
+prevalence sweep — the only model of nine that never fell for the ordering trap — and it fails
+pair C completely with and without help. Two faults, opposite orderings between the two models.
+Nine models were measured on pair A and two on pair C; the prevalence sweep should be re-run on
+pair C before anything is said about which models this generalises to.
 * **The promotion criterion is met but promotion has NOT been made.** The stated bar was "pair C
   improves AND pair A does not regress", and both held. `exceedance_ranking` nonetheless stays in
   `OPTIONAL_SPECS`, because moving it into the default changes what every published figure means
