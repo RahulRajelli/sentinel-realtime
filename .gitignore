@@ -32,3 +32,5 @@ START-HERE.md
 # this is just the terminal transcript of the run that produced them.
 prevalence_run.log
 prevalence_flash.log
+prevalence_gemini37.log
+prevalence_gemini25.log
