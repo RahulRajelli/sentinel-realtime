@@ -224,7 +224,7 @@ footer {
       <div class="tb-f"><span class="tb-k">design</span><span class="tb-v">3 &times; 3 &times; 5</span></div>
       <div class="tb-f"><span class="tb-k">scored on</span><span class="tb-v hi">bundles</span></div>
       <div class="tb-f"><span class="tb-k">models</span><span class="tb-v">gemini-2.5-flash<br />gpt-5.6-sol</span></div>
-      <div class="tb-f"><span class="tb-k">tests</span><span class="tb-v">186 offline</span></div>
+      <div class="tb-f"><span class="tb-k">tests</span><span class="tb-v">215 offline</span></div>
       <div class="tb-f"><span class="tb-k">archive</span><span class="tb-v">28/28, unsigned</span></div>
     </div>
   </div>
@@ -742,7 +742,7 @@ git clone https://github.com/RahulRajelli/ardupilot-log-analyzer   # the detecto
 pip install -e sentinel-realtime && pip install -e ardupilot-log-analyzer
 
 # offline, no API key
-python -m pytest -q                       # 186 passed
+python -m pytest -q                       # 215 passed
 python scripts/manifest.py --verify       # 28/28, signature: unsigned
 sentinel analyze YOURFLIGHT.BIN           # your own ArduPilot dataflash log
 

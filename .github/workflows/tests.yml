@@ -24,4 +24,16 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements-ci.txt
       - run: pip install ./_flightdx
-      - run: pytest -q
+
+      # Named separately from the rest of the suite on purpose. On 2026-08-15 the schema
+      # migration recomputed every bundle_id, all 60 committed verdict files stopped resolving,
+      # and no published figure regenerated for a day -- while CI stayed green, because nothing
+      # read those files. A failure here means the repository's central claim (that its numbers
+      # can be checked) is currently false, which is a different kind of red than a unit test.
+      - name: "reproducibility gate: published figures regenerate from committed verdicts"
+        run: pytest -q tests/test_published_figures.py
+
+      # --ignore rather than a second full run: the gate re-scores 25 verdict files and is the
+      # slow part of the suite, and paying for it twice per push buys nothing.
+      - name: offline suite
+        run: pytest -q --ignore=tests/test_published_figures.py
