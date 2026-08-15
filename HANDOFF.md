@@ -3,21 +3,13 @@
 Read this first in a new session. Technical state only; the career/priority context lives in
 `../plans/FOCUS.md`, which is private and not in this repo.
 
-> **Unfinished when this branch was pushed.** A full B0/B1/B2/B3 sweep over 22 bundles (the two
-> ambiguous-pair scenarios PLUS the base four, so the table finally has hallucination controls)
-> was still running and its output `verdicts_default_v2.json` is NOT in this commit. It is the
-> first sweep on the new default tool surface. Re-run it:
+> **Read the variance section before quoting any number here.** Gemini is not deterministic at
+> temperature 0, and the spread is one judgement in nine. A single sweep is an anecdote; the
+> five-repeat study is the measurement.
 >
-> ```bash
-> python scripts/e4_judge.py --bundles bundles \
->   --only compass_offset,stiff_airframe,null,vibration,gps_loss,wind \
->   --provider gemini --out verdicts_default_v2.json
-> python scripts/e4_report.py --bundles bundles --verdicts verdicts_default_v2.json \
->   --only compass_offset,stiff_airframe,null,vibration,gps_loss,wind --markdown
-> ```
->
-> Every number in section 1 comes from the 9-bundle run and is reproducible from the verdict
-> files committed here.
+> **Hallucination controls now exist and pass.** The 22-bundle sweep (`verdicts_default_v2.json`)
+> includes `null` and `wind`: **1.00 for all four judges** — no judge invented a fault on a clean
+> flight. Until this run that claim was untested, because those bundles were unloadable.
 
 **The one sentence that matters:** the ambiguous pair works and the experiment finally produced a
 real result — but the result is that **the tool-using agent ties the free baseline and loses to
@@ -107,6 +99,37 @@ tool that exists and refuses still tells the model the question is askable).
 | **plus `evidence_untimed`** | **1/27** | **0.89** | **1.00** | **0.96** | 0.11 | **5,239** |
 
 Same model, same prompts, same bundles. **Only the tool surface changed.**
+
+### Run-to-run variance — measure it before quoting any single run
+
+Five independent judge passes, identical config, identical three `compass_offset` bundles,
+current default tool surface. 9 judgements per run:
+
+| judge | the five runs | min | max | **mean** | spread |
+|---|---|---|---|---|---|
+| B0 | 0.00 x5 | 0.00 | 0.00 | **0.00** | 0.00 |
+| B1 | .89 .89 .89 .89 1.00 | 0.89 | 1.00 | **0.91** | 0.11 |
+| B3 | .78 .67 .67 .67 .67 | 0.67 | 0.78 | **0.69** | 0.11 |
+
+**Gemini is NOT deterministic at temperature 0 / seed 0.** Spread is 0.11 — one judgement in
+nine. Any single-run number carries that.
+
+**Correction.** An earlier draft of this file reported the tool-surface fix as compass
+0.00 -> 0.89 / overall 0.96, from one run. **That run was the outlier.** The honest figure is
+**0.00 -> 0.69 +/- 0.11**. The effect is still roughly six times the noise, so the finding stands;
+its magnitude was overstated.
+
+**B1 beats B3, and this one IS established** — across five runs the distributions do not overlap
+(every B1 >= 0.89, every B3 <= 0.78). Note the contrast with the retracted single-run CI claim:
+repeats established what one interval could not.
+
+**The whole residual gap is a defect this repo introduced.** Every run has exactly 2 of 9 B3
+verdicts naming the CORRECT root cause with zero citations; B1 has 0 in all five runs. Add them
+back and B3 is 0.89 — B1's score. `Citation` requires a `t` that resolves inside the flight
+window, and `evidence_untimed` removes every timestamp, so the agent cannot satisfy a rule the
+scorer enforces. **This is the top open item** (section 4): it is the difference between "the
+agent ties the best baseline" and "the agent loses", and it is a design tradeoff, not a bug fix —
+verifiability wants a cited moment, the fix works by hiding moments.
 
 **Established:**
 1. Symptom-as-root goes 9/27 -> 7/27 -> 0/27 as ordering TOOLS are removed. The endpoints are a
@@ -264,12 +287,19 @@ so regenerate it before publishing that number.
 
 ## 4. Do this next
 
-1. **Decide whether `evidence_untimed` becomes the default tool surface.** It is built, tested
-   (99 tests) and proven, but deliberately opt-in via `OPTIONAL_SPECS` so the published table's
-   five-tool configuration never changed underneath it. Promoting it to `SPECS` — and probably
-   retiring `ordering` — is a product decision, not a code one: it changes what "the agent" means
-   in every future run. Re-run the full B0/B1/B2/B3 sweep after deciding, so one table reports
-   all four tiers under the same surface.
+1. **Make `evidence_untimed` citable — the highest-value item, and a design decision.**
+   Measured every run: 2 of 9 B3 verdicts name the correct root cause and score 0 for carrying no
+   citation. That single defect is the entire remaining B3-vs-B1 gap. The tension is real —
+   `score.py` requires a citation whose `t` resolves inside the flight window, and this tool
+   works by removing `t`. Three options, none free:
+   * let `Citation` anchor on (metric, value) and have `check_citations` verify the value appears
+     in recorded evidence — keeps verifiability, drops the temporal anchor;
+   * expose one non-ordering timestamp (e.g. the peak sample per metric) — restores citability,
+     but peaks across two incident types can still be compared, so ordering leaks back;
+   * relax the scorer for untimed judges — cheapest, and the worst: it grades the agent on an
+     easier rule than the baselines and quietly breaks the comparison.
+   The first is preferred. Whichever is chosen, re-run the five-repeat variance study, not one
+   sweep.
 2. **Re-run the judge sweep with the base four included**, so the table finally has
    hallucination controls (`null`, `wind`) behind its "0 hallucinated" claim.
 3. **Find a second ambiguous mechanism.** Only `compass_offset` works, so every E4 number rests

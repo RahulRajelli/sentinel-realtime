@@ -1,0 +1,5854 @@
+{
+ "bundles": [
+  "208f0c138b8eb274",
+  "3404617f357fb1fa",
+  "34c046b569ac3636",
+  "896e80fee24e416e",
+  "9a1ade06256729d3",
+  "192489aec54c340f",
+  "dd5db6ad0a2e784f",
+  "e45e50e57e384578",
+  "1f5e008947dbe604",
+  "33f446d5fc91d428",
+  "402239eaf6ed326b",
+  "90d7c50c2486d8a5",
+  "b4cf4b11ce47dcfb",
+  "5737e7818788d367",
+  "a935333bb24792d1",
+  "b1b9f96896136032",
+  "b234e5f2d4871e39",
+  "29649fc98b539fa8",
+  "1265b7d3dc330517",
+  "fdaa1d8991f4ef92",
+  "279e6911bea7db7a",
+  "ba71cc5e8d46a07f"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "vertex/gemini-2.5-flash",
+ "judges": [
+  "B0",
+  "B1",
+  "B2",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [],
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "-",
+   "root_cause": "ekf_inconsistency",
+   "symptoms": [
+    "compass_inconsistency"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062000000005355,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 6.278200002270751,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "-",
+   "root_cause": "ekf_inconsistency",
+   "symptoms": [
+    "compass_inconsistency"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.077999999994063,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 6.121700003859587,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "-",
+   "root_cause": "ekf_inconsistency",
+   "symptoms": [
+    "compass_inconsistency"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 5.202100001042709,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "-",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.061999999990803,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.5682999908458441,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "-",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.5367999983718619,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "-",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.01600000000326,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.5246999935479835,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 9.98399999999674,
+     "value": 727.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 3.233299998100847,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "-",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "no advisory raised after injection",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.3586999955587089,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "-",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "no advisory raised after injection",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.33059999987017363,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "-",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "no advisory raised after injection",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.3310999891255051,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.76600000000326,
+     "value": 181.15655517578125
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 18.047799996566027,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 8.76600000000326,
+     "value": 160.88519287109375
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 16.52430000831373,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.764999999999418,
+     "value": 181.071533203125
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 16.942699992796406,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.047000000005937,
+     "value": 133.9990692138672
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 15.251099990564398,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.827999999994063,
+     "value": 157.13772583007812
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 23.487200000090525,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.015999999988708,
+     "value": 142.55197143554688
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 17.783400006010197,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.031000000002678,
+     "value": 84.17076110839844
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 1.8008000042755157,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 9.030999999988126,
+     "value": 106.57665252685547
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 1.941499998793006,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "-",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 9.047000000005937,
+     "value": 83.57308197021484
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 1.8965999915963039,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "-",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "no advisory raised after injection",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.3443999885348603,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "-",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "no advisory raised after injection",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.3311000036774203,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "-",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "no advisory raised after injection",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 0.3226999979233369,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The EKF magnetometer variance exceeded its threshold, leading the filter to reject the compass. This compass inconsistency then manifested as an EKF inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1673,
+   "tokens_out": 2337,
+   "calls": 2,
+   "wall_ms": 18894.351499999175,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The EKF magnetometer variance exceeded its consistency threshold, causing the filter to reject the compass. This compass inconsistency then led to a general EKF inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1783,
+   "tokens_out": 3211,
+   "calls": 2,
+   "wall_ms": 20449.16629999352,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "Both advisories were triggered by the EKF_Magnetometer_Variance exceeding its threshold. The 'compass_inconsistency' advisory explicitly states the EKF is rejecting the compass, indicating a primary issue with the compass data that explains the general EKF inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062,
+     "value": 2.619
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1831,
+   "tokens_out": 2445,
+   "calls": 2,
+   "wall_ms": 14720.63040001376,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The EKF magnetometer variance exceeded its threshold, causing the EKF to reject the compass data. This compass inconsistency is the root cause, leading to the observed EKF inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.063,
+     "value": 2.616
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.078,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2463,
+   "tokens_out": 2323,
+   "calls": 3,
+   "wall_ms": 14717.282999990857,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The EKF detected an inconsistency due to the magnetometer variance exceeding its threshold, indicating the compass data was unreliable and rejected by the filter.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.063,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1699,
+   "tokens_out": 2843,
+   "calls": 2,
+   "wall_ms": 17661.73069999786,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "Both advisories are triggered by the EKF_Magnetometer_Variance exceeding its threshold. The 'compass_inconsistency' advisory explicitly states that the EKF is rejecting the compass, indicating the compass as the root cause of the magnetometer variance and subsequent EKF inconsistency.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1803,
+   "tokens_out": 1305,
+   "calls": 2,
+   "wall_ms": 9130.093599989777,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "The EKF_Magnetometer_Variance exceeded its threshold, indicating an issue with the compass. This compass inconsistency caused the EKF to become inconsistent as it rejected the compass data.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1669,
+   "tokens_out": 1025,
+   "calls": 2,
+   "wall_ms": 6954.061399999773,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The EKF_Magnetometer_Variance exceeded its threshold, indicating a compass inconsistency. This compass issue likely led to the EKF inconsistency.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1541,
+   "tokens_out": 727,
+   "calls": 2,
+   "wall_ms": 6634.139600006165,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "Both ekf_inconsistency and compass_inconsistency were triggered by the EKF_Magnetometer_Variance exceeding its threshold. The description for compass_inconsistency explicitly states the EKF is rejecting the compass, which explains the general EKF inconsistency.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1827,
+   "tokens_out": 2721,
+   "calls": 2,
+   "wall_ms": 18494.485400005942,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The only detected incident was 'gps_fix_loss'. The 'GPSFixStatus' metric dropped to 0.0, which is below the threshold of 3.0, indicating a loss of 3D GPS fix.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.062,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1251,
+   "tokens_out": 631,
+   "calls": 2,
+   "wall_ms": 5129.928800000926,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric consistently reported a value of 0.0, which is below the critical threshold of 3.0, indicating a loss of 3D GPS fix.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.062,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1305,
+   "tokens_out": 1026,
+   "calls": 2,
+   "wall_ms": 6658.529899999849,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The only detected incident was 'gps_fix_loss'. The 'GPSFixStatus' metric consistently reported 0.0, which is below the threshold of 3.0, confirming a loss of GPS 3D fix.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1409,
+   "tokens_out": 884,
+   "calls": 2,
+   "wall_ms": 8648.445800004993,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric consistently reported 0, which is below the threshold of 3.0, indicating a loss of 3D fix. This directly corresponds to the detected gps_fix_loss incident, first observed at 13.0 seconds.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1307,
+   "tokens_out": 1960,
+   "calls": 2,
+   "wall_ms": 12227.788900010637,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric was consistently 0.0, indicating a loss of 3D fix, which directly caused the gps_fix_loss incident. This was the only detected incident type.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1361,
+   "tokens_out": 894,
+   "calls": 2,
+   "wall_ms": 6865.379599999869,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus dropped to 0, indicating a loss of 3D fix. This directly caused the gps_fix_loss advisory.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1465,
+   "tokens_out": 919,
+   "calls": 2,
+   "wall_ms": 7019.069000001764,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric dropped to 0.0, which is below the threshold of 3.0, indicating a loss of GPS 3D fix. This directly corresponds to the detected 'gps_fix_loss' incident.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1305,
+   "tokens_out": 665,
+   "calls": 2,
+   "wall_ms": 5119.59570000181,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric dropped to 0.0, which is below the threshold of 3.0, indicating a loss of 3D fix. This directly caused the gps_fix_loss incident.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1359,
+   "tokens_out": 792,
+   "calls": 2,
+   "wall_ms": 6337.0700999948895,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric dropped to 0.0, which is below the threshold of 3.0, indicating a loss of 3D GPS fix. This directly explains the gps_fix_loss advisory.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1463,
+   "tokens_out": 1024,
+   "calls": 2,
+   "wall_ms": 7171.491999994032,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "The Motor_PWM_Imbalance metric significantly exceeded its threshold, directly causing the actuator saturation. This is the only detected incident and the only metric provided.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 9.984,
+     "value": 737.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1304,
+   "tokens_out": 700,
+   "calls": 2,
+   "wall_ms": 19142.726699996274,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [],
+   "confidence": 0.9,
+   "rationale": "The Motor_PWM_Imbalance metric significantly exceeded its threshold, indicating an asymmetric PWM spread between the highest and lowest motor outputs. This directly points to actuator saturation as the root cause.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 9.984,
+     "value": 737.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1358,
+   "tokens_out": 879,
+   "calls": 2,
+   "wall_ms": 7670.145399999456,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [],
+   "confidence": null,
+   "rationale": "degraded to deterministic baseline: wall-clock ceiling: 145.4s >= 60.0s",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 9.98399999999674,
+     "value": 727.0
+    }
+   ],
+   "degraded": true,
+   "degraded_reason": "wall-clock ceiling: 145.4s >= 60.0s",
+   "tokens_in": 638,
+   "tokens_out": 273,
+   "calls": 1,
+   "wall_ms": 145425.9361000004,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during this flight. The flight appears to have been clean with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 481,
+   "tokens_out": 340,
+   "calls": 1,
+   "wall_ms": 2694.5842999994056,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight, and no advisories were reported. The flight appears to have been clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 508,
+   "tokens_out": 293,
+   "calls": 1,
+   "wall_ms": 2693.4780000010505,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight. The system indicates a clean flight with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 560,
+   "tokens_out": 320,
+   "calls": 1,
+   "wall_ms": 2622.751300004893,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight, indicating a clean flight with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 466,
+   "tokens_out": 172,
+   "calls": 1,
+   "wall_ms": 2156.9906000077026,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected during the flight. The flight appears to have been clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 493,
+   "tokens_out": 236,
+   "calls": 1,
+   "wall_ms": 2135.2667000028305,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight. The flight was clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 545,
+   "tokens_out": 238,
+   "calls": 1,
+   "wall_ms": 2406.9839000003412,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight. The flight appears to be clean with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 481,
+   "tokens_out": 148,
+   "calls": 1,
+   "wall_ms": 2607.788499997696,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected during the flight. The flight appears to have been clean with no reported anomalies.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 508,
+   "tokens_out": 172,
+   "calls": 1,
+   "wall_ms": 1935.0753000035184,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight window. The flight was clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 560,
+   "tokens_out": 236,
+   "calls": 1,
+   "wall_ms": 4559.097800010932,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration (VibeY peak 227.25 m/s^2) caused the accelerometers to clip (ClipCountTotal peak 3270.0) and likely contributed to actuator saturation as the flight controller attempted to stabilize.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 227.25009155273438
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 3270.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.578,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2308,
+   "tokens_out": 2405,
+   "calls": 2,
+   "wall_ms": 15424.763400005759,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration on all axes significantly exceeded thresholds, causing the accelerometers to clip. The flight controller likely commanded actuators to their limits in response to the noisy sensor data.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 227.25009155273438
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 3270.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.578,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 5015,
+   "tokens_out": 2763,
+   "calls": 4,
+   "wall_ms": 18444.296400004532,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration, with VibeY reaching 227.25 m/s^2, directly caused the accelerometers to clip, evidenced by 3270 total clip counts. The subsequent actuator saturation is a likely consequence of the flight controller struggling with unreliable sensor data.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2466,
+   "tokens_out": 1807,
+   "calls": 2,
+   "wall_ms": 11198.401899993769,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected across all axes, significantly exceeding thresholds, starting at 8.766 seconds. This high vibration likely caused the simultaneous accelerometer clipping, which in turn led to actuator saturation as the flight controller struggled with corrupted sensor data.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 234.69149780273438
+    },
+    {
+     "metric": "VibeX",
+     "t": 8.766,
+     "value": 214.08587646484375
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 231.05880737304688
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 13035.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4916,
+   "tokens_out": 3972,
+   "calls": 4,
+   "wall_ms": 36702.4007,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is the root cause, as it directly explains the accelerometer clipping due to sensor overload and likely led to actuator saturation as the flight controller attempted to compensate for instability.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2366,
+   "tokens_out": 2692,
+   "calls": 2,
+   "wall_ms": 16629.68680000631,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration (VibeY peak over threshold 204.69 m/s^2 at 8.766s) directly explains the accelerometer clipping (ClipCountTotal peak over threshold 13034 counts at 8.766s) as the sensors are overwhelmed. The actuator saturation (Saturated_Motor_Count peak over threshold 0.0 counts at 11.532s) is likely a secondary effect of the flight controller attempting to compensate for the high vibration.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 204.6915
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 13034.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2470,
+   "tokens_out": 2504,
+   "calls": 2,
+   "wall_ms": 15377.63060000725,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected across all axes, significantly exceeding thresholds. This high vibration likely caused the accelerometers to clip and the flight controller to saturate actuators while attempting to stabilize the craft.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": 246.59164428710938
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": 8549.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4983,
+   "tokens_out": 3392,
+   "calls": 4,
+   "wall_ms": 35986.00930000248,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is the root cause, leading to accelerometer clipping and subsequent actuator saturation. High vibration levels on all axes exceeded thresholds significantly, causing the flight controller to receive bad data and struggle for control.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": 246.59164428710938
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": 8549.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 5091,
+   "tokens_out": 3009,
+   "calls": 4,
+   "wall_ms": 21428.2799000066,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration (VibeX, VibeY, VibeZ) significantly exceeded thresholds, causing accelerometer clipping (ClipCountTotal). The resulting poor control likely led to actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": 246.59164428710938
+    },
+    {
+     "metric": "VibeY",
+     "t": 8.765,
+     "value": 210.11338806152344
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.765,
+     "value": 246.07139587402344
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": 8549.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2504,
+   "tokens_out": 2668,
+   "calls": 2,
+   "wall_ms": 15620.008999991114,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is the most likely root cause, as it occurred earliest and at critical severity. High vibrations can directly lead to accelerometer clipping, which was also detected critically at the same time.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 182.12796020507812
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": 3701.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 4959,
+   "tokens_out": 2428,
+   "calls": 4,
+   "wall_ms": 17132.370899998932,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration directly caused the accelerometers to clip due to sensor limits being exceeded. This corrupted data likely led to the flight controller commanding incorrect outputs, resulting in actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 182.12796020507812
+    },
+    {
+     "metric": "VibeY",
+     "t": 9.047,
+     "value": 166.6891326904297
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.047,
+     "value": 180.11146545410156
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": 3701.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2388,
+   "tokens_out": 1788,
+   "calls": 2,
+   "wall_ms": 11791.228599991882,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration (VibeX, Y, Z) significantly exceeded thresholds, which likely caused the accelerometers to clip and the flight controller to command motors to saturation in an attempt to stabilize. Vibration and clipping were detected simultaneously, with saturation following shortly after.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 182.12796020507812
+    },
+    {
+     "metric": "VibeY",
+     "t": 9.047,
+     "value": 166.6891326904297
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.047,
+     "value": 180.11146545410156
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": 3701.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2492,
+   "tokens_out": 2219,
+   "calls": 2,
+   "wall_ms": 13977.436700006365,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected early in the flight and significantly exceeded thresholds on all axes. This likely led to accelerometer clipping and subsequently caused the flight controller to struggle, resulting in actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": 185.5238494873047
+    },
+    {
+     "metric": "VibeY",
+     "t": 8.828,
+     "value": 177.8306884765625
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.828,
+     "value": 173.82395935058594
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": 6195.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 17.563,
+     "value": 598.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 5111,
+   "tokens_out": 2390,
+   "calls": 4,
+   "wall_ms": 15780.838100006804,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration on all axes caused the accelerometers to clip. The flight controller's attempts to compensate for the resulting noisy data and instability led to actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": 185.5238494873047
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": 6195.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 5219,
+   "tokens_out": 3302,
+   "calls": 4,
+   "wall_ms": 36413.20799999812,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first and can directly cause accelerometer clipping. The flight controller's attempts to compensate for the severe vibration likely led to actuator saturation.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2620,
+   "tokens_out": 2171,
+   "calls": 2,
+   "wall_ms": 9998.888600006467,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration, particularly in the Z-axis (VibeZ peak 188.41 m/s^2), is the root cause. This severe vibration led to the accelerometer clipping (ClipCountTotal peak 1404.0), as both incidents were detected simultaneously.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": 188.40931701660156
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": 1404.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2787,
+   "tokens_out": 1947,
+   "calls": 3,
+   "wall_ms": 12760.63650001015,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration, particularly on the Z-axis, caused the accelerometers to clip. Both incidents began simultaneously, indicating a direct causal relationship.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": 188.4093
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2012,
+   "tokens_out": 2121,
+   "calls": 2,
+   "wall_ms": 13891.203699997277,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration, particularly on VibeX and VibeZ, exceeded critical thresholds. This severe vibration likely caused the accelerometer to clip, leading to the accel_clipping advisory.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": 188.40931701660156
+    },
+    {
+     "metric": "VibeX",
+     "t": 9.016,
+     "value": 177.93980407714844
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": 1404.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2116,
+   "tokens_out": 2222,
+   "calls": 2,
+   "wall_ms": 13272.766000009142,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected across all axes, significantly exceeding thresholds. This severe vibration likely caused the accelerometer to clip, as indicated by the high ClipCountTotal.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.031,
+     "value": 103.58739471435547
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 41.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1963,
+   "tokens_out": 1723,
+   "calls": 2,
+   "wall_ms": 11569.58019999729,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration likely caused the accelerometer to clip, as high-amplitude vibrations can exceed the sensor's measurement range. VibeZ showed the highest peak over threshold.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.031,
+     "value": 103.58739471435547
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 41.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3175,
+   "tokens_out": 2056,
+   "calls": 3,
+   "wall_ms": 13891.107900009956,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "vibration_excessive"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is the root cause as the high vibration levels (VibeZ peaked at 103.587 m/s^2) would cause the accelerometer to clip. This explains the simultaneous detection of both incidents.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2121,
+   "tokens_out": 1095,
+   "calls": 2,
+   "wall_ms": 7672.330599991255,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected across all three axes (X, Y, Z) with values significantly exceeding the threshold. This high vibration likely caused the accelerometer clipping events.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 9.031,
+     "value": 106.85050964355469
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.031,
+     "value": 82.28802490234375
+    },
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 71.99407196044922
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 122.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3098,
+   "tokens_out": 2121,
+   "calls": 3,
+   "wall_ms": 13140.44780000404,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is the root cause, as high vibration levels across all axes likely caused the accelerometer to clip, leading to the accel_clipping incidents.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 9.031,
+     "value": 106.85050964355469
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 122.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2887,
+   "tokens_out": 1304,
+   "calls": 3,
+   "wall_ms": 10220.941499996115,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration, particularly on the Y-axis, significantly exceeded its threshold. This high vibration likely caused the accelerometer to clip, as indicated by the high clip count.",
+   "citations": [
+    {
+     "metric": "VibeY",
+     "t": 9.031,
+     "value": 106.85050964355469
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 122.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2126,
+   "tokens_out": 1663,
+   "calls": 2,
+   "wall_ms": 11374.884100005147,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected significantly above thresholds on all axes, starting earlier than accelerometer clipping. This severe vibration likely caused the accelerometer to clip.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.047,
+     "value": 95.41553497314453
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 18.0,
+     "value": 2.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3045,
+   "tokens_out": 1902,
+   "calls": 3,
+   "wall_ms": 12793.721499998355,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected before accelerometer clipping, and high vibrations are a common cause of accelerometer saturation.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.047,
+     "value": 95.41553497314453
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1982,
+   "tokens_out": 1868,
+   "calls": 2,
+   "wall_ms": 12320.632299990393,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "vibration_excessive",
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first and significantly exceeded thresholds across all axes, with VibeZ peaking at 95.4 m/s^2. These high vibration levels likely caused the subsequent accelerometer clipping, which registered 2 events.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.047,
+     "value": 95.41553497314453
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 18.0,
+     "value": 2.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2086,
+   "tokens_out": 1807,
+   "calls": 2,
+   "wall_ms": 10868.484999999055,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight. The flight appears to be clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 467,
+   "tokens_out": 175,
+   "calls": 1,
+   "wall_ms": 1910.745200002566,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight, and no advisories were issued. The flight appears to have been clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 494,
+   "tokens_out": 293,
+   "calls": 1,
+   "wall_ms": 2375.808600001619,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight. The flight appears to have been clean with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 546,
+   "tokens_out": 163,
+   "calls": 1,
+   "wall_ms": 1902.9918000014732,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No faults were detected during the flight. The flight appears to be clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 466,
+   "tokens_out": 167,
+   "calls": 1,
+   "wall_ms": 1773.2213999988744,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight, indicating a clean flight with no anomalies.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 493,
+   "tokens_out": 247,
+   "calls": 1,
+   "wall_ms": 130692.13340000715,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight. The flight appears to have been clean with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 545,
+   "tokens_out": 238,
+   "calls": 1,
+   "wall_ms": 2575.205500004813,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight. The flight appears to be clean with no reported faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 481,
+   "tokens_out": 175,
+   "calls": 1,
+   "wall_ms": 1675.0436000002082,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight. The flight appears to be clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 508,
+   "tokens_out": 191,
+   "calls": 1,
+   "wall_ms": 1888.6838000034913,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight. The flight appears to have been clean with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 560,
+   "tokens_out": 271,
+   "calls": 1,
+   "wall_ms": 2277.946400005021,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "High EKF_Magnetometer_Variance indicates issues with the magnetometer data, which is the root cause of compass inconsistency. This unreliable compass data then leads to the EKF becoming inconsistent.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 8.5,
+     "value": 0.5
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 594,
+   "tokens_out": 2065,
+   "calls": 1,
+   "wall_ms": 12368.280299997423,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "A high EKF_Magnetometer_Variance indicates the EKF is struggling with magnetometer data, leading to a compass_inconsistency. This specific sensor issue then propagates to cause a general ekf_inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 0.5
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 621,
+   "tokens_out": 5496,
+   "calls": 1,
+   "wall_ms": 36116.030199991656,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The EKF reported an inconsistency due to high magnetometer variance, which is a symptom of the underlying compass inconsistency. The compass issue is the more specific root cause explaining both advisories.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062,
+     "value": 0.12
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 0.15
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 673,
+   "tokens_out": 3744,
+   "calls": 1,
+   "wall_ms": 23660.46769999957,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "A compass inconsistency directly indicates an issue with the magnetometer data. This issue subsequently causes the EKF to become inconsistent, as evidenced by the EKF_Magnetometer_Variance metric.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.5,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 580,
+   "tokens_out": 1188,
+   "calls": 1,
+   "wall_ms": 8643.833399997675,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.7,
+   "rationale": "A compass inconsistency is the likely root cause, as the EKF relies on magnetometer data for state estimation. The EKF inconsistency is a direct symptom, often appearing early when sensor data quality degrades.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.5,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 607,
+   "tokens_out": 4552,
+   "calls": 1,
+   "wall_ms": 28986.942000003182,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "High EKF_Magnetometer_Variance indicates a problem with the magnetometer data, directly causing the compass_inconsistency advisory. This unreliable sensor input subsequently leads to ekf_inconsistency as the EKF struggles to maintain a consistent state.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 8.0,
+     "value": 0.02
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 0.55
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 0.78
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 659,
+   "tokens_out": 2703,
+   "calls": 1,
+   "wall_ms": 20317.97329999972,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "High EKF_Magnetometer_Variance indicates unreliable magnetometer data, directly causing compass_inconsistency. This inconsistent compass data then leads to ekf_inconsistency as the EKF struggles to maintain an accurate state estimate.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 0.6
+    },
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 592,
+   "tokens_out": 2935,
+   "calls": 1,
+   "wall_ms": 16393.982399997185,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.8,
+   "rationale": "The compass inconsistency likely caused the EKF to become inconsistent, as the EKF relies on magnetometer data for attitude estimation. The EKF often detects data quality issues before specific sensor advisories are triggered.",
+   "citations": [
+    {
+     "metric": "advisory_compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    },
+    {
+     "metric": "advisory_ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 619,
+   "tokens_out": 2649,
+   "calls": 1,
+   "wall_ms": 20103.90909999842,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "A compass inconsistency would cause the EKF to struggle with magnetometer data, leading to increased EKF magnetometer variance and an EKF inconsistency advisory. The EKF inconsistency was detected first, indicating the EKF's immediate reaction to the faulty input.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 0.25
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 0.28
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 671,
+   "tokens_out": 4408,
+   "calls": 1,
+   "wall_ms": 38832.41899999848,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "A critical GPS fix loss was reported at 13.062s, which is confirmed by the GPSFixStatus metric dropping to 0 at that time. No other faults were detected during the flight window.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.062,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 489,
+   "tokens_out": 870,
+   "calls": 1,
+   "wall_ms": 5640.870600007474,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "A critical GPS fix loss was detected at 13.062s. As no other anomalies or metrics were observed, this is identified as the root cause.",
+   "citations": [
+    {
+     "metric": "gps_fix_loss",
+     "t": 13.062,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 516,
+   "tokens_out": 1855,
+   "calls": 1,
+   "wall_ms": 11446.158599996124,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPS fix was lost at 13.062 seconds, as indicated by the GPSFixStatus dropping to 0. This directly caused the gps_fix_loss advisory.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.062,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 568,
+   "tokens_out": 1507,
+   "calls": 1,
+   "wall_ms": 9064.153500003158,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The flight advisory explicitly reported a GPS fix loss at 13.0 seconds. This is the only detected incident, making it the root cause.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 517,
+   "tokens_out": 978,
+   "calls": 1,
+   "wall_ms": 7064.112300009583,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The flight experienced a critical GPS fix loss at 13.0 seconds, which is the only detected incident. No other anomalies or metrics suggest an alternative root cause.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 544,
+   "tokens_out": 888,
+   "calls": 1,
+   "wall_ms": 5650.104499989538,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The GPSFixStatus metric dropped to 1 at 13.0s, indicating a loss of GPS fix. This single fault explains the `gps_fix_loss` advisory.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 596,
+   "tokens_out": 1661,
+   "calls": 1,
+   "wall_ms": 10416.627200000221,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The flight experienced a loss of GPS fix, as indicated by the `gps_fix_loss` advisory. The `GPSFixStatus` metric confirms the loss of a valid fix at the reported time.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 516,
+   "tokens_out": 1540,
+   "calls": 1,
+   "wall_ms": 10070.625600012136,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The flight reported a critical GPS fix loss at 13.016s, and no other anomalies or metrics were observed. This indicates a direct issue with the GPS system.",
+   "citations": [
+    {
+     "metric": "gps_fix_loss",
+     "t": 13.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 543,
+   "tokens_out": 1688,
+   "calls": 1,
+   "wall_ms": 10293.34160000144,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "The system detected a loss of GPS fix at 13.016s, which was the only incident type reported during the flight.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 595,
+   "tokens_out": 4034,
+   "calls": 1,
+   "wall_ms": 26436.90780000179,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Actuator saturation occurred due to a significant motor PWM imbalance, indicating some motors were working harder than others to maintain stability. This imbalance likely pushed the commanded motor outputs to their limits.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 9.9,
+     "value": 0.3
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 9.984,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 503,
+   "tokens_out": 2611,
+   "calls": 1,
+   "wall_ms": 17790.24689999642,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.5,
+   "rationale": "A critical actuator saturation occurred at 9.984s, but the underlying root cause could not be determined from the available metrics. No other citable metrics were provided to explain this incident.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 530,
+   "tokens_out": 4223,
+   "calls": 1,
+   "wall_ms": 26219.82850000495,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "The flight system reported an actuator saturation event at 9.984 seconds, indicating that at least two motors reached their PWM limits. This was the only incident detected during the flight.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 9.984,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 582,
+   "tokens_out": 3483,
+   "calls": 1,
+   "wall_ms": 23217.018900002586,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents were detected during the flight window. All systems appear to have operated nominally.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 425,
+   "tokens_out": 486,
+   "calls": 1,
+   "wall_ms": 3751.335499997367,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected, and no metrics were available for analysis. Therefore, no fault can be identified from the provided data.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 452,
+   "tokens_out": 639,
+   "calls": 1,
+   "wall_ms": 4423.108400005731,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected by the system during the flight. All checks indicate a clean flight with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 504,
+   "tokens_out": 506,
+   "calls": 1,
+   "wall_ms": 3586.3546000036877,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents or advisories were detected during the flight window. There are no available metrics to suggest any underlying issues.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 410,
+   "tokens_out": 393,
+   "calls": 1,
+   "wall_ms": 3310.0821999978507,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected during the flight, and no advisories were triggered. There is no evidence of any fault.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 437,
+   "tokens_out": 736,
+   "calls": 1,
+   "wall_ms": 4788.6384000012185,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "The system did not raise any advisories or detect any incident types during the flight window. All systems appear to be operating nominally.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 489,
+   "tokens_out": 380,
+   "calls": 1,
+   "wall_ms": 2888.971299995319,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected during the flight. The flight appears to have completed without any reported faults or advisories.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 425,
+   "tokens_out": 210,
+   "calls": 1,
+   "wall_ms": 3008.6067999945953,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected during the flight, and no metric data was available for analysis. Therefore, there is no evidence of any anomaly.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 452,
+   "tokens_out": 772,
+   "calls": 1,
+   "wall_ms": 5722.806599995238,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight window. The system indicates a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 504,
+   "tokens_out": 498,
+   "calls": 1,
+   "wall_ms": 3115.418499990483,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation",
+    "vibration_excessive"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected at 8.766s, which likely caused the accelerometers to clip at the same time. The subsequent actuator saturation at 10.578s is a probable consequence of the flight controller attempting to compensate for the instability caused by the vibration and corrupted sensor data.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.578,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 682,
+   "tokens_out": 1744,
+   "calls": 1,
+   "wall_ms": 12111.145399991074,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration occurred first, causing the accelerometers to clip their readings simultaneously. The flight controller then struggled to maintain stability, leading to actuator saturation as it attempted to compensate.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 10.578,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 709,
+   "tokens_out": 1838,
+   "calls": 1,
+   "wall_ms": 12404.706400004216,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation",
+    "vibration_excessive"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first, simultaneously with accelerometer clipping. High vibration levels commonly lead to accelerometer clipping and can cause the flight controller to command aggressive corrections, resulting in actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.766,
+     "value": 15.2
+    },
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 12.8
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 18.5
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.578,
+     "value": 2.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 761,
+   "tokens_out": 1460,
+   "calls": 1,
+   "wall_ms": 8499.060300004203,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration started at 8.766s, causing accelerometer clipping at the same time. The flight controller's attempts to stabilize the craft then led to actuator saturation starting at 11.532s.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 1800.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 50.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 683,
+   "tokens_out": 1527,
+   "calls": 1,
+   "wall_ms": 9205.825099998037,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration at 8.766s likely caused the accelerometers to clip simultaneously. The flight controller then struggled to stabilize the UAV, leading to actuator saturation at 11.532s as it attempted to compensate.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 11.532,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 710,
+   "tokens_out": 1605,
+   "calls": 1,
+   "wall_ms": 9744.028800007072,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration detected at 8.766s likely caused the accelerometer to clip due to high-frequency accelerations. The flight controller's subsequent attempts to stabilize against this vibration led to actuator saturation at 11.532s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.766,
+     "value": 25.5
+    },
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 26.1
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 24.9
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 762,
+   "tokens_out": 2931,
+   "calls": 1,
+   "wall_ms": 17069.319700007327,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration started at 8.765s, causing accelerometer clipping. The flight controller then struggled to maintain stability, leading to actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 701,
+   "tokens_out": 1779,
+   "calls": 1,
+   "wall_ms": 11120.440800004872,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration at 8.765s likely caused accelerometer clipping at the same time. The resulting unreliable sensor data then led to the flight controller saturating actuators at 10.562s while attempting to maintain control.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 728,
+   "tokens_out": 2752,
+   "calls": 1,
+   "wall_ms": 18040.809099999024,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "Excessive vibration at 8.765s caused the accelerometers to clip simultaneously. The flight controller's response to this disturbance subsequently led to actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.765,
+     "value": 18.5
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 780,
+   "tokens_out": 2179,
+   "calls": 1,
+   "wall_ms": 12368.474300004891,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration and accelerometer clipping occurred simultaneously at 9.047s. The vibration likely caused the clipping, leading to degraded control and subsequent actuator saturation at 9.75s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 695,
+   "tokens_out": 1953,
+   "calls": 1,
+   "wall_ms": 13640.370499997516,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration, detected at 9.047s, likely caused the accelerometers to clip at the same time. The flight controller then struggled to maintain stability, leading to actuator saturation shortly after.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 9.75,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 722,
+   "tokens_out": 2023,
+   "calls": 1,
+   "wall_ms": 11723.07579999324,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration at 9.047s likely caused the accelerometers to clip simultaneously. The flight controller's attempt to stabilize against this vibration subsequently led to actuator saturation at 9.75s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 45.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 774,
+   "tokens_out": 3013,
+   "calls": 1,
+   "wall_ms": 18324.911300005624,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration at 8.828s likely caused the accelerometer to clip at the same time. The flight controller's subsequent attempts to stabilize against this instability led to actuator saturation later at 17.563s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 707,
+   "tokens_out": 1612,
+   "calls": 1,
+   "wall_ms": 9649.94580000348,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration at 8.828s likely caused the accelerometers to clip due to sensor overload. This instability then led to the flight controller struggling and causing actuator saturation at 17.563s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 734,
+   "tokens_out": 2021,
+   "calls": 1,
+   "wall_ms": 13166.950800004997,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration directly caused accelerometer clipping due to sensor overload. The flight controller then struggled to maintain stability, leading to actuator saturation as it attempted to compensate.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": 6.8
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 786,
+   "tokens_out": 1802,
+   "calls": 1,
+   "wall_ms": 12948.228099994594,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected, which is a common cause for accelerometers to exceed their measurement range and clip. Both the excessive vibration and accelerometer clipping advisories were first detected simultaneously at 9.016 seconds.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 598,
+   "tokens_out": 3028,
+   "calls": 1,
+   "wall_ms": 18384.461599998758,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is the most probable root cause, as it directly leads to accelerometer clipping when the sensor's limits are exceeded. Both incidents were detected simultaneously.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.016,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 625,
+   "tokens_out": 1382,
+   "calls": 1,
+   "wall_ms": 15212.557399994694,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "vibration_excessive"
+   ],
+   "confidence": 1.0,
+   "rationale": "Both excessive vibration and accelerometer clipping were detected simultaneously at 9.016 seconds. Excessive vibration is the root cause, as strong vibrations can overwhelm the accelerometer's range, leading to clipping.",
+   "citations": [
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": 1.0
+    },
+    {
+     "metric": "VibeX",
+     "t": 9.016,
+     "value": 15.2
+    },
+    {
+     "metric": "VibeY",
+     "t": 9.016,
+     "value": 14.8
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": 16.5
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 677,
+   "tokens_out": 1309,
+   "calls": 1,
+   "wall_ms": 8144.8864999983925,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected, which likely caused the accelerometer to exceed its measurement range, leading to clipping. Both incidents were first detected at the same timestamp.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 611,
+   "tokens_out": 1024,
+   "calls": 1,
+   "wall_ms": 6708.773700011079,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "Excessive vibration directly leads to accelerometer clipping as the sensor's dynamic range is exceeded. Both incidents were detected simultaneously at 9.031s.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.031,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.031,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 638,
+   "tokens_out": 2147,
+   "calls": 1,
+   "wall_ms": 12368.566799996188,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "vibration_excessive"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration can cause accelerometers to exceed their measurement limits, leading to clipping. Both the excessive vibration and accelerometer clipping incidents were detected simultaneously at 9.031 seconds.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 35.2
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 7.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 690,
+   "tokens_out": 1826,
+   "calls": 1,
+   "wall_ms": 9674.925500003155,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected at 9.031s, as indicated by a high VibeX value. This severe vibration subsequently caused the accelerometers to clip, which is confirmed by an increase in ClipCountTotal at the same timestamp.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 15.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 10.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 611,
+   "tokens_out": 2901,
+   "calls": 1,
+   "wall_ms": 17202.983800001675,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration can cause accelerometers to clip when the vibration amplitude exceeds the sensor's measurement range. Both advisories occurred simultaneously at 9.031s, indicating a direct causal link.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.031,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.031,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 638,
+   "tokens_out": 1832,
+   "calls": 1,
+   "wall_ms": 11936.621500004549,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration is a physical condition that can cause an accelerometer to clip when the forces exceed its measurement range. The simultaneous critical detection of both advisories at 9.031s strongly suggests high vibration as the root cause, with clipping being a direct consequence.",
+   "citations": [
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 150.0
+    },
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 18.5
+    },
+    {
+     "metric": "VibeY",
+     "t": 9.031,
+     "value": 12.3
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.031,
+     "value": 21.1
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 690,
+   "tokens_out": 2975,
+   "calls": 1,
+   "wall_ms": 19420.399800001178,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected first and is a common cause for accelerometer clipping. The clipping occurred after the onset of severe vibrations.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 18.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 598,
+   "tokens_out": 1013,
+   "calls": 1,
+   "wall_ms": 6304.757300007623,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 0.9,
+   "rationale": "Excessive vibration was detected significantly before accelerometer clipping. High vibration levels can cause accelerometers to saturate and clip.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 18.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 625,
+   "tokens_out": 1030,
+   "calls": 1,
+   "wall_ms": 6963.497100005043,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "Excessive vibration was detected first, with VibeX exceeding its threshold. This high vibration level subsequently caused the accelerometer to clip, as evidenced by the increase in ClipCountTotal.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 1200.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 17.0,
+     "value": 0.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 18.0,
+     "value": 10.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 677,
+   "tokens_out": 3556,
+   "calls": 1,
+   "wall_ms": 19414.06900000584,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "The flight data indicates that no incident types were detected during the flight window. There are no advisories or available metrics to suggest any underlying issues.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 411,
+   "tokens_out": 399,
+   "calls": 1,
+   "wall_ms": 3619.463299997733,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "The flight log shows no detected incident types or advisories. Without any available metrics, there is no evidence to suggest a fault occurred.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 438,
+   "tokens_out": 490,
+   "calls": 1,
+   "wall_ms": 3898.173699999461,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected during the flight window, indicating a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 490,
+   "tokens_out": 410,
+   "calls": 1,
+   "wall_ms": 3042.4566000001505,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incidents or advisories were detected during the flight window. All available indicators suggest a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 410,
+   "tokens_out": 330,
+   "calls": 1,
+   "wall_ms": 3206.8023000028916,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were triggered and no incident types were detected during the flight. All available data indicates a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 437,
+   "tokens_out": 697,
+   "calls": 1,
+   "wall_ms": 4530.926399995224,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were raised and no incident types were detected by the system. There is no evidence of any fault during the flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 489,
+   "tokens_out": 591,
+   "calls": 1,
+   "wall_ms": 4112.56229999708,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No incident types were detected during the flight window. The flight appears to have completed without any reported faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 425,
+   "tokens_out": 308,
+   "calls": 1,
+   "wall_ms": 2557.994699993287,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "No advisories were triggered and no incident types were detected during the flight. The flight appears to have been clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 452,
+   "tokens_out": 377,
+   "calls": 1,
+   "wall_ms": 3656.2492000084603,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "The system reported no advisories and no detected incident types during the flight window. All systems appear to be operating nominally.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 504,
+   "tokens_out": 449,
+   "calls": 1,
+   "wall_ms": 3447.120900003938,
+   "seed": 0
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); High EKF_Magnetometer_Variance indicates issues with the magnetometer data, which is the root cause of compass inconsistency. This unreliable compass data then leads to the EKF becoming inconsistent.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 8.5,
+     "value": 0.5
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 594,
+   "tokens_out": 2065,
+   "calls": 1,
+   "wall_ms": 13773.675600008573,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); EKF inconsistency often results from poor sensor data. Given the EKF's reliance on compass for heading, a compass inconsistency is a likely root cause, even if the EKF advisory appeared slightly earlier.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.062,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 621,
+   "tokens_out": 3239,
+   "calls": 1,
+   "wall_ms": 19045.979200003785,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The EKF reported an inconsistency due to high magnetometer variance, which is a symptom of the underlying compass inconsistency. The compass issue is the more specific root cause explaining both advisories.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062,
+     "value": 0.12
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.016,
+     "value": 0.15
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 673,
+   "tokens_out": 3744,
+   "calls": 1,
+   "wall_ms": 23796.136200006003,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); A compass inconsistency directly indicates an issue with the magnetometer data. This issue subsequently causes the EKF to become inconsistent, as evidenced by the EKF_Magnetometer_Variance metric.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.5,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 580,
+   "tokens_out": 1188,
+   "calls": 1,
+   "wall_ms": 8126.239499993972,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); A compass inconsistency is the likely root cause, as the EKF relies on magnetometer data for state estimation. The EKF inconsistency is a direct symptom, often appearing early when sensor data quality degrades.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.5,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 607,
+   "tokens_out": 4552,
+   "calls": 1,
+   "wall_ms": 29049.681600008626,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); High EKF_Magnetometer_Variance indicates a problem with the magnetometer data, directly causing the compass_inconsistency advisory. This unreliable sensor input subsequently leads to ekf_inconsistency as the EKF struggles to maintain a consistent state.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 8.0,
+     "value": 0.02
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 0.55
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 0.78
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 659,
+   "tokens_out": 2703,
+   "calls": 1,
+   "wall_ms": 17048.960400003125,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); High EKF_Magnetometer_Variance at 9.5s indicates the EKF is struggling to reconcile magnetometer readings. This directly explains the compass_inconsistency and the subsequent ekf_inconsistency advisory.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.5,
+     "value": 0.5
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 592,
+   "tokens_out": 2477,
+   "calls": 1,
+   "wall_ms": 14984.702900008415,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The compass inconsistency likely caused the EKF to become inconsistent, as the EKF relies on magnetometer data for attitude estimation. The EKF often detects data quality issues before specific sensor advisories are triggered.",
+   "citations": [
+    {
+     "metric": "advisory_compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    },
+    {
+     "metric": "advisory_ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 619,
+   "tokens_out": 2649,
+   "calls": 1,
+   "wall_ms": 17685.02289999742,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); A compass inconsistency would cause the EKF to struggle with magnetometer data, leading to increased EKF magnetometer variance and an EKF inconsistency advisory. The EKF inconsistency was detected first, indicating the EKF's immediate reaction to the faulty input.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 0.25
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 10.0,
+     "value": 0.28
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 671,
+   "tokens_out": 4408,
+   "calls": 1,
+   "wall_ms": 26308.315999995102,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); A critical GPS fix loss was reported at 13.062s, which is confirmed by the GPSFixStatus metric dropping to 0 at that time. No other faults were detected during the flight window.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.062,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 489,
+   "tokens_out": 870,
+   "calls": 1,
+   "wall_ms": 5152.7022999944165,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); A critical GPS fix loss was detected at 13.062s. As no other anomalies or metrics were observed, this is identified as the root cause.",
+   "citations": [
+    {
+     "metric": "gps_fix_loss",
+     "t": 13.062,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 516,
+   "tokens_out": 1855,
+   "calls": 1,
+   "wall_ms": 11773.316500009969,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "896e80fee24e416e",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The system detected a 'gps_fix_loss' at 13.062 seconds. This is confirmed by the 'GPSFixStatus' metric dropping to 0 at that time, indicating a loss of GPS fix.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.062,
+     "value": 0.0
+    },
+    {
+     "metric": "GPSFixStatus",
+     "t": 12.9,
+     "value": 3.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 568,
+   "tokens_out": 850,
+   "calls": 1,
+   "wall_ms": 10698.626299999887,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The flight advisory explicitly indicates a GPS fix loss starting at 13.0s. The GPSFixStatus metric confirms the loss of GPS fix around this time, dropping to a value indicating no fix.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 517,
+   "tokens_out": 1078,
+   "calls": 1,
+   "wall_ms": 7573.0845000070985,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The flight experienced a critical GPS fix loss at 13.0 seconds, which is the only detected incident. No other anomalies or metrics suggest an alternative root cause.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 544,
+   "tokens_out": 888,
+   "calls": 1,
+   "wall_ms": 6042.727799998829,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "9a1ade06256729d3",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The GPSFixStatus metric dropped to 1 at 13.0s, indicating a loss of GPS fix. This single fault explains the `gps_fix_loss` advisory.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.0,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 596,
+   "tokens_out": 1661,
+   "calls": 1,
+   "wall_ms": 10936.309499986237,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v1",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The flight experienced a loss of GPS fix, as indicated by the `gps_fix_loss` advisory. The `GPSFixStatus` metric confirms the loss of a valid fix at the reported time.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 516,
+   "tokens_out": 1540,
+   "calls": 1,
+   "wall_ms": 9640.225600000122,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v2",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The flight reported a critical GPS fix loss advisory, which is the only detected incident type. This is directly supported by the GPSFixStatus metric changing to a degraded state at the time of the incident.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 543,
+   "tokens_out": 2216,
+   "calls": 1,
+   "wall_ms": 14737.355799996294,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "192489aec54c340f",
+   "prompt_variant": "v3",
+   "root_cause": "gps_fix_loss",
+   "symptoms": [
+    "gps_fix_loss"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The system detected a GPS fix loss at 13.016s, confirmed by the GPSFixStatus metric dropping to 0. No other incidents were reported during the flight.",
+   "citations": [
+    {
+     "metric": "GPSFixStatus",
+     "t": 13.016,
+     "value": 0.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 595,
+   "tokens_out": 1705,
+   "calls": 1,
+   "wall_ms": 11733.691800007364,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The flight experienced actuator saturation, which was the only detected incident. No other detected incident type explains this behavior.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 9.984,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 503,
+   "tokens_out": 2654,
+   "calls": 1,
+   "wall_ms": 20487.80469999474,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); A critical actuator saturation occurred at 9.984s, but the underlying root cause could not be determined from the available metrics. No other citable metrics were provided to explain this incident.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 530,
+   "tokens_out": 4223,
+   "calls": 1,
+   "wall_ms": 26358.967400010442,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "dd5db6ad0a2e784f",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The system detected an 'actuator_saturation' advisory at 9.984s. However, no relevant metric data was available to confirm this incident, as 'Motor_PWM_Imbalance' does not directly indicate actuator saturation. Therefore, a root cause cannot be established based on the provided evidence.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 582,
+   "tokens_out": 3706,
+   "calls": 1,
+   "wall_ms": 30918.615300004603,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incidents were detected during the flight window. All systems appear to have operated nominally.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 425,
+   "tokens_out": 486,
+   "calls": 1,
+   "wall_ms": 3535.0444999930914,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incident types were detected, and no metrics were available for analysis. Therefore, no fault can be identified from the provided data.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 452,
+   "tokens_out": 639,
+   "calls": 1,
+   "wall_ms": 4458.456199994544,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "e45e50e57e384578",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No advisories were raised and no incident types were detected by the system during the flight. All checks indicate a clean flight with no faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 504,
+   "tokens_out": 506,
+   "calls": 1,
+   "wall_ms": 3587.6999000029173,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incidents or advisories were detected during the flight window. There are no available metrics to suggest any underlying issues.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 410,
+   "tokens_out": 393,
+   "calls": 1,
+   "wall_ms": 3276.4113000012003,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incident types were detected during the flight, and no advisories were issued. There are no available metrics to suggest any underlying issues.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 437,
+   "tokens_out": 656,
+   "calls": 1,
+   "wall_ms": 4249.254599999404,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "1f5e008947dbe604",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The system did not raise any advisories or detect any incident types during the flight window. All systems appear to be operating nominally.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 489,
+   "tokens_out": 380,
+   "calls": 1,
+   "wall_ms": 2607.3054000007687,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incidents or advisories were detected during the flight. The provided data indicates a clean flight with no reported faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 425,
+   "tokens_out": 552,
+   "calls": 1,
+   "wall_ms": 12819.31700000132,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incident types were detected during the flight, and no metrics were available for analysis. Therefore, no fault can be identified from the provided data.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 452,
+   "tokens_out": 715,
+   "calls": 1,
+   "wall_ms": 5590.267500010668,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "33f446d5fc91d428",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No advisories were raised and no incident types were detected during the flight window. The system indicates a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 504,
+   "tokens_out": 498,
+   "calls": 1,
+   "wall_ms": 3140.9835999947973,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation",
+    "vibration_excessive"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected at 8.766s, which likely caused the accelerometers to clip at the same time. The subsequent actuator saturation at 10.578s is a probable consequence of the flight controller attempting to compensate for the instability caused by the vibration and corrupted sensor data.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.578,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 682,
+   "tokens_out": 1744,
+   "calls": 1,
+   "wall_ms": 10868.579600006342,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration occurred first, causing the accelerometers to clip their readings simultaneously. The flight controller then struggled to maintain stability, leading to actuator saturation as it attempted to compensate.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 10.578,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 709,
+   "tokens_out": 1838,
+   "calls": 1,
+   "wall_ms": 11856.774099986069,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "402239eaf6ed326b",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation",
+    "vibration_excessive"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected first, simultaneously with accelerometer clipping. High vibration levels commonly lead to accelerometer clipping and can cause the flight controller to command aggressive corrections, resulting in actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.766,
+     "value": 15.2
+    },
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 12.8
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 18.5
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.578,
+     "value": 2.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 761,
+   "tokens_out": 1460,
+   "calls": 1,
+   "wall_ms": 7955.460799988941,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration started at 8.766s, causing accelerometer clipping at the same time. The flight controller's attempts to stabilize the craft then led to actuator saturation starting at 11.532s.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 1800.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 50.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 683,
+   "tokens_out": 1527,
+   "calls": 1,
+   "wall_ms": 9137.998400008655,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 8.766s likely caused the accelerometers to clip simultaneously. The flight controller then struggled to stabilize the UAV, leading to actuator saturation at 11.532s as it attempted to compensate.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 8.766,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 11.532,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 710,
+   "tokens_out": 1605,
+   "calls": 1,
+   "wall_ms": 9711.943599992082,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "90d7c50c2486d8a5",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration detected at 8.766s likely caused the accelerometer to clip due to high-frequency accelerations. The flight controller's subsequent attempts to stabilize against this vibration led to actuator saturation at 11.532s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.766,
+     "value": 25.5
+    },
+    {
+     "metric": "VibeY",
+     "t": 8.766,
+     "value": 26.1
+    },
+    {
+     "metric": "VibeZ",
+     "t": 8.766,
+     "value": 24.9
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.766,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.532,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 762,
+   "tokens_out": 2931,
+   "calls": 1,
+   "wall_ms": 17836.5741000016,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration started at 8.765s, causing accelerometer clipping. The flight controller then struggled to maintain stability, leading to actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 701,
+   "tokens_out": 1779,
+   "calls": 1,
+   "wall_ms": 11024.709099991014,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 8.765s likely caused accelerometer clipping at the same time. The resulting unreliable sensor data then led to the flight controller saturating actuators at 10.562s while attempting to maintain control.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 728,
+   "tokens_out": 2752,
+   "calls": 1,
+   "wall_ms": 17687.356099995668,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 8.765s caused the accelerometers to clip simultaneously. The flight controller's response to this disturbance subsequently led to actuator saturation.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.765,
+     "value": 18.5
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.765,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 10.562,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 780,
+   "tokens_out": 2179,
+   "calls": 1,
+   "wall_ms": 12434.554099992965,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration began at 9.047s, which likely caused the accelerometers to clip simultaneously due to sensor limits being exceeded. The flight controller's subsequent attempts to stabilize the vibrating system led to actuator saturation shortly after.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 9.75,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 695,
+   "tokens_out": 3238,
+   "calls": 1,
+   "wall_ms": 27080.4330999963,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 9.047s likely caused the accelerometers to clip simultaneously. The flight controller's attempt to compensate for the resulting bad data then led to actuator saturation shortly after.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 722,
+   "tokens_out": 2419,
+   "calls": 1,
+   "wall_ms": 17976.906999989296,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "5737e7818788d367",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 9.047s likely caused the accelerometers to clip simultaneously. The flight controller's attempt to stabilize against this vibration subsequently led to actuator saturation at 9.75s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 45.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.047,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 9.75,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 774,
+   "tokens_out": 3013,
+   "calls": 1,
+   "wall_ms": 16221.750299999258,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 8.828s likely caused the accelerometer to clip at the same time. The flight controller's subsequent attempts to stabilize against this instability led to actuator saturation later at 17.563s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 707,
+   "tokens_out": 1612,
+   "calls": 1,
+   "wall_ms": 10437.27019999642,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 8.828s likely caused the accelerometers to clip due to sensor overload. This instability then led to the flight controller struggling and causing actuator saturation at 17.563s.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": null
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 734,
+   "tokens_out": 2021,
+   "calls": 1,
+   "wall_ms": 12977.538200007984,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "a935333bb24792d1",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "actuator_saturation"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration at 8.828s caused accelerometer clipping at the same time, as the sensor's range was exceeded. The flight controller's attempts to stabilize under these conditions subsequently led to actuator saturation at 17.563s.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 8.828,
+     "value": 42.7
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 8.828,
+     "value": 1.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 17.563,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 786,
+   "tokens_out": 2518,
+   "calls": 1,
+   "wall_ms": 14189.963299999363,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected, which is a common cause for accelerometers to exceed their measurement range and clip. Both the excessive vibration and accelerometer clipping advisories were first detected simultaneously at 9.016 seconds.",
+   "citations": [
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 598,
+   "tokens_out": 3028,
+   "calls": 1,
+   "wall_ms": 18442.83239998913,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration can cause accelerometers to exceed their measurement range, leading to clipping. Both advisories occurred simultaneously, indicating a direct causal link.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.016,
+     "value": 2.0
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.016,
+     "value": 2.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 625,
+   "tokens_out": 1374,
+   "calls": 1,
+   "wall_ms": 8323.226900000009,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b1b9f96896136032",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "vibration_excessive"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Both excessive vibration and accelerometer clipping were detected simultaneously at 9.016 seconds. Excessive vibration is the root cause, as strong vibrations can overwhelm the accelerometer's range, leading to clipping.",
+   "citations": [
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.016,
+     "value": 1.0
+    },
+    {
+     "metric": "VibeX",
+     "t": 9.016,
+     "value": 15.2
+    },
+    {
+     "metric": "VibeY",
+     "t": 9.016,
+     "value": 14.8
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.016,
+     "value": 16.5
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 677,
+   "tokens_out": 1309,
+   "calls": 1,
+   "wall_ms": 8131.585499999346,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected, which likely caused the accelerometer to exceed its measurement range, leading to clipping. Both incidents were first detected at the same timestamp.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 611,
+   "tokens_out": 1024,
+   "calls": 1,
+   "wall_ms": 6223.938000010094,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration directly leads to accelerometer clipping as the sensor's dynamic range is exceeded. Both incidents were detected simultaneously at 9.031s.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.031,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 9.031,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 638,
+   "tokens_out": 2147,
+   "calls": 1,
+   "wall_ms": 12106.134200002998,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "b234e5f2d4871e39",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping",
+    "vibration_excessive"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration can cause accelerometers to exceed their measurement limits, leading to clipping. Both the excessive vibration and accelerometer clipping incidents were detected simultaneously at 9.031 seconds.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 35.2
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 7.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 690,
+   "tokens_out": 1826,
+   "calls": 1,
+   "wall_ms": 10345.357800004422,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected at 9.031s, as indicated by a high VibeX value. This severe vibration subsequently caused the accelerometers to clip, which is confirmed by an increase in ClipCountTotal at the same timestamp.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 15.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 10.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 611,
+   "tokens_out": 2901,
+   "calls": 1,
+   "wall_ms": 17534.79530000186,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration can cause accelerometers to exceed their measurement range, leading to clipping. Both advisories triggered simultaneously at 9.031s, indicating a direct causal link.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 638,
+   "tokens_out": 3178,
+   "calls": 1,
+   "wall_ms": 18037.66609999002,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "29649fc98b539fa8",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration is a physical condition that can cause an accelerometer to clip when the forces exceed its measurement range. The simultaneous critical detection of both advisories at 9.031s strongly suggests high vibration as the root cause, with clipping being a direct consequence.",
+   "citations": [
+    {
+     "metric": "ClipCountTotal",
+     "t": 9.031,
+     "value": 150.0
+    },
+    {
+     "metric": "VibeX",
+     "t": 9.031,
+     "value": 18.5
+    },
+    {
+     "metric": "VibeY",
+     "t": 9.031,
+     "value": 12.3
+    },
+    {
+     "metric": "VibeZ",
+     "t": 9.031,
+     "value": 21.1
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 690,
+   "tokens_out": 2975,
+   "calls": 1,
+   "wall_ms": 18014.2521999951,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v1",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected first and is a common cause for accelerometer clipping. The clipping occurred after the onset of severe vibrations.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 18.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 598,
+   "tokens_out": 1013,
+   "calls": 1,
+   "wall_ms": 6186.934900004417,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v2",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected significantly before accelerometer clipping. High vibration levels can cause accelerometers to saturate and clip.",
+   "citations": [
+    {
+     "metric": "vibration_excessive",
+     "t": 9.047,
+     "value": null
+    },
+    {
+     "metric": "accel_clipping",
+     "t": 18.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 625,
+   "tokens_out": 1030,
+   "calls": 1,
+   "wall_ms": 6943.924299994251,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "1265b7d3dc330517",
+   "prompt_variant": "v3",
+   "root_cause": "vibration_excessive",
+   "symptoms": [
+    "accel_clipping"
+   ],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); Excessive vibration was detected first, with VibeX exceeding its threshold. This high vibration level subsequently caused the accelerometer to clip, as evidenced by the increase in ClipCountTotal.",
+   "citations": [
+    {
+     "metric": "VibeX",
+     "t": 9.047,
+     "value": 1200.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 17.0,
+     "value": 0.0
+    },
+    {
+     "metric": "ClipCountTotal",
+     "t": 18.0,
+     "value": 10.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 677,
+   "tokens_out": 3556,
+   "calls": 1,
+   "wall_ms": 21351.94570000749,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The flight data indicates that no incident types were detected during the flight window. There are no advisories or available metrics to suggest any underlying issues.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 411,
+   "tokens_out": 399,
+   "calls": 1,
+   "wall_ms": 2769.1551000025356,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incident types were detected during the flight, and no advisories were triggered. There is no evidence of any anomaly.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 438,
+   "tokens_out": 693,
+   "calls": 1,
+   "wall_ms": 4891.514599992661,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "fdaa1d8991f4ef92",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No advisories were raised and no incident types were detected during the flight window, indicating a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 490,
+   "tokens_out": 410,
+   "calls": 1,
+   "wall_ms": 3177.3554000101285,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incidents or advisories were detected during the flight window. All available indicators suggest a clean flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 410,
+   "tokens_out": 330,
+   "calls": 1,
+   "wall_ms": 2199.133600006462,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No advisories or incident types were detected during the flight. No metric data is available to indicate any underlying issues.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 437,
+   "tokens_out": 435,
+   "calls": 1,
+   "wall_ms": 3637.9945000080625,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "279e6911bea7db7a",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No advisories were raised and no incident types were detected by the system. There is no evidence of any fault during the flight.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 489,
+   "tokens_out": 591,
+   "calls": 1,
+   "wall_ms": 3934.148499989533,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v1",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No incident types were detected during the flight window. The flight appears to have completed without any reported faults.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 425,
+   "tokens_out": 308,
+   "calls": 1,
+   "wall_ms": 2573.3999999938533,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v2",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); No advisories were triggered and no incident types were detected during the flight. The flight appears to have been clean.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 452,
+   "tokens_out": 377,
+   "calls": 1,
+   "wall_ms": 2841.940700003761,
+   "seed": null
+  },
+  {
+   "judge": "B2",
+   "bundle_id": "ba71cc5e8d46a07f",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [],
+   "confidence": 1.0,
+   "rationale": "majority vote 1/1 of k=1 (disagreement 0.00); The system reported no advisories and no detected incident types during the flight window. All systems appear to be operating nominally.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 504,
+   "tokens_out": 449,
+   "calls": 1,
+   "wall_ms": 3555.0485999992816,
+   "seed": null
+  }
+ ]
+}
