@@ -27,3 +27,7 @@ tests/.tmp-manifest/
 # The published write-ups in docs/ are the outward-facing version of the same material.
 HANDOFF.md
 START-HERE.md
+
+# Prevalence sweep console log. The verdict files under results/prevalence/ are the record;
+# this is just the terminal transcript of the run that produced them.
+prevalence_run.log

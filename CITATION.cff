@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "SentinelAgent Realtime"
+message: >-
+  If you use this software or its method, please cite it. If you cite a NUMBER from it, cite the
+  commit as well: every figure regenerates from the committed verdict files, and a commit hash is
+  what makes that check possible for a reader.
+type: software
+authors:
+  - family-names: Rajelli
+    given-names: Rahul
+repository-code: "https://github.com/RahulRajelli/sentinel-realtime"
+abstract: >-
+  A realtime flight-anomaly detector for ArduPilot telemetry, plus an evaluation harness that
+  measures whether an LLM judge can name the ROOT CAUSE of a fault rather than the first symptom
+  that fired. Its central construction is a fault scenario on which a free deterministic baseline
+  is wrong by construction rather than by measurement: a detector persistence gate places the
+  causal advisory 1.0 s AFTER the symptom it produced, so the rule "the first alarm after
+  something changed is the cause" scores 0.00 and any costlier method must earn its cost against
+  a baseline that cannot be tuned into agreement.
+keywords:
+  - uav
+  - ardupilot
+  - mavlink
+  - root-cause-analysis
+  - llm-evaluation
+  - agent-evaluation
+  - baseline-design
+license: Apache-2.0
+version: 0.1.0
+date-released: "2026-08-15"
