@@ -761,8 +761,42 @@ def main():
     print("\n  note: detect_oscillation cannot fire before ~1.5 s of ATT history (its window),")
     print("        so that is a floor on oscillation latency independent of the network.")
 
-    Path(args.out).write_text(json.dumps(results, indent=1))
-    print(f"\nwrote {args.out}")
+    # MERGE, do not truncate.
+    #
+    # `--out` defaults to r8_results.json, and that file is not this run's scratch output. It is
+    # the fault set the entire scorer suite builds its fixtures from (`R8` in tests/test_score.py)
+    # and the source of the published "4/4 scenarios, worst cycle 18 ms" table. A scoped run
+    # (`--only hot_gains_lowd`) produces exactly one row, so a plain write deleted the other four.
+    #
+    # That happened on 2026-08-15. The pair C capture replaced the R8 record with its single row;
+    # 12 tests in test_score.py went red hunting a `vibration` scenario that no longer existed,
+    # and the cited 18 ms worst cycle lost the file it came from. Nothing warned, because writing
+    # your own output file is not obviously destructive until you notice what else lives in it.
+    #
+    # Rows are keyed by (scenario, rep). This run's rows replace their own keys in place and no
+    # other row is touched. The honest cost: rows for scenarios not flown this run survive, so the
+    # file accumulates across runs and a row can be older than the code that would produce it now.
+    # That is what `--compare` is for, and it is strictly better than silently losing the row. For
+    # a genuinely fresh file, pass a different `--out` or delete this one first.
+    out_path = Path(args.out)
+    merged: dict[tuple[str, int], dict] = {}
+    if out_path.exists():
+        try:
+            for prior in json.loads(out_path.read_text()):
+                merged[(prior["scenario"], prior.get("rep", 0))] = prior
+        except (json.JSONDecodeError, TypeError, KeyError) as exc:
+            # An unreadable existing file must not cost us the run we just flew -- but it must be
+            # said out loud, because the merge silently degrading to a truncate is this same bug.
+            print(f"note: {args.out} was unreadable ({exc.__class__.__name__}), "
+                  f"writing only this run's rows")
+            merged = {}
+    for r in results:
+        merged[(r["scenario"], r.get("rep", 0))] = r
+
+    out_path.write_text(json.dumps(list(merged.values()), indent=1))
+    kept = len(merged) - len(results)
+    print(f"\nwrote {args.out} ({len(results)} row(s) from this run"
+          f"{f', {kept} kept from earlier runs' if kept > 0 else ''})")
     if bundles_dir is not None:
         print(f"wrote {sum(1 for r in results if r.get('bundle'))} bundles to {bundles_dir}/")
 

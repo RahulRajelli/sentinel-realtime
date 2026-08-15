@@ -80,15 +80,39 @@ PUBLISHED = {
 }
 
 EXPECTED_RUNS = 5
-EXPECTED_BUNDLES = 3
+
+# The flights every published figure is a mean over, pinned BY FILENAME.
+#
+# This was `only=["compass_offset"]` with a bare `len(b) == 3`, which counted whatever
+# compass_offset bundles happened to be sitting in `bundles/`. That coupled "which flights the
+# figures were computed over" to "which flights exist on disk" -- two different things. Capturing
+# a fourth compass flight on 2026-08-15 turned 12 tests red and errored 26 more without a single
+# published number having changed. That is the wrong direction for a gate to fail in: the fourth
+# flight is exactly what the project needs (at n=3/arm the best possible two-sided Fisher exact p
+# is 0.100, so the design could not produce a significant result at ANY effect size; n=4 takes the
+# ceiling to 0.029), and a suite that goes red when you collect evidence teaches you not to
+# collect it.
+#
+# Pinning names is also STRICTLY STRONGER than counting them. A count of 3 still passes if one
+# bundle is swapped for a different one; this does not. Adding a flight to a published mean now
+# requires editing this list in the same commit as the figures -- which is the coupling the
+# module docstring asks for, enforced rather than requested.
+PUBLISHED_FLIGHTS = [
+    "compass_offset_r0.json",
+    "compass_offset_r1.json",
+    "compass_offset_r2.json",
+]
 
 
 @pytest.fixture(scope="module")
 def bundles():
-    b = load_all(str(_ROOT / "bundles"), only=["compass_offset"])
-    assert len(b) == EXPECTED_BUNDLES, (
-        f"expected {EXPECTED_BUNDLES} compass_offset bundles, found {len(b)}. "
-        f"Every published figure is a mean over exactly those flights")
+    b = load_all(str(_ROOT / "bundles"), only=PUBLISHED_FLIGHTS)
+    assert len(b) == len(PUBLISHED_FLIGHTS), (
+        f"expected the {len(PUBLISHED_FLIGHTS)} pinned compass_offset flights "
+        f"{PUBLISHED_FLIGHTS}, loaded {len(b)}. Every published figure is a mean over exactly "
+        f"those flights -- if one is renamed or removed, the published numbers no longer have a "
+        f"source, and if a new flight belongs in the mean it goes in this list and the figures "
+        f"are re-run in the same commit")
     return b
 
 
@@ -180,9 +204,9 @@ def test_b0_fails_in_the_constructed_way(bundles, arm):
     if "B0" not in sym:
         pytest.skip(f"{arm} did not run B0")
     for i, count in enumerate(sym["B0"], start=1):
-        assert count == EXPECTED_BUNDLES, (
+        assert count == len(PUBLISHED_FLIGHTS), (
             f"{arm} run{i}: B0 named a symptom as root {count} times, expected "
-            f"{EXPECTED_BUNDLES} (once per bundle)")
+            f"{len(PUBLISHED_FLIGHTS)} (once per pinned flight)")
 
 
 @pytest.mark.parametrize("arm", sorted(PUBLISHED))

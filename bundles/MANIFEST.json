@@ -1,7 +1,13 @@
 {
  "version": 1,
- "created_utc": "2026-08-15T10:23:49+00:00",
+ "created_utc": "2026-08-15T16:23:02+00:00",
  "entries": {
+  "compass_offset_demo_r0.json": {
+   "sha256": "df981bffbc99b023d4ff5cf7fa8c4335af933340389215dc4ff1e389f51d7498",
+   "bytes": 312830,
+   "bundle_id": "741fed001f9ad5d8",
+   "schema_version": 2
+  },
   "compass_offset_r0.json": {
    "sha256": "30170f549f1d053be598cc6bb25231a7cd4a1ee7cfffaf322fc9923169857555",
    "bytes": 312073,
@@ -55,6 +61,12 @@
    "bytes": 191661,
    "bundle_id": "dd5db6ad0a2e784f",
    "schema_version": 1
+  },
+  "hot_gains_lowd_pairc_r0.json": {
+   "sha256": "b79e9c6e91acccb8151fdc1f2f7ba4aaf302195a41e2c8b2bc3267bf9d4552e8",
+   "bytes": 330399,
+   "bundle_id": "e73847254031e257",
+   "schema_version": 2
   },
   "hot_gains_r0.json": {
    "sha256": "47c145e4e5284a8cf7060bd0ecb2fe3715e459dd5a096df325420bd07f495eda",

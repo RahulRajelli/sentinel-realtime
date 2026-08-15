@@ -37,6 +37,10 @@ SYMPTOMS = {
     "vibration": ["accel_clipping"],
     "gps_loss": ["ekf_inconsistency", "gps_high_hdop"],
     "wind": ["actuator_saturation", "control_oscillation"],
+    # Pair C, flown 2026-08-15. Without this entry `expected_symptoms` is empty and the scorer
+    # cannot tell "named a SYMPTOM as the root cause" from "named something unrelated" -- both
+    # score 0.0, so the suite would stay green while losing the distinction the project measures.
+    "hot_gains_lowd": ["actuator_saturation", "ekf_inconsistency"],
 }
 
 T_INJECT = 8.0
@@ -112,26 +116,72 @@ def r8_rows() -> list[dict]:
 # --- the acceptance criterion ---------------------------------------------------------
 
 def test_b0_reproduces_r8_pass_fail(bundles, r8_rows):
-    """B0 + scorer must agree with the live harness's own pass/fail, offline."""
+    """B0 + scorer must agree with the live harness's own pass/fail, offline -- except on the
+    ambiguous pairs, where disagreeing is the entire point.
+
+    The harness's `ok` asks "was the expected root cause advised AT ALL". B0's `correct` asks
+    "was the FIRST advisory the root cause". Those are the same question only while no fault in
+    the set is one of the constructed ambiguous pairs.
+
+    On 2026-08-15 `hot_gains_lowd` entered the set and this test failed -- correctly, and for the
+    reason the project exists. The harness said ok=True because `control_oscillation` was
+    eventually advised; B0 answered `actuator_saturation`, the symptom that fired 1.719 s earlier.
+
+    So the assertion splits on the row's own `ambiguous` flag rather than being relaxed to fit.
+    On a plain fault B0 must still agree exactly. On an ambiguous pair it must DISAGREE, because
+    a B0 that got those right would mean the pair is not discriminating -- and then every E4
+    number measured against that pair is unreadable.
+    """
     judge = DeterministicJudge()
     for bundle, row in zip(bundles, r8_rows):
         verdict = judge.judge(bundle)
         score = score_verdict(bundle, verdict)
+        if row.get("ambiguous"):
+            assert not score.correct, (
+                f"{bundle.scenario} is flagged ambiguous, yet B0 named {verdict.root_cause!r} "
+                f"and was scored CORRECT. Either the ordering trap stopped working or the flag "
+                f"is wrong; either way no E4 result measured on this fault can be read")
+            continue
         assert score.correct is bool(row["ok"]), (
             f"{bundle.scenario}: harness said ok={row['ok']}, "
             f"B0 said {verdict.root_cause!r} vs expected {bundle.expected_root_cause!r}")
 
 
-def test_b0_scores_perfectly_on_the_current_fault_set(bundles):
-    """Documented on purpose: the deterministic floor is already 100% here.
+def test_b0_is_perfect_on_plain_faults_and_fails_on_the_ambiguous_pair(bundles, r8_rows):
+    """The headline result, pinned.
 
-    Consequence, and the reason this test is named the way it is -- on this scenario set no
-    agent can beat B0. The best available outcome is a tie at higher cost. Any measurement of
-    E4's value requires faults where the first advisory is NOT the root cause.
+    This replaces `test_b0_scores_perfectly_on_the_current_fault_set`, which asserted the
+    deterministic floor was 100% across the board and observed the consequence: on that scenario
+    set no agent could beat B0, the best available outcome was a tie at higher cost, and "any
+    measurement of E4's value requires faults where the first advisory is NOT the root cause".
+
+    Pair C is that fault. Flown 2026-08-15, it took B0 from 5/5 to 4/5, which is the first time
+    this repository has had a gap for an agent to close rather than a tie to report.
+
+    Both halves are asserted, because each is load-bearing in a different direction:
+
+    * 1.00 on every plain fault. B0 is not a strawman baseline chosen to be beaten -- it is
+      exactly right whenever the root cause's own detector happens to speak first, which was
+      true of every fault captured before pair C.
+    * 0.00 on every ambiguous pair. It does not merely score lower there; it fails completely,
+      and in the constructed way. If that ever drifts upward on its own, the pair has stopped
+      discriminating and the E4 comparison silently loses its meaning.
     """
     judge = DeterministicJudge()
     rows = score_all(bundles, [judge.judge(b) for b in bundles])
-    assert sum(r.score for r in rows) == len(rows)
+    ambiguous = {r["scenario"] for r in r8_rows if r.get("ambiguous")}
+    assert ambiguous, ("no scenario in r8_results.json is flagged ambiguous. The fault set has "
+                       "lost its discriminating pair, and with it any measurable role for E4")
+
+    plain = [r for r in rows if r.scenario not in ambiguous]
+    trapped = [r for r in rows if r.scenario in ambiguous]
+
+    assert plain and all(r.score == 1.0 for r in plain), (
+        f"B0 must be perfect on plain faults, got "
+        f"{ {r.scenario: r.score for r in plain} }")
+    assert all(r.score == 0.0 for r in trapped), (
+        f"B0 must fail completely on the ambiguous pairs, got "
+        f"{ {r.scenario: r.score for r in trapped} }")
 
 
 def test_b0_never_fails_its_own_citation_check(bundles):

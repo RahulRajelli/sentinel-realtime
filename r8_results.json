@@ -1,5 +1,98 @@
 [
  {
+  "scenario": "null",
+  "expected": null,
+  "ok": true,
+  "injected": [],
+  "inject_verified": true,
+  "first_advised": null,
+  "latency_s": null,
+  "all_advised": [],
+  "false_positives": 0,
+  "incidents": 0,
+  "advisories": 0,
+  "suppression": 0.0,
+  "cycles": 27,
+  "buffer_first": 203,
+  "buffer_last": 1967,
+  "detect_ms_first": 0.68,
+  "detect_ms_last": 3.02,
+  "worst_cycle_ms": 18.0
+ },
+ {
+  "scenario": "vibration",
+  "expected": "vibration_excessive",
+  "ok": true,
+  "injected": [
+   "SIM_VIB_MOT_MAX=200.0",
+   "SIM_ACC1_RND=40.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 1.0,
+  "all_advised": [
+   "accel_clipping",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 130,
+  "advisories": 4,
+  "suppression": 0.969,
+  "cycles": 27,
+  "buffer_first": 204,
+  "buffer_last": 1946,
+  "detect_ms_first": 0.39,
+  "detect_ms_last": 7.81,
+  "worst_cycle_ms": 13.9
+ },
+ {
+  "scenario": "gps_loss",
+  "expected": "gps_fix_loss",
+  "ok": true,
+  "injected": [
+   "SIM_GPS1_FIXTYPE=0.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "gps_fix_loss",
+  "latency_s": 5.0,
+  "all_advised": [
+   "gps_fix_loss"
+  ],
+  "false_positives": 0,
+  "incidents": 17,
+  "advisories": 1,
+  "suppression": 0.941,
+  "cycles": 27,
+  "buffer_first": 210,
+  "buffer_last": 1960,
+  "detect_ms_first": 3.15,
+  "detect_ms_last": 2.93,
+  "worst_cycle_ms": 15.0
+ },
+ {
+  "scenario": "wind",
+  "expected": null,
+  "ok": true,
+  "injected": [
+   "SIM_WIND_SPD=18.0",
+   "SIM_WIND_DIR=90.0"
+  ],
+  "inject_verified": true,
+  "first_advised": null,
+  "latency_s": null,
+  "all_advised": [],
+  "false_positives": 0,
+  "incidents": 0,
+  "advisories": 0,
+  "suppression": 0.0,
+  "cycles": 27,
+  "buffer_first": 203,
+  "buffer_last": 1939,
+  "detect_ms_first": 0.39,
+  "detect_ms_last": 3.12,
+  "worst_cycle_ms": 8.9
+ },
+ {
   "scenario": "hot_gains_lowd",
   "expected": "control_oscillation",
   "ok": true,
