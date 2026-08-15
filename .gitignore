@@ -19,3 +19,4 @@ r8_run.err
 tests/.tmp-memory/
 history/
 tests/.tmp-migration/
+tests/.tmp-manifest/
