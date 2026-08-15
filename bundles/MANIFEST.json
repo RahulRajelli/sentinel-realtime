@@ -1,0 +1,175 @@
+{
+ "version": 1,
+ "created_utc": "2026-08-15T10:16:34+00:00",
+ "entries": {
+  "compass_offset_r0.json": {
+   "sha256": "30170f549f1d053be598cc6bb25231a7cd4a1ee7cfffaf322fc9923169857555",
+   "bytes": 312073,
+   "bundle_id": "208f0c138b8eb274",
+   "schema_version": 1
+  },
+  "compass_offset_r1.json": {
+   "sha256": "61faad6af13197719f508472b9e3ea32903671a4dc2ac286f026b139f724eaaa",
+   "bytes": 312561,
+   "bundle_id": "3404617f357fb1fa",
+   "schema_version": 1
+  },
+  "compass_offset_r2.json": {
+   "sha256": "89b7d323f1dbc404dc6d294fa882cacb2464adcde246e327e35c4cdb611d2c73",
+   "bytes": 312425,
+   "bundle_id": "34c046b569ac3636",
+   "schema_version": 1
+  },
+  "gps_loss_r0.json": {
+   "sha256": "9e691bc5ce1c69cc41051216b6944a38e336d43805ddd2ddaa01e65b25569d21",
+   "bytes": 24854,
+   "bundle_id": "896e80fee24e416e",
+   "schema_version": 1
+  },
+  "gps_loss_r1.json": {
+   "sha256": "b6ddcf90f6d599b43aca36d665224ac8a8976d4ee1543df970429467c4f15583",
+   "bytes": 24950,
+   "bundle_id": "9a1ade06256729d3",
+   "schema_version": 1
+  },
+  "gps_loss_r2.json": {
+   "sha256": "6d31e1b76b65d7506b4f42dcdc87ba3fbc9a580654b0fa088b58955126771b02",
+   "bytes": 24945,
+   "bundle_id": "192489aec54c340f",
+   "schema_version": 1
+  },
+  "hexa_motor_fail.json": {
+   "sha256": "be4a158e7cbf4a9726ed9c3926c294bf0902d0860fd5b1b6b4f95c76dbd4dffc",
+   "bytes": 69685,
+   "bundle_id": "31889bcb4e247f39",
+   "schema_version": 1
+  },
+  "hot_gains_ang15_r0.json": {
+   "sha256": "df0882fc45bba441e46b3c89bc62da9fced5080c692f4e9f9f5790e66d2fa777",
+   "bytes": 293021,
+   "bundle_id": "3cd1ba9732b87a9a",
+   "schema_version": 1
+  },
+  "hot_gains_ang22wind_r0.json": {
+   "sha256": "be2aaa8a02d5291c195e9babdccb15331db3a3d95c124521dfae9393843d9436",
+   "bytes": 191661,
+   "bundle_id": "dd5db6ad0a2e784f",
+   "schema_version": 1
+  },
+  "hot_gains_r0.json": {
+   "sha256": "47c145e4e5284a8cf7060bd0ecb2fe3715e459dd5a096df325420bd07f495eda",
+   "bytes": 292217,
+   "bundle_id": "79759aa3c198a814",
+   "schema_version": 1
+  },
+  "null_r0.json": {
+   "sha256": "0953bfa42acfca5df5f9608592b89b3240e684e1c92f082d1038d331aa30dd2e",
+   "bytes": 16553,
+   "bundle_id": "e45e50e57e384578",
+   "schema_version": 1
+  },
+  "null_r1.json": {
+   "sha256": "36222c7395ad61f695b4f615067c06c510e8557ba1920b05b464a7155e9f742b",
+   "bytes": 16535,
+   "bundle_id": "1f5e008947dbe604",
+   "schema_version": 1
+  },
+  "null_r2.json": {
+   "sha256": "296fdd6f0137e54cb8286d742bf8d068a842ff5c0e498d3651cfb5e13dab96ac",
+   "bytes": 16552,
+   "bundle_id": "33f446d5fc91d428",
+   "schema_version": 1
+  },
+  "octa_motor_fail.json": {
+   "sha256": "9643b9f41a5df932e7735ab27ceb07ed8781614a61e597c3370515735bd39880",
+   "bytes": 38607,
+   "bundle_id": "d095e8d703db1337",
+   "schema_version": 1
+  },
+  "quad_motor_fail.json": {
+   "sha256": "7bc11fa15fe4a7d40ae30065df64f73585c0bbbf47099d63e6529b0931ba9e6f",
+   "bytes": 116102,
+   "bundle_id": "c54184d3c4f26599",
+   "schema_version": 1
+  },
+  "replay_2024-04-30 17-30-57.json": {
+   "sha256": "a1580b49c538df87d34db0fa3e5bd90d5657818d985a4d6cb20b2061b22725e0",
+   "bytes": 374089,
+   "bundle_id": "1709e7ad446de490",
+   "schema_version": 1
+  },
+  "stiff_airframe_r0.json": {
+   "sha256": "9dfb127f1e3909f888cf8826f06b95507d41d978d736b3ea3e452b1ffe97e1da",
+   "bytes": 869353,
+   "bundle_id": "402239eaf6ed326b",
+   "schema_version": 1
+  },
+  "stiff_airframe_r1.json": {
+   "sha256": "d3ef7e0354be932c8c4a5172cf6acce0e2c43764f430c22100bb432c37828408",
+   "bytes": 808280,
+   "bundle_id": "90d7c50c2486d8a5",
+   "schema_version": 1
+  },
+  "stiff_airframe_r2.json": {
+   "sha256": "62e30f72411db70981cb576c4898cdbc15e81d3bfc4c4a0b82a7214f3f833d7e",
+   "bytes": 833957,
+   "bundle_id": "b4cf4b11ce47dcfb",
+   "schema_version": 1
+  },
+  "stiff_airframe_rnd70_r0.json": {
+   "sha256": "70a3f7f5c7eb79940c92a06eb5ec7e996d7a94948b700b98b18f46ff6c1eee8f",
+   "bytes": 756626,
+   "bundle_id": "5737e7818788d367",
+   "schema_version": 1
+  },
+  "stiff_airframe_rnd70_r1.json": {
+   "sha256": "05302d82f1d12e0cbbf7fc396c889fa40d023a053cbde04f6b0e5deaaa91a5a1",
+   "bytes": 1101959,
+   "bundle_id": "a935333bb24792d1",
+   "schema_version": 1
+  },
+  "stiff_airframe_rnd70_r2.json": {
+   "sha256": "1549a502b5378136635dfe1a05a7e33a110cc4b144e88d35a95dc2b957b369e1",
+   "bytes": 797574,
+   "bundle_id": "b1b9f96896136032",
+   "schema_version": 1
+  },
+  "vibration_r0.json": {
+   "sha256": "6174bf53f239378c618a55c07c01a84617846590c8b5afc029349044f559defb",
+   "bytes": 76635,
+   "bundle_id": "b234e5f2d4871e39",
+   "schema_version": 1
+  },
+  "vibration_r1.json": {
+   "sha256": "d7d1ebc82ed6f97a8f479f3d7549335605ec6918b457c69a8728591ff520dc2d",
+   "bytes": 86796,
+   "bundle_id": "29649fc98b539fa8",
+   "schema_version": 1
+  },
+  "vibration_r2.json": {
+   "sha256": "a6d590bd12c6ab954cd2fff64ca33e2f6cd9c77639afa23bc42584ad86c6331c",
+   "bytes": 88516,
+   "bundle_id": "1265b7d3dc330517",
+   "schema_version": 1
+  },
+  "wind_r0.json": {
+   "sha256": "9ac5276d3a9342331104073684746d1843c8dd70b25857a99d59ee0f652b84ad",
+   "bytes": 16846,
+   "bundle_id": "fdaa1d8991f4ef92",
+   "schema_version": 1
+  },
+  "wind_r1.json": {
+   "sha256": "2ac7d513cf5edb8577ccbe6d5ad415a492cc50115aea9627109d698cf60ba2f8",
+   "bytes": 16848,
+   "bundle_id": "279e6911bea7db7a",
+   "schema_version": 1
+  },
+  "wind_r2.json": {
+   "sha256": "b42581ec05332b7ba99f000d473959ab6a671c703d15c5c2cbf4352018216bb4",
+   "bytes": 16868,
+   "bundle_id": "ba71cc5e8d46a07f",
+   "schema_version": 1
+  }
+ },
+ "note": "SHA-256 over file bytes. Verify with `python scripts/manifest.py --verify`. An HMAC proves the manifest was written by a holder of the shared key; it is not a signature and anyone who can verify it can also forge it."
+}
