@@ -49,6 +49,51 @@ def ambiguous() -> RunBundle:
     )
 
 
+# --- exceedance_ranking ----------------------------------------------------------------
+
+def test_exceedance_ranking_orders_by_ratio_not_raw_value(ambiguous):
+    """The whole point: compare across units, not by which number looks bigger.
+
+    In this fixture `mag_innovation` reaches 6.2 and `mag_variance` 3.1, both against a threshold
+    of 1.0, so the ratio and the raw ordering agree -- which is why the assertion below also
+    checks the ratios themselves. A tool that returned raw values would pass an
+    ordering-only test on this fixture and be wrong on pair C, where 800 us beats 45 deg on raw
+    magnitude while 45 deg is 15x its threshold and 800 us only 2.7x its own.
+    """
+    ranking = BundleTools(ambiguous).exceedance_ranking()["ranking"]
+    assert [r["incident_type"] for r in ranking] == ["compass_inconsistency", "ekf_inconsistency"]
+    assert ranking[0]["exceedance_x"] == pytest.approx(6.2)
+    assert ranking[1]["exceedance_x"] == pytest.approx(3.1)
+    # One row per incident type, not one per evidence sample: ekf_inconsistency fired twice.
+    assert len(ranking) == 2
+
+
+def test_exceedance_ranking_skips_unusable_thresholds():
+    """A zero or missing threshold yields no ratio, and inventing 1.0 would fabricate one."""
+    bundle = RunBundle(
+        scenario="x", expected_root_cause=None, expected_symptoms=[],
+        cycles=[CycleRecord(t=1.0, incidents=[
+            Incident(t_start=0.5, t_end=1.0, type="zero_thr", severity="warning",
+                     evidence=[Evidence(metric="m", value=5.0, threshold=0.0, unit="")]),
+            Incident(t_start=0.5, t_end=1.0, type="usable", severity="warning",
+                     evidence=[Evidence(metric="m2", value=4.0, threshold=2.0, unit="")]),
+        ])],
+    )
+    ranking = BundleTools(bundle).exceedance_ranking()["ranking"]
+    assert [r["incident_type"] for r in ranking] == ["usable"]
+
+
+def test_exceedance_ranking_is_not_in_the_default_surface():
+    """It is offerable, never default, until the pair A control says it earned one.
+
+    Guards the published 0.96 arm: that number was measured on SPECS as it stands, and silently
+    adding a tool to the default would change what every future run means while the suite stayed
+    green. docs/probe-pairc-tool-surface.md is the measurement that would justify promoting it.
+    """
+    assert "exceedance_ranking" not in {s["name"] for s in BundleTools.SPECS}
+    assert "exceedance_ranking" in {s["name"] for s in BundleTools.OPTIONAL_SPECS}
+
+
 # --- the leak test ---------------------------------------------------------------------
 
 def test_ground_truth_never_leaks(ambiguous):

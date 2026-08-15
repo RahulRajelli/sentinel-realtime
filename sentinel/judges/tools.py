@@ -386,6 +386,64 @@ class BundleTools:
             return {"error": f"parameter {name!r} not captured", "similar": near}
         return {"name": name, "value": self._b.params[name]}
 
+    def exceedance_ranking(self) -> dict[str, Any]:
+        """Every detected incident type ranked by how far past its threshold it got.
+
+        WHY THIS EXISTS. On pair C (`hot_gains_lowd`) the tool agent named the symptom on 30 of 30
+        judgements across two models, including the one model of nine that never fell for the
+        ordering trap on pair A. The discriminating fact was in the bundle the whole time:
+        `control_oscillation` exceeded its threshold ~17x (53.5 deg against 3.0) while
+        `actuator_saturation` exceeded its own ~2.6x (777 us against 300). Reaching it cost one
+        `evidence_untimed` call per incident type plus a normalisation across `deg` and `us`
+        against different thresholds, done unaided. This makes that one call.
+
+        **No timestamps, deliberately.** The untimed default surface measured better than every
+        configuration containing the time-bearing tools, and the point here is to test whether
+        SEVERITY is reachable -- not to reintroduce ordering through a side door. On this flight
+        ordering would be misleading anyway: the two incidents are 0.094 s apart, so the 1.719 s
+        figure is the advisory gate, not physics.
+
+        **What it does not do.** It states no conclusion and ranks nothing as "the cause". The
+        ratio is arithmetic on recorded evidence; reading a diagnosis out of the ordering is the
+        judge's job, and whether that reading is even correct is what `probe-pairc-tool-surface.md`
+        measures -- including the pair A control that decides whether this is instrumentation or a
+        hack fitted to one flight.
+
+        One row per incident type: its single largest normalised exceedance, so a detector that
+        fired 154 times contributes one fact rather than 154.
+        """
+        best: dict[str, dict[str, Any]] = {}
+        for cyc in self._b.cycles:
+            for inc in cyc.incidents:
+                for ev in inc.evidence:
+                    threshold = getattr(ev, "threshold", None)
+                    value = getattr(ev, "value", None)
+                    # A threshold of 0 or None cannot produce a ratio. Skipped rather than
+                    # defaulted to 1.0, which would invent an exceedance that was never measured.
+                    if threshold in (None, 0) or value is None:
+                        continue
+                    ratio = abs(value) / abs(threshold)
+                    prior = best.get(inc.type)
+                    if prior is None or ratio > prior["exceedance_x"]:
+                        best[inc.type] = {
+                            "incident_type": inc.type,
+                            "metric": ev.metric,
+                            "value": round(value, 3),
+                            "threshold": round(threshold, 3),
+                            "unit": getattr(ev, "unit", "") or "",
+                            "exceedance_x": ratio,
+                        }
+        ranking = sorted(best.values(), key=lambda r: r["exceedance_x"], reverse=True)
+        for row in ranking:
+            row["exceedance_x"] = round(row["exceedance_x"], 2)
+        if not ranking:
+            return {"error": "no incident in this flight recorded a value against a "
+                             "non-zero threshold"}
+        return {"ranking": ranking,
+                "note": ("each row is one incident type's single largest measured value divided "
+                         "by the threshold it was compared against. units differ between rows; "
+                         "the ratio is what makes them comparable")}
+
     # ---- dispatch -------------------------------------------------------------------
 
     # THE DEFAULT TOOL SURFACE, changed 2026-08-14 on measurement.
@@ -421,6 +479,15 @@ class BundleTools:
     # re-run is not a result, and because a future detector set with different semantics might
     # justify revisiting them -- with a measurement, as these were.
     OPTIONAL_SPECS: list[dict[str, Any]] = [
+        # Added 2026-08-15 for the tool-surface probe. OPTIONAL, not default, on purpose: the
+        # published 0.96 arm must stay reproducible, and this tool has not earned a default yet --
+        # it earns one only if pair C improves AND pair A does not regress. See
+        # docs/probe-pairc-tool-surface.md, which states that control and the risk it guards.
+        {"name": "exceedance_ranking",
+         "description": ("Every detected incident type ranked by how far past its own threshold "
+                         "it got, as a ratio. Makes signals in different units comparable. No "
+                         "timestamps."),
+         "parameters": {"type": "object", "properties": {}, "required": []}},
         {"name": "detector_coverage",
          "description": ("Which detectors could evaluate this flight and which could not look "
                          "at all. Use it before concluding that a quiet detector means nothing "
