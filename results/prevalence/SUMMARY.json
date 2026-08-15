@@ -54,6 +54,17 @@
    "b0_violation": null
   },
   {
+   "model": "claude-sonnet-5",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 0.9111111111111111,
+   "acc_spread": 0.22222222222222232,
+   "sym_mean": 0.8,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
    "model": "qwen3.8-max",
    "runs": 5,
    "status": "ok",
@@ -65,22 +76,33 @@
    "b0_violation": null
   },
   {
-   "model": "gemini-3.7-flash",
+   "model": "kimi-k3",
    "runs": 5,
    "status": "ok",
-   "acc_mean": 1.0,
-   "acc_spread": 0.0,
+   "acc_mean": 0.6666666666666666,
+   "acc_spread": 0.22222222222222232,
    "sym_mean": 0.0,
    "sym_max_of": 9,
    "degraded": 0,
    "b0_violation": null
   },
   {
-   "model": "kimi-k3",
+   "model": "zai-glm-5.2",
    "runs": 5,
    "status": "ok",
-   "acc_mean": 0.6666666666666666,
-   "acc_spread": 0.22222222222222232,
+   "acc_mean": 0.9777777777777779,
+   "acc_spread": 0.11111111111111116,
+   "sym_mean": 0.0,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
+   "model": "gemini-3.7-flash",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 1.0,
+   "acc_spread": 0.0,
    "sym_mean": 0.0,
    "sym_max_of": 9,
    "degraded": 0,

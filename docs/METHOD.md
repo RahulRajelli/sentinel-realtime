@@ -38,7 +38,7 @@ is wrong every time, that you can point to in source.
 Here, two detectors disagree about latency for a principled reason. The compass detector waits for
 the anomaly to persist (`MIN_ANOMALY_S = 1.0`) so it does not cry wolf. The navigation-filter
 detector fires the moment its threshold is crossed. So when the compass breaks, the SYMPTOM is
-advised at 8.8 s and the CAUSE at 9.8 s.
+advised at 9.0 s and the CAUSE at 10.0 s.
 
 The careful engineering choice is exactly what puts the true cause last in the queue. That is the
 asymmetry, and because it is a constant in the source rather than a property of one recording, it

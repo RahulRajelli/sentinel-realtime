@@ -44,7 +44,7 @@
   <figure>
     <div class="plot">
       <svg viewBox="0 0 760 244" role="img"
-           aria-label="Timeline of one compass_offset flight. Compass bias is injected at 8.0 seconds. The navigation-filter advisory, the symptom, fires at 8.8 seconds. The compass advisory, the true root cause, fires at 9.8 seconds, one second later, because its detector requires the anomaly to persist for a full second. B0 selects the first advisory after injection and is therefore wrong by construction.">
+           aria-label="Timeline of one compass_offset flight. Compass bias is injected at 8.0 seconds. The navigation-filter advisory, the symptom, fires at 9.0 seconds. The compass advisory, the true root cause, fires at 10.0 seconds, one second later, because its detector requires the anomaly to persist for a full second. B0 selects the first advisory after injection and is therefore wrong by construction.">
         <defs>
           <marker id="b-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
@@ -52,28 +52,28 @@
         </defs>
         <line x1="40" y1="144" x2="726" y2="144" stroke="currentColor" stroke-width="1" opacity=".38" />
 
-        <line x1="92" y1="68" x2="92" y2="144" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity=".45" />
-        <circle cx="92" cy="144" r="3" fill="currentColor" opacity=".55" />
-        <text class="svg-s" x="92" y="60" text-anchor="middle" opacity=".8">compass biased</text>
-        <text class="svg-s" x="92" y="164" text-anchor="middle" opacity=".8">8.0 s</text>
+        <line x1="150" y1="68" x2="150" y2="144" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" opacity=".45" />
+        <circle cx="150" cy="144" r="3" fill="currentColor" opacity=".55" />
+        <text class="svg-s" x="150" y="60" text-anchor="middle" opacity=".8">compass biased</text>
+        <text class="svg-s" x="150" y="164" text-anchor="middle" opacity=".8">8.0 s</text>
 
-        <line x1="330" y1="100" x2="330" y2="138" stroke="var(--symptom)" stroke-width="2" />
-        <circle cx="330" cy="144" r="5.5" fill="var(--symptom)" />
-        <text class="svg-t" x="330" y="62" text-anchor="middle" fill="var(--symptom)">SYMPTOM</text>
-        <text class="svg-b" x="330" y="84" text-anchor="middle">navigation filter inconsistent</text>
-        <text class="svg-s" x="330" y="164" text-anchor="middle" fill="var(--symptom)">8.8 s</text>
+        <line x1="400" y1="100" x2="400" y2="138" stroke="var(--symptom)" stroke-width="2" />
+        <circle cx="400" cy="144" r="5.5" fill="var(--symptom)" />
+        <text class="svg-t" x="400" y="62" text-anchor="middle" fill="var(--symptom)">SYMPTOM</text>
+        <text class="svg-b" x="400" y="84" text-anchor="middle">navigation filter inconsistent</text>
+        <text class="svg-s" x="400" y="164" text-anchor="middle" fill="var(--symptom)">9.0 s</text>
 
-        <line x1="620" y1="100" x2="620" y2="138" stroke="var(--cause)" stroke-width="2" />
-        <circle cx="620" cy="144" r="5.5" fill="var(--cause)" />
-        <text class="svg-t" x="620" y="62" text-anchor="middle" fill="var(--cause)">CAUSE</text>
-        <text class="svg-b" x="620" y="84" text-anchor="middle">compass inconsistent</text>
-        <text class="svg-s" x="620" y="164" text-anchor="middle" fill="var(--cause)">9.8 s</text>
+        <line x1="650" y1="100" x2="650" y2="138" stroke="var(--cause)" stroke-width="2" />
+        <circle cx="650" cy="144" r="5.5" fill="var(--cause)" />
+        <text class="svg-t" x="650" y="62" text-anchor="middle" fill="var(--cause)">CAUSE</text>
+        <text class="svg-b" x="650" y="84" text-anchor="middle">compass inconsistent</text>
+        <text class="svg-s" x="650" y="164" text-anchor="middle" fill="var(--cause)">10.0 s</text>
 
-        <path d="M330,184 L330,192 L620,192 L620,184" fill="none" stroke="var(--cause)" stroke-width="1" opacity=".8" />
-        <text class="svg-n" x="475" y="210" text-anchor="middle" fill="var(--cause)">1.0 s</text>
-        <text class="svg-s" x="475" y="228" text-anchor="middle" opacity=".8">MIN_ANOMALY_S = 1.0 &mdash; a source constant, not a tuning choice</text>
+        <path d="M400,184 L400,192 L650,192 L650,184" fill="none" stroke="var(--cause)" stroke-width="1" opacity=".8" />
+        <text class="svg-n" x="525" y="210" text-anchor="middle" fill="var(--cause)">1.0 s</text>
+        <text class="svg-s" x="525" y="228" text-anchor="middle" opacity=".8">MIN_ANOMALY_S = 1.0 &mdash; a source constant, not a tuning choice</text>
 
-        <path d="M126,200 C200,200 262,186 322,160" fill="none" stroke="var(--mark)" stroke-width="1.2" opacity=".8" marker-end="url(#b-ar)" />
+        <path d="M186,200 C250,200 322,186 392,160" fill="none" stroke="var(--mark)" stroke-width="1.2" opacity=".8" marker-end="url(#b-ar)" />
         <text class="svg-l" x="40" y="198" fill="var(--mark)">B0 picks the first</text>
         <text class="svg-s" x="40" y="216" fill="var(--mark)">wrong by construction</text>
       </svg>

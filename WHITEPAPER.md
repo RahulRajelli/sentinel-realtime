@@ -50,7 +50,7 @@ the Earth's magnetic field, and I biased its output by a fixed amount so it poin
 wrong. Then I watched what the monitor said.
 
 ```
-   t = 8.0s          t = 8.8s                    t = 9.8s
+   t = 8.0s              t = 9.0s                t = 10.0s
       |                 |                           |
    compass          "navigation filter          "compass is
    broken            is inconsistent"            inconsistent"
@@ -73,7 +73,8 @@ The navigation filter has no such guard and fires the moment its threshold is cr
 
 **The delay between the cause and its own alarm is a constant in the code.** It will happen every
 time, on every flight, for as long as that line exists. Measured across three captured flights,
-the gap was 1.0 s every time, with no false alarms before the fault was injected.
+the gap was 0.95, 0.99 and 1.00 s -- 1.0 s to two significant figures on all three, with no
+false alarms before the fault was injected.
 
 ## Why the obvious rule fails
 

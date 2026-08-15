@@ -9,7 +9,7 @@
 > The last badge is the point of the project, not decoration: `B0` is a free deterministic rule
 > with no model in it, and on this fault it is wrong every single time.
 
-A drone's compass breaks at 8.0 s. At 8.8 s the navigation filter complains. At 9.8 s the compass
+A drone's compass breaks at 8.0 s. At 9.0 s the navigation filter complains. At 10.0 s the compass
 detector finally reports the compass — a full second after the alarm it caused, because that
 detector waits a second before speaking, to avoid crying wolf.
 

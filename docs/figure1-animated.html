@@ -95,7 +95,7 @@
   @keyframes sweep {
     0%,  10% { transform: translateX(0); opacity: 0; }
     14%      { opacity: 1; }
-    30%      { transform: translateX(238px); }
+    30%      { transform: translateX(264px); }
     58%      { transform: translateX(528px); }
     76%      { transform: translateX(528px); opacity: 1; }
     82%,100% { transform: translateX(528px); opacity: 0; }
@@ -137,7 +137,7 @@
   <p class="sub">One simulated flight. The compass is broken at t = 8.0 s. Watch which alarm arrives first.</p>
 
   <svg viewBox="0 0 1100 330" role="img"
-       aria-label="Animated timeline of one compass_offset flight. The compass is deliberately biased at 8.0 seconds. At 8.8 seconds the navigation-filter advisory fires -- the symptom. The deterministic baseline B0 selects that first advisory as the root cause. At 9.8 seconds the compass advisory fires -- the true cause -- one full second later, because the compass detector requires the anomaly to persist for a second before reporting it. B0 is therefore wrong by construction and scores 0.00.">
+       aria-label="Animated timeline of one compass_offset flight. The compass is deliberately biased at 8.0 seconds. At 9.0 seconds the navigation-filter advisory fires -- the symptom. The deterministic baseline B0 selects that first advisory as the root cause. At 10.0 seconds the compass advisory fires -- the true cause -- one full second later, because the compass detector requires the anomaly to persist for a second before reporting it. B0 is therefore wrong by construction and scores 0.00.">
 
     <defs>
       <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5"
@@ -150,11 +150,11 @@
     <g class="step s-axis">
       <line x1="60" y1="190" x2="1040" y2="190" stroke="#26425F" stroke-width="1.5" />
       <line x1="150" y1="184" x2="150" y2="196" stroke="#26425F" stroke-width="1.5" />
-      <line x1="388" y1="184" x2="388" y2="196" stroke="#26425F" stroke-width="1.5" />
+      <line x1="414" y1="184" x2="414" y2="196" stroke="#26425F" stroke-width="1.5" />
       <line x1="678" y1="184" x2="678" y2="196" stroke="#26425F" stroke-width="1.5" />
       <text class="lbl" x="150" y="214" text-anchor="middle">8.0 s</text>
-      <text class="lbl" x="388" y="214" text-anchor="middle">8.8 s</text>
-      <text class="lbl" x="678" y="214" text-anchor="middle">9.8 s</text>
+      <text class="lbl" x="414" y="214" text-anchor="middle">9.0 s</text>
+      <text class="lbl" x="678" y="214" text-anchor="middle">10.0 s</text>
     </g>
 
     <!-- playhead: real time being spent -->
@@ -171,16 +171,16 @@
     </g>
 
     <!-- symptom -->
-    <circle class="pulse" cx="388" cy="190" fill="#DCB253" />
+    <circle class="pulse" cx="414" cy="190" fill="#DCB253" />
     <g class="step s-sym">
-      <line x1="388" y1="128" x2="388" y2="182" stroke="#DCB253" stroke-width="2.5" />
-      <text class="tagl" x="388" y="86" text-anchor="middle" fill="#DCB253">SYMPTOM</text>
-      <text class="evt"  x="388" y="112" text-anchor="middle">navigation filter inconsistent</text>
+      <line x1="414" y1="128" x2="414" y2="182" stroke="#DCB253" stroke-width="2.5" />
+      <text class="tagl" x="414" y="86" text-anchor="middle" fill="#DCB253">SYMPTOM</text>
+      <text class="evt"  x="414" y="112" text-anchor="middle">navigation filter inconsistent</text>
     </g>
 
     <!-- B0 grabs the first one -->
     <g class="step s-b0">
-      <path d="M196,258 C260,258 320,236 378,206" fill="none" stroke="#EE8067"
+      <path d="M196,258 C270,258 340,236 404,206" fill="none" stroke="#EE8067"
             stroke-width="1.6" marker-end="url(#ar)" />
       <text class="evt" x="60" y="254" fill="#EE8067">B0 picks the first alarm</text>
       <text class="lbl" x="60" y="274" fill="#EE8067">the free rule, no AI</text>
@@ -196,9 +196,9 @@
 
     <!-- the gap -->
     <g class="step s-gap">
-      <path d="M388,238 L388,248 L678,248 L678,238" fill="none" stroke="#7FB2EC" stroke-width="1.5" />
-      <text class="num" x="533" y="272" text-anchor="middle" fill="#7FB2EC">1.0 second late</text>
-      <text class="lbl" x="533" y="292" text-anchor="middle">the compass check waits, to avoid crying wolf</text>
+      <path d="M414,238 L414,248 L678,248 L678,238" fill="none" stroke="#7FB2EC" stroke-width="1.5" />
+      <text class="num" x="546" y="272" text-anchor="middle" fill="#7FB2EC">1.0 second late</text>
+      <text class="lbl" x="546" y="292" text-anchor="middle">the compass check waits, to avoid crying wolf</text>
     </g>
 
     <!-- verdict -->
