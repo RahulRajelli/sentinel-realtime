@@ -1,0 +1,583 @@
+{
+ "bundles": [
+  "208f0c138b8eb274",
+  "3404617f357fb1fa",
+  "34c046b569ac3636"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [],
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "-",
+   "root_cause": "ekf_inconsistency",
+   "symptoms": [
+    "compass_inconsistency"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.062000000005355,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 8.220200019422919,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "-",
+   "root_cause": "ekf_inconsistency",
+   "symptoms": [
+    "compass_inconsistency"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.077999999994063,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 5.009999993490055,
+   "seed": null
+  },
+  {
+   "judge": "B0",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "-",
+   "root_cause": "ekf_inconsistency",
+   "symptoms": [
+    "compass_inconsistency"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": 9.0,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 4.944799991790205,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The EKF magnetometer innovation test ratio was 2.619, exceeding its 1.0 consistency threshold and indicating that the filter rejected compass data. This directly explains the broader EKF inconsistency warning.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1944,
+   "tokens_out": 189,
+   "calls": 2,
+   "wall_ms": 6909.671999979764,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "EKF_Magnetometer_Variance was 2.619 against a 1.0 consistency threshold, showing that the EKF rejected inconsistent compass data. The EKF inconsistency is therefore a consequence of the compass inconsistency rather than a separate fault.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1949,
+   "tokens_out": 178,
+   "calls": 2,
+   "wall_ms": 5454.520900006173,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.94,
+   "rationale": "The advisories were ekf_inconsistency at 9.062 s and compass_inconsistency at 10.016 s, so EKF detection led by 0.954 s. Both were driven by EKF_Magnetometer_Variance at 2.619 versus a 1.0 threshold, indicating compass rejection as the fault explaining the EKF symptom.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency.t_first",
+     "t": 9.062,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency.t_first",
+     "t": 10.016,
+     "value": null
+    },
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.619
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2053,
+   "tokens_out": 242,
+   "calls": 2,
+   "wall_ms": 10644.926100008888,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The EKF rejected compass data because EKF_Magnetometer_Variance was 2.616, exceeding its 1.0 consistency threshold. This directly explains the broader EKF inconsistency warning.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1885,
+   "tokens_out": 167,
+   "calls": 2,
+   "wall_ms": 8489.43529999815,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The EKF magnetometer innovation test ratio was 2.616 against a 1.0 consistency threshold, showing that the filter rejected inconsistent compass data. Thus compass inconsistency is the root cause, while EKF inconsistency is the resulting symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1941,
+   "tokens_out": 177,
+   "calls": 2,
+   "wall_ms": 5819.736799981911,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.98,
+   "rationale": "The advisories were ekf_inconsistency at 9.078 s and compass_inconsistency at 10.063 s, so EKF was detected 0.985 s first. Both detectors measured EKF_Magnetometer_Variance at 2.616 against a 1.0 threshold, indicating compass rejection caused the broader EKF inconsistency.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2045,
+   "tokens_out": 200,
+   "calls": 2,
+   "wall_ms": 9230.694199999562,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "EKF_Magnetometer_Variance was 2.616 versus a 1.0 consistency threshold, indicating that the EKF rejected inconsistent compass data. This directly explains the broader EKF inconsistency warning as a downstream symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1895,
+   "tokens_out": 173,
+   "calls": 2,
+   "wall_ms": 5396.329199982574,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.98,
+   "rationale": "The EKF magnetometer innovation ratio was 2.616 against a 1.0 consistency threshold, showing that the filter rejected inconsistent compass data. Thus compass inconsistency is the root cause and EKF inconsistency is the resulting symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 1951,
+   "tokens_out": 175,
+   "calls": 2,
+   "wall_ms": 5007.789900002535,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.96,
+   "rationale": "The system raised ekf_inconsistency at 9.0 s and compass_inconsistency at 10.0 s, so EKF was detected 1.0 s first. Both detectors measured EKF_Magnetometer_Variance at 2.616 against a 1.0 threshold, making compass inconsistency the specific fault that explains the broader EKF symptom.",
+   "citations": [
+    {
+     "metric": "EKF_Magnetometer_Variance",
+     "t": null,
+     "value": 2.616
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2055,
+   "tokens_out": 203,
+   "calls": 2,
+   "wall_ms": 8999.695600010455,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.72,
+   "rationale": "The detected compass inconsistency is the likely underlying sensor fault, while the EKF inconsistency is a downstream estimator response despite appearing earlier. Both incident types were observed during the flight window.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.062,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 618,
+   "tokens_out": 114,
+   "calls": 1,
+   "wall_ms": 6059.54990000464,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.82,
+   "rationale": "The compass inconsistency is the likely source of the EKF inconsistency because conflicting compass data directly disrupts EKF fusion. Although the EKF detector triggered first, detector order does not establish causality.",
+   "citations": [
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.016,
+     "value": null
+    },
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.062,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 646,
+   "tokens_out": 118,
+   "calls": 1,
+   "wall_ms": 6613.7057000014465,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "208f0c138b8eb274",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.3,
+   "rationale": "The ekf_inconsistency advisory appeared at 9.062 s, 0.954 s before compass_inconsistency at 10.016 s. No measured EKF_Magnetometer_Variance value or threshold was available to establish which advisory represents the underlying fault.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.062,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.016,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 698,
+   "tokens_out": 134,
+   "calls": 1,
+   "wall_ms": 9064.35409997357,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.72,
+   "rationale": "The compass inconsistency is the likely underlying fault because magnetometer disagreement can drive EKF inconsistency, even though the EKF warning appeared first. Both detected advisories support this causal grouping.",
+   "citations": [
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.063,
+     "value": null
+    },
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.078,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 614,
+   "tokens_out": 115,
+   "calls": 1,
+   "wall_ms": 6380.760100000771,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.82,
+   "rationale": "Compass inconsistency is the likely underlying sensor fault, while EKF inconsistency is a downstream estimator response even though it was detected first. Both incident types were observed during the flight window.",
+   "citations": [
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.063,
+     "value": null
+    },
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.078,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 642,
+   "tokens_out": 114,
+   "calls": 1,
+   "wall_ms": 4853.997800004436,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "3404617f357fb1fa",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.2,
+   "rationale": "EKF inconsistency was reported at 9.078 s and compass inconsistency at 10.063 s, but arrival order does not establish causality. No measured EKF_Magnetometer_Variance value or threshold evidence was provided to distinguish a compass fault from an EKF symptom.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 694,
+   "tokens_out": 100,
+   "calls": 1,
+   "wall_ms": 5283.82650000276,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v1",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.78,
+   "rationale": "Compass inconsistency best explains the EKF inconsistency, since erroneous magnetic-heading input can make the estimator inconsistent even when the EKF detector triggers first. The EKF warning appeared at 9.0 s and the compass warning followed at 10.0 s.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 619,
+   "tokens_out": 130,
+   "calls": 1,
+   "wall_ms": 5995.242799981497,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v2",
+   "root_cause": "compass_inconsistency",
+   "symptoms": [
+    "ekf_inconsistency"
+   ],
+   "confidence": 0.9,
+   "rationale": "The compass inconsistency is the sensor-level fault and explains the downstream EKF inconsistency, even though the EKF warning appeared first. Both detected advisories occurred within the flight window.",
+   "citations": [
+    {
+     "metric": "ekf_inconsistency",
+     "t": 9.0,
+     "value": null
+    },
+    {
+     "metric": "compass_inconsistency",
+     "t": 10.0,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 647,
+   "tokens_out": 114,
+   "calls": 1,
+   "wall_ms": 4314.721699978691,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "34c046b569ac3636",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "ekf_inconsistency",
+    "compass_inconsistency"
+   ],
+   "confidence": 0.2,
+   "rationale": "EKF inconsistency was detected at 9.0 s, 1.0 s before compass inconsistency at 10.0 s, but arrival order does not establish causality. No measured EKF_Magnetometer_Variance value or threshold was provided, so neither detected incident can be supported as the single root fault.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 699,
+   "tokens_out": 108,
+   "calls": 1,
+   "wall_ms": 6145.093900006032,
+   "seed": 0
+  }
+ ]
+}

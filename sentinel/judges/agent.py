@@ -145,12 +145,18 @@ class AgentJudge:
             if not isinstance(c, dict):
                 continue
             try:
-                citations.append(Citation(metric=str(c["metric"]), t=float(c["t"]),
-                                          value=_opt_float(c.get("value"))))
+                cite = Citation(metric=str(c["metric"]), t=_opt_float(c.get("t")),
+                                value=_opt_float(c.get("value")))
             except (KeyError, TypeError, ValueError):
-                # A malformed citation is dropped, not repaired. Inventing a timestamp to make
-                # it parse would manufacture the evidence the scorer is checking for.
+                # A malformed citation is dropped, not repaired. Inventing a timestamp or a value
+                # to make it parse would manufacture the evidence the scorer is checking for.
                 continue
+            # `t` is optional now, because evidence_untimed exposes none -- but an unanchored
+            # citation points at nothing, so it is dropped here rather than passed to the scorer
+            # to fail. Dropping it means "no citation", which attribute() already reads as a
+            # harness problem, and that is the honest label.
+            if cite.anchored:
+                citations.append(cite)
 
         return Verdict(
             judge=self.id,

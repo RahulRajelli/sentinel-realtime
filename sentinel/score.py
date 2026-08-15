@@ -79,17 +79,56 @@ def known_metrics(bundle: RunBundle) -> set[str]:
     return names
 
 
+def recorded_values(bundle: RunBundle, metric: str) -> list[float]:
+    """Every value recorded for one metric, across the flight."""
+    return [ev.value for c in bundle.cycles for inc in c.incidents for ev in inc.evidence
+            if ev.metric == metric and isinstance(ev.value, (int, float))]
+
+
 def check_citations(bundle: RunBundle, verdict: Verdict) -> tuple[bool, list[str]]:
-    """Every citation must name something the flight observed, at a time it was observing."""
+    """Every citation must name something the flight observed, anchored to something real.
+
+    Two anchors, and a citation needs at least one:
+
+    * `t` -- must fall inside the captured window (the original rule, unchanged);
+    * `value` -- must match a value actually recorded for that metric.
+
+    The value anchor exists because `evidence_untimed` removes timestamps by design, so a judge
+    using it has no `t` to cite and was scoring zero on correct answers. It is NOT a softer rule:
+    an invented number fails just as an invented timestamp does. Compared with a tolerance
+    because both sides have been through JSON and a float that survives a round trip is not
+    guaranteed to compare equal.
+
+    A citation with neither anchor is rejected. That is the case that used to be impossible to
+    express and is now the one real risk: a judge could otherwise "cite" a bare metric name and
+    have it pass.
+    """
     problems: list[str] = []
     valid = known_metrics(bundle)
 
     for c in verdict.citations:
-        if not bundle.contains_time(c.t):
-            problems.append(
-                f"citation {c.metric}@{c.t} outside window [{bundle.t_start}, {bundle.t_end}]")
         if c.metric not in valid:
             problems.append(f"citation metric {c.metric!r} never appears in this bundle")
+            continue
+
+        if not c.anchored:
+            problems.append(
+                f"citation {c.metric} carries neither a timestamp nor a value; "
+                f"a metric name alone points at nothing checkable")
+            continue
+
+        if c.t is not None and not bundle.contains_time(c.t):
+            problems.append(
+                f"citation {c.metric}@{c.t} outside window [{bundle.t_start}, {bundle.t_end}]")
+
+        if c.t is None and c.value is not None:
+            seen = recorded_values(bundle, c.metric)
+            tol = max(1e-6, abs(c.value) * 1e-3)
+            if not any(abs(v - c.value) <= tol for v in seen):
+                problems.append(
+                    f"citation {c.metric}={c.value} matches no recorded value for that metric "
+                    f"(observed range {min(seen):g}..{max(seen):g})" if seen else
+                    f"citation {c.metric}={c.value} but no values were recorded for that metric")
 
     return (not problems), problems
 
