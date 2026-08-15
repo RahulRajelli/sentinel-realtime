@@ -1,0 +1,63 @@
+[
+ {
+  "config": "D1",
+  "ok": true,
+  "overrides": {
+   "ATC_RAT_RLL_D": 0.0036,
+   "ATC_RAT_PIT_D": 0.0036
+  },
+  "samples": 316,
+  "windows": 19,
+  "best_amp_deg": 2.36,
+  "best_zc_per_s": 4.67,
+  "qualifying_windows": 0,
+  "longest_consecutive": 0,
+  "would_fire": false
+ },
+ {
+  "config": "D2",
+  "ok": true,
+  "overrides": {
+   "ATC_RAT_RLL_D": 0.001,
+   "ATC_RAT_PIT_D": 0.001
+  },
+  "samples": 315,
+  "windows": 19,
+  "best_amp_deg": 2.33,
+  "best_zc_per_s": 7.33,
+  "qualifying_windows": 0,
+  "longest_consecutive": 0,
+  "would_fire": false
+ },
+ {
+  "config": "D3",
+  "ok": true,
+  "overrides": {
+   "ATC_RAT_RLL_D": 0.0,
+   "ATC_RAT_PIT_D": 0.0
+  },
+  "samples": 317,
+  "windows": 19,
+  "best_amp_deg": 2.62,
+  "best_zc_per_s": 8.67,
+  "qualifying_windows": 0,
+  "longest_consecutive": 0,
+  "would_fire": false
+ },
+ {
+  "config": "D4",
+  "ok": true,
+  "overrides": {
+   "ATC_RAT_RLL_D": 0.0,
+   "ATC_RAT_PIT_D": 0.0,
+   "INS_GYRO_FILTER": 4.0
+  },
+  "samples": 318,
+  "windows": 19,
+  "best_amp_deg": 53.51,
+  "best_zc_per_s": 8.0,
+  "qualifying_windows": 19,
+  "longest_consecutive": 19,
+  "would_fire": true
+ }
+]
