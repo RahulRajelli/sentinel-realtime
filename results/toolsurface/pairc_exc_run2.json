@@ -1,0 +1,233 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [
+  "exceedance_ranking"
+ ],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 5.861600000116596,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Control oscillation best explains the saturation: Peak_Roll_Error_Amp reached 45.12 deg against a 3.0 deg threshold, while the resulting extreme control demand produced an 800.0 us Motor_PWM_Imbalance and one saturated motor. The oscillation affected both roll and pitch, supporting a broad control instability rather than saturation as the initiating fault.",
+   "citations": [
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2339,
+   "tokens_out": 266,
+   "calls": 2,
+   "wall_ms": 9723.007099999904,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.9,
+   "rationale": "Control oscillation is the root cause: Peak_Roll_Error_Amp reached 45.12 deg against a 3.0 deg threshold, while actuator saturation is consistent with the controller driving outputs to their limits. The resulting Motor_PWM_Imbalance reached 800.0 us, making actuator_saturation a consequence rather than the initiating fault.",
+   "citations": [
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2395,
+   "tokens_out": 224,
+   "calls": 2,
+   "wall_ms": 13332.606400000259,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.95,
+   "rationale": "Actuator saturation appeared 1.719 s before control oscillation and is supported by Motor_PWM_Imbalance reaching 800 us against a 300 us threshold, with one motor pinned at maximum. The resulting loss of control authority explains the subsequent roll tracking oscillation of 45.12 deg, despite that symptom having the larger 15.04\u00d7 threshold exceedance.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3519,
+   "tokens_out": 252,
+   "calls": 3,
+   "wall_ms": 14438.983000000007,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.72,
+   "rationale": "Actuator saturation appeared at 11.062 s, before control oscillation appeared at 12.781 s, consistent with clipped control authority inducing the later oscillation. No evidence provided shows the oscillation predating or independently causing saturation.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 634,
+   "tokens_out": 124,
+   "calls": 1,
+   "wall_ms": 11826.203999999962,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.58,
+   "rationale": "The control-oscillation detector tripped at 12.781 s, while actuator saturation was detected at 11.062 s; saturation can trigger sooner as the oscillatory commands reach actuator limits. The available summary lacks amplitude and saturated-motor-count values, so the causal assignment is tentative.",
+   "citations": [
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    },
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 662,
+   "tokens_out": 132,
+   "calls": 1,
+   "wall_ms": 10686.821100000088,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation",
+    "control_oscillation"
+   ],
+   "confidence": 0.2,
+   "rationale": "Actuator saturation was detected at 11.062 s and control oscillation at 12.781 s, 1.719 s later. No measured metric values or thresholds were available to determine whether either advisory represented the single causal fault rather than a symptom.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 714,
+   "tokens_out": 92,
+   "calls": 1,
+   "wall_ms": 6938.571800000318,
+   "seed": 0
+  }
+ ]
+}

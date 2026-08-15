@@ -1,0 +1,243 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [
+  "exceedance_ranking"
+ ],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 5.9909999999945285,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.94,
+   "rationale": "Actuator saturation is causal: Saturated_Motor_Count reached 1 and Motor_PWM_Imbalance reached 800 us, indicating exhausted and highly asymmetric control authority. The resulting loss of authority explains the control oscillation, whose Peak_Roll_Error_Amp reached 45.12 deg.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2339,
+   "tokens_out": 231,
+   "calls": 2,
+   "wall_ms": 7574.128599999767,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.91,
+   "rationale": "Control oscillation is the root cause: Peak_Roll_Error_Amp reached 45.12 deg against a 3.0 deg threshold, while Peak_Pitch_Error_Amp reached 42.48 deg. The resulting control demand explains actuator saturation, evidenced by Motor_PWM_Imbalance reaching 800.0 us and Saturated_Motor_Count reaching 1.0.",
+   "citations": [
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2395,
+   "tokens_out": 268,
+   "calls": 2,
+   "wall_ms": 4948.095500000363,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.96,
+   "rationale": "Both advisories were raised; actuator_saturation appeared first at 11.062 s, before control_oscillation at 12.781 s by 1.719 s. Motor_PWM_Imbalance reached 800 us against a 300 us threshold and Saturated_Motor_Count was 1, explaining the later roll and pitch tracking oscillations.",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Peak_Pitch_Error_Amp",
+     "t": null,
+     "value": 42.48
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3519,
+   "tokens_out": 267,
+   "calls": 3,
+   "wall_ms": 9275.22799999997,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.76,
+   "rationale": "Actuator saturation was detected at 11.062 s, preceding control oscillation at 12.781 s. Saturated actuation can prevent commanded corrections and thereby produce the subsequent oscillation.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 634,
+   "tokens_out": 112,
+   "calls": 1,
+   "wall_ms": 4746.227599999656,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.68,
+   "rationale": "Control oscillation best explains the repeated control demand that drove actuators into saturation; its detector appeared at 12.781 s after actuator saturation was first flagged at 11.062 s, consistent with oscillation detection requiring additional cycles. Actuator saturation is therefore classified as the consequence rather than the initiating fault.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 662,
+   "tokens_out": 135,
+   "calls": 1,
+   "wall_ms": 13173.045399999864,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": null,
+   "symptoms": [
+    "actuator_saturation",
+    "control_oscillation"
+   ],
+   "confidence": 0.1,
+   "rationale": "Actuator saturation was advised at 11.062 s, 1.719 s before control oscillation at 12.781 s. No measured metric values or thresholds were provided to determine whether either symptom was causal.",
+   "citations": [],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 714,
+   "tokens_out": 84,
+   "calls": 1,
+   "wall_ms": 7164.887700000236,
+   "seed": 0
+  }
+ ]
+}

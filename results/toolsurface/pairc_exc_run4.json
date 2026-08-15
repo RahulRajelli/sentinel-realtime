@@ -1,0 +1,233 @@
+{
+ "bundles": [
+  "e73847254031e257"
+ ],
+ "variants": [
+  "v1",
+  "v2",
+  "v3"
+ ],
+ "client": "gpt-5.6-sol @ https://api.llmapi.ai/v1",
+ "judges": [
+  "B0",
+  "B1",
+  "B3"
+ ],
+ "withheld_tools": [],
+ "offered_optional_tools": [
+  "exceedance_ranking"
+ ],
+ "history": null,
+ "verdicts": [
+  {
+   "judge": "B0",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "-",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": null,
+   "rationale": "first advisory raised after injection",
+   "citations": [
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": 11.062000000005355,
+     "value": 777.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "calls": 0,
+   "wall_ms": 7.361500000115484,
+   "seed": null
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.93,
+   "rationale": "Control oscillation is the root cause: Peak_Roll_Error_Amp reached 45.12 deg against a 3.0 deg threshold, a 15.04\u00d7 exceedance. The resulting excessive control demand explains actuator saturation, evidenced by Motor_PWM_Imbalance reaching 800.0 us against a 300.0 us threshold.",
+   "citations": [
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2339,
+   "tokens_out": 224,
+   "calls": 2,
+   "wall_ms": 8623.154299999896,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.94,
+   "rationale": "Control oscillation is the root cause because Peak_Roll_Error_Amp reached 45.12 deg against a 3.0 deg threshold, a 15.04\u00d7 exceedance. The resulting corrective demand explains actuator saturation, whose Motor_PWM_Imbalance reached 800.0 us against a 300.0 us threshold.",
+   "citations": [
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 2395,
+   "tokens_out": 222,
+   "calls": 2,
+   "wall_ms": 7902.048800000102,
+   "seed": 0
+  },
+  {
+   "judge": "B3",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "control_oscillation",
+   "symptoms": [
+    "actuator_saturation"
+   ],
+   "confidence": 0.94,
+   "rationale": "Both actuator_saturation and control_oscillation were raised; saturation appeared 1.719 s earlier, but the 45.12 deg roll-error oscillation was 15.04\u00d7 its threshold and better explains the resulting 800 us motor-output imbalance. Thus actuator saturation is the downstream symptom, not the initiating fault.",
+   "citations": [
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": null,
+     "value": 45.12
+    },
+    {
+     "metric": "Motor_PWM_Imbalance",
+     "t": null,
+     "value": 800.0
+    },
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": null,
+     "value": 1.0
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 3519,
+   "tokens_out": 242,
+   "calls": 3,
+   "wall_ms": 11149.415600000339,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v1",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.74,
+   "rationale": "Actuator saturation was detected at 11.062 s, preceding control oscillation at 12.781 s. This ordering supports saturation as the initiating fault and oscillation as its downstream symptom.",
+   "citations": [
+    {
+     "metric": "Saturated_Motor_Count",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "Peak_Roll_Error_Amp",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 634,
+   "tokens_out": 115,
+   "calls": 1,
+   "wall_ms": 8946.848699999919,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v2",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.78,
+   "rationale": "Actuator saturation was detected at 11.062 s, preceding control oscillation at 12.781 s and plausibly causing the later control-loop instability. The oscillation is therefore classified as a consequence rather than a separate fault.",
+   "citations": [
+    {
+     "metric": "actuator_saturation",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 662,
+   "tokens_out": 120,
+   "calls": 1,
+   "wall_ms": 8845.30309999991,
+   "seed": 0
+  },
+  {
+   "judge": "B1",
+   "bundle_id": "e73847254031e257",
+   "prompt_variant": "v3",
+   "root_cause": "actuator_saturation",
+   "symptoms": [
+    "control_oscillation"
+   ],
+   "confidence": 0.7,
+   "rationale": "Actuator saturation was detected at 11.062 s, followed by control oscillation at 12.781 s, a 1.719 s lag. This ordering supports saturation as the initiating fault that subsequently produced oscillatory control behavior.",
+   "citations": [
+    {
+     "metric": "actuator_saturation.t_first",
+     "t": 11.062,
+     "value": null
+    },
+    {
+     "metric": "control_oscillation.t_first",
+     "t": 12.781,
+     "value": null
+    }
+   ],
+   "degraded": false,
+   "degraded_reason": "",
+   "tokens_in": 714,
+   "tokens_out": 125,
+   "calls": 1,
+   "wall_ms": 9337.505899999996,
+   "seed": 0
+  }
+ ]
+}

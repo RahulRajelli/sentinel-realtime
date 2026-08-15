@@ -75,3 +75,74 @@ harness.
 
 **No threshold, prompt, or scenario is modified by this probe.** The only change is one additional
 optional tool.
+
+---
+
+# RESULT — run 2026-08-15. Neither falsifier fired.
+
+**The tool surface was the bottleneck.** `gpt-5.6-sol @ https://api.llmapi.ai/v1`, 5 runs per cell,
+**0 degraded in all 20 runs**.
+
+## Pair C — the claim under test
+
+| run | 1 | 2 | 3 | 4 | 5 | mean |
+|---|---|---|---|---|---|---|
+| B3 **without** `exceedance_ranking` | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | **0.00** |
+| B3 **with** it | 0.00 | 0.67 | 0.67 | 1.00 | 0.33 | **0.53** |
+
+What B3 answered, 15 judgements per cell:
+
+| | `control_oscillation` (cause) | `actuator_saturation` (symptom) |
+|---|---|---|
+| without | **0** | **15** |
+| with | **8** | 7 |
+
+**B0 = 0.00 in every run of both cells** (prediction 2 held — the cell stays readable). B1, which
+receives no tools and exists here as a drift control, moved 0.13 -> 0.20, i.e. 2 of 15 correct to
+3 of 15. That is inside run-to-run noise and is the expected null.
+
+**This is the first time in this project that a judge has beaten B0 rather than tied it.**
+
+## Pair A — the control that decides whether it is real
+
+Re-run on the three published flights only (`compass_offset_r0/r1/r2`), same tool offered:
+
+| | published | with `exceedance_ranking` | runs |
+|---|---|---|---|
+| B3 | 0.96 | **0.98** (1.00, 0.89, 1.00, 1.00, 1.00) | 5 |
+| B1 | 0.71 | 0.74 (0.89, 0.67, 0.67, 0.67, 0.78) | 5 |
+| B0 | 0.00 | 0.00 | 5 |
+
+**No regression.** Both arms land marginally above their published values, well inside the 0.11
+spread the variance study measured. So the tool is not trading pair A away to buy pair C.
+
+## What this establishes
+
+1. **The pair C failure was under-instrumentation, not incapacity.** The same model, same prompts,
+   same route, same flight, goes from 0/15 to 8/15 on one additional read-only tool that states no
+   conclusion and reveals no ground truth. The judge was never able to reach the discriminating
+   fact at acceptable cost; it now can.
+2. **It generalises across two mechanisms that fail differently.** Pair A's exceedances are *tied*
+   (both incident types cite `EKF_Magnetometer_Variance` at 2.62x), so the tool is pure noise
+   there — and pair A does not move. Pair C's differ by 5.6x, and pair C moves. A tool that helped
+   only where it was decisive, and was harmless where it was not, is instrumentation rather than
+   a fitted heuristic.
+3. **It reframes the negative result published hours earlier.** "No judge beats the free baseline
+   on pair C" was true, and the reason was the harness. That is a better finding than either a tie
+   or a flat failure, and it is the E4 contribution: the agent's tool surface is a designed
+   artifact that can be measured and is worth measuring.
+
+## What it does NOT establish, and the honest ceiling
+
+* **B3 is 0.53, not 0.9.** More than half the headroom is still unoccupied, and 7 of 15 judgements
+  still name the symptom. This is a first result on this fault, not a solved fault.
+* **The spread is 0.00 to 1.00 across five runs.** That is the widest of any arm measured in this
+  repository. At **n = 1 flight** and 3 variants, a run can only take the values 0, 1/3, 2/3, 1.
+  Quote the direction; do not quote 0.53 to two decimals as if it were stable.
+* **One model.** `gemini-3.7-flash` scored 0.00 on pair C without the tool and has not been re-run
+  with it. Until it is, "the tool surface was the bottleneck" is demonstrated for one judge.
+* **The promotion criterion is met but promotion has NOT been made.** The stated bar was "pair C
+  improves AND pair A does not regress", and both held. `exceedance_ranking` nonetheless stays in
+  `OPTIONAL_SPECS`, because moving it into the default changes what every published figure means
+  and those figures must be re-run in the same commit that moves it. `test_tools_budget.py` asserts
+  it is not in the default, so that decision cannot be taken by accident.
