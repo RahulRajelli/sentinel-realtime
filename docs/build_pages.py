@@ -23,6 +23,7 @@ DOCS = Path(__file__).resolve().parent
 CSS = DOCS / "_sheet.css"
 
 PAGES = {
+    "_body-index.html": "index.html",
     "_body-plain.html": "whitepaper-plain.html",
     "_body-bridge.html": "whitepaper.html",
     "_body-technical.html": "whitepaper-technical.html",

@@ -1,5 +1,15 @@
 # SentinelAgent — root-cause discrimination for UAV telemetry
 
+[![tests](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/tests.yml/badge.svg)](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/tests.yml)
+[![codeql](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/codeql.yml/badge.svg)](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/codeql.yml)
+[![licence: Apache-2.0](https://img.shields.io/badge/licence-Apache--2.0-blue.svg)](LICENSE)
+[![python: 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
+[![baseline B0 = 0.00](https://img.shields.io/badge/baseline%20B0-0.00-critical.svg)](QUICKSTART.md#4-reproduce-the-headline-result)
+
+> The last badge is the point of the project, not decoration: `B0` is a free deterministic rule
+> with no model in it, and on this fault it is wrong every single time. Reproduce it yourself in
+> five minutes with no hardware and no API key — [QUICKSTART.md](QUICKSTART.md).
+
 Can an LLM agent tell the **cause** of a flight fault from its **symptoms** — and does it beat a
 free deterministic baseline **at equal cost**?
 
