@@ -1,32 +1,34 @@
-# HANDOFF — state as of 2026-08-15
+# HANDOFF — state as of 2026-08-15 (end of session)
 
-Read this first in a new session. `START-HERE.md` is the shorter version for a fresh agent.
+Read this first in a new session. `START-HERE.md` is the shorter version and names the one job.
 Technical state only; career/priority context lives in `../plans/FOCUS.md`, not in this repo.
 
-**The one sentence that matters:** the ambiguous fault works and reliably defeats the free
-baseline on every model tested — but every claim built on top of it about *agents* turned out to
-be a property of one model, and was retracted.
+**One sentence:** the durability work is finished and the archive is sound, but the science still
+rests on one fault and three flights, and every claim about *agents* turned out to be a property
+of one model.
+
+```bash
+../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q   # 181 tests, all offline
+python scripts/manifest.py --verify                               # 28/28 bundles intact
+```
 
 ---
 
-## 1. What is actually established
+## 1. What is established
 
 ### The robust result
 
-> **`compass_offset` defeats the deterministic baseline. B0 = 0.00, in every run, in every
-> configuration, across two model families. Ten-plus runs, zero exceptions.**
+> **`compass_offset` defeats the deterministic baseline. B0 = 0.00 in every run, every
+> configuration, both model families. Ten-plus runs, zero exceptions.**
 
-This is the thing the project set out to build: a fault where "first alarm" and "root cause" come
-apart. `compass.py:45 MIN_ANOMALY_S = 1.0` makes the compass detector wait a full second while
-`ekf.py` fires on threshold crossing, so the symptom is advised at 8.8 s and the cause at 9.8 s —
-a gap equal to the constant, reproduced in every flight. B0's rule is "first advisory after
-injection is the root cause", so B0 is wrong by construction and cannot be tuned out of it.
+`compass.py:45 MIN_ANOMALY_S = 1.0` makes the compass detector wait a full second while `ekf.py`
+fires on threshold crossing, so the symptom is advised at 8.8 s and the cause at 9.8 s. B0's rule
+is "first advisory after injection is the root cause", so it is wrong by construction and cannot
+be tuned out of it. This is what the project set out to build.
 
-Everything below is weaker than this.
+### Cross-model: the ranking INVERTS
 
-### Cross-model: the tier ranking INVERTS
-
-`compass_offset`, 3 bundles x 3 prompt variants, 5 independent runs per cell, bundle-level scoring.
+3 bundles x 3 prompt variants, 5 independent runs per cell, bundle-level scoring.
 
 | judge | gemini-2.5-flash | gpt-5.6-sol |
 |---|---|---|
@@ -34,213 +36,204 @@ Everything below is weaker than this.
 | B1 single-shot | **0.89** | 0.71 |
 | B3 tool agent | 0.67 | **0.96** |
 
-**On Gemini the agent loses to one well-formed shot. On GPT it wins.** So "the tool-using agent
-loses to single-shot" is NOT a property of agents; it is a property of gemini-2.5-flash. An
-earlier version of this file claimed otherwise and was wrong.
+**On gemini the agent loses to one prompt; on gpt it wins.** "The tool-using agent loses to
+single-shot" is a property of gemini-2.5-flash, not of agents.
 
-### Cross-model: the timestamp effect is Gemini-specific
+### The timestamp effect is also gemini-specific
 
-Tool count held at 2 in both arms; the ONLY difference is whether the evidence carries `t`.
-Five runs per cell.
+Tool count held at 2; only the presence of `t` varies. Five runs per cell.
 
-| | timed (`detector_evidence`) | untimed (`evidence_untimed`) |
+| | timed | untimed |
 |---|---|---|
-| **gpt-5.6-sol** | **1.00** (symptom-as-root 0/9) | 0.96 (0/9) |
-| **gemini-2.5-flash** | 0.11 (symptom-as-root **8/9**) | 0.67 (1/9) |
+| gpt-5.6-sol | **1.00** (symptom-as-root 0/9) | 0.96 (0/9) |
+| gemini-2.5-flash | 0.11 (symptom-as-root **8/9**) | 0.67 (1/9) |
 
-On Gemini, removing timestamps is transformative: 0.11 -> 0.67, symptom-as-root 8/9 -> 1/9, with
-zero spread across five runs. **On GPT it does nothing** — GPT never names a symptom as the root
-cause in any configuration, and is marginally *better* with timestamps.
+gpt never names a symptom as root in any configuration and is marginally *better* with
+timestamps. So "give a diagnostic model evidence, not the alarm log" does not generalise.
 
-So the design rule this file previously asserted — *"detection-order metadata causes
-symptom-as-root; give a diagnostic model evidence, not the alarm log"* — **does not generalize.**
-The accurate statement is: *a weaker model conflated detection order with causality, and a
-timestamp-free evidence tool fixes that model. A stronger model reads the same ordering and draws
-the correct inference.*
-
-> **OPEN DECISION.** `SPECS` was changed to the timestamp-free surface on Gemini-only evidence
-> (commit `16e030a`). For GPT that default is a small regression (1.00 -> 0.96). Options: revert
-> to the timed surface with `evidence_untimed` documented as a mitigation for weaker models; keep
-> untimed as the safer floor (Gemini 0.67 vs 0.11); or select per model. **Not decided — do not
+> **OPEN DECISION.** `SPECS` is the timestamp-free surface, set on gemini-only evidence, and it
+> costs gpt 1.00 -> 0.96. Revert it, keep it as the safer floor, or select per model. **Do not
 > flip it again without measuring both models.**
 
-### Run-to-run variance — measure it, never quote one run
+### Fabrication is not the failure mode
 
-Gemini is not deterministic at `temperature=0 / seed=0`. Five identical runs on identical
-bundles: B1 `.89 .89 .89 .89 1.00`, B3 `.78 .67 .67 .67 .67` — **spread 0.11, one judgement in
-nine.** B0 returned exactly 0.00 five times, as deterministic code must.
+`check_rationale_grounding` checks measurements quoted in the rationale PROSE against everything
+the flight recorded. Across **595 verdicts, four judges, two model families: 2 ungrounded quotes,
+0.34%.**
 
-**Always run five and report a mean.** Single-run numbers produced two retracted claims here.
+The case that motivated it -- gemini writing *"at 9.062s"* -- turns out to be a **real** advisory
+time. **The models are not inventing numbers; they draw wrong conclusions from real ones.** No
+grounding check catches that. Only a scenario where the correct and the plausible answer differ
+does, which is what `compass_offset` is.
+
+Reported, not scored, by default. `strict_rationale=True` gates on it.
+
+### Run-to-run variance
+
+Gemini is not deterministic at temperature 0 / seed 0. Five identical runs: B1 `.89 .89 .89 .89
+1.00`, B3 `.78 .67 .67 .67 .67`. **Spread 0.11, one judgement in nine.** B0 returned exactly 0.00
+five times, as deterministic code must.
+
+**Always run five and report a mean.** Single runs produced two retracted claims here.
 
 ---
 
-## 2. Five claims retracted on 2026-08-15, and what caught each
+## 2. Five claims retracted, and what caught each
 
-Recorded because the pattern is the finding: every retraction came from a check, none from an
-argument.
+The pattern is the finding: every retraction came from a check, none from an argument.
 
 | claim | why it was wrong | caught by |
 |---|---|---|
-| "B1's CI does not overlap B3's, so this is not noise" | Wilson computed on n=27 judgements for 9 independent flights — pseudo-replication, intervals ~sqrt(3) too narrow. At n=9 they overlap | external review (gemini-2.5-pro) |
-| "the fix took B3 to 0.96 / compass 0.89" | single run; that run was the outlier. Mean over five is 0.69 | 22-bundle sweep, then the variance study |
-| "the agent reads detection order as causality" | true of gemini-2.5-flash, false of gpt-5.6-sol | the GPT cross-model runs |
-| "the entire residual B3-vs-B1 gap is the citation defect" | arithmetic projection (0.67 + 2/9) across a nondeterministic output. Fixing citations changed attribution but not accuracy | the citation-fix re-run |
-| "the fix is a tool that returns evidence without timestamps" | Gemini-only. GPT is unaffected and slightly prefers timestamps | the GPT timed arm |
+| "the difference is significant" | Wilson on n=27 judgements for 9 independent flights. At n=9 they overlap | external review (gemini-2.5-pro) |
+| "the fix reached 0.96 / 0.89" | one run, and it was the outlier. Five-run mean is 0.69 | the variance study |
+| "agents read order as causality" | true of gemini, false of gpt | the cross-model runs |
+| "the residual gap is a scoring bug" | fixed the bug; the gap did not move | the citation re-run |
+| "remove timestamps from the tools" | helps the weak model, slightly hurts the strong one | the gpt timed arm |
 
-Statistics are now reported per BUNDLE (`ci_bundle`), never per judgement. The three prompt
-variants of a flight are repeated measures, not independent trials.
-
----
-
-## 3. The citation fix — works, but not for the reason predicted
-
-`Citation` accepts **either** a timestamp **or** a value, and requires at least one. A value
-anchor is verified against evidence actually recorded for that metric, so a fabricated number
-fails exactly as a fabricated timestamp does; a citation with neither anchor is rejected.
-
-It exists because `evidence_untimed` removes every timestamp, so a judge using it could not
-produce a valid citation at all — 2 of 9 agent verdicts per run named the CORRECT root cause and
-scored zero for it.
-
-**Measured before/after on Gemini:** `no-citation [2,2,2,2,2] -> [0,0,0,0,0]`, misses reattributed
-from **harness** to **model**, accuracy **unchanged at 0.67**. The fix makes failures honestly
-attributable — which is the scoring layer's whole job — but it did not close the gap. The
-prediction that it would was a projection across a nondeterministic output, and it was wrong.
+Statistics are reported per BUNDLE (`ci_bundle`), never per judgement.
 
 ---
 
-## 3a. Context architecture, added 2026-08-15
+## 3. Architecture
 
-Three tiers now, where there was one:
+### Three context tiers
 
-| tier | span | what it is |
+| tier | span | what |
 |---|---|---|
 | live | 120 s | `RollingBuffer`, within-flight detection |
 | bundle | one flight | frozen, hash-fingerprinted file |
-| **history** | **30-day window** | **`memory.py`, append-only JSONL per airframe** |
+| history | 30-day window | `memory.py`, append-only JSONL per airframe |
 
-**Durable memory (`sentinel/memory.py`).** Until this existed the whole system forgot everything
-older than 120 seconds, so every flight was judged as though it were the airframe's first.
-`prior_incidents` answers "third compass anomaly in eight flights", which is frequently the whole
-diagnosis and which no within-flight evidence can produce. Opt-in:
-`--history history/flights.jsonl --offer-tools prior_incidents`.
+`prior_incidents` answers "third compass anomaly in eight flights". Opt-in:
+`--history history/flights.jsonl --offer-tools prior_incidents`. It stores counts and dates, never
+the earlier flights; excludes the flight under judgement from its own history; and carries no
+ground truth. `airframe_id` is **excluded from `bundle_id`** -- provenance, not content.
 
-Four properties, each preventing a specific failure: counts and dates rather than the earlier
-flights themselves (handing a judge four bundles recreates the payload blow-up); the flight under
-judgement excluded from its own history (or every fault is a recurrence of itself); no ground
-truth across the boundary, asserted against both the raw file and the aggregate; and
-`airframe_id` **excluded from `bundle_id`**, because including it would rewrite every hash and
-orphan the archive.
+### Silence now has three distinguishable causes
 
-**Context depth (`signal_trajectory`).** `signal_window` answers *how bad did it get*; this
-answers *how it got there*. Bounded by construction: 1,056 samples render to 863 characters, and
-a request for 999 buckets clamps to 60. **Opt-in, and it must stay that way until measured** --
-a trajectory is ordered by definition, and ordering is exactly what took gemini from 0.67 to
-0.11.
+This was one ambiguous signal and is now three:
 
-> **Neither is measured.** Memory has no scenario that repeats a fault on one airframe, so
-> `prior_incidents` has nothing to find. `signal_trajectory` has never been offered to a live
-> model. They are capabilities, not results.
-
-## 3b. Fabrication is not the failure mode -- measured
-
-`check_rationale_grounding` (`score.py`) extracts measurements from the rationale PROSE and
-checks them against everything the flight recorded. Until it existed, `check_citations` validated
-the structured field and nothing validated the narrative a human actually reads.
-
-Run across **every verdict on disk -- 595, four judges, two model families -- it found 2
-ungrounded quotes. 0.34%.**
-
-The case that motivated it was gemini writing *"exceeded its threshold at 9.062s ... the compass
-inconsistency at 10.016s"*. **Both numbers are real.** 9.062 is an actual advisory time in that
-bundle; the checker accepts it and rejects a fabricated 99.9, so it is calibrated.
-
-**The models are not inventing numbers. They are drawing wrong conclusions from real ones.** No
-grounding check can catch that. The only thing that catches it is a scenario where the correct
-answer and the plausible answer differ, which is what `compass_offset` is. Anyone asking whether
-this system "solved hallucination" is aiming at a failure mode that occurs 0.34% of the time.
-
-Reported, not scored, by default: gating on it would change the meaning of every number measured
-before it existed. `strict_rationale=True` turns it into a gate.
-
-## 4. Scenario library
-
-| scenario | state |
+| a quiet screen means | reported by |
 |---|---|
-| `null`, `vibration`, `gps_loss`, `wind` | base four, re-flown 2026-08-14, 12/12 pass |
-| **`compass_offset`** | **the only discriminating fault.** Works 3/3, structurally guaranteed |
-| `hot_gains` | pair C, BUILT and BLOCKED |
-| `stiff_airframe` | RETIRED, kept as the record |
+| nothing is wrong | both green |
+| nobody was listening | `coverage.py` -- detector preconditions |
+| the monitor fell behind | `health.py` -- link stall, packet loss, cycle overrun |
 
-**Hallucination controls pass:** `null` and `wind` score 1.00 for all four judges — no judge
-invented a fault on a clean flight.
+`detect_oscillation` returns nothing below 7 Hz of ATT, with no commanded attitude, or under 20
+samples. Each is correct and each was silent. `health.py` is reported, never corrective -- a
+monitor that quietly repairs itself is one whose degradation you learn about after the flight.
 
-### Three root causes SITL cannot produce
+### Integrity
 
-Two build plans have now assumed otherwise, so this is stated plainly with the measurements:
+`SCHEMA_VERSION = 2` with a migrator, so an old capture upgrades instead of being orphaned. Three
+identities are legitimate in this archive: `(v1, timing included)`, `(v1, timing excluded)`,
+`(v2, timing excluded)`. Migration proves authenticity against all three and **nothing else**, so
+it cannot launder a tampered file.
 
-| root cause | why unreachable |
-|---|---|
-| `gps_high_hdop` | `SIM_GPS_UBLOX.cpp:284` hardcodes hDOP = 1.21, below the 2.0 threshold, and no SIM parameter touches it. Confirmed in our own data: never once fired |
-| `control_oscillation` | tracking error is bounded ~2.44 deg against a 3.0 threshold over 8 configurations. Gains are the frequency lever, not the amplitude one, and in guided flight ATTITUDE_TARGET leans into the wind so the error stays bounded |
-| `vibration_excessive` *as an ambiguous pair* | `SIM_ACC1_RND` moves peak and RMS together; the two detectors key off one each, so no value separates them |
+`manifest.py` adds full-length SHA-256 over file bytes plus an optional HMAC. It catches edits
+`bundle_id` is designed to ignore (`airframe_id`, coverage, health). **It is not a signature** --
+HMAC is a shared secret, so anyone who can verify can also forge.
 
-**Do NOT fix any of these by lowering a detector threshold.** That makes the experiment pass by
-redefining the fault.
+### Optional judge tools (never defaults)
 
-**`compass_offset` is the only discriminating scenario, so every comparison rests on 3 flights.**
-That is the single biggest weakness in the evidence. `compass.py` and `oscillation.py` hold the
-only two time gates in the detector set and one is unreachable — a second ambiguous pair probably
-needs a new DETECTOR, not a new scenario.
+`prior_incidents`, `signal_trajectory`, `detector_coverage`, plus the four retired time-bearing
+tools. Offered with `--offer-tools`. `signal_trajectory` is bounded by construction: 1,056
+samples render to 863 characters, and 999 buckets clamp to 60.
+
+> **`prior_incidents` and `signal_trajectory` are unmeasured.** No scenario repeats a fault on
+> one airframe, and trajectory has never been offered to a live model. Capabilities, not results.
+
+---
+
+## 4. Detector state — measured across 27 flights
+
+| detector | detections | advisories | status |
+|---|---|---|---|
+| `accel_clipping` | 6,937 | 17 | proven |
+| `vibration_excessive` | 3,734 | 20 | proven |
+| `actuator_saturation` | 1,777 | 23 | proven |
+| `ekf_inconsistency` | 515 | 8 | proven |
+| `compass_inconsistency` | 459 | 6 | proven |
+| `gps_fix_loss` | 63 | 5 | proven |
+| `gps_high_hdop` | 0 | 0 | **unreachable**: `SIM_GPS_UBLOX.cpp:284` hardcodes hDOP 1.21 |
+| `control_oscillation` | 0 | 0 | **unreachable**: tracking error caps ~2.44 deg vs a 3.0 threshold |
+| `battery_*` | 0 in SITL | — | fired once on a **real** log; never in simulation |
+
+13,485 raw detections collapse to 79 advisories -- the escalation gate working. Worst cycle
+7.6-29.6 ms of a 1,000 ms budget. Zero false positives before injection in every run.
+
+**Six advisory types is the vocabulary ceiling.** A fault outside it produces silence, and that
+miss rate is unmeasurable with injected faults.
+
+### Scenarios
+
+`null`, `vibration`, `gps_loss`, `wind` (base four, 12/12 pass; `null` and `wind` are the
+hallucination controls and score 1.00 for all judges). **`compass_offset` is the only
+discriminating fault.** `stiff_airframe` is RETIRED and `hot_gains` is BLOCKED, both with the
+measurements in their scenario comments.
+
+`replay_2024-04-30` loads again after the migration and reproduces **346 detections -> 11
+advisories = 96.82% suppressed**. That number is citeable again.
 
 ---
 
 ## 5. Do this next
 
-1. **Decide the default tool surface** (section 1). It is currently set from one model's evidence.
-2. **A second discriminating scenario.** Everything else is refinement; this is the only thing
-   that raises n above 3 flights.
-3. **Measure the two new capabilities, or drop them.** A scenario that flies one airframe
-   repeatedly with an intermittent fault would give `prior_incidents` something to find. Offering
-   `signal_trajectory` to both models would say whether shape-over-time helps or repeats the
-   ordering damage. Both are unmeasured today and should not be described as working.
-4. **More models, now cheap.** The `llmapi` gateway exposes ~389 models including
-   `claude-opus-5`, `claude-sonnet-5`, `qwen3.8-max`, `kimi-k3`. Two models showed opposite
-   rankings; a third and fourth would show whether that is a capability gradient or noise.
-5. **Regenerate the replay bundle.** `replay_2024-04-30 17-30-57.json` needs its original `.BIN`,
-   which is not in the repo. It is the only evidence behind the 96.8% suppression claim.
+**Stage 1 (durability) is complete**: detector coverage, schema migration, monitor self-health,
+tamper-evidence. None of it moved an accuracy number -- it makes the existing results
+trustworthy, not broader.
+
+**Stage 2 is where accuracy lives:**
+
+1. **New detectors with genuine persistence gates.** The single highest-value change: it fixes
+   the six-word vocabulary AND the missing second discriminating scenario at once. Only
+   `compass.py` and `oscillation.py` have time gates today and one is unreachable, which is
+   exactly why there is one working ambiguous pair.
+2. **Disagreement as a signal.** Two models already rank judges in opposite directions. In
+   production, models disagreeing is when a human should look. No new science needed.
+3. **Labelled real flight logs.** Every "proven" detector is proven against faults that were
+   injected and labelled here. This is data acquisition and it is worth more than the rest.
+
+**Open decisions, not work:** the default tool surface (section 1); whether to loosen
+`rubrics/explanatory-prose.md`, whose A2 "zero undefined terms" is unreachable and stalled the
+whitepaper at 54/100; the LinkedIn angle; and whether to publish the whitepaper as a page.
 
 ---
 
 ## 6. Environment
 
 ```bash
-# Use the analyzer venv. The system Python has no deps.
-../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # 143 tests, all offline
+# The analyzer venv. System Python has no deps.
+../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q
 
 # SITL lives in WSL, needed only to capture new flights.
 wsl -d Ubuntu-24.04 -- bash -c "ls /root/ardupilot/build/sitl/bin/"
 ```
 
-**Model access.** Gemini works via Google ADC (`--provider gemini`). Everything else goes through
-the OpenAI-compatible client:
+**Models.** Gemini via Google ADC (`--provider gemini`). Everything else via the
+OpenAI-compatible client against the llmapi gateway (~389 models, `claude-opus-5` included):
 
 ```bash
 export OPENAI_BASE_URL="https://api.llmapi.ai/v1"
-export OPENAI_API_KEY=...        # opencode stores it under `llmapi` in auth.json
+export OPENAI_API_KEY=...     # opencode stores it under `llmapi` in auth.json
 python scripts/e4_judge.py --bundles bundles --only compass_offset \
   --judges B0,B1,B3 --provider openai --model gpt-5.6-sol --out verdicts.json
 ```
 
-There is **no Anthropic key on this machine and none is needed** — `claude-opus-5` and
-`claude-sonnet-5` are reachable through the same gateway with `--provider openai`.
+**No Anthropic key exists on this machine and none is needed.**
 
-- Anything published must NAME THE MODEL. `client.name` records model @ host into the verdict file.
-- Console output must stay ASCII — Windows cp1252 renders anything else as `?`.
-- Use `-u` on backgrounded Python or the log stays empty and looks hung.
-- `pkill -f arducopter` from `wsl bash -c` kills its own shell (self-match, exit 15).
-- **Never edit code while an experiment is running.** Doing so on 2026-08-15 crashed one sweep
-  mid-run and left five runs straddling a scoring change; the whole set had to be discarded.
+Rules that are not preferences:
+
+1. **Name the model** in anything published. Two models rank the judges in opposite directions,
+   so an unnamed finding may simply be false.
+2. **Never quote a single run.** Five repeats, mean and spread.
+3. **Never edit code while an experiment is running.** It crashed a sweep and left five runs
+   straddling a scoring change; the whole set was discarded.
+4. **Quote `ci_bundle`**, not the judgement-level interval.
+5. **Never lower a detector threshold to make a scenario pass.** Three faults are recorded as
+   unreachable rather than tuned into existence.
+6. Console output stays ASCII. Use `-u` on backgrounded Python.
+7. `pkill -f arducopter` from `wsl bash -c` kills its own shell.
 
 ---
 
@@ -248,54 +241,43 @@ There is **no Anthropic key on this machine and none is needed** — `claude-opu
 
 | Decision | Why |
 |---|---|
-| Capture and judgement are separated | 4 min per flight vs ~96 judgements. Fly once, freeze a `RunBundle`, judge offline |
+| Capture and judgement are separated | Fly once, freeze a `RunBundle`, judge offline |
 | `bundle_id` excludes wall-clock timings | It must fingerprint the flight, not the host |
+| `airframe_id`, coverage, health excluded from identity | Observing conditions, not what the aircraft did |
 | Transport failures degrade, never crash | Attributed to HARNESS, never to the model |
-| Replay sets **no** ground-truth label | Deriving it from detector output grades the system against its own opinion |
+| Replay sets no ground-truth label | Deriving it grades the system against its own opinion |
 | No RAG, no vector DB | There is no corpus |
-| No LLM near flight control | Judges are offline; the bundle is a frozen file |
-| `detector_evidence` is capped | Unbounded, it returned 191,465 chars (~48k tokens) in one call and degraded B3 on contact |
-| Citations accept a value anchor | `evidence_untimed` removes timestamps; verified against recorded evidence, so it is not a weaker rule |
-| History stores counts, not flights | Four prior bundles would quadruple the judge's input and recreate the payload failure |
-| `airframe_id` excluded from `bundle_id` | Provenance, not content. Including it would rewrite every existing hash |
-| Rationale grounding reports, does not gate | Gating would change what every previously measured number means. Measured at 0.34% first |
+| **No LLM anywhere near flight control** | Verified: no model client is imported in `runner.py`, `capture.py` or `gate.py` |
+| `detector_evidence` is capped | Unbounded it returned 191,465 chars in one call |
+| Citations accept a value anchor | Verified against recorded evidence, so not a weaker rule |
+| History stores counts, not flights | Four prior bundles would quadruple the judge's input |
+| Rationale grounding reports, does not gate | Gating would change what every earlier number means |
+| Health is reported, never corrective | Self-repair hides degradation until after the flight |
 
-Changing `_identity_payload` or `_TIMING_FIELDS` **must** bump `SCHEMA_VERSION` in the same
-commit, or every existing bundle silently fails to load and reports itself as tampered with.
-
----
+**Changing `_identity_payload` or `_TIMING_FIELDS` must bump `SCHEMA_VERSION` and add a migrator
+in the same commit.** A test fails if a version has no migrator.
 
 ## 8. Known-broken
 
 | Thing | Status |
 |---|---|
 | `coax`, `tilthvec`, `dodeca-hexa` | not flyable as configured |
-| quadplane | boots and arms, peak 0.0 m — needs tilt-servo config |
-| `judges/llm.py` (Anthropic SDK path) | written, tested, never run. **Not a blocker** — use the gateway |
+| quadplane | boots and arms, peak 0.0 m -- needs tilt-servo config |
+| `judges/llm.py` (Anthropic SDK) | written, tested, never run. **Not a blocker** -- use the gateway |
 | `judges/grader.py`, kappa | written, never run |
-| `gps_high_hdop` | unreachable in SITL |
-| `replay_2024-04-30` bundle | will not load; needs its `.BIN` |
+| `gps_high_hdop`, `control_oscillation` | unreachable in SITL, measured |
+| PX4 | unsupported by design -- see `docs/SETUP.md` |
 
-## 9. Product surface
-
-```bash
-sentinel doctor                            # what is installed, what is missing, how to fix it
-sentinel analyze FLIGHT.BIN --html r.html  # a log you already have -> findings + emailable report
-sentinel replay FLIGHT.BIN                 # real flight through the realtime tier -> a bundle
-sentinel watch --conn COM5,57600 --passive # live, without touching stream rates
-```
-
-`analyze` on a real log correctly flagged `BATT_LOW_VOLT = 10.5 V` on a 22.2 V pack — a 3S
-failsafe left on a 6S battery, which would never have fired. Still the best demo in the repo.
-
-## 10. Raw evidence
-
-Every number above regenerates from committed verdict files via `scripts/e4_report.py`:
+## 9. Raw evidence
 
 ```
-results/isolation/     iso_timed{1..5}, iso_untimed{1..5}    gemini timestamp isolation
-results/crossmodel/    gpt2_run{1..5}, gpt_timed{1..5}       gpt-5.6-sol, both arms
-results/citation-fix/  cite_fix{1..5}                        gemini, after the value anchor
-variance/              var_run{1..5}                         gemini five-repeat variance
+results/isolation/     gemini timestamp isolation, 5 runs per arm
+results/crossmodel/    gpt-5.6-sol, both arms, 5 runs each
+results/citation-fix/  gemini after the value anchor
+variance/              gemini five-repeat variance
 verdicts_*.json        the 9- and 22-bundle sweeps
+bundles/MANIFEST.json  full-length digests over all 28 captures
 ```
+
+Every figure regenerates with `scripts/e4_report.py`. Docs: `README.md` (what it is),
+`docs/SETUP.md` (running it on your own aircraft), `WHITEPAPER.md` (the write-up).

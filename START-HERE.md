@@ -19,10 +19,10 @@ python          ..\ardupilot-log-analyzer\.venv\Scripts\python.exe
 The system Python has no deps. **Always use that venv.** Verify in one command:
 
 ```bash
-../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # expect 143 passed, ~2s
+../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # expect 181 passed, ~2s
 ```
 
-All 143 tests are offline — no simulator, no network, no API key. If they pass, the checkout is
+All 181 tests are offline — no simulator, no network, no API key. If they pass, the checkout is
 healthy and you can work without touching hardware.
 
 SITL (the flight simulator) lives in WSL and is **only** needed to capture new flights. You almost
@@ -101,6 +101,10 @@ nothing else in the run means anything.
 
 ## 4. Known-open, in value order
 
+0. **Stage 1 (durability) is DONE** -- detector coverage, schema migration, monitor self-health
+   and tamper-evidence all landed 2026-08-15. Verify the archive with
+   `python scripts/manifest.py --verify` (expect 28/28). None of it moved an accuracy number,
+   which is why the one job above is still the one job.
 1. **Which tool surface should be the DEFAULT is undecided.** `SPECS` was set to the
    timestamp-free surface on gemini-only evidence. Measured since: it rescues gemini
    (0.11 -> 0.67) and very slightly costs gpt-5.6-sol (1.00 -> 0.96). **Do not flip it again
