@@ -157,6 +157,26 @@ one fault. An inverted ranking on that little data could be partly noise. What I
 the mechanism, because the misreading is visible in the model's own words and it disappeared when
 the ordering data was removed. What I cannot yet defend is the size of the gap.
 
+## Are the models making things up?
+
+This is the question everyone asks about AI in a safety context, so I measured it rather than
+reasoning about it.
+
+Every number a judge writes in its explanation is now checked against what the flight actually
+recorded. Invent a reading and it is caught. Quote a real one, even rounded, and it passes.
+
+Across **595 judgements**, four judges and two models, **2 quoted a number the flight never
+recorded. 0.34%.**
+
+The case that made me build the check was Gemini writing *"exceeded its threshold at 9.062
+seconds, causing the compass inconsistency at 10.016 seconds."* Both of those times are real. It
+read the data correctly and drew the wrong conclusion from it.
+
+That is the more uncomfortable finding. **These models are not inventing evidence. They are
+misreading accurate evidence with confidence**, and no amount of fact-checking the numbers can
+catch that. The only thing that catches it is a test where the correct answer and the plausible
+answer are different, which is what the compass fault is for.
+
 ## Five things I was wrong about
 
 Over two days I formed five conclusions and withdrew all five.
