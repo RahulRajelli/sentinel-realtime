@@ -49,6 +49,11 @@ class BundleRecorder:
         # Detectors seen OK at least once, and the last reason each blind one gave. A detector
         # blind for part of a flight and fine for the rest is NOT blind -- it observed. Only a
         # detector that never once had its inputs is reported as blind.
+        # Worst health seen, and how many cycles were bad. A flight summary that averaged health
+        # would hide the ten seconds that actually mattered.
+        self._health_worst: dict = {}
+        self._health_bad = 0
+
         self._ever_ok: set[str] = set()
         self._blind_reason: dict[str, str] = {}
 
@@ -62,6 +67,14 @@ class BundleRecorder:
 
     def on_cycle(self, report) -> None:
         """Record one `runner.CycleReport`. Called from the harness's existing `on_cycle`."""
+        h = getattr(report, "health", None) or {}
+        if h:
+            rank = {"ok": 0, "degraded": 1, "stalled": 2}
+            if rank.get(h.get("status"), 0) > 0:
+                self._health_bad += 1
+            if rank.get(h.get("status"), 0) >= rank.get(self._health_worst.get("status"), -1):
+                self._health_worst = h
+
         for name, status in (getattr(report, "coverage", None) or {}).items():
             if status == "ok":
                 self._ever_ok.add(name)
@@ -109,7 +122,23 @@ class BundleRecorder:
             advisories=self._advisories,
             metrics=metrics,
             detector_coverage=self._coverage_summary(),
+            monitor_health=self._health_summary(),
         )
+
+    def _health_summary(self) -> dict:
+        """Was the monitor itself fit to be believed for this flight."""
+        if not self._health_worst:
+            return {}
+        return {
+            "degraded_cycles": self._health_bad,
+            "cycles": len(self._cycles),
+            "worst": self._health_worst,
+            "note": ("The monitor kept pace for the whole flight, so advisory timing and any "
+                     "absence of advisories are trustworthy."
+                     if self._health_bad == 0 else
+                     "The monitor was degraded for part of this flight. Advisory timing over "
+                     "those cycles, and any silence during them, are unreliable."),
+        }
 
     def _coverage_summary(self) -> dict:
         """Flight-level: who could look, who never could, and what that means for silence."""

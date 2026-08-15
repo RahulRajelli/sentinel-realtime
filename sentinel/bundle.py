@@ -155,6 +155,11 @@ class RunBundle(BaseModel):
     # conditions, not what the aircraft did, and including it would change every existing hash.
     detector_coverage: dict[str, Any] = Field(default_factory=dict)
 
+    # Whether the monitor itself kept pace with the link. Excluded from `_identity_payload` for
+    # the same reason as coverage: it describes the observing conditions on this host, not what
+    # the aircraft did, and two runs of the same flight on different hardware are the same flight.
+    monitor_health: dict[str, Any] = Field(default_factory=dict)
+
     # None means "a clean system stays quiet" -- the null and wind scenarios. Any non-null
     # verdict on those is a hallucination, which is the same gate `r7_r8_scenarios.py:272` runs.
     expected_root_cause: str | None = None

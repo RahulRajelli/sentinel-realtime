@@ -32,6 +32,7 @@ from flightdx.schema import Incident, ParsedLog
 from flightdx.signals import build_signals
 
 from sentinel.coverage import detector_coverage
+from sentinel.health import LinkHealth
 from sentinel.params import ParamCache
 
 # timeline and errors are omitted: they read log.modes / log.events, which are built by the
@@ -78,6 +79,11 @@ class CycleReport:
     # that below 7 Hz of ATT. Absence of an advisory has meant two opposite things; this field
     # separates them.
     coverage: dict[str, str] = field(default_factory=dict)
+
+    # The monitor's own condition. `coverage` says whether the detectors had their inputs; this
+    # says whether the loop kept pace with the link. They fail independently -- a well-fed
+    # detector set on a process 30% behind real time describes a window that has already passed.
+    health: dict = field(default_factory=dict)
 
     @property
     def total_ms(self) -> float:
@@ -134,6 +140,7 @@ class LiveRunner:
         self.params: dict[str, float] = {}
         self.param_cache: ParamCache | None = None
         self.messages_seen = 0
+        self.health = LinkHealth(cadence_s=cadence_s)
         self.t0 = 0.0
 
     def request_streams(self, rate_hz: float = 10.0) -> None:
@@ -196,6 +203,8 @@ class LiveRunner:
             messages_in=self.messages_seen,
             per_detector_ms=per_detector,
             coverage={k: v["status"] for k, v in coverage.items()},
+            health=self.health.on_cycle(
+                self._now(), build_ms + detect_ms, conn=self.conn).as_dict(),
         )
 
     def run(
@@ -213,6 +222,7 @@ class LiveRunner:
             msg = self.conn.recv_match(blocking=True, timeout=0.2)
             if msg is not None:
                 self.messages_seen += 1
+                self.health.on_message()
                 for mtype, rec in self.adapter.feed(msg, self._now()):
                     self.buffer.add(mtype, rec)
 
