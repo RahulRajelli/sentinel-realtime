@@ -10,12 +10,78 @@
  "base_url": "https://api.llmapi.ai/v1",
  "rows": [
   {
+   "model": "deepseek-v4-flash",
+   "runs": 10,
+   "status": "ok",
+   "acc_mean": 0.17777777777777776,
+   "acc_spread": 0.2222222222222222,
+   "sym_mean": 7.4,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 0.4444444444444445,
+   "acc_spread": 0.3333333333333333,
+   "sym_mean": 5.0,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
    "model": "gemini-2.5-flash",
    "runs": 10,
    "status": "ok",
    "acc_mean": 0.45555555555555555,
    "acc_spread": 0.4444444444444444,
    "sym_mean": 4.8,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
+   "model": "grok-4.6",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 0.8222222222222222,
+   "acc_spread": 0.2222222222222222,
+   "sym_mean": 1.6,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
+   "model": "qwen3.8-max",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 0.6666666666666666,
+   "acc_spread": 0.22222222222222232,
+   "sym_mean": 0.0,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
+   "model": "gemini-3.7-flash",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 1.0,
+   "acc_spread": 0.0,
+   "sym_mean": 0.0,
+   "sym_max_of": 9,
+   "degraded": 0,
+   "b0_violation": null
+  },
+  {
+   "model": "kimi-k3",
+   "runs": 5,
+   "status": "ok",
+   "acc_mean": 0.6666666666666666,
+   "acc_spread": 0.22222222222222232,
+   "sym_mean": 0.0,
    "sym_max_of": 9,
    "degraded": 0,
    "b0_violation": null

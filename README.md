@@ -7,8 +7,32 @@
 [![baseline B0 = 0.00](https://img.shields.io/badge/baseline%20B0-0.00-critical.svg)](QUICKSTART.md#4-reproduce-the-headline-result)
 
 > The last badge is the point of the project, not decoration: `B0` is a free deterministic rule
-> with no model in it, and on this fault it is wrong every single time. Reproduce it yourself in
-> five minutes with no hardware and no API key — [QUICKSTART.md](QUICKSTART.md).
+> with no model in it, and on this fault it is wrong every single time.
+
+## 🡒 Where to go
+
+**New here? → [rahulrajelli.github.io/sentinel-realtime](https://rahulrajelli.github.io/sentinel-realtime/)** — the whole thing explained, with a 12-second animation of the fault.
+
+| If you are… | Go to | Time |
+|---|---|---|
+| 🧭 **Curious, not technical** | **[Why the first warning lies](https://rahulrajelli.github.io/sentinel-realtime/whitepaper-plain.html)** — no jargon, one picture, the honest limits | 4 min read |
+| 🛠️ **Here to run it** | **[QUICKSTART.md](QUICKSTART.md)** — working in 5 min, no drone, no API key | 5 min |
+| 📐 **Here to attack the method** | **[The discriminating pair](https://rahulrajelli.github.io/sentinel-realtime/whitepaper-technical.html)** — design, measurements, and what is *not* established | 15 min read |
+| 🔬 **Building your own eval** | **[docs/METHOD.md](docs/METHOD.md)** — how to build a baseline that is wrong by construction. Nothing in it is about drones | 8 min read |
+| 🚁 **Flying ArduPilot** | **[docs/SETUP.md](docs/SETUP.md)** — point it at your own aircraft | — |
+| 🤝 **Thinking of contributing** | **[CONTRIBUTING.md](CONTRIBUTING.md)** — seven rules that are not style preferences | 5 min read |
+
+---
+
+## In one paragraph
+
+A drone's compass breaks. Three alarms fire. The **first** one is the navigation system
+complaining — a *symptom*. The compass alarm, the actual *cause*, arrives a full second later,
+because that detector deliberately waits to avoid crying wolf. So the free rule everyone reaches
+for — *"whatever alarmed first is the cause"* — is wrong **every single time** on this fault, and
+it is wrong by construction rather than by bad luck. That makes it a test an expensive AI system
+has to genuinely earn its keep against. Eight models have now been measured against it, and they
+disagree with each other enough that naming which model you used turns out to be mandatory.
 
 Can an LLM agent tell the **cause** of a flight fault from its **symptoms** — and does it beat a
 free deterministic baseline **at equal cost**?
