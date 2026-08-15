@@ -150,3 +150,60 @@ def test_prior_incidents_is_opt_in_not_a_default_tool():
     """It reaches outside the frozen bundle, so it must never be offered by accident."""
     assert "prior_incidents" not in {s["name"] for s in BundleTools.SPECS}
     assert "prior_incidents" in {s["name"] for s in BundleTools.OPTIONAL_SPECS}
+
+
+# --- context depth: signal_trajectory ---------------------------------------------------------
+#
+# `signal_window` answers "how bad did it get"; this answers "how did it get there". A metric
+# climbing steadily and one spiking once have identical min/max/mean and different diagnoses.
+
+def _climbing(n: int = 60) -> RunBundle:
+    """A flight where one metric rises across the whole recording."""
+    cycles = []
+    for i in range(n):
+        t = 1.0 + i * 0.5
+        cycles.append(CycleRecord(t=t, incidents=[Incident(
+            t_start=t - 0.25, t_end=t, type="vibration_excessive", severity="warning",
+            evidence=[Evidence(metric="VibeX", value=float(i), threshold=30.0, unit="m/s/s")])]))
+    return RunBundle(scenario="vibration", airframe_id="hex-01",
+                     expected_root_cause="vibration_excessive", cycles=cycles)
+
+
+def test_trajectory_shows_shape_that_minmax_hides():
+    out = BundleTools(_climbing()).signal_trajectory("VibeX", buckets=6)
+    means = [r["mean"] for r in out["trajectory"] if r["mean"] is not None]
+    assert means == sorted(means) and means[0] < means[-1], "a rising signal must read as rising"
+
+
+def test_trajectory_is_bounded_by_construction():
+    """The reply size must not depend on flight length. This is the 2026-08-14 lesson."""
+    import json
+    out = BundleTools(_climbing(2000)).signal_trajectory("VibeX", buckets=999)
+    assert out["buckets"] == 60, "bucket count must clamp"
+    assert len(json.dumps(out)) < 10_000
+    assert out["samples"] == 2000, "the sample count is still reported honestly"
+
+
+def test_trajectory_reports_a_metric_that_was_never_recorded():
+    out = BundleTools(_climbing()).signal_trajectory("NotAMetric")
+    assert "error" in out and "available_metrics" in out
+
+
+def test_empty_buckets_are_labelled_not_zero_filled():
+    """An empty bucket means nothing was recorded, not that the signal was zero."""
+    out = BundleTools(_climbing(4)).signal_trajectory("VibeX", buckets=60)
+    empties = [r for r in out["trajectory"] if r["n"] == 0]
+    assert empties and all(r["mean"] is None for r in empties)
+
+
+def test_trajectory_is_opt_in_because_it_reintroduces_time():
+    """Ordering degraded one model badly (0.67 -> 0.11). A trajectory is ordered by definition."""
+    assert "signal_trajectory" not in {s["name"] for s in BundleTools.SPECS}
+    assert "signal_trajectory" in {s["name"] for s in BundleTools.OPTIONAL_SPECS}
+
+
+def test_trajectory_never_leaks_ground_truth():
+    import json
+    visible = json.dumps(BundleTools(_climbing()).signal_trajectory("VibeX"))
+    for key in FORBIDDEN_KEYS:
+        assert key not in visible

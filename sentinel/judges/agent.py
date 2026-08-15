@@ -49,7 +49,8 @@ class AgentJudge:
     id = "B3"
 
     def __init__(self, client: ModelClient, max_turns: int = 10,
-                 withhold: tuple[str, ...] = (), offer: tuple[str, ...] = ()) -> None:
+                 withhold: tuple[str, ...] = (), offer: tuple[str, ...] = (),
+                 history: Any | None = None) -> None:
         self.client = client
         self.max_turns = max_turns
         # Tools removed from the offered set, for ablation.
@@ -69,11 +70,14 @@ class AgentJudge:
         self.offer = tuple(offer)
         self.specs = ([s for s in BundleTools.SPECS if s["name"] not in self.withhold]
                       + [s for s in BundleTools.OPTIONAL_SPECS if s["name"] in self.offer])
+        # A memory.FlightHistory, or None. Only reachable if `prior_incidents` is also offered;
+        # attaching a store without offering the tool changes nothing, which is the safe default.
+        self.history = history
 
     def judge(self, bundle: RunBundle, budget: Budget | None = None,
               variant: str = "v1") -> Verdict:
         budget = (budget or Budget()).start()
-        tools = BundleTools(bundle)
+        tools = BundleTools(bundle, history=self.history)
         t0 = time.perf_counter()
 
         messages: list[dict[str, Any]] = [

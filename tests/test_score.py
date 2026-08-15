@@ -342,3 +342,72 @@ def test_value_anchor_tolerates_a_json_round_trip():
 def test_recorded_values_reads_the_flight():
     assert recorded_values(_cited_bundle(), "EKF_Magnetometer_Variance") == [2.619]
     assert recorded_values(_cited_bundle(), "nope") == []
+
+
+# --- rationale grounding ----------------------------------------------------------------------
+#
+# check_citations validated the structured citations field. Nothing validated the PROSE, which is
+# what a human actually reads and where a confident wrong detail hides.
+
+from sentinel.score import check_rationale_grounding, observable_numbers  # noqa: E402
+
+
+def _with_rationale(text: str) -> Verdict:
+    return Verdict(judge="B3", bundle_id="x", root_cause="compass_inconsistency",
+                   rationale=text,
+                   citations=[Citation(metric="EKF_Magnetometer_Variance", value=2.619)])
+
+
+def test_prose_quoting_a_real_measurement_is_grounded():
+    ok, problems = check_rationale_grounding(
+        _cited_bundle(), _with_rationale("Variance reached 2.619 against a threshold of 1.0."))
+    assert ok, problems
+
+
+def test_prose_quoting_an_invented_measurement_is_caught():
+    ok, problems = check_rationale_grounding(
+        _cited_bundle(), _with_rationale("Variance spiked to 47.3 at 88.5s."))
+    assert not ok
+    assert any("47.3" in p for p in problems)
+
+
+def test_bare_small_integers_are_not_measurements():
+    """'8 of 9 judgements' is English. Flagging it would bury real findings in noise."""
+    ok, _ = check_rationale_grounding(
+        _cited_bundle(), _with_rationale("Two sensors disagreed in 8 of 9 cycles."))
+    assert ok
+
+
+def test_a_rounded_quote_of_a_real_number_is_honest_reading():
+    ok, _ = check_rationale_grounding(
+        _cited_bundle(), _with_rationale("Variance was about 2.62 at the time."))
+    assert ok
+
+
+def test_empty_rationale_is_not_a_grounding_failure():
+    ok, problems = check_rationale_grounding(_cited_bundle(), _with_rationale(""))
+    assert ok and not problems
+
+
+def test_grounding_is_reported_but_does_not_score_by_default():
+    """Gating on it would change what every previously measured number means."""
+    bundle = _cited_bundle()
+    v = _with_rationale("Variance spiked to 47.3.")
+    v.bundle_id = bundle.bundle_id      # score_verdict refuses a cross-flight verdict, correctly
+    lenient = score_verdict(bundle, v)
+    assert lenient.rationale_grounded is False
+    assert lenient.ungrounded_quotes == 1
+    assert lenient.score == 1.0, "default must not silently change historical scoring"
+
+
+def test_strict_mode_makes_grounding_decide_the_score():
+    bundle = _cited_bundle()
+    v = _with_rationale("Variance spiked to 47.3.")
+    v.bundle_id = bundle.bundle_id
+    strict = score_verdict(bundle, v, strict_rationale=True)
+    assert strict.score == 0.0 and strict.attribution == "model"
+
+
+def test_observable_numbers_includes_times_values_and_thresholds():
+    o = observable_numbers(_cited_bundle())
+    assert 2.619 in o and 1.0 in o and 10.0 in o

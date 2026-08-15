@@ -46,6 +46,12 @@ FORBIDDEN_KEYS = ("expected_root_cause", "expected_symptoms")
 EVIDENCE_HEAD = 10
 EVIDENCE_TAIL = 5
 
+# Bucket counts for `signal_trajectory`. A ceiling rather than a suggestion: the reply must be a
+# fixed size whatever the flight length, because the one tool here that was ever unbounded
+# (`detector_evidence`, before the 2026-08-14 cap) returned ~48k tokens in a single call.
+TRAJECTORY_BUCKETS = 12
+MAX_TRAJECTORY_BUCKETS = 60
+
 
 class BundleTools:
     """The whole world a judge is allowed to observe, for one bundle."""
@@ -172,6 +178,61 @@ class BundleTools:
             "by_metric": by_metric,
             "first": rows[:EVIDENCE_HEAD],
             "last": rows[-EVIDENCE_TAIL:],
+        }
+
+    def signal_trajectory(self, metric: str, buckets: int = TRAJECTORY_BUCKETS) -> dict[str, Any]:
+        """The SHAPE of one metric across the flight, in a fixed number of buckets.
+
+        Adds depth `signal_window` cannot: that tool answers "how bad did it get", this one
+        answers "how did it get there". A vibration that climbs steadily and one that spikes once
+        produce identical min/max/mean and completely different diagnoses.
+
+        **Bounded by construction, not by convention.** The bucket count is clamped, so the reply
+        size is fixed no matter how long the flight or how often the detector fired. That is the
+        direct lesson of 2026-08-14, when an unbounded `detector_evidence` returned 191,465
+        characters in one call and exhausted the agent's token ceiling before it reasoned at all.
+
+        **This tool reintroduces time, and that is why it is opt-in.** Measured on the same
+        bundles: giving gemini-2.5-flash timestamped evidence dropped it from 0.67 to 0.11 and
+        made it name a symptom as the root cause in 8 of 9 judgements, while gpt-5.6-sol was
+        unaffected and scored 1.00. A trajectory is ordered by definition, so it carries the same
+        hazard. Offer it with `--offer-tools signal_trajectory`, measure both models, and do not
+        promote it to the default surface on one model's evidence.
+
+        **Honest ceiling.** Samples are detector-evidence points, which exist only at moments a
+        detector was already concerned. This is the shape of what was *recorded*, not of the raw
+        sensor. Raw depth would require the runner to capture sampled telemetry, which it does
+        not do today.
+        """
+        n = max(4, min(int(buckets), MAX_TRAJECTORY_BUCKETS))
+        points = [(c.t, ev.value) for c in self._b.cycles for inc in c.incidents
+                  for ev in inc.evidence
+                  if ev.metric == metric and isinstance(ev.value, (int, float))]
+        if not points:
+            return {"error": f"no recorded samples of {metric!r} in this flight",
+                    "available_metrics": sorted(self._metrics())}
+
+        t0, t1 = self._b.t_start, self._b.t_end
+        span = (t1 - t0) or 1.0
+        rows: list[dict[str, Any]] = []
+        for i in range(n):
+            lo = t0 + span * i / n
+            hi = t0 + span * (i + 1) / n
+            vals = [v for t, v in points if (lo <= t < hi or (i == n - 1 and t == hi))]
+            rows.append({
+                "bucket": i + 1,
+                "t_from": round(lo, 2), "t_to": round(hi, 2),
+                "n": len(vals),
+                "min": min(vals) if vals else None,
+                "max": max(vals) if vals else None,
+                "mean": round(sum(vals) / len(vals), 4) if vals else None,
+            })
+        return {
+            "metric": metric, "buckets": n, "samples": len(points),
+            "flight_window_s": [round(t0, 2), round(t1, 2)],
+            "trajectory": rows,
+            "note": ("Each bucket summarises the samples recorded inside it; empty buckets mean "
+                     "no detector recorded this metric then, not that the signal was zero."),
         }
 
     def prior_incidents(self) -> dict[str, Any]:
@@ -341,6 +402,15 @@ class BundleTools:
     # re-run is not a result, and because a future detector set with different semantics might
     # justify revisiting them -- with a measurement, as these were.
     OPTIONAL_SPECS: list[dict[str, Any]] = [
+        {"name": "signal_trajectory",
+         "description": ("How one metric changed across the flight, summarised into a fixed "
+                         "number of time buckets. Distinguishes a signal that climbed steadily "
+                         "from one that spiked once, which min/max/mean cannot."),
+         "parameters": {"type": "object", "properties": {
+             "metric": {"type": "string"},
+             "buckets": {"type": "integer",
+                         "description": "optional, clamped to 4-60, default 12"}},
+             "required": ["metric"]}},
         {"name": "prior_incidents",
          "description": ("What this same airframe did on earlier flights: which advisory types "
                          "recurred, on how many flights, and how recently. Use it to tell a "
