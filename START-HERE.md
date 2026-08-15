@@ -19,10 +19,10 @@ python          ..\ardupilot-log-analyzer\.venv\Scripts\python.exe
 The system Python has no deps. **Always use that venv.** Verify in one command:
 
 ```bash
-../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # expect 118 passed, ~2s
+../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # expect 143 passed, ~2s
 ```
 
-All 118 tests are offline — no simulator, no network, no API key. If they pass, the checkout is
+All 143 tests are offline — no simulator, no network, no API key. If they pass, the checkout is
 healthy and you can work without touching hardware.
 
 SITL (the flight simulator) lives in WSL and is **only** needed to capture new flights. You almost

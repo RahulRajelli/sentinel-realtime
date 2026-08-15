@@ -109,6 +109,60 @@ prediction that it would was a projection across a nondeterministic output, and 
 
 ---
 
+## 3a. Context architecture, added 2026-08-15
+
+Three tiers now, where there was one:
+
+| tier | span | what it is |
+|---|---|---|
+| live | 120 s | `RollingBuffer`, within-flight detection |
+| bundle | one flight | frozen, hash-fingerprinted file |
+| **history** | **30-day window** | **`memory.py`, append-only JSONL per airframe** |
+
+**Durable memory (`sentinel/memory.py`).** Until this existed the whole system forgot everything
+older than 120 seconds, so every flight was judged as though it were the airframe's first.
+`prior_incidents` answers "third compass anomaly in eight flights", which is frequently the whole
+diagnosis and which no within-flight evidence can produce. Opt-in:
+`--history history/flights.jsonl --offer-tools prior_incidents`.
+
+Four properties, each preventing a specific failure: counts and dates rather than the earlier
+flights themselves (handing a judge four bundles recreates the payload blow-up); the flight under
+judgement excluded from its own history (or every fault is a recurrence of itself); no ground
+truth across the boundary, asserted against both the raw file and the aggregate; and
+`airframe_id` **excluded from `bundle_id`**, because including it would rewrite every hash and
+orphan the archive.
+
+**Context depth (`signal_trajectory`).** `signal_window` answers *how bad did it get*; this
+answers *how it got there*. Bounded by construction: 1,056 samples render to 863 characters, and
+a request for 999 buckets clamps to 60. **Opt-in, and it must stay that way until measured** --
+a trajectory is ordered by definition, and ordering is exactly what took gemini from 0.67 to
+0.11.
+
+> **Neither is measured.** Memory has no scenario that repeats a fault on one airframe, so
+> `prior_incidents` has nothing to find. `signal_trajectory` has never been offered to a live
+> model. They are capabilities, not results.
+
+## 3b. Fabrication is not the failure mode -- measured
+
+`check_rationale_grounding` (`score.py`) extracts measurements from the rationale PROSE and
+checks them against everything the flight recorded. Until it existed, `check_citations` validated
+the structured field and nothing validated the narrative a human actually reads.
+
+Run across **every verdict on disk -- 595, four judges, two model families -- it found 2
+ungrounded quotes. 0.34%.**
+
+The case that motivated it was gemini writing *"exceeded its threshold at 9.062s ... the compass
+inconsistency at 10.016s"*. **Both numbers are real.** 9.062 is an actual advisory time in that
+bundle; the checker accepts it and rejects a fabricated 99.9, so it is calibrated.
+
+**The models are not inventing numbers. They are drawing wrong conclusions from real ones.** No
+grounding check can catch that. The only thing that catches it is a scenario where the correct
+answer and the plausible answer differ, which is what `compass_offset` is. Anyone asking whether
+this system "solved hallucination" is aiming at a failure mode that occurs 0.34% of the time.
+
+Reported, not scored, by default: gating on it would change the meaning of every number measured
+before it existed. `strict_rationale=True` turns it into a gate.
+
 ## 4. Scenario library
 
 | scenario | state |
@@ -146,10 +200,14 @@ needs a new DETECTOR, not a new scenario.
 1. **Decide the default tool surface** (section 1). It is currently set from one model's evidence.
 2. **A second discriminating scenario.** Everything else is refinement; this is the only thing
    that raises n above 3 flights.
-3. **More models, now cheap.** The `llmapi` gateway exposes ~389 models including
+3. **Measure the two new capabilities, or drop them.** A scenario that flies one airframe
+   repeatedly with an intermittent fault would give `prior_incidents` something to find. Offering
+   `signal_trajectory` to both models would say whether shape-over-time helps or repeats the
+   ordering damage. Both are unmeasured today and should not be described as working.
+4. **More models, now cheap.** The `llmapi` gateway exposes ~389 models including
    `claude-opus-5`, `claude-sonnet-5`, `qwen3.8-max`, `kimi-k3`. Two models showed opposite
    rankings; a third and fourth would show whether that is a capability gradient or noise.
-4. **Regenerate the replay bundle.** `replay_2024-04-30 17-30-57.json` needs its original `.BIN`,
+5. **Regenerate the replay bundle.** `replay_2024-04-30 17-30-57.json` needs its original `.BIN`,
    which is not in the repo. It is the only evidence behind the 96.8% suppression claim.
 
 ---
@@ -158,7 +216,7 @@ needs a new DETECTOR, not a new scenario.
 
 ```bash
 # Use the analyzer venv. The system Python has no deps.
-../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # 118 tests, all offline
+../ardupilot-log-analyzer/.venv/Scripts/python.exe -m pytest -q     # 143 tests, all offline
 
 # SITL lives in WSL, needed only to capture new flights.
 wsl -d Ubuntu-24.04 -- bash -c "ls /root/ardupilot/build/sitl/bin/"
@@ -198,6 +256,9 @@ There is **no Anthropic key on this machine and none is needed** — `claude-opu
 | No LLM near flight control | Judges are offline; the bundle is a frozen file |
 | `detector_evidence` is capped | Unbounded, it returned 191,465 chars (~48k tokens) in one call and degraded B3 on contact |
 | Citations accept a value anchor | `evidence_untimed` removes timestamps; verified against recorded evidence, so it is not a weaker rule |
+| History stores counts, not flights | Four prior bundles would quadruple the judge's input and recreate the payload failure |
+| `airframe_id` excluded from `bundle_id` | Provenance, not content. Including it would rewrite every existing hash |
+| Rationale grounding reports, does not gate | Gating would change what every previously measured number means. Measured at 0.34% first |
 
 Changing `_identity_payload` or `_TIMING_FIELDS` **must** bump `SCHEMA_VERSION` in the same
 commit, or every existing bundle silently fails to load and reports itself as tampered with.
