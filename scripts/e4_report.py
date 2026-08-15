@@ -44,9 +44,14 @@ def main() -> int:
     ap.add_argument("--bundles", default="bundles")
     ap.add_argument("--verdicts", default="verdicts.json")
     ap.add_argument("--markdown", action="store_true", help="emit a README-pasteable table")
+    ap.add_argument("--only", default=None,
+                    help="comma-separated filename substrings, same meaning as in e4_judge.py. "
+                         "Pass the SAME value the sweep used: the report scores verdicts against "
+                         "bundles, so a wider scope here loads flights no verdict covers")
     args = ap.parse_args()
 
-    bundles = load_all(args.bundles)
+    wanted = [s.strip() for s in (args.only or "").split(",") if s.strip()]
+    bundles = load_all(args.bundles, only=wanted or None)
     payload = json.loads(Path(args.verdicts).read_text())
     verdicts = [Verdict.model_validate(v) for v in payload["verdicts"]]
     rows = score_all(bundles, verdicts)
@@ -60,17 +65,25 @@ def main() -> int:
     print(f"  model client : {payload.get('client') or 'none — B0 only'}")
     print()
 
-    hdr = (f"{'judge':<6}{'acc':>6} {'95% Wilson':<13}{'n':>6}  "
+    hdr = (f"{'judge':<6}{'acc':>6} {'95% CI (n=bundles)':<20}{'bundles':>9}{'judg':>6}  "
            f"{'sym':>4}{'hal':>5}{'miss':>6}{'cite':>6}{'deg':>5}  "
-           f"{'tok/judge':>10}{'ms':>8}  {'flip':>6}{'range':>7}")
+           f"{'tok/judge':>10}  {'flip':>6}{'range':>7}")
     print(hdr)
     print("-" * len(hdr))
     for s in stats.values():
-        print(f"{s.judge:<6}{s.accuracy:>6.2f} {fmt_ci(*s.ci):<13}{s.correct:>3}/{s.n:<2}  "
+        # Bundle-level accuracy and interval are quoted, NOT the judgement-level ones. Three
+        # prompt variants of one flight are repeated measures, not three independent trials;
+        # quoting the n=27 interval understates uncertainty by about sqrt(3) and previously
+        # turned an overlapping comparison into an apparently significant one.
+        print(f"{s.judge:<6}{s.accuracy_bundle:>6.2f} {fmt_ci(*s.ci_bundle):<20}"
+              f"{s.correct_bundles:>4}/{s.n_bundles:<4}{s.n:>6}  "
               f"{s.named_symptom_as_root:>4}{s.hallucinated:>5}{s.missed:>6}"
               f"{s.citation_failures:>6}{s.degraded:>5}  "
-              f"{s.tokens_per_bundle:>10.0f}{s.wall_ms_mean:>8.0f}  "
+              f"{s.tokens_per_bundle:>10.0f}  "
               f"{s.flip_rate:>6.2f}{s.accuracy_range:>7.2f}")
+    print("\n  acc/CI are per BUNDLE (the independent unit). 'judg' is the judgement count;")
+    print("  its interval would be ~sqrt(3) too narrow because the 3 prompt variants of a")
+    print("  flight are repeated measures, not independent trials.")
 
     print("\n  sym = named a symptom as the root cause   hal = fault claimed on a clean flight")
     print("  cite = citation did not resolve          deg = spend ceiling tripped")

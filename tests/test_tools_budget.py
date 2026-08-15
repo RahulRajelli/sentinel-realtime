@@ -201,3 +201,126 @@ def test_spend_match_is_reported_not_asserted():
     assert spend_match(1000, 1050) == pytest.approx(0.05)
     assert spend_match(1000, 900) == pytest.approx(-0.10)
     assert spend_match(0, 500) == 0.0
+
+
+# --- the payload cap ---------------------------------------------------------------------
+#
+# Added 2026-08-14 after `detector_evidence` was measured at 1,056 rows / 191,465 chars for one
+# incident type on a 45 s flight -- ~48k tokens against a 711-char starting summary. B3 tripped
+# its ceiling and degraded to B0 on contact, so the agent tier could not be measured at all.
+
+def _repeating(n: int) -> RunBundle:
+    """A flight where one detector re-fires every cycle -- the real shape of a vibration fault."""
+    def inc(t):
+        return Incident(t_start=t - 0.25, t_end=t, type="accel_clipping", severity="critical",
+                        evidence=[Evidence(metric="clip_count", value=float(t),
+                                           threshold=1.0, unit="")])
+    return RunBundle(
+        scenario="stiff_airframe", expected_root_cause="vibration_excessive",
+        t_inject=8.0, inject_verified=True,
+        cycles=[CycleRecord(t=8.0 + i * 0.25, incidents=[inc(8.0 + i * 0.25)]) for i in range(n)],
+        advisories=[AdvisoryRecord(t=8.0, type="accel_clipping", severity="critical",
+                                   reason="new")],
+    )
+
+
+def test_short_evidence_series_is_returned_verbatim():
+    """The shape only changes when it would otherwise be unaffordable."""
+    out = BundleTools(_repeating(6)).detector_evidence("accel_clipping")
+    assert isinstance(out, list) and len(out) == 6
+
+
+def test_long_evidence_series_is_capped_and_says_so():
+    out = BundleTools(_repeating(400)).detector_evidence("accel_clipping")
+    assert out["truncated"] is True
+    assert out["n_rows"] == 400          # what was elided is stated, never silently dropped
+    assert len(out["first"]) + len(out["last"]) < 400
+    assert len(json.dumps(out)) < 8000   # the point of the exercise
+
+
+def test_cap_preserves_onset_time():
+    """Onset ordering IS the judgement E4 measures; a cap that lost it would be worthless."""
+    full = BundleTools(_repeating(6)).detector_evidence("accel_clipping")
+    capped = BundleTools(_repeating(400)).detector_evidence("accel_clipping")
+    assert capped["first"][0]["t"] == full[0]["t"] == 8.0
+
+
+def test_cap_reports_the_full_distribution_not_just_the_sample():
+    """by_metric must summarise ALL rows, including the ones not shown."""
+    out = BundleTools(_repeating(400)).detector_evidence("accel_clipping")
+    g = out["by_metric"]["clip_count"]
+    assert g["n"] == 400
+    assert g["value_max"] == 8.0 + 399 * 0.25   # a value that appears in neither first nor last
+
+
+# --- evidence_untimed --------------------------------------------------------------------
+#
+# Built from the E4 ablation: ordering TOOLS drive symptom-as-root (9 -> 7 -> 0 as they were
+# removed), but the same tools carry the evidence values accuracy depends on. This one separates
+# them. Its whole contract is "no temporal information", so that is what the tests assert.
+
+def test_evidence_untimed_contains_no_temporal_field():
+    out = BundleTools(_repeating(400)).evidence_untimed("accel_clipping")
+    blob = json.dumps(out)
+    for banned in ('"t"', '"t_first"', '"t_start"', '"t_end"', '"first_t"', '"last_t"'):
+        assert banned not in blob, f"{banned} leaked through evidence_untimed"
+
+
+def test_evidence_untimed_keeps_the_judgement_relevant_numbers():
+    out = BundleTools(_repeating(400)).evidence_untimed("accel_clipping")
+    g = out["by_metric"]["clip_count"]
+    assert g["n"] == 400 and g["threshold"] == 1.0
+    assert g["max"] == 8.0 + 399 * 0.25          # full range, not just a sample
+    assert "peak_over_threshold" in g            # how far past the line, the untimed judgement
+
+
+def test_evidence_untimed_aggregates_rather_than_listing():
+    """A per-row list is a timeline with the clock filed off -- position still encodes order.
+
+    `severities_seen` is exempt: it is a sorted set of labels, carrying no sequence.
+    """
+    out = BundleTools(_repeating(400)).evidence_untimed("accel_clipping")
+    assert isinstance(out["by_metric"], dict)
+    sequences = {k: v for k, v in out.items()
+                 if isinstance(v, list) and k != "severities_seen"}
+    assert not sequences, f"ordered sequence(s) exposed: {sorted(sequences)}"
+    assert all(not isinstance(v, list) for v in out["by_metric"].values())
+
+
+def test_evidence_untimed_reports_a_type_that_never_fired():
+    out = BundleTools(_repeating(6)).evidence_untimed("vibration_excessive")
+    assert "error" in out and "detected_types" in out
+
+
+def test_the_default_tool_surface_is_timestamp_free():
+    """The design rule, locked in.
+
+    Measured 2026-08-14: the five-tool surface scored 0.67 accuracy / 0.00 on the ambiguous pair
+    and named a symptom as the root cause 9 times in 27. Replacing the time-bearing tools with
+    `evidence_untimed` scored 0.96 / 0.89 at 47% lower cost. Anything that puts a time-bearing
+    tool back in the DEFAULT set is undoing a measured result, so it should fail here first.
+    """
+    default = {s["name"] for s in BundleTools.SPECS}
+    assert "evidence_untimed" in default
+    assert default.isdisjoint({"list_advisories", "ordering", "detector_evidence",
+                               "signal_window"}), "a time-bearing tool is back in the default set"
+
+
+def test_the_time_bearing_tools_remain_offerable():
+    """Retired, not deleted -- the ablation that retired them must stay reproducible."""
+    optional = {s["name"] for s in BundleTools.OPTIONAL_SPECS}
+    assert {"list_advisories", "ordering", "detector_evidence", "signal_window"} <= optional
+    for name in optional:
+        assert callable(getattr(BundleTools, name, None)), f"{name} is offerable but not callable"
+
+
+def test_optional_tools_are_still_dispatchable_when_offered():
+    out = BundleTools(_repeating(20)).call("evidence_untimed", {"incident_type": "accel_clipping"})
+    assert "by_metric" in out
+
+
+def test_ground_truth_never_leaks_through_the_optional_tool(ambiguous):
+    visible = json.dumps(BundleTools(ambiguous).evidence_untimed("compass_inconsistency"))
+    for key in FORBIDDEN_KEYS:
+        assert key not in visible
+    assert "compass_offset" not in visible      # the scenario name is the answer

@@ -1,0 +1,6300 @@
+{
+ "schema_version": 1,
+ "scenario": "hot_gains",
+ "note": "ambiguous pair C: oscillation.py needs WINDOW_SIZE_S=1.5 x MIN_SUSTAINED_WINDOWS=2, so control_oscillation cannot be advised for ~3 s after onset, while actuator_saturation and ekf_inconsistency both fire on threshold crossing with no time gate. The symptom leads the cause by a window length, not by tuning",
+ "created_utc": "2026-08-14T15:17:08+00:00",
+ "expected_root_cause": "control_oscillation",
+ "expected_symptoms": [
+  "actuator_saturation",
+  "ekf_inconsistency"
+ ],
+ "injection": [
+  {
+   "name": "ATC_ANG_RLL_P",
+   "value": 22.0,
+   "readback": 22.0,
+   "applied": true
+  },
+  {
+   "name": "ATC_ANG_PIT_P",
+   "value": 22.0,
+   "readback": 22.0,
+   "applied": true
+  },
+  {
+   "name": "ATC_RAT_RLL_P",
+   "value": 0.7,
+   "readback": 0.699999988079071,
+   "applied": true
+  },
+  {
+   "name": "ATC_RAT_PIT_P",
+   "value": 0.7,
+   "readback": 0.699999988079071,
+   "applied": true
+  },
+  {
+   "name": "SIM_WIND_SPD",
+   "value": 14.0,
+   "readback": 14.0,
+   "applied": true
+  }
+ ],
+ "t_inject": 8.014999999999418,
+ "inject_verified": true,
+ "params": {
+  "MOT_PWM_MIN": 1000.0,
+  "MOT_PWM_MAX": 2000.0,
+  "MOT_SPIN_MIN": 0.15000000596046448,
+  "MOT_SPIN_MAX": 0.949999988079071,
+  "BATT_LOW_VOLT": 10.5,
+  "BATT_CRT_VOLT": 0.0,
+  "BATT_ARM_VOLT": 0.0,
+  "SERVO1_FUNCTION": 33.0,
+  "SERVO2_FUNCTION": 34.0,
+  "SERVO3_FUNCTION": 35.0,
+  "SERVO4_FUNCTION": 36.0,
+  "SERVO5_FUNCTION": 0.0,
+  "SERVO6_FUNCTION": 0.0,
+  "SERVO7_FUNCTION": 0.0,
+  "SERVO8_FUNCTION": 0.0,
+  "SERVO9_FUNCTION": 0.0,
+  "SERVO10_FUNCTION": 0.0,
+  "SERVO11_FUNCTION": 0.0,
+  "SERVO12_FUNCTION": 0.0,
+  "SERVO13_FUNCTION": 0.0,
+  "BARO1_GND_PRESS": 90970.5078125,
+  "BARO2_GND_PRESS": 90970.484375,
+  "INS_GYR_ID": 2752772.0,
+  "INS_ACC_ID": 2753028.0,
+  "INS_GYR2_ID": 2752780.0,
+  "INS_ACC2_ID": 2753036.0,
+  "INS_GYROFFS_X": 3.1337211112258956e-05,
+  "INS_GYROFFS_Y": 2.2285134036792442e-05,
+  "INS_GYROFFS_Z": 3.677543281810358e-05,
+  "INS_GYR1_CALTEMP": 25.018352508544922,
+  "INS_GYR2OFFS_X": 4.861036723013967e-05,
+  "INS_GYR2OFFS_Y": -2.367929664615076e-05,
+  "INS_GYR2OFFS_Z": 3.10860741592478e-05,
+  "INS_GYR2_CALTEMP": 25.018352508544922,
+  "INS_GYR3OFFS_X": 0.0,
+  "INS_GYR3OFFS_Y": 0.0,
+  "INS_GYR3OFFS_Z": 0.0,
+  "INS_GYR3_ID": 0.0,
+  "ARMING_SKIPCHK": 0.0,
+  "EK3_SRC1_POSXY": 3.0,
+  "SERVO14_FUNCTION": 0.0,
+  "SERVO15_FUNCTION": 0.0,
+  "SERVO16_FUNCTION": 0.0
+ },
+ "cycles": [
+  {
+   "t": 3.0,
+   "incidents": [],
+   "buffer_records": 211,
+   "detect_ms": 0.7304000027943403,
+   "build_ms": 3.151500000967644,
+   "messages_in": 390,
+   "per_detector_ms": {
+    "vibration": 0.08399999933317304,
+    "ekf": 0.0450000079581514,
+    "actuator": 0.39149999793153256,
+    "battery": 0.026900001103058457,
+    "gps": 0.016999998479150236,
+    "compass": 0.06029999349266291,
+    "oscillation": 0.09760000102687627
+   }
+  },
+  {
+   "t": 3.25,
+   "incidents": [],
+   "buffer_records": 231,
+   "detect_ms": 0.6662999949185178,
+   "build_ms": 0.43339999683666974,
+   "messages_in": 428,
+   "per_detector_ms": {
+    "vibration": 0.07410001126118004,
+    "ekf": 0.040700004319660366,
+    "actuator": 0.22789998911321163,
+    "battery": 0.03329999162815511,
+    "gps": 0.023300002794712782,
+    "compass": 0.08749999688006938,
+    "oscillation": 0.17120000848080963
+   }
+  },
+  {
+   "t": 3.5,
+   "incidents": [],
+   "buffer_records": 246,
+   "detect_ms": 0.45950000640004873,
+   "build_ms": 0.44090001028962433,
+   "messages_in": 455,
+   "per_detector_ms": {
+    "vibration": 0.07730000652372837,
+    "ekf": 0.041799998143687844,
+    "actuator": 0.14910000027157366,
+    "battery": 0.018499995348975062,
+    "gps": 0.014499993994832039,
+    "compass": 0.05319999763742089,
+    "oscillation": 0.10069999552797526
+   }
+  },
+  {
+   "t": 3.75,
+   "incidents": [],
+   "buffer_records": 266,
+   "detect_ms": 0.5272000125842169,
+   "build_ms": 0.47480000648647547,
+   "messages_in": 493,
+   "per_detector_ms": {
+    "vibration": 0.08280000474769622,
+    "ekf": 0.06310000026132911,
+    "actuator": 0.16429999959655106,
+    "battery": 0.022500011255033314,
+    "gps": 0.015600002370774746,
+    "compass": 0.060000005760230124,
+    "oscillation": 0.1137000072048977
+   }
+  },
+  {
+   "t": 4.0,
+   "incidents": [],
+   "buffer_records": 281,
+   "detect_ms": 0.5151999939698726,
+   "build_ms": 0.5286000086925924,
+   "messages_in": 520,
+   "per_detector_ms": {
+    "vibration": 0.08690000686328858,
+    "ekf": 0.048600006266497076,
+    "actuator": 0.16000001050997525,
+    "battery": 0.020400009816512465,
+    "gps": 0.016000005416572094,
+    "compass": 0.059300000430084765,
+    "oscillation": 0.11850000009872019
+   }
+  },
+  {
+   "t": 4.25,
+   "incidents": [],
+   "buffer_records": 301,
+   "detect_ms": 0.55340000835713,
+   "build_ms": 0.5011000030208379,
+   "messages_in": 558,
+   "per_detector_ms": {
+    "vibration": 0.0926000066101551,
+    "ekf": 0.05129999772179872,
+    "actuator": 0.17329999536741525,
+    "battery": 0.020699997548945248,
+    "gps": 0.016599995433352888,
+    "compass": 0.06249999569263309,
+    "oscillation": 0.13129999570082873
+   }
+  },
+  {
+   "t": 4.5460000000020955,
+   "incidents": [],
+   "buffer_records": 322,
+   "detect_ms": 0.5853999900864437,
+   "build_ms": 0.5496000085258856,
+   "messages_in": 597,
+   "per_detector_ms": {
+    "vibration": 0.09689999569673091,
+    "ekf": 0.05509999755304307,
+    "actuator": 0.18689999706111848,
+    "battery": 0.021899992134422064,
+    "gps": 0.017999991541728377,
+    "compass": 0.06890000076964498,
+    "oscillation": 0.13249999028630555
+   }
+  },
+  {
+   "t": 4.75,
+   "incidents": [],
+   "buffer_records": 336,
+   "detect_ms": 0.6439999997382984,
+   "build_ms": 0.6818999972892925,
+   "messages_in": 623,
+   "per_detector_ms": {
+    "vibration": 0.10489999840501696,
+    "ekf": 0.05649999366141856,
+    "actuator": 0.21909999486524612,
+    "battery": 0.02239999594166875,
+    "gps": 0.01999999221879989,
+    "compass": 0.0737000082153827,
+    "oscillation": 0.14170000213198364
+   }
+  },
+  {
+   "t": 5.0460000000020955,
+   "incidents": [],
+   "buffer_records": 357,
+   "detect_ms": 0.6364000000758097,
+   "build_ms": 0.7806000066921115,
+   "messages_in": 662,
+   "per_detector_ms": {
+    "vibration": 0.11069999891333282,
+    "ekf": 0.05840000812895596,
+    "actuator": 0.19530000281520188,
+    "battery": 0.024299995857290924,
+    "gps": 0.020399995264597237,
+    "compass": 0.07819999882485718,
+    "oscillation": 0.1432999997632578
+   }
+  },
+  {
+   "t": 5.2810000000026776,
+   "incidents": [],
+   "buffer_records": 372,
+   "detect_ms": 1.006299993605353,
+   "build_ms": 0.8127000037347898,
+   "messages_in": 689,
+   "per_detector_ms": {
+    "vibration": 0.18760000239126384,
+    "ekf": 0.08579999848734587,
+    "actuator": 0.3012999950442463,
+    "battery": 0.02439999661874026,
+    "gps": 0.023599990527145565,
+    "compass": 0.14400000509340316,
+    "oscillation": 0.23150000197347254
+   }
+  },
+  {
+   "t": 5.5310000000026776,
+   "incidents": [],
+   "buffer_records": 392,
+   "detect_ms": 0.676199997542426,
+   "build_ms": 0.628499998128973,
+   "messages_in": 727,
+   "per_detector_ms": {
+    "vibration": 0.1151999895228073,
+    "ekf": 0.06479999865405262,
+    "actuator": 0.20429999858606607,
+    "battery": 0.0219999928958714,
+    "gps": 0.021200001356191933,
+    "compass": 0.07729999197181314,
+    "oscillation": 0.16709999181330204
+   }
+  },
+  {
+   "t": 5.7810000000026776,
+   "incidents": [],
+   "buffer_records": 407,
+   "detect_ms": 1.1977000103797764,
+   "build_ms": 0.8920999971451238,
+   "messages_in": 754,
+   "per_detector_ms": {
+    "vibration": 0.22039999021217227,
+    "ekf": 0.10939998901449144,
+    "actuator": 0.5403999966802076,
+    "battery": 0.028800001018680632,
+    "gps": 0.023800006601959467,
+    "compass": 0.08740001067053527,
+    "oscillation": 0.17970000044442713
+   }
+  },
+  {
+   "t": 6.0310000000026776,
+   "incidents": [],
+   "buffer_records": 427,
+   "detect_ms": 1.1488000018289313,
+   "build_ms": 0.8978000114439055,
+   "messages_in": 792,
+   "per_detector_ms": {
+    "vibration": 0.1773000112734735,
+    "ekf": 0.109500004327856,
+    "actuator": 0.31570000282954425,
+    "battery": 0.07639999967068434,
+    "gps": 0.03779999678954482,
+    "compass": 0.13439999020192772,
+    "oscillation": 0.2884999994421378
+   }
+  },
+  {
+   "t": 6.2810000000026776,
+   "incidents": [],
+   "buffer_records": 442,
+   "detect_ms": 1.0855000000447035,
+   "build_ms": 0.8081999985734001,
+   "messages_in": 819,
+   "per_detector_ms": {
+    "vibration": 0.16999999934341758,
+    "ekf": 0.09490000957157463,
+    "actuator": 0.3171999996993691,
+    "battery": 0.03429999924264848,
+    "gps": 0.03710000601131469,
+    "compass": 0.16199999663513154,
+    "oscillation": 0.2609000075608492
+   }
+  },
+  {
+   "t": 6.5310000000026776,
+   "incidents": [],
+   "buffer_records": 462,
+   "detect_ms": 1.2624000082723796,
+   "build_ms": 1.1021999962395057,
+   "messages_in": 857,
+   "per_detector_ms": {
+    "vibration": 0.23039999359752983,
+    "ekf": 0.21319999359548092,
+    "actuator": 0.3642999945441261,
+    "battery": 0.032800002372823656,
+    "gps": 0.02849999873433262,
+    "compass": 0.10409999231342226,
+    "oscillation": 0.27979999140370637
+   }
+  },
+  {
+   "t": 6.764999999999418,
+   "incidents": [],
+   "buffer_records": 477,
+   "detect_ms": 0.9318999946117401,
+   "build_ms": 0.742000003810972,
+   "messages_in": 884,
+   "per_detector_ms": {
+    "vibration": 0.13810000382363796,
+    "ekf": 0.0751999905332923,
+    "actuator": 0.24059999850578606,
+    "battery": 0.024299995857290924,
+    "gps": 0.02469999890308827,
+    "compass": 0.13240000407677144,
+    "oscillation": 0.291000003926456
+   }
+  },
+  {
+   "t": 7.0310000000026776,
+   "incidents": [],
+   "buffer_records": 497,
+   "detect_ms": 1.0234000073978677,
+   "build_ms": 0.7750000077066943,
+   "messages_in": 922,
+   "per_detector_ms": {
+    "vibration": 0.15010000788606703,
+    "ekf": 0.13349999790079892,
+    "actuator": 0.3316999936942011,
+    "battery": 0.029300004825927317,
+    "gps": 0.03060000017285347,
+    "compass": 0.11609999637585133,
+    "oscillation": 0.22629999148193747
+   }
+  },
+  {
+   "t": 7.264999999999418,
+   "incidents": [],
+   "buffer_records": 512,
+   "detect_ms": 1.2866000033682212,
+   "build_ms": 0.7667000027140602,
+   "messages_in": 949,
+   "per_detector_ms": {
+    "vibration": 0.15870000061113387,
+    "ekf": 0.1033000007737428,
+    "actuator": 0.4434000002220273,
+    "battery": 0.030499999411404133,
+    "gps": 0.040000013541430235,
+    "compass": 0.1598999951966107,
+    "oscillation": 0.3436999977566302
+   }
+  },
+  {
+   "t": 7.514999999999418,
+   "incidents": [],
+   "buffer_records": 532,
+   "detect_ms": 1.0447999957250431,
+   "build_ms": 0.887200003489852,
+   "messages_in": 987,
+   "per_detector_ms": {
+    "vibration": 0.15069999790284783,
+    "ekf": 0.08199999865610152,
+    "actuator": 0.25800000003073364,
+    "battery": 0.026599998818710446,
+    "gps": 0.02680000034160912,
+    "compass": 0.16429999959655106,
+    "oscillation": 0.3293999907327816
+   }
+  },
+  {
+   "t": 7.764999999999418,
+   "incidents": [],
+   "buffer_records": 547,
+   "detect_ms": 1.0621999972499907,
+   "build_ms": 0.8513999928254634,
+   "messages_in": 1014,
+   "per_detector_ms": {
+    "vibration": 0.17610000213608146,
+    "ekf": 0.12969999806955457,
+    "actuator": 0.29930000891909003,
+    "battery": 0.031000003218650818,
+    "gps": 0.033499993151053786,
+    "compass": 0.10469999688211828,
+    "oscillation": 0.28139998903498054
+   }
+  },
+  {
+   "t": 8.014999999999418,
+   "incidents": [],
+   "buffer_records": 567,
+   "detect_ms": 1.6576000052737072,
+   "build_ms": 1.0411999974166974,
+   "messages_in": 1052,
+   "per_detector_ms": {
+    "vibration": 0.2886000002035871,
+    "ekf": 0.1564999984111637,
+    "actuator": 0.5339999916031957,
+    "battery": 0.05040000542066991,
+    "gps": 0.060999998822808266,
+    "compass": 0.18139999883715063,
+    "oscillation": 0.3744000132428482
+   }
+  },
+  {
+   "t": 9.96799999999348,
+   "incidents": [],
+   "buffer_records": 568,
+   "detect_ms": 2.7501000004122034,
+   "build_ms": 0.8722999918973073,
+   "messages_in": 1053,
+   "per_detector_ms": {
+    "vibration": 0.15890000213403255,
+    "ekf": 0.08749999688006938,
+    "actuator": 1.8533000111347064,
+    "battery": 0.046499990276061,
+    "gps": 0.05049999163020402,
+    "compass": 0.15779999375808984,
+    "oscillation": 0.38640000275336206
+   }
+  },
+  {
+   "t": 9.96799999999348,
+   "incidents": [],
+   "buffer_records": 568,
+   "detect_ms": 0.9469000069657341,
+   "build_ms": 0.6726999999955297,
+   "messages_in": 1054,
+   "per_detector_ms": {
+    "vibration": 0.15350000467151403,
+    "ekf": 0.08700000762473792,
+    "actuator": 0.2663999912329018,
+    "battery": 0.023899992811493576,
+    "gps": 0.028299997211433947,
+    "compass": 0.0940000027185306,
+    "oscillation": 0.2893999917432666
+   }
+  },
+  {
+   "t": 9.96799999999348,
+   "incidents": [],
+   "buffer_records": 568,
+   "detect_ms": 1.1212999961571768,
+   "build_ms": 0.7234999939100817,
+   "messages_in": 1055,
+   "per_detector_ms": {
+    "vibration": 0.33459998667240143,
+    "ekf": 0.09200000204145908,
+    "actuator": 0.2801000082399696,
+    "battery": 0.028099995688535273,
+    "gps": 0.035899996873922646,
+    "compass": 0.09889999637380242,
+    "oscillation": 0.2463000128045678
+   }
+  },
+  {
+   "t": 9.96799999999348,
+   "incidents": [],
+   "buffer_records": 568,
+   "detect_ms": 0.8907000010367483,
+   "build_ms": 0.5901000113226473,
+   "messages_in": 1056,
+   "per_detector_ms": {
+    "vibration": 0.16540000797249377,
+    "ekf": 0.08769999840296805,
+    "actuator": 0.25510000705253333,
+    "battery": 0.022200008970685303,
+    "gps": 0.027699992642737925,
+    "compass": 0.09050000517163426,
+    "oscillation": 0.23890000011306256
+   }
+  },
+  {
+   "t": 9.96799999999348,
+   "incidents": [],
+   "buffer_records": 568,
+   "detect_ms": 0.8789999992586672,
+   "build_ms": 0.562699991860427,
+   "messages_in": 1057,
+   "per_detector_ms": {
+    "vibration": 0.1500999933341518,
+    "ekf": 0.08720000914763659,
+    "actuator": 0.265499998931773,
+    "battery": 0.02099999983329326,
+    "gps": 0.02710000262595713,
+    "compass": 0.08939999679569155,
+    "oscillation": 0.23550000332761556
+   }
+  },
+  {
+   "t": 9.98399999999674,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 727.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (73% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 569,
+   "detect_ms": 9.676100002252497,
+   "build_ms": 0.5649999948218465,
+   "messages_in": 1058,
+   "per_detector_ms": {
+    "vibration": 0.15019999409560114,
+    "ekf": 0.0855999969644472,
+    "actuator": 8.912200006307103,
+    "battery": 0.04470000567380339,
+    "gps": 0.048000001697801054,
+    "compass": 0.1289999927394092,
+    "oscillation": 0.3009999927598983
+   }
+  },
+  {
+   "t": 9.98399999999674,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 727.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (73% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 570,
+   "detect_ms": 0.9932999964803457,
+   "build_ms": 0.7351999956881627,
+   "messages_in": 1059,
+   "per_detector_ms": {
+    "vibration": 0.15579999308101833,
+    "ekf": 0.08489999163430184,
+    "actuator": 0.31149999995250255,
+    "battery": 0.02409999433439225,
+    "gps": 0.028399997972883284,
+    "compass": 0.1117999927373603,
+    "oscillation": 0.27230000705458224
+   }
+  },
+  {
+   "t": 10.014999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 727.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (73% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 574,
+   "detect_ms": 0.9873000090010464,
+   "build_ms": 0.6857999978819862,
+   "messages_in": 1065,
+   "per_detector_ms": {
+    "vibration": 0.15859999984968454,
+    "ekf": 0.08679999154992402,
+    "actuator": 0.2922999992733821,
+    "battery": 0.02479999966453761,
+    "gps": 0.02849999873433262,
+    "compass": 0.09589998808223754,
+    "oscillation": 0.2961999998660758
+   }
+  },
+  {
+   "t": 10.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 727.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (73% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 589,
+   "detect_ms": 1.1854000040329993,
+   "build_ms": 0.898600002983585,
+   "messages_in": 1093,
+   "per_detector_ms": {
+    "vibration": 0.1630000042496249,
+    "ekf": 0.09000000136438757,
+    "actuator": 0.40920000174082816,
+    "battery": 0.09019998833537102,
+    "gps": 0.038300000596791506,
+    "compass": 0.12940001033712178,
+    "oscillation": 0.258100000792183
+   }
+  },
+  {
+   "t": 10.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.48399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 609,
+   "detect_ms": 1.2050999939674512,
+   "build_ms": 0.9251000010408461,
+   "messages_in": 1131,
+   "per_detector_ms": {
+    "vibration": 0.16900000628083944,
+    "ekf": 0.0940000027185306,
+    "actuator": 0.4378000012366101,
+    "battery": 0.04679999256040901,
+    "gps": 0.05439999222289771,
+    "compass": 0.1373999984934926,
+    "oscillation": 0.2584999892860651
+   }
+  },
+  {
+   "t": 10.75,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.687000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 623,
+   "detect_ms": 1.259199998457916,
+   "build_ms": 0.9913000103551894,
+   "messages_in": 1161,
+   "per_detector_ms": {
+    "vibration": 0.1740000006975606,
+    "ekf": 0.09750000026542693,
+    "actuator": 0.4684000014094636,
+    "battery": 0.035899996873922646,
+    "gps": 0.043099993490614,
+    "compass": 0.16660000255797058,
+    "oscillation": 0.2671999973244965
+   }
+  },
+  {
+   "t": 11.0,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 10.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 638,
+   "detect_ms": 1.185000000987202,
+   "build_ms": 0.9377000096719712,
+   "messages_in": 1188,
+   "per_detector_ms": {
+    "vibration": 0.17559999832883477,
+    "ekf": 0.10019999172072858,
+    "actuator": 0.421799995820038,
+    "battery": 0.03470000228844583,
+    "gps": 0.041799998143687844,
+    "compass": 0.1331000094069168,
+    "oscillation": 0.2724000078160316
+   }
+  },
+  {
+   "t": 11.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 11.202999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 658,
+   "detect_ms": 1.2714000040432438,
+   "build_ms": 0.9724999981699511,
+   "messages_in": 1226,
+   "per_detector_ms": {
+    "vibration": 0.18280000949744135,
+    "ekf": 0.10070001007989049,
+    "actuator": 0.4929999995511025,
+    "battery": 0.0371999922208488,
+    "gps": 0.04469999112188816,
+    "compass": 0.13270000636111945,
+    "oscillation": 0.2742000069702044
+   }
+  },
+  {
+   "t": 11.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 11.421000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 673,
+   "detect_ms": 1.789299989468418,
+   "build_ms": 1.3630000030389056,
+   "messages_in": 1253,
+   "per_detector_ms": {
+    "vibration": 0.3178000042680651,
+    "ekf": 0.15500000154133886,
+    "actuator": 0.6119999889051542,
+    "battery": 0.040099999750964344,
+    "gps": 0.06719998782500625,
+    "compass": 0.18200000340584666,
+    "oscillation": 0.4084000102011487
+   }
+  },
+  {
+   "t": 11.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 11.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 693,
+   "detect_ms": 1.2488999927882105,
+   "build_ms": 1.0156000062124804,
+   "messages_in": 1291,
+   "per_detector_ms": {
+    "vibration": 0.192599996807985,
+    "ekf": 0.10740000288933516,
+    "actuator": 0.4341000021668151,
+    "battery": 0.03359999391250312,
+    "gps": 0.03779999678954482,
+    "compass": 0.13689999468624592,
+    "oscillation": 0.301199994282797
+   }
+  },
+  {
+   "t": 12.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 11.921000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 708,
+   "detect_ms": 1.4174999960232526,
+   "build_ms": 1.063500007148832,
+   "messages_in": 1318,
+   "per_detector_ms": {
+    "vibration": 0.2877999941119924,
+    "ekf": 0.10959999053739011,
+    "actuator": 0.4707000043708831,
+    "battery": 0.03619999915827066,
+    "gps": 0.04299999272916466,
+    "compass": 0.15219999477267265,
+    "oscillation": 0.3113999991910532
+   }
+  },
+  {
+   "t": 12.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 12.23399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 728,
+   "detect_ms": 1.2949999945703894,
+   "build_ms": 1.1611000081757084,
+   "messages_in": 1356,
+   "per_detector_ms": {
+    "vibration": 0.21499999274965376,
+    "ekf": 0.11630001245066524,
+    "actuator": 0.4222999996272847,
+    "battery": 0.036600002204068005,
+    "gps": 0.03850000211969018,
+    "compass": 0.15150000399444252,
+    "oscillation": 0.30870000773575157
+   }
+  },
+  {
+   "t": 12.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 12.437000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 743,
+   "detect_ms": 1.5262000088114291,
+   "build_ms": 1.3842000043950975,
+   "messages_in": 1383,
+   "per_detector_ms": {
+    "vibration": 0.27409999165683985,
+    "ekf": 0.13000000035390258,
+    "actuator": 0.4518000059761107,
+    "battery": 0.03360000846441835,
+    "gps": 0.03949999518226832,
+    "compass": 0.1581999968038872,
+    "oscillation": 0.4327000060584396
+   }
+  },
+  {
+   "t": 12.796000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 12.73399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 763,
+   "detect_ms": 1.4820000069448724,
+   "build_ms": 1.7271999968215823,
+   "messages_in": 1421,
+   "per_detector_ms": {
+    "vibration": 0.3222999948775396,
+    "ekf": 0.1525000116089359,
+    "actuator": 0.44350000098347664,
+    "battery": 0.03499999002087861,
+    "gps": 0.04060000355821103,
+    "compass": 0.16730000788811594,
+    "oscillation": 0.3136000013910234
+   }
+  },
+  {
+   "t": 13.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 12.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 778,
+   "detect_ms": 1.9127999985357746,
+   "build_ms": 2.416200004518032,
+   "messages_in": 1448,
+   "per_detector_ms": {
+    "vibration": 0.2142000012099743,
+    "ekf": 0.11829999857582152,
+    "actuator": 0.6827000033808872,
+    "battery": 0.05849999433849007,
+    "gps": 0.07589999586343765,
+    "compass": 0.20309998944867402,
+    "oscillation": 0.5519999976968393
+   }
+  },
+  {
+   "t": 13.296000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 13.23399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 798,
+   "detect_ms": 1.9066000095335767,
+   "build_ms": 1.562499994179234,
+   "messages_in": 1486,
+   "per_detector_ms": {
+    "vibration": 0.31540000054519624,
+    "ekf": 0.2150999935111031,
+    "actuator": 0.5947000026935712,
+    "battery": 0.044500004150904715,
+    "gps": 0.058299992815591395,
+    "compass": 0.19320000137668103,
+    "oscillation": 0.4786999925272539
+   }
+  },
+  {
+   "t": 13.5,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 13.437000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 812,
+   "detect_ms": 1.4930000033928081,
+   "build_ms": 1.3870000111637637,
+   "messages_in": 1512,
+   "per_detector_ms": {
+    "vibration": 0.31209998996928334,
+    "ekf": 0.13420000323094428,
+    "actuator": 0.4608000017469749,
+    "battery": 0.037300007534213364,
+    "gps": 0.045599997974932194,
+    "compass": 0.16110000433400273,
+    "oscillation": 0.33489998895674944
+   }
+  },
+  {
+   "t": 13.764999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 13.639999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 827,
+   "detect_ms": 2.1413000067695975,
+   "build_ms": 15.1909000123851,
+   "messages_in": 1539,
+   "per_detector_ms": {
+    "vibration": 0.24009999469853938,
+    "ekf": 0.14949998876545578,
+    "actuator": 0.8372000011149794,
+    "battery": 0.05970000347588211,
+    "gps": 0.06890000076964498,
+    "compass": 0.22960000205785036,
+    "oscillation": 0.5287999956635758
+   }
+  },
+  {
+   "t": 14.0,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 13.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 847,
+   "detect_ms": 1.4608999917982146,
+   "build_ms": 1.3011999981245026,
+   "messages_in": 1577,
+   "per_detector_ms": {
+    "vibration": 0.22780000290367752,
+    "ekf": 0.15239999629557133,
+    "actuator": 0.4975000047124922,
+    "battery": 0.03399999695830047,
+    "gps": 0.04490000719670206,
+    "compass": 0.152900000102818,
+    "oscillation": 0.34589999995660037
+   }
+  },
+  {
+   "t": 14.25,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 14.139999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 862,
+   "detect_ms": 1.4658000000054017,
+   "build_ms": 1.6500999918207526,
+   "messages_in": 1604,
+   "per_detector_ms": {
+    "vibration": 0.23740000324323773,
+    "ekf": 0.13589998707175255,
+    "actuator": 0.47990000166464597,
+    "battery": 0.038300000596791506,
+    "gps": 0.047599998652003706,
+    "compass": 0.15700000221841037,
+    "oscillation": 0.36380000528879464
+   }
+  },
+  {
+   "t": 14.5,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 14.452999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 882,
+   "detect_ms": 2.2615000052610412,
+   "build_ms": 2.0149000047240406,
+   "messages_in": 1642,
+   "per_detector_ms": {
+    "vibration": 0.43060000461991876,
+    "ekf": 0.2173000102629885,
+    "actuator": 0.6549000099767,
+    "battery": 0.04020000051241368,
+    "gps": 0.05219999002292752,
+    "compass": 0.2150999935111031,
+    "oscillation": 0.6424999883165583
+   }
+  },
+  {
+   "t": 14.75,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 14.639999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 897,
+   "detect_ms": 2.0638000132748857,
+   "build_ms": 1.7950000037671998,
+   "messages_in": 1669,
+   "per_detector_ms": {
+    "vibration": 0.3499000013107434,
+    "ekf": 0.1962000096682459,
+    "actuator": 0.6616000027861446,
+    "battery": 0.04569999873638153,
+    "gps": 0.06550000398419797,
+    "compass": 0.22109999554231763,
+    "oscillation": 0.5174999969312921
+   }
+  },
+  {
+   "t": 15.0,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 14.952999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 917,
+   "detect_ms": 1.5454999957000837,
+   "build_ms": 1.3916999887442216,
+   "messages_in": 1707,
+   "per_detector_ms": {
+    "vibration": 0.24809999740682542,
+    "ekf": 0.13980000221636146,
+    "actuator": 0.4837000014958903,
+    "battery": 0.03560000914148986,
+    "gps": 0.04940001235809177,
+    "compass": 0.18540000019129366,
+    "oscillation": 0.3978000022470951
+   }
+  },
+  {
+   "t": 15.25,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 15.156000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 932,
+   "detect_ms": 1.6336999979102984,
+   "build_ms": 1.3752999948337674,
+   "messages_in": 1734,
+   "per_detector_ms": {
+    "vibration": 0.29680000443477184,
+    "ekf": 0.15439999697264284,
+    "actuator": 0.5054000066593289,
+    "battery": 0.039300008211284876,
+    "gps": 0.05490001058205962,
+    "compass": 0.1810000103432685,
+    "oscillation": 0.39590000233147293
+   }
+  },
+  {
+   "t": 15.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 15.452999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 952,
+   "detect_ms": 1.7106000013882294,
+   "build_ms": 1.4033000043127686,
+   "messages_in": 1772,
+   "per_detector_ms": {
+    "vibration": 0.37120000342838466,
+    "ekf": 0.15619999612681568,
+    "actuator": 0.5042999982833862,
+    "battery": 0.04220000118948519,
+    "gps": 0.05509999755304307,
+    "compass": 0.1838000025600195,
+    "oscillation": 0.3910000086762011
+   }
+  },
+  {
+   "t": 15.75,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 15.656000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 967,
+   "detect_ms": 1.6361000016331673,
+   "build_ms": 1.4593000087188557,
+   "messages_in": 1799,
+   "per_detector_ms": {
+    "vibration": 0.258700005360879,
+    "ekf": 0.14519999967887998,
+    "actuator": 0.5487000016728416,
+    "battery": 0.03819999983534217,
+    "gps": 0.05529999907594174,
+    "compass": 0.1787999935913831,
+    "oscillation": 0.40609999268781394
+   }
+  },
+  {
+   "t": 16.014999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 15.952999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 987,
+   "detect_ms": 2.65650000073947,
+   "build_ms": 2.180800001951866,
+   "messages_in": 1837,
+   "per_detector_ms": {
+    "vibration": 0.46039999870117754,
+    "ekf": 0.2511000056983903,
+    "actuator": 0.9369999897899106,
+    "battery": 0.05740000051446259,
+    "gps": 0.0737999944249168,
+    "compass": 0.23659999715164304,
+    "oscillation": 0.6297999934758991
+   }
+  },
+  {
+   "t": 16.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 16.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1002,
+   "detect_ms": 2.760400006081909,
+   "build_ms": 2.6224000030197203,
+   "messages_in": 1864,
+   "per_detector_ms": {
+    "vibration": 0.46660000225529075,
+    "ekf": 0.2631999959703535,
+    "actuator": 0.8483999990858138,
+    "battery": 0.05729999975301325,
+    "gps": 0.08709999383427203,
+    "compass": 0.35170000046491623,
+    "oscillation": 0.6779999966965988
+   }
+  },
+  {
+   "t": 16.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 16.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1022,
+   "detect_ms": 2.933299998403527,
+   "build_ms": 2.036800011410378,
+   "messages_in": 1902,
+   "per_detector_ms": {
+    "vibration": 0.5538000114029273,
+    "ekf": 0.2894999925047159,
+    "actuator": 0.9384000004502013,
+    "battery": 0.061400001868605614,
+    "gps": 0.0881000014487654,
+    "compass": 0.31909999961499125,
+    "oscillation": 0.6747000006726012
+   }
+  },
+  {
+   "t": 16.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 16.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1037,
+   "detect_ms": 2.9934999911347404,
+   "build_ms": 2.1471999934874475,
+   "messages_in": 1929,
+   "per_detector_ms": {
+    "vibration": 0.5588000058196485,
+    "ekf": 0.3006999904755503,
+    "actuator": 0.9408000041730702,
+    "battery": 0.07259999983943999,
+    "gps": 0.0990999978967011,
+    "compass": 0.32240001019090414,
+    "oscillation": 0.6902000022819266
+   }
+  },
+  {
+   "t": 17.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 16.98399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1057,
+   "detect_ms": 2.396500000031665,
+   "build_ms": 2.1898000122746453,
+   "messages_in": 1967,
+   "per_detector_ms": {
+    "vibration": 0.5461000109789893,
+    "ekf": 0.26760000037029386,
+    "actuator": 0.6990999972913414,
+    "battery": 0.09429999045096338,
+    "gps": 0.06310000026132911,
+    "compass": 0.20000000949949026,
+    "oscillation": 0.5176999984541908
+   }
+  },
+  {
+   "t": 17.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 17.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1072,
+   "detect_ms": 2.88169999839738,
+   "build_ms": 2.1976999996695668,
+   "messages_in": 1994,
+   "per_detector_ms": {
+    "vibration": 0.4258999979356304,
+    "ekf": 0.22709999757353216,
+    "actuator": 0.9929999941959977,
+    "battery": 0.07239999831654131,
+    "gps": 0.09259999205823988,
+    "compass": 0.33209999673999846,
+    "oscillation": 0.7294000097317621
+   }
+  },
+  {
+   "t": 17.546000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 17.48399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1092,
+   "detect_ms": 1.9198999943910167,
+   "build_ms": 1.699700005701743,
+   "messages_in": 2032,
+   "per_detector_ms": {
+    "vibration": 0.29930000891909003,
+    "ekf": 0.2209999947808683,
+    "actuator": 0.5788999987998977,
+    "battery": 0.04320000880397856,
+    "gps": 0.057900004321709275,
+    "compass": 0.23839999630581588,
+    "oscillation": 0.47369999811053276
+   }
+  },
+  {
+   "t": 17.796000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 17.687000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1107,
+   "detect_ms": 1.887600010377355,
+   "build_ms": 1.711699995212257,
+   "messages_in": 2059,
+   "per_detector_ms": {
+    "vibration": 0.3009999927598983,
+    "ekf": 0.1908999984152615,
+    "actuator": 0.6016999977873638,
+    "battery": 0.04460000491235405,
+    "gps": 0.057999990531243384,
+    "compass": 0.20429999858606607,
+    "oscillation": 0.48099999548867345
+   }
+  },
+  {
+   "t": 18.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 17.98399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1127,
+   "detect_ms": 2.123300000675954,
+   "build_ms": 2.4118000001180917,
+   "messages_in": 2097,
+   "per_detector_ms": {
+    "vibration": 0.5171999946469441,
+    "ekf": 0.21559999731834978,
+    "actuator": 0.6056999991415069,
+    "battery": 0.042499988921917975,
+    "gps": 0.05909999890718609,
+    "compass": 0.19809999503195286,
+    "oscillation": 0.4782999894814566
+   }
+  },
+  {
+   "t": 18.25,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 18.187000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1141,
+   "detect_ms": 1.9671999907586724,
+   "build_ms": 2.4224999942816794,
+   "messages_in": 2123,
+   "per_detector_ms": {
+    "vibration": 0.3529999958118424,
+    "ekf": 0.1765999913914129,
+    "actuator": 0.633100004051812,
+    "battery": 0.044200001866556704,
+    "gps": 0.059600002714432776,
+    "compass": 0.21830000332556665,
+    "oscillation": 0.4757999995490536
+   }
+  },
+  {
+   "t": 18.5,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 18.389999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1156,
+   "detect_ms": 2.7479999989736825,
+   "build_ms": 1.7164999881060794,
+   "messages_in": 2150,
+   "per_detector_ms": {
+    "vibration": 0.338099998771213,
+    "ekf": 0.18339999951422215,
+    "actuator": 1.101699992432259,
+    "battery": 0.08600000001024455,
+    "gps": 0.10439999459777027,
+    "compass": 0.27969999064225703,
+    "oscillation": 0.6454000103985891
+   }
+  },
+  {
+   "t": 18.75,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 18.702999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1176,
+   "detect_ms": 2.047399990260601,
+   "build_ms": 1.8741999956546351,
+   "messages_in": 2188,
+   "per_detector_ms": {
+    "vibration": 0.31370000215247273,
+    "ekf": 0.17520000983495265,
+    "actuator": 0.7197000086307526,
+    "battery": 0.05729999975301325,
+    "gps": 0.06160000339150429,
+    "compass": 0.2055000077234581,
+    "oscillation": 0.5080000119050965
+   }
+  },
+  {
+   "t": 19.0,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 18.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1191,
+   "detect_ms": 2.747899998212233,
+   "build_ms": 2.214099993580021,
+   "messages_in": 2215,
+   "per_detector_ms": {
+    "vibration": 0.5037000082666054,
+    "ekf": 0.18200000340584666,
+    "actuator": 1.113699996494688,
+    "battery": 0.05779998900834471,
+    "gps": 0.13099999341648072,
+    "compass": 0.23890000011306256,
+    "oscillation": 0.5108999903313816
+   }
+  },
+  {
+   "t": 19.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 19.202999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1211,
+   "detect_ms": 3.3067000040318817,
+   "build_ms": 2.5994999887188897,
+   "messages_in": 2253,
+   "per_detector_ms": {
+    "vibration": 0.5653999978676438,
+    "ekf": 0.3136999876005575,
+    "actuator": 1.0348000068916008,
+    "battery": 0.06649999704677612,
+    "gps": 0.10350000229664147,
+    "compass": 0.35030000435654074,
+    "oscillation": 0.8644000045023859
+   }
+  },
+  {
+   "t": 19.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 19.406000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1226,
+   "detect_ms": 2.0081999973626807,
+   "build_ms": 1.866199992946349,
+   "messages_in": 2280,
+   "per_detector_ms": {
+    "vibration": 0.3228999994462356,
+    "ekf": 0.185800003237091,
+    "actuator": 0.6024000031175092,
+    "battery": 0.04879999323748052,
+    "gps": 0.0636000040685758,
+    "compass": 0.2401000092504546,
+    "oscillation": 0.5384999967645854
+   }
+  },
+  {
+   "t": 19.764999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 19.702999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1246,
+   "detect_ms": 2.0909000013489276,
+   "build_ms": 2.174000008380972,
+   "messages_in": 2318,
+   "per_detector_ms": {
+    "vibration": 0.3328999882796779,
+    "ekf": 0.185800003237091,
+    "actuator": 0.6846000032965094,
+    "battery": 0.04890000855084509,
+    "gps": 0.066100008552894,
+    "compass": 0.2401999954599887,
+    "oscillation": 0.5256000004010275
+   }
+  },
+  {
+   "t": 20.014999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 19.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1261,
+   "detect_ms": 2.0914000051561743,
+   "build_ms": 2.8119999915361404,
+   "messages_in": 2345,
+   "per_detector_ms": {
+    "vibration": 0.341799997841008,
+    "ekf": 0.1914000022225082,
+    "actuator": 0.6597000028705224,
+    "battery": 0.04810000245925039,
+    "gps": 0.06459999713115394,
+    "compass": 0.22840000747237355,
+    "oscillation": 0.5515999946510419
+   }
+  },
+  {
+   "t": 20.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 20.202999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1281,
+   "detect_ms": 2.1040999999968335,
+   "build_ms": 2.1019999985583127,
+   "messages_in": 2384,
+   "per_detector_ms": {
+    "vibration": 0.35119999665766954,
+    "ekf": 0.19880000036209822,
+    "actuator": 0.6609999982174486,
+    "battery": 0.04710000939667225,
+    "gps": 0.06489999941550195,
+    "compass": 0.2297000028192997,
+    "oscillation": 0.5442999972729012
+   }
+  },
+  {
+   "t": 20.5,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 20.389999999999418,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1296,
+   "detect_ms": 2.9614999948535115,
+   "build_ms": 1.9921000057365745,
+   "messages_in": 2411,
+   "per_detector_ms": {
+    "vibration": 0.46779999684076756,
+    "ekf": 0.2628999936860055,
+    "actuator": 0.7763999892631546,
+    "battery": 0.05220000457484275,
+    "gps": 0.1453000004403293,
+    "compass": 0.3708000003825873,
+    "oscillation": 0.877000013133511
+   }
+  },
+  {
+   "t": 20.75,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 20.687000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1316,
+   "detect_ms": 2.226700002211146,
+   "build_ms": 2.092200011247769,
+   "messages_in": 2449,
+   "per_detector_ms": {
+    "vibration": 0.3839999990304932,
+    "ekf": 0.2001999964704737,
+    "actuator": 0.6624999950872734,
+    "battery": 0.04810000245925039,
+    "gps": 0.0746000005165115,
+    "compass": 0.2818999928422272,
+    "oscillation": 0.5684999923687428
+   }
+  },
+  {
+   "t": 21.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 20.98399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1337,
+   "detect_ms": 2.1963000035611913,
+   "build_ms": 2.102999991620891,
+   "messages_in": 2488,
+   "per_detector_ms": {
+    "vibration": 0.37930000689812005,
+    "ekf": 0.20480000239331275,
+    "actuator": 0.7048999977996573,
+    "battery": 0.05110001075081527,
+    "gps": 0.07150000601541251,
+    "compass": 0.23440000950358808,
+    "oscillation": 0.5437000072561204
+   }
+  },
+  {
+   "t": 21.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 21.187000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1352,
+   "detect_ms": 2.474599998095073,
+   "build_ms": 2.1262999944156036,
+   "messages_in": 2515,
+   "per_detector_ms": {
+    "vibration": 0.4545999981928617,
+    "ekf": 0.29399999766610563,
+    "actuator": 0.7301000005099922,
+    "battery": 0.05060000694356859,
+    "gps": 0.0850000069476664,
+    "compass": 0.2518999972380698,
+    "oscillation": 0.6010000070091337
+   }
+  },
+  {
+   "t": 21.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 21.48399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1372,
+   "detect_ms": 3.416299994569272,
+   "build_ms": 2.730599997448735,
+   "messages_in": 2553,
+   "per_detector_ms": {
+    "vibration": 0.4861000052187592,
+    "ekf": 0.36779999209102243,
+    "actuator": 1.0677999962354079,
+    "battery": 0.07439999899361283,
+    "gps": 0.11330000415910035,
+    "compass": 0.3637000045273453,
+    "oscillation": 0.935200005187653
+   }
+  },
+  {
+   "t": 21.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 21.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1387,
+   "detect_ms": 2.681099998881109,
+   "build_ms": 2.025800000410527,
+   "messages_in": 2580,
+   "per_detector_ms": {
+    "vibration": 0.36609999369829893,
+    "ekf": 0.20850000146310776,
+    "actuator": 0.7435000006807968,
+    "battery": 0.048300003982149065,
+    "gps": 0.0740000104997307,
+    "compass": 0.2558999985922128,
+    "oscillation": 0.9787000017240644
+   }
+  },
+  {
+   "t": 22.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 21.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1407,
+   "detect_ms": 3.446200003963895,
+   "build_ms": 2.0758000027853996,
+   "messages_in": 2618,
+   "per_detector_ms": {
+    "vibration": 0.38779999886173755,
+    "ekf": 0.40920000174082816,
+    "actuator": 1.3286000030348077,
+    "battery": 0.08100000559352338,
+    "gps": 0.12320000678300858,
+    "compass": 0.42490000487305224,
+    "oscillation": 0.6793000065954402
+   }
+  },
+  {
+   "t": 22.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 22.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1422,
+   "detect_ms": 2.4541999882785603,
+   "build_ms": 2.2727000032318756,
+   "messages_in": 2645,
+   "per_detector_ms": {
+    "vibration": 0.491300001158379,
+    "ekf": 0.22270000772550702,
+    "actuator": 0.7504000095650554,
+    "battery": 0.05190000229049474,
+    "gps": 0.08080000407062471,
+    "compass": 0.2649999951245263,
+    "oscillation": 0.5845999985467643
+   }
+  },
+  {
+   "t": 22.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 22.452999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1442,
+   "detect_ms": 2.291600001626648,
+   "build_ms": 2.1533999970415607,
+   "messages_in": 2683,
+   "per_detector_ms": {
+    "vibration": 0.3806000022450462,
+    "ekf": 0.21549999655690044,
+    "actuator": 0.7251999923028052,
+    "battery": 0.04810000245925039,
+    "gps": 0.08270000398624688,
+    "compass": 0.25379999715369195,
+    "oscillation": 0.5791000003227964
+   }
+  },
+  {
+   "t": 22.764999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 22.656000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1457,
+   "detect_ms": 3.5146000009262934,
+   "build_ms": 2.734900001087226,
+   "messages_in": 2710,
+   "per_detector_ms": {
+    "vibration": 0.5880999960936606,
+    "ekf": 0.3615999885369092,
+    "actuator": 1.2558999878820032,
+    "battery": 0.056599994422867894,
+    "gps": 0.09970000246539712,
+    "compass": 0.26929999876301736,
+    "oscillation": 0.8751999994274229
+   }
+  },
+  {
+   "t": 23.014999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 22.952999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1477,
+   "detect_ms": 2.3806999961379915,
+   "build_ms": 2.6729999954113737,
+   "messages_in": 2748,
+   "per_detector_ms": {
+    "vibration": 0.3932000108761713,
+    "ekf": 0.222400005441159,
+    "actuator": 0.7689000049140304,
+    "battery": 0.05059999239165336,
+    "gps": 0.08009999874047935,
+    "compass": 0.25939999613910913,
+    "oscillation": 0.6003000016789883
+   }
+  },
+  {
+   "t": 23.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 23.156000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1492,
+   "detect_ms": 3.4801000001607463,
+   "build_ms": 2.2526999964611605,
+   "messages_in": 2775,
+   "per_detector_ms": {
+    "vibration": 0.5101999995531514,
+    "ekf": 0.3462000022409484,
+    "actuator": 1.2794000067515299,
+    "battery": 0.06049999501556158,
+    "gps": 0.07959999493323267,
+    "compass": 0.3223999956389889,
+    "oscillation": 0.8723999926587567
+   }
+  },
+  {
+   "t": 23.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 23.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1512,
+   "detect_ms": 2.4099000002024695,
+   "build_ms": 2.1990999957779422,
+   "messages_in": 2813,
+   "per_detector_ms": {
+    "vibration": 0.4028000112157315,
+    "ekf": 0.2314000012120232,
+    "actuator": 0.7581999961985275,
+    "battery": 0.050699993153102696,
+    "gps": 0.0779999973019585,
+    "compass": 0.2643999905558303,
+    "oscillation": 0.6187999970279634
+   }
+  },
+  {
+   "t": 23.764999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 23.656000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1527,
+   "detect_ms": 2.912700001616031,
+   "build_ms": 2.3932000040076673,
+   "messages_in": 2840,
+   "per_detector_ms": {
+    "vibration": 0.39969998761080205,
+    "ekf": 0.22849999368190765,
+    "actuator": 0.7767000060994178,
+    "battery": 0.053499999921768904,
+    "gps": 0.0771999912103638,
+    "compass": 0.261799999861978,
+    "oscillation": 1.1088999890489504
+   }
+  },
+  {
+   "t": 24.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 23.952999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1547,
+   "detect_ms": 2.7179000026080757,
+   "build_ms": 3.1017999863252044,
+   "messages_in": 2878,
+   "per_detector_ms": {
+    "vibration": 0.4604999994626269,
+    "ekf": 0.23779999173711985,
+    "actuator": 0.8166000043274835,
+    "battery": 0.05440000677481294,
+    "gps": 0.08600000001024455,
+    "compass": 0.2762000076472759,
+    "oscillation": 0.7798000006005168
+   }
+  },
+  {
+   "t": 24.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 24.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1562,
+   "detect_ms": 2.8621999954339117,
+   "build_ms": 2.344799999264069,
+   "messages_in": 2905,
+   "per_detector_ms": {
+    "vibration": 0.4149000014876947,
+    "ekf": 0.2386999985901639,
+    "actuator": 0.9936999995261431,
+    "battery": 0.08110000635497272,
+    "gps": 0.12579999747686088,
+    "compass": 0.29830000130459666,
+    "oscillation": 0.702600009390153
+   }
+  },
+  {
+   "t": 24.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 24.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1582,
+   "detect_ms": 3.0297999910544604,
+   "build_ms": 2.3529000027338043,
+   "messages_in": 2943,
+   "per_detector_ms": {
+    "vibration": 0.4543000104604289,
+    "ekf": 0.24259999918285757,
+    "actuator": 0.8032000041566789,
+    "battery": 0.05319999763742089,
+    "gps": 0.08349999552592635,
+    "compass": 0.30020000122021884,
+    "oscillation": 1.086599993868731
+   }
+  },
+  {
+   "t": 24.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 24.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1597,
+   "detect_ms": 2.5396999990334734,
+   "build_ms": 2.559599990490824,
+   "messages_in": 2970,
+   "per_detector_ms": {
+    "vibration": 0.4199999966658652,
+    "ekf": 0.2378999924985692,
+    "actuator": 0.7862000056775287,
+    "battery": 0.05129999772179872,
+    "gps": 0.08460000390186906,
+    "compass": 0.28279999969527125,
+    "oscillation": 0.6710000016028062
+   }
+  },
+  {
+   "t": 25.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 24.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1617,
+   "detect_ms": 3.309000006993301,
+   "build_ms": 3.4447000070940703,
+   "messages_in": 3008,
+   "per_detector_ms": {
+    "vibration": 0.8014000050025061,
+    "ekf": 0.3466000052867457,
+    "actuator": 0.9869000059552491,
+    "battery": 0.05909999890718609,
+    "gps": 0.11379999341443181,
+    "compass": 0.28759999258909374,
+    "oscillation": 0.705099999322556
+   }
+  },
+  {
+   "t": 25.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 25.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1632,
+   "detect_ms": 4.430800006957725,
+   "build_ms": 3.5123999987263232,
+   "messages_in": 3035,
+   "per_detector_ms": {
+    "vibration": 0.8920000109355897,
+    "ekf": 0.41969999438151717,
+    "actuator": 1.2931000092066824,
+    "battery": 0.10259999544359744,
+    "gps": 0.1404999929945916,
+    "compass": 0.43739999819081277,
+    "oscillation": 1.135800004703924
+   }
+  },
+  {
+   "t": 25.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 25.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1652,
+   "detect_ms": 4.214000000501983,
+   "build_ms": 2.95949999417644,
+   "messages_in": 3073,
+   "per_detector_ms": {
+    "vibration": 0.8357999904546887,
+    "ekf": 0.4288000054657459,
+    "actuator": 1.2223000085214153,
+    "battery": 0.08719999459572136,
+    "gps": 0.2066000015474856,
+    "compass": 0.5328999977791682,
+    "oscillation": 0.8888000011211261
+   }
+  },
+  {
+   "t": 25.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 25.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1667,
+   "detect_ms": 3.9222000050358474,
+   "build_ms": 3.1813999958103523,
+   "messages_in": 3100,
+   "per_detector_ms": {
+    "vibration": 0.8329000120284036,
+    "ekf": 0.40520000038668513,
+    "actuator": 1.2721000093733892,
+    "battery": 0.0577000027988106,
+    "gps": 0.08779999916441739,
+    "compass": 0.2994999958900735,
+    "oscillation": 0.9588999964762479
+   }
+  },
+  {
+   "t": 26.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 25.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1687,
+   "detect_ms": 2.7633999998215586,
+   "build_ms": 2.8792999946745113,
+   "messages_in": 3138,
+   "per_detector_ms": {
+    "vibration": 0.5030000029364601,
+    "ekf": 0.2562000008765608,
+    "actuator": 0.8291999984066933,
+    "battery": 0.06219999340828508,
+    "gps": 0.09349999891128391,
+    "compass": 0.3046000056201592,
+    "oscillation": 0.7086999976309016
+   }
+  },
+  {
+   "t": 26.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 26.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1702,
+   "detect_ms": 3.9927000034367666,
+   "build_ms": 2.514099993277341,
+   "messages_in": 3165,
+   "per_detector_ms": {
+    "vibration": 0.4496999899856746,
+    "ekf": 0.2601000014692545,
+    "actuator": 1.5396000089822337,
+    "battery": 0.10449999535921961,
+    "gps": 0.15659999917261302,
+    "compass": 0.5075999943073839,
+    "oscillation": 0.9644999954616651
+   }
+  },
+  {
+   "t": 26.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 26.48399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1722,
+   "detect_ms": 3.9347999991150573,
+   "build_ms": 3.109600002062507,
+   "messages_in": 3203,
+   "per_detector_ms": {
+    "vibration": 0.8175999973900616,
+    "ekf": 0.42640000174287707,
+    "actuator": 1.1302000057185069,
+    "battery": 0.06639999628532678,
+    "gps": 0.17189999925903976,
+    "compass": 0.3628000122262165,
+    "oscillation": 0.9477999992668629
+   }
+  },
+  {
+   "t": 26.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 26.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1737,
+   "detect_ms": 4.354899996542372,
+   "build_ms": 3.4047999943140894,
+   "messages_in": 3230,
+   "per_detector_ms": {
+    "vibration": 0.7629000028828159,
+    "ekf": 0.39280000783037394,
+    "actuator": 1.3455000007525086,
+    "battery": 0.09140001202467829,
+    "gps": 0.1483999949414283,
+    "compass": 0.3048000071430579,
+    "oscillation": 1.2997000012546778
+   }
+  },
+  {
+   "t": 27.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 26.98399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1757,
+   "detect_ms": 2.9100999963702634,
+   "build_ms": 3.396900006919168,
+   "messages_in": 3268,
+   "per_detector_ms": {
+    "vibration": 0.4673999937949702,
+    "ekf": 0.27720000070985407,
+    "actuator": 0.8846999990055338,
+    "battery": 0.05740000051446259,
+    "gps": 0.09459999273531139,
+    "compass": 0.31180000223685056,
+    "oscillation": 0.8103000000119209
+   }
+  },
+  {
+   "t": 27.281000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 27.187000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1772,
+   "detect_ms": 4.193299988401122,
+   "build_ms": 3.765899993595667,
+   "messages_in": 3295,
+   "per_detector_ms": {
+    "vibration": 0.7877000025473535,
+    "ekf": 0.443600001744926,
+    "actuator": 1.6168999864021316,
+    "battery": 0.0779999973019585,
+    "gps": 0.10219999239780009,
+    "compass": 0.33260000054724514,
+    "oscillation": 0.8246000070357695
+   }
+  },
+  {
+   "t": 27.546000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 27.48399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1792,
+   "detect_ms": 4.846900003030896,
+   "build_ms": 3.5137999948346987,
+   "messages_in": 3333,
+   "per_detector_ms": {
+    "vibration": 0.8698000019649044,
+    "ekf": 0.4337999998824671,
+    "actuator": 1.602499993168749,
+    "battery": 0.10989999282173812,
+    "gps": 0.16980001237243414,
+    "compass": 0.48570000217296183,
+    "oscillation": 1.1658000003080815
+   }
+  },
+  {
+   "t": 27.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 27.687000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1807,
+   "detect_ms": 3.436999992118217,
+   "build_ms": 2.9212999943410978,
+   "messages_in": 3360,
+   "per_detector_ms": {
+    "vibration": 0.47480000648647547,
+    "ekf": 0.3091000107815489,
+    "actuator": 0.8782000077189878,
+    "battery": 0.0577000027988106,
+    "gps": 0.09639999188948423,
+    "compass": 0.3171999996993691,
+    "oscillation": 1.2959000014234334
+   }
+  },
+  {
+   "t": 28.031000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 27.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1827,
+   "detect_ms": 3.307399994810112,
+   "build_ms": 2.6834000018425286,
+   "messages_in": 3398,
+   "per_detector_ms": {
+    "vibration": 0.6104000058257952,
+    "ekf": 0.30009998590685427,
+    "actuator": 0.913099996978417,
+    "battery": 0.08080000407062471,
+    "gps": 0.16310000501107424,
+    "compass": 0.4225000011501834,
+    "oscillation": 0.8099999977275729
+   }
+  },
+  {
+   "t": 28.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 28.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1842,
+   "detect_ms": 4.429000007803552,
+   "build_ms": 3.273299997090362,
+   "messages_in": 3425,
+   "per_detector_ms": {
+    "vibration": 0.8819999929983169,
+    "ekf": 0.3922000032616779,
+    "actuator": 1.3347999920370057,
+    "battery": 0.06399999256245792,
+    "gps": 0.10509999992791563,
+    "compass": 0.4954000032739714,
+    "oscillation": 1.1468000011518598
+   }
+  },
+  {
+   "t": 28.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 28.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1862,
+   "detect_ms": 3.991999998106621,
+   "build_ms": 2.9716999997617677,
+   "messages_in": 3463,
+   "per_detector_ms": {
+    "vibration": 0.48979998973663896,
+    "ekf": 0.3386999887879938,
+    "actuator": 0.9919000003719702,
+    "battery": 0.08830000297166407,
+    "gps": 0.15490000077988952,
+    "compass": 0.5046000005677342,
+    "oscillation": 1.414800004567951
+   }
+  },
+  {
+   "t": 28.75,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 28.656000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1877,
+   "detect_ms": 3.9819000085117295,
+   "build_ms": 2.8083000070182607,
+   "messages_in": 3490,
+   "per_detector_ms": {
+    "vibration": 0.527600001078099,
+    "ekf": 0.48659999447409064,
+    "actuator": 1.46229998790659,
+    "battery": 0.07029999687802047,
+    "gps": 0.10919998749159276,
+    "compass": 0.4422000056365505,
+    "oscillation": 0.8742999925743788
+   }
+  },
+  {
+   "t": 29.0,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 28.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1897,
+   "detect_ms": 3.682099995785393,
+   "build_ms": 2.8205999988131225,
+   "messages_in": 3528,
+   "per_detector_ms": {
+    "vibration": 0.4955000040354207,
+    "ekf": 0.3484999906504527,
+    "actuator": 0.9191999997710809,
+    "battery": 0.06080001185182482,
+    "gps": 0.18529999942984432,
+    "compass": 0.5016999930376187,
+    "oscillation": 1.1629000073298812
+   }
+  },
+  {
+   "t": 29.296000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 29.23399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1918,
+   "detect_ms": 3.3594999986235052,
+   "build_ms": 3.515000003972091,
+   "messages_in": 3567,
+   "per_detector_ms": {
+    "vibration": 0.5453999910969287,
+    "ekf": 0.2894999925047159,
+    "actuator": 0.9693000029074028,
+    "battery": 0.0737000082153827,
+    "gps": 0.12199999764561653,
+    "compass": 0.4845999937970191,
+    "oscillation": 0.8674999990034848
+   }
+  },
+  {
+   "t": 29.531000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 29.437000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1933,
+   "detect_ms": 3.2102999975904822,
+   "build_ms": 2.8052999987266958,
+   "messages_in": 3594,
+   "per_detector_ms": {
+    "vibration": 0.5202999891480431,
+    "ekf": 0.29889999132137746,
+    "actuator": 1.0162999969907105,
+    "battery": 0.06479999865405262,
+    "gps": 0.10500001371838152,
+    "compass": 0.3327000013086945,
+    "oscillation": 0.8665999921504408
+   }
+  },
+  {
+   "t": 29.781000000002678,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 29.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1953,
+   "detect_ms": 3.1048000091686845,
+   "build_ms": 3.082900002482347,
+   "messages_in": 3632,
+   "per_detector_ms": {
+    "vibration": 0.522699992870912,
+    "ekf": 0.30279999191407114,
+    "actuator": 0.9371999913128093,
+    "battery": 0.06310000026132911,
+    "gps": 0.10359998850617558,
+    "compass": 0.3428000054555014,
+    "oscillation": 0.8264000061899424
+   }
+  },
+  {
+   "t": 30.014999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 29.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1968,
+   "detect_ms": 3.1933999998727813,
+   "build_ms": 2.9454000032274053,
+   "messages_in": 3659,
+   "per_detector_ms": {
+    "vibration": 0.5095999949844554,
+    "ekf": 0.3090999962296337,
+    "actuator": 0.9399999980814755,
+    "battery": 0.06320000102277845,
+    "gps": 0.10540000221226364,
+    "compass": 0.3367999888723716,
+    "oscillation": 0.9233000018866733
+   }
+  },
+  {
+   "t": 30.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 30.202999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 1988,
+   "detect_ms": 3.489499998977408,
+   "build_ms": 3.0629000102635473,
+   "messages_in": 3698,
+   "per_detector_ms": {
+    "vibration": 0.5284999933792278,
+    "ekf": 0.3087999939452857,
+    "actuator": 1.2183999933768064,
+    "battery": 0.07829999958630651,
+    "gps": 0.1171000039903447,
+    "compass": 0.37880000309087336,
+    "oscillation": 0.8534000080544502
+   }
+  },
+  {
+   "t": 30.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 30.406000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2003,
+   "detect_ms": 3.322799995657988,
+   "build_ms": 3.643000003648922,
+   "messages_in": 3725,
+   "per_detector_ms": {
+    "vibration": 0.5249999958323315,
+    "ekf": 0.3113999991910532,
+    "actuator": 0.9757000079844147,
+    "battery": 0.06849999772384763,
+    "gps": 0.16500000492669642,
+    "compass": 0.39000000106170774,
+    "oscillation": 0.879899991559796
+   }
+  },
+  {
+   "t": 30.764999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 30.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2023,
+   "detect_ms": 4.6172000002115965,
+   "build_ms": 4.341000007116236,
+   "messages_in": 3763,
+   "per_detector_ms": {
+    "vibration": 1.005699989036657,
+    "ekf": 0.45419999514706433,
+    "actuator": 1.4563000004272908,
+    "battery": 0.09539999882690609,
+    "gps": 0.1669999910518527,
+    "compass": 0.501799993799068,
+    "oscillation": 0.9291000023949891
+   }
+  },
+  {
+   "t": 31.014999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 30.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2038,
+   "detect_ms": 3.3641000045463443,
+   "build_ms": 3.327099999296479,
+   "messages_in": 3790,
+   "per_detector_ms": {
+    "vibration": 0.5434000049717724,
+    "ekf": 0.31459999445360154,
+    "actuator": 1.036100002238527,
+    "battery": 0.06510000093840063,
+    "gps": 0.11870000162161887,
+    "compass": 0.3823999868473038,
+    "oscillation": 0.8972999930847436
+   }
+  },
+  {
+   "t": 31.264999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 31.202999999994063,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2058,
+   "detect_ms": 3.3708999981172383,
+   "build_ms": 3.1376999977510422,
+   "messages_in": 3828,
+   "per_detector_ms": {
+    "vibration": 0.5748000112362206,
+    "ekf": 0.31659999513067305,
+    "actuator": 1.0156000062124804,
+    "battery": 0.06510000093840063,
+    "gps": 0.10789999214466661,
+    "compass": 0.374099996406585,
+    "oscillation": 0.9104999917326495
+   }
+  },
+  {
+   "t": 31.514999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 31.406000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2073,
+   "detect_ms": 3.5105000133626163,
+   "build_ms": 3.3804999984567985,
+   "messages_in": 3855,
+   "per_detector_ms": {
+    "vibration": 0.6335999933071434,
+    "ekf": 0.3426999901421368,
+    "actuator": 1.0289000056218356,
+    "battery": 0.07399999594781548,
+    "gps": 0.12589999823831022,
+    "compass": 0.3744999994523823,
+    "oscillation": 0.9225000103469938
+   }
+  },
+  {
+   "t": 31.764999999999418,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 31.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2093,
+   "detect_ms": 4.587200004607439,
+   "build_ms": 3.2709999941289425,
+   "messages_in": 3893,
+   "per_detector_ms": {
+    "vibration": 0.5775000026915222,
+    "ekf": 0.3139000036753714,
+    "actuator": 1.2421999999787658,
+    "battery": 0.10579999070614576,
+    "gps": 0.1745000045048073,
+    "compass": 0.5890000029467046,
+    "oscillation": 1.5750000020489097
+   }
+  },
+  {
+   "t": 32.01499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 31.906000000002678,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2108,
+   "detect_ms": 3.4577000042190775,
+   "build_ms": 3.922400006558746,
+   "messages_in": 3920,
+   "per_detector_ms": {
+    "vibration": 0.5820999940624461,
+    "ekf": 0.31779998971614987,
+    "actuator": 1.0267000034218654,
+    "battery": 0.06570000550709665,
+    "gps": 0.10959999053739011,
+    "compass": 0.42209999810438603,
+    "oscillation": 0.9271000017179176
+   }
+  },
+  {
+   "t": 32.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 32.21799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2128,
+   "detect_ms": 6.288200005656108,
+   "build_ms": 4.285000002710149,
+   "messages_in": 3958,
+   "per_detector_ms": {
+    "vibration": 1.033600012306124,
+    "ekf": 0.6621999928029254,
+    "actuator": 2.084800013108179,
+    "battery": 0.10910000128205866,
+    "gps": 0.21019999985583127,
+    "compass": 0.6616999889956787,
+    "oscillation": 1.5159000031417236
+   }
+  },
+  {
+   "t": 32.51499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 32.40600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2143,
+   "detect_ms": 4.767999998875894,
+   "build_ms": 3.644900003564544,
+   "messages_in": 3985,
+   "per_detector_ms": {
+    "vibration": 0.555899998289533,
+    "ekf": 0.3766000008909032,
+    "actuator": 1.8804999999701977,
+    "battery": 0.11999999696854502,
+    "gps": 0.1914000022225082,
+    "compass": 0.6390000053215772,
+    "oscillation": 0.9947999933501706
+   }
+  },
+  {
+   "t": 32.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 32.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2163,
+   "detect_ms": 3.6431999906199053,
+   "build_ms": 3.3703999943099916,
+   "messages_in": 4023,
+   "per_detector_ms": {
+    "vibration": 0.6197000038810074,
+    "ekf": 0.3426000039326027,
+    "actuator": 1.0577999928500503,
+    "battery": 0.06919998850207776,
+    "gps": 0.12100000458303839,
+    "compass": 0.3865000035148114,
+    "oscillation": 1.039199996739626
+   }
+  },
+  {
+   "t": 33.01499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 32.921000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2178,
+   "detect_ms": 4.527299999608658,
+   "build_ms": 3.411400000914,
+   "messages_in": 4050,
+   "per_detector_ms": {
+    "vibration": 0.5918000097153708,
+    "ekf": 0.32979999377857894,
+    "actuator": 1.2006000033579767,
+    "battery": 0.1483999949414283,
+    "gps": 0.2199000009568408,
+    "compass": 0.6475000118371099,
+    "oscillation": 1.3805999915348366
+   }
+  },
+  {
+   "t": 33.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 33.21799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2198,
+   "detect_ms": 5.42940000013914,
+   "build_ms": 4.163099991274066,
+   "messages_in": 4088,
+   "per_detector_ms": {
+    "vibration": 0.8587000047555193,
+    "ekf": 0.4577000072458759,
+    "actuator": 1.703700007055886,
+    "battery": 0.11390000872779638,
+    "gps": 0.18529999942984432,
+    "compass": 0.5990999925415963,
+    "oscillation": 1.5017999976407737
+   }
+  },
+  {
+   "t": 33.53100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 33.421000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2213,
+   "detect_ms": 5.393399987951852,
+   "build_ms": 4.767299993545748,
+   "messages_in": 4115,
+   "per_detector_ms": {
+    "vibration": 1.0591000027488917,
+    "ekf": 0.5530999915208668,
+    "actuator": 1.5952999965520576,
+    "battery": 0.07829999958630651,
+    "gps": 0.15079999866429716,
+    "compass": 0.5590999935520813,
+    "oscillation": 1.3878000027034432
+   }
+  },
+  {
+   "t": 33.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 33.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2233,
+   "detect_ms": 3.895099987857975,
+   "build_ms": 3.6232999991625547,
+   "messages_in": 4153,
+   "per_detector_ms": {
+    "vibration": 0.6678999925497919,
+    "ekf": 0.41680000140331686,
+    "actuator": 1.1786999966716394,
+    "battery": 0.07499998901039362,
+    "gps": 0.18119999731425196,
+    "compass": 0.40580000495538116,
+    "oscillation": 0.9618000040063635
+   }
+  },
+  {
+   "t": 34.01499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 33.90600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2248,
+   "detect_ms": 3.6026000016136095,
+   "build_ms": 4.160199998295866,
+   "messages_in": 4180,
+   "per_detector_ms": {
+    "vibration": 0.5987999902572483,
+    "ekf": 0.33769999572541565,
+    "actuator": 1.0901999921770766,
+    "battery": 0.06979999307077378,
+    "gps": 0.1176999940071255,
+    "compass": 0.3888000064762309,
+    "oscillation": 0.993300011032261
+   }
+  },
+  {
+   "t": 34.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 34.21799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2268,
+   "detect_ms": 3.775600009248592,
+   "build_ms": 3.690099998493679,
+   "messages_in": 4218,
+   "per_detector_ms": {
+    "vibration": 0.5950000049779192,
+    "ekf": 0.38660000427626073,
+    "actuator": 1.1145000025862828,
+    "battery": 0.07160000677686185,
+    "gps": 0.12209999840706587,
+    "compass": 0.4695999959949404,
+    "oscillation": 1.0057000035885721
+   }
+  },
+  {
+   "t": 34.51499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 34.421000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2283,
+   "detect_ms": 4.151900007855147,
+   "build_ms": 3.475100005744025,
+   "messages_in": 4245,
+   "per_detector_ms": {
+    "vibration": 0.6055999983800575,
+    "ekf": 0.3524000057950616,
+    "actuator": 1.1246000067330897,
+    "battery": 0.07129998994059861,
+    "gps": 0.12199999764561653,
+    "compass": 0.3899000003002584,
+    "oscillation": 1.4796000032220036
+   }
+  },
+  {
+   "t": 34.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 34.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2303,
+   "detect_ms": 5.006500010495074,
+   "build_ms": 4.466099999262951,
+   "messages_in": 4283,
+   "per_detector_ms": {
+    "vibration": 0.9839999984251335,
+    "ekf": 0.4940000071655959,
+    "actuator": 1.7727999947965145,
+    "battery": 0.09119999594986439,
+    "gps": 0.13639999087899923,
+    "compass": 0.5098999972688034,
+    "oscillation": 1.0093000018969178
+   }
+  },
+  {
+   "t": 35.03100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 34.921000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2318,
+   "detect_ms": 5.293599999276921,
+   "build_ms": 3.4838999999919906,
+   "messages_in": 4310,
+   "per_detector_ms": {
+    "vibration": 0.6088000081945211,
+    "ekf": 0.3549000102793798,
+    "actuator": 1.8154999997932464,
+    "battery": 0.08629998774267733,
+    "gps": 0.34020000020973384,
+    "compass": 0.7893000001786277,
+    "oscillation": 1.2867999903392047
+   }
+  },
+  {
+   "t": 35.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 35.21799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2338,
+   "detect_ms": 4.219499998725951,
+   "build_ms": 4.4633000070462,
+   "messages_in": 4348,
+   "per_detector_ms": {
+    "vibration": 0.8130999922286719,
+    "ekf": 0.34779999987222254,
+    "actuator": 1.2107000075047836,
+    "battery": 0.07569999434053898,
+    "gps": 0.12110000534448773,
+    "compass": 0.40970000554807484,
+    "oscillation": 1.2337999942246825
+   }
+  },
+  {
+   "t": 35.53100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 35.421000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2353,
+   "detect_ms": 5.137900006957352,
+   "build_ms": 3.6743000091519207,
+   "messages_in": 4375,
+   "per_detector_ms": {
+    "vibration": 1.1871999886352569,
+    "ekf": 0.5510000046342611,
+    "actuator": 1.6284000012092292,
+    "battery": 0.08230000094044954,
+    "gps": 0.14230000670067966,
+    "compass": 0.4364000051282346,
+    "oscillation": 1.1014000046998262
+   }
+  },
+  {
+   "t": 35.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 35.71799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2373,
+   "detect_ms": 5.123599999933504,
+   "build_ms": 4.184300007182173,
+   "messages_in": 4413,
+   "per_detector_ms": {
+    "vibration": 0.6387999892467633,
+    "ekf": 0.37009999505244195,
+    "actuator": 1.4039999950909987,
+    "battery": 0.11680000170599669,
+    "gps": 0.23520000104326755,
+    "compass": 0.7074000022839755,
+    "oscillation": 1.6419000021414831
+   }
+  },
+  {
+   "t": 36.01499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 35.90600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2388,
+   "detect_ms": 5.180099993594922,
+   "build_ms": 4.533300001639873,
+   "messages_in": 4440,
+   "per_detector_ms": {
+    "vibration": 0.9510999952908605,
+    "ekf": 0.5431000026874244,
+    "actuator": 1.2873000086983666,
+    "battery": 0.079699995694682,
+    "gps": 0.149200001033023,
+    "compass": 0.4417999880388379,
+    "oscillation": 1.719399995636195
+   }
+  },
+  {
+   "t": 36.26499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 36.20299999999406,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2408,
+   "detect_ms": 5.7527000026311725,
+   "build_ms": 5.11749999714084,
+   "messages_in": 4478,
+   "per_detector_ms": {
+    "vibration": 1.0196999937761575,
+    "ekf": 0.6787000020267442,
+    "actuator": 2.1603000059258193,
+    "battery": 0.0906000059330836,
+    "gps": 0.14709999959450215,
+    "compass": 0.47289999201893806,
+    "oscillation": 1.1733999999705702
+   }
+  },
+  {
+   "t": 36.51499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 36.40600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2423,
+   "detect_ms": 4.780000002938323,
+   "build_ms": 4.142400008277036,
+   "messages_in": 4505,
+   "per_detector_ms": {
+    "vibration": 0.9712999890325591,
+    "ekf": 0.4188999882899225,
+    "actuator": 1.5904000028967857,
+    "battery": 0.08909999451134354,
+    "gps": 0.16009999671950936,
+    "compass": 0.46270000166259706,
+    "oscillation": 1.0789999942062423
+   }
+  },
+  {
+   "t": 36.76499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 36.70299999999406,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2443,
+   "detect_ms": 4.088400004548021,
+   "build_ms": 3.7798999983351678,
+   "messages_in": 4543,
+   "per_detector_ms": {
+    "vibration": 0.6649999995715916,
+    "ekf": 0.45170000521466136,
+    "actuator": 1.2372000055620447,
+    "battery": 0.0771000050008297,
+    "gps": 0.14879999798722565,
+    "compass": 0.42409999878145754,
+    "oscillation": 1.0782000026665628
+   }
+  },
+  {
+   "t": 37.0,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 36.88999999999942,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2458,
+   "detect_ms": 4.19289999990724,
+   "build_ms": 3.6037999961990863,
+   "messages_in": 4570,
+   "per_detector_ms": {
+    "vibration": 0.6410000059986487,
+    "ekf": 0.37429999792948365,
+    "actuator": 1.2005000025965273,
+    "battery": 0.0754000066081062,
+    "gps": 0.13689999468624592,
+    "compass": 0.41090000013355166,
+    "oscillation": 1.3472999999066815
+   }
+  },
+  {
+   "t": 37.25,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 37.187000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2478,
+   "detect_ms": 4.939200007356703,
+   "build_ms": 3.6613999982364476,
+   "messages_in": 4608,
+   "per_detector_ms": {
+    "vibration": 0.6495999987237155,
+    "ekf": 0.37560000782832503,
+    "actuator": 1.6232999914791435,
+    "battery": 0.12120000610593706,
+    "gps": 0.20260000019334257,
+    "compass": 0.6885000038892031,
+    "oscillation": 1.2681999942287803
+   }
+  },
+  {
+   "t": 37.546000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 37.48399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2499,
+   "detect_ms": 4.233200001181103,
+   "build_ms": 4.498600013903342,
+   "messages_in": 4647,
+   "per_detector_ms": {
+    "vibration": 0.6659999926341698,
+    "ekf": 0.38779999886173755,
+    "actuator": 1.3410000101430342,
+    "battery": 0.0830000062705949,
+    "gps": 0.13910001143813133,
+    "compass": 0.5113000079290941,
+    "oscillation": 1.0981999948853627
+   }
+  },
+  {
+   "t": 37.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 37.687000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2514,
+   "detect_ms": 4.927199988742359,
+   "build_ms": 3.646500001195818,
+   "messages_in": 4674,
+   "per_detector_ms": {
+    "vibration": 0.8167000050889328,
+    "ekf": 0.4064999957336113,
+    "actuator": 1.2315999920247123,
+    "battery": 0.08040000102482736,
+    "gps": 0.14040000678505749,
+    "compass": 0.5192000098759308,
+    "oscillation": 1.7239000007975847
+   }
+  },
+  {
+   "t": 38.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 37.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2534,
+   "detect_ms": 4.924299995764159,
+   "build_ms": 3.8449999992735684,
+   "messages_in": 4712,
+   "per_detector_ms": {
+    "vibration": 0.6571999983862042,
+    "ekf": 0.3939000016544014,
+    "actuator": 1.960299996426329,
+    "battery": 0.09380000119563192,
+    "gps": 0.14709999959450215,
+    "compass": 0.49050000961869955,
+    "oscillation": 1.1740000045392662
+   }
+  },
+  {
+   "t": 38.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 38.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2549,
+   "detect_ms": 4.074600001331419,
+   "build_ms": 3.727100003743544,
+   "messages_in": 4739,
+   "per_detector_ms": {
+    "vibration": 0.6692000024486333,
+    "ekf": 0.38840000343043357,
+    "actuator": 1.2697999918600544,
+    "battery": 0.07999999797903001,
+    "gps": 0.13690000923816115,
+    "compass": 0.43450000521261245,
+    "oscillation": 1.0889999975915998
+   }
+  },
+  {
+   "t": 38.53100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 38.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2569,
+   "detect_ms": 4.31810000736732,
+   "build_ms": 3.9217000012286007,
+   "messages_in": 4777,
+   "per_detector_ms": {
+    "vibration": 0.672199996188283,
+    "ekf": 0.38899999344721437,
+    "actuator": 1.242599988472648,
+    "battery": 0.1269999920623377,
+    "gps": 0.19160000374540687,
+    "compass": 0.54600001021754,
+    "oscillation": 1.1398999922676012
+   }
+  },
+  {
+   "t": 38.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 38.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2584,
+   "detect_ms": 4.34040000254754,
+   "build_ms": 4.553399994620122,
+   "messages_in": 4804,
+   "per_detector_ms": {
+    "vibration": 0.749400001950562,
+    "ekf": 0.44800000614486635,
+    "actuator": 1.3180999958422035,
+    "battery": 0.08270000398624688,
+    "gps": 0.14089999604038894,
+    "compass": 0.48829999286681414,
+    "oscillation": 1.1058999953093007
+   }
+  },
+  {
+   "t": 39.03100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 38.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2604,
+   "detect_ms": 4.4320000015432015,
+   "build_ms": 4.465399993932806,
+   "messages_in": 4842,
+   "per_detector_ms": {
+    "vibration": 0.7243000000016764,
+    "ekf": 0.41349999082740396,
+    "actuator": 1.253900001756847,
+    "battery": 0.08569999772589654,
+    "gps": 0.1360000023851171,
+    "compass": 0.4411999980220571,
+    "oscillation": 1.3706000027013943
+   }
+  },
+  {
+   "t": 39.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 39.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2619,
+   "detect_ms": 4.751600004965439,
+   "build_ms": 3.871300010359846,
+   "messages_in": 4869,
+   "per_detector_ms": {
+    "vibration": 0.6742000114172697,
+    "ekf": 0.39539999852422625,
+    "actuator": 1.2086999922757968,
+    "battery": 0.08119999256450683,
+    "gps": 0.13469999248627573,
+    "compass": 0.43739999819081277,
+    "oscillation": 1.8126999930245802
+   }
+  },
+  {
+   "t": 39.53100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 39.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2639,
+   "detect_ms": 4.528300007223152,
+   "build_ms": 4.611600001226179,
+   "messages_in": 4907,
+   "per_detector_ms": {
+    "vibration": 0.9666999976616353,
+    "ekf": 0.4326000052969903,
+    "actuator": 1.284099998883903,
+    "battery": 0.08739999611862004,
+    "gps": 0.14119999832473695,
+    "compass": 0.4856000014115125,
+    "oscillation": 1.1224999907426536
+   }
+  },
+  {
+   "t": 39.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 39.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2654,
+   "detect_ms": 5.592500005150214,
+   "build_ms": 5.495000004884787,
+   "messages_in": 4934,
+   "per_detector_ms": {
+    "vibration": 0.6945000059204176,
+    "ekf": 0.6361000123433769,
+    "actuator": 1.8693999882088974,
+    "battery": 0.0889999937498942,
+    "gps": 0.16099998902063817,
+    "compass": 0.4901999927824363,
+    "oscillation": 1.6428999952040613
+   }
+  },
+  {
+   "t": 40.03100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 39.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2674,
+   "detect_ms": 4.487300000619143,
+   "build_ms": 4.728700005216524,
+   "messages_in": 4972,
+   "per_detector_ms": {
+    "vibration": 0.8317000028910115,
+    "ekf": 0.4078999918419868,
+    "actuator": 1.3289000053191558,
+    "battery": 0.0906000059330836,
+    "gps": 0.14709999959450215,
+    "compass": 0.519599998369813,
+    "oscillation": 1.1538000107975677
+   }
+  },
+  {
+   "t": 40.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 40.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2689,
+   "detect_ms": 5.362500000046566,
+   "build_ms": 4.9820000131148845,
+   "messages_in": 5000,
+   "per_detector_ms": {
+    "vibration": 0.8428000001003966,
+    "ekf": 0.5247999943094328,
+    "actuator": 2.0398999913595617,
+    "battery": 0.09779998799785972,
+    "gps": 0.17090000619646162,
+    "compass": 0.4962000093655661,
+    "oscillation": 1.1821999942185357
+   }
+  },
+  {
+   "t": 40.53100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 40.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2709,
+   "detect_ms": 4.8245999932987615,
+   "build_ms": 4.611800002749078,
+   "messages_in": 5038,
+   "per_detector_ms": {
+    "vibration": 0.7364999910350889,
+    "ekf": 0.42320000648032874,
+    "actuator": 1.4633999962825328,
+    "battery": 0.08579999848734587,
+    "gps": 0.1604999997653067,
+    "compass": 0.49259999650530517,
+    "oscillation": 1.4544000005116686
+   }
+  },
+  {
+   "t": 40.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 40.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2724,
+   "detect_ms": 5.567300002439879,
+   "build_ms": 4.276599996956065,
+   "messages_in": 5065,
+   "per_detector_ms": {
+    "vibration": 1.4033000043127686,
+    "ekf": 0.6852999940747395,
+    "actuator": 1.5015000099083409,
+    "battery": 0.08740001067053527,
+    "gps": 0.16880000475794077,
+    "compass": 0.4960999940522015,
+    "oscillation": 1.21489999582991
+   }
+  },
+  {
+   "t": 41.03100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 40.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2744,
+   "detect_ms": 5.0365000060992315,
+   "build_ms": 4.614300007233396,
+   "messages_in": 5103,
+   "per_detector_ms": {
+    "vibration": 1.0928000119747594,
+    "ekf": 0.5472000048030168,
+    "actuator": 1.4502000121865422,
+    "battery": 0.09240000508725643,
+    "gps": 0.15770000754855573,
+    "compass": 0.4825000069104135,
+    "oscillation": 1.204700005473569
+   }
+  },
+  {
+   "t": 41.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 41.171000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2759,
+   "detect_ms": 6.658899990725331,
+   "build_ms": 5.571199988480657,
+   "messages_in": 5130,
+   "per_detector_ms": {
+    "vibration": 1.3171000027796254,
+    "ekf": 0.698000003467314,
+    "actuator": 1.9654000061564147,
+    "battery": 0.1286999904550612,
+    "gps": 0.2548999909777194,
+    "compass": 0.6963999912841246,
+    "oscillation": 1.5864000015426427
+   }
+  },
+  {
+   "t": 41.51499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 41.46799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2779,
+   "detect_ms": 5.139499990036711,
+   "build_ms": 4.267600001185201,
+   "messages_in": 5168,
+   "per_detector_ms": {
+    "vibration": 1.0257999965688214,
+    "ekf": 0.6876000115880743,
+    "actuator": 1.4741000049980357,
+    "battery": 0.10099999781232327,
+    "gps": 0.1610000035725534,
+    "compass": 0.49220000801142305,
+    "oscillation": 1.189300004625693
+   }
+  },
+  {
+   "t": 41.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 41.671000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2794,
+   "detect_ms": 4.882100009126589,
+   "build_ms": 4.081900013261475,
+   "messages_in": 5197,
+   "per_detector_ms": {
+    "vibration": 0.7240999984787777,
+    "ekf": 0.4152000037720427,
+    "actuator": 1.4862000098219141,
+    "battery": 0.08700000762473792,
+    "gps": 0.17520000983495265,
+    "compass": 0.47650000487919897,
+    "oscillation": 1.5105999918887392
+   }
+  },
+  {
+   "t": 42.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 41.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2814,
+   "detect_ms": 4.508099998929538,
+   "build_ms": 4.142899997532368,
+   "messages_in": 5235,
+   "per_detector_ms": {
+    "vibration": 0.7403000054182485,
+    "ekf": 0.4642999992938712,
+    "actuator": 1.352999999653548,
+    "battery": 0.08180001168511808,
+    "gps": 0.15230001008603722,
+    "compass": 0.47620000259485096,
+    "oscillation": 1.2338999949861318
+   }
+  },
+  {
+   "t": 42.296000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 42.187000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2829,
+   "detect_ms": 4.53669999842532,
+   "build_ms": 4.03879999066703,
+   "messages_in": 5262,
+   "per_detector_ms": {
+    "vibration": 0.7317999989027157,
+    "ekf": 0.42619998566806316,
+    "actuator": 1.4162000006763265,
+    "battery": 0.08509999315720052,
+    "gps": 0.15199999324977398,
+    "compass": 0.48820000665728003,
+    "oscillation": 1.2316000065766275
+   }
+  },
+  {
+   "t": 42.5,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 42.38999999999942,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2843,
+   "detect_ms": 5.5367999884765595,
+   "build_ms": 4.650499991839752,
+   "messages_in": 5288,
+   "per_detector_ms": {
+    "vibration": 1.1501999979373068,
+    "ekf": 0.5008000007364899,
+    "actuator": 1.5189000114332885,
+    "battery": 0.09200000204145908,
+    "gps": 0.2733999863266945,
+    "compass": 0.6455999973695725,
+    "oscillation": 1.3466000091284513
+   }
+  },
+  {
+   "t": 42.76499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 42.70299999999406,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2863,
+   "detect_ms": 5.766000002040528,
+   "build_ms": 4.382300001452677,
+   "messages_in": 5326,
+   "per_detector_ms": {
+    "vibration": 1.0248000035062432,
+    "ekf": 0.709400002961047,
+    "actuator": 1.8942000024253502,
+    "battery": 0.09240000508725643,
+    "gps": 0.16140000661835074,
+    "compass": 0.5970999918645248,
+    "oscillation": 1.2762999976985157
+   }
+  },
+  {
+   "t": 43.01499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 42.90600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2878,
+   "detect_ms": 4.590700002154335,
+   "build_ms": 5.159000007552095,
+   "messages_in": 5353,
+   "per_detector_ms": {
+    "vibration": 0.7711999933235347,
+    "ekf": 0.4337999998824671,
+    "actuator": 1.3753999955952168,
+    "battery": 0.08529999468009919,
+    "gps": 0.15140000323299319,
+    "compass": 0.4837000014958903,
+    "oscillation": 1.2828000035369769
+   }
+  },
+  {
+   "t": 43.28100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 43.21799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2898,
+   "detect_ms": 5.570399996940978,
+   "build_ms": 4.418599986820482,
+   "messages_in": 5391,
+   "per_detector_ms": {
+    "vibration": 1.2674000026891008,
+    "ekf": 0.6396000098902732,
+    "actuator": 1.5967999934218824,
+    "battery": 0.08919999527279288,
+    "gps": 0.1762999891070649,
+    "compass": 0.5152000085217878,
+    "oscillation": 1.2774000060744584
+   }
+  },
+  {
+   "t": 43.546000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 43.421000000002095,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2913,
+   "detect_ms": 5.266699998173863,
+   "build_ms": 5.855399998836219,
+   "messages_in": 5418,
+   "per_detector_ms": {
+    "vibration": 1.02530000731349,
+    "ekf": 0.6181999924592674,
+    "actuator": 1.5430999919772148,
+    "battery": 0.0940000027185306,
+    "gps": 0.16700000560376793,
+    "compass": 0.5424999981187284,
+    "oscillation": 1.2679999927058816
+   }
+  },
+  {
+   "t": 43.796000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 43.73399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2933,
+   "detect_ms": 4.713100002845749,
+   "build_ms": 4.873899990343489,
+   "messages_in": 5456,
+   "per_detector_ms": {
+    "vibration": 0.774300002376549,
+    "ekf": 0.450699997600168,
+    "actuator": 1.4496000076178461,
+    "battery": 0.08620000153314322,
+    "gps": 0.16429999959655106,
+    "compass": 0.5126999894855544,
+    "oscillation": 1.2687999987974763
+   }
+  },
+  {
+   "t": 44.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 43.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2948,
+   "detect_ms": 5.034000001614913,
+   "build_ms": 5.413199993199669,
+   "messages_in": 5483,
+   "per_detector_ms": {
+    "vibration": 0.935500007472001,
+    "ekf": 0.48999999125953764,
+    "actuator": 1.5002000000094995,
+    "battery": 0.10230000771116465,
+    "gps": 0.1976000057766214,
+    "compass": 0.526999996509403,
+    "oscillation": 1.2741999962599948
+   }
+  },
+  {
+   "t": 44.296000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 44.23399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2968,
+   "detect_ms": 5.764700006693602,
+   "build_ms": 4.934299999149516,
+   "messages_in": 5521,
+   "per_detector_ms": {
+    "vibration": 0.7828000088920817,
+    "ekf": 0.484200005303137,
+    "actuator": 1.474500008043833,
+    "battery": 0.08840000373311341,
+    "gps": 0.1664000010350719,
+    "compass": 0.8233999978983775,
+    "oscillation": 1.93569999828469
+   }
+  },
+  {
+   "t": 44.546000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 44.437000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 2983,
+   "detect_ms": 5.44560000707861,
+   "build_ms": 4.557800013571978,
+   "messages_in": 5548,
+   "per_detector_ms": {
+    "vibration": 0.8513999928254634,
+    "ekf": 0.46770001063123345,
+    "actuator": 1.6153000033227727,
+    "battery": 0.09309999586548656,
+    "gps": 0.16199999663513154,
+    "compass": 0.5335999885573983,
+    "oscillation": 1.7154999950435013
+   }
+  },
+  {
+   "t": 44.796000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 44.73399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3003,
+   "detect_ms": 6.079899991163984,
+   "build_ms": 4.483800003072247,
+   "messages_in": 5586,
+   "per_detector_ms": {
+    "vibration": 0.8901999972295016,
+    "ekf": 0.45339998905546963,
+    "actuator": 2.467199999955483,
+    "battery": 0.1517000055173412,
+    "gps": 0.1703000016277656,
+    "compass": 0.5597999988822266,
+    "oscillation": 1.3789000076940283
+   }
+  },
+  {
+   "t": 45.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 44.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3018,
+   "detect_ms": 4.82699999702163,
+   "build_ms": 4.440899996552616,
+   "messages_in": 5613,
+   "per_detector_ms": {
+    "vibration": 0.7822000043233857,
+    "ekf": 0.4648000031011179,
+    "actuator": 1.456699988921173,
+    "battery": 0.08820000221021473,
+    "gps": 0.16349999350495636,
+    "compass": 0.5267999949865043,
+    "oscillation": 1.3384999911068007
+   }
+  },
+  {
+   "t": 45.296000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 45.23399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3038,
+   "detect_ms": 5.027399995015003,
+   "build_ms": 4.359899990959093,
+   "messages_in": 5651,
+   "per_detector_ms": {
+    "vibration": 0.7973999890964478,
+    "ekf": 0.4680999991251156,
+    "actuator": 1.5882000006968156,
+    "battery": 0.11670000094454736,
+    "gps": 0.16719999257475138,
+    "compass": 0.5321999924490228,
+    "oscillation": 1.3516000035451725
+   }
+  },
+  {
+   "t": 45.5,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 45.437000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3052,
+   "detect_ms": 5.633699998725206,
+   "build_ms": 4.5661000040126964,
+   "messages_in": 5677,
+   "per_detector_ms": {
+    "vibration": 0.8165000035660341,
+    "ekf": 0.47560001257807016,
+    "actuator": 1.4267000078689307,
+    "battery": 0.17970000044442713,
+    "gps": 0.2266000083182007,
+    "compass": 0.9106999932555482,
+    "oscillation": 1.5884000022197142
+   }
+  },
+  {
+   "t": 45.796000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 45.73399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3073,
+   "detect_ms": 4.9233000027015805,
+   "build_ms": 4.639699996914715,
+   "messages_in": 5716,
+   "per_detector_ms": {
+    "vibration": 0.8074000070337206,
+    "ekf": 0.4608000017469749,
+    "actuator": 1.485000000684522,
+    "battery": 0.09010000212583691,
+    "gps": 0.1652999926591292,
+    "compass": 0.5058999959146604,
+    "oscillation": 1.4024999982211739
+   }
+  },
+  {
+   "t": 46.046000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 45.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3088,
+   "detect_ms": 4.927399990265258,
+   "build_ms": 4.767699996591546,
+   "messages_in": 5743,
+   "per_detector_ms": {
+    "vibration": 0.817699998151511,
+    "ekf": 0.49700000090524554,
+    "actuator": 1.466200003051199,
+    "battery": 0.08659999002702534,
+    "gps": 0.16209999739658087,
+    "compass": 0.552500001504086,
+    "oscillation": 1.3387000071816146
+   }
+  },
+  {
+   "t": 46.296000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 46.23399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3108,
+   "detect_ms": 5.263500002911314,
+   "build_ms": 4.688900007749908,
+   "messages_in": 5781,
+   "per_detector_ms": {
+    "vibration": 0.8211999956984073,
+    "ekf": 0.638699988485314,
+    "actuator": 1.5981000033207238,
+    "battery": 0.09640000644139946,
+    "gps": 0.17839999054558575,
+    "compass": 0.5493000062415376,
+    "oscillation": 1.372700004139915
+   }
+  },
+  {
+   "t": 46.546000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 46.437000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3123,
+   "detect_ms": 5.416500003775582,
+   "build_ms": 5.266200008918531,
+   "messages_in": 5808,
+   "per_detector_ms": {
+    "vibration": 0.8193999965442345,
+    "ekf": 0.4831000114791095,
+    "actuator": 1.6496000025654212,
+    "battery": 0.10149998706765473,
+    "gps": 0.18980000459123403,
+    "compass": 0.6242000090423971,
+    "oscillation": 1.5416999958688393
+   }
+  },
+  {
+   "t": 46.796000000002095,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 46.73399999999674,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3143,
+   "detect_ms": 5.323000004864298,
+   "build_ms": 4.523800002061762,
+   "messages_in": 5846,
+   "per_detector_ms": {
+    "vibration": 0.832799996715039,
+    "ekf": 0.4945999971823767,
+    "actuator": 1.6599000082351267,
+    "battery": 0.12599999899975955,
+    "gps": 0.21559999731834978,
+    "compass": 0.5777000042144209,
+    "oscillation": 1.4079999964451417
+   }
+  },
+  {
+   "t": 47.01499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 46.937000000005355,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3157,
+   "detect_ms": 5.102199997054413,
+   "build_ms": 5.883099991478957,
+   "messages_in": 5872,
+   "per_detector_ms": {
+    "vibration": 0.8322000066982582,
+    "ekf": 0.5209000082686543,
+    "actuator": 1.5571999974781647,
+    "battery": 0.09019998833537102,
+    "gps": 0.17159999697469175,
+    "compass": 0.5544000014197081,
+    "oscillation": 1.3693999935640022
+   }
+  },
+  {
+   "t": 47.26499999999942,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 47.15600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3172,
+   "detect_ms": 6.0750999982701614,
+   "build_ms": 5.064400000264868,
+   "messages_in": 5899,
+   "per_detector_ms": {
+    "vibration": 1.5053999959491193,
+    "ekf": 0.6910000083735213,
+    "actuator": 1.6697999963071197,
+    "battery": 0.10350000229664147,
+    "gps": 0.17189999925903976,
+    "compass": 0.559599997359328,
+    "oscillation": 1.3651999906869605
+   }
+  },
+  {
+   "t": 47.53100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 47.45299999999406,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3192,
+   "detect_ms": 7.154899998567998,
+   "build_ms": 4.79740000446327,
+   "messages_in": 5937,
+   "per_detector_ms": {
+    "vibration": 0.8812000014586374,
+    "ekf": 0.4884000081801787,
+    "actuator": 1.937499997438863,
+    "battery": 0.14629999350290745,
+    "gps": 0.2699000033317134,
+    "compass": 0.9348000021418557,
+    "oscillation": 2.486600002157502
+   }
+  },
+  {
+   "t": 47.78100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 47.65600000000268,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3207,
+   "detect_ms": 7.356799993431196,
+   "build_ms": 5.788800001027994,
+   "messages_in": 5964,
+   "per_detector_ms": {
+    "vibration": 0.8447000000160187,
+    "ekf": 0.5208999937167391,
+    "actuator": 2.1785999997518957,
+    "battery": 0.16729999333620071,
+    "gps": 0.31820000731386244,
+    "compass": 0.964100006967783,
+    "oscillation": 2.3532000050181523
+   }
+  },
+  {
+   "t": 48.03100000000268,
+   "incidents": [
+    {
+     "t_start": 9.96799999999348,
+     "t_end": 47.96799999999348,
+     "type": "actuator_saturation",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "Motor_PWM_Imbalance",
+       "value": 737.0,
+       "threshold": 300.0,
+       "unit": "us",
+       "description": "Asymmetric PWM spread between highest and lowest motor output (74% of the configured thrust span)."
+      }
+     ],
+     "notes": [
+      "Thresholds derived from MOT_PWM 1000-2000 us, MOT_SPIN 0.15-0.95. Motors: C1, C2, C3, C4.",
+      "Check motor/ESC health, propeller damage, CG offset, or mechanical twist in the vehicle frame."
+     ]
+    }
+   ],
+   "buffer_records": 3227,
+   "detect_ms": 6.351800009724684,
+   "build_ms": 5.599099997198209,
+   "messages_in": 6002,
+   "per_detector_ms": {
+    "vibration": 1.189399990835227,
+    "ekf": 0.7768000068608671,
+    "actuator": 2.075099997455254,
+    "battery": 0.09870000940281898,
+    "gps": 0.1875000016298145,
+    "compass": 0.5741999921156093,
+    "oscillation": 1.4405999972950667
+   }
+  }
+ ],
+ "advisories": [
+  {
+   "t": 9.98399999999674,
+   "type": "actuator_saturation",
+   "severity": "critical",
+   "reason": "new",
+   "pre_inject": false
+  },
+  {
+   "t": 30.014999999999418,
+   "type": "actuator_saturation",
+   "severity": "critical",
+   "reason": "reminder",
+   "pre_inject": false
+  }
+ ],
+ "metrics": {
+  "latency_s": 2.0,
+  "false_positives": 0,
+  "incidents": 155,
+  "advisories": 2,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 211,
+  "buffer_last": 3227,
+  "detect_ms_first": 0.73,
+  "detect_ms_last": 6.35,
+  "worst_cycle_ms": 17.3
+ },
+ "bundle_id": "dd5db6ad0a2e784f",
+ "params_hash": "0629c99b8ddfa7fe"
+}

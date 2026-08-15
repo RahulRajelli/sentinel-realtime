@@ -2,7 +2,7 @@
  "schema_version": 1,
  "scenario": "vibration",
  "note": "amplitude x frequency; accel_clipping is an expected downstream symptom",
- "created_utc": "2026-08-14T12:23:54+00:00",
+ "created_utc": "2026-08-14T14:48:34+00:00",
  "expected_root_cause": "vibration_excessive",
  "expected_symptoms": [
   "accel_clipping"
@@ -21,7 +21,7 @@
    "applied": true
   }
  ],
- "t_inject": 8.046999999991385,
+ "t_inject": 8.031000000002678,
  "inject_verified": true,
  "params": {
   "MOT_PWM_MIN": 1000.0,
@@ -63,3090 +63,598 @@
   "INS_GYR3OFFS_Z": 0.0,
   "INS_GYR3_ID": 0.0,
   "ARMING_SKIPCHK": 0.0,
-  "EK3_SRC1_POSXY": 3.0,
   "SERVO14_FUNCTION": 0.0,
+  "EK3_SRC1_POSXY": 3.0,
   "SERVO15_FUNCTION": 0.0,
   "SERVO16_FUNCTION": 0.0
  },
  "cycles": [
   {
-   "t": 3.062999999994645,
+   "t": 3.061999999990803,
    "incidents": [],
    "buffer_records": 217,
-   "detect_ms": 0.6708000000799075,
-   "build_ms": 0.6248999998206273,
+   "detect_ms": 0.4228000034345314,
+   "build_ms": 0.447300000814721,
    "messages_in": 402,
    "per_detector_ms": {
-    "vibration": 0.12029999925289303,
-    "ekf": 0.05919999966863543,
-    "actuator": 0.23480001254938543,
-    "battery": 0.026399997295811772,
-    "gps": 0.020199993741698563,
-    "compass": 0.072900002123788,
-    "oscillation": 0.1303000026382506
+    "vibration": 0.07010000990703702,
+    "ekf": 0.039000005926936865,
+    "actuator": 0.13889999536331743,
+    "battery": 0.01999999221879989,
+    "gps": 0.013800003216601908,
+    "compass": 0.05230000533629209,
+    "oscillation": 0.08379999781027436
    }
   },
   {
-   "t": 4.062999999994645,
+   "t": 4.061999999990803,
    "incidents": [],
    "buffer_records": 287,
-   "detect_ms": 0.674000009894371,
-   "build_ms": 0.643899998976849,
+   "detect_ms": 0.5220000020926818,
+   "build_ms": 0.6471000087913126,
    "messages_in": 532,
    "per_detector_ms": {
-    "vibration": 0.0943000050028786,
-    "ekf": 0.047599998652003706,
-    "actuator": 0.23669999791309237,
-    "battery": 0.026999987312592566,
-    "gps": 0.027400004910305142,
-    "compass": 0.08120000711642206,
-    "oscillation": 0.1531000016257167
+    "vibration": 0.08789999992586672,
+    "ekf": 0.048699992476031184,
+    "actuator": 0.16680000408086926,
+    "battery": 0.021200001356191933,
+    "gps": 0.01780000457074493,
+    "compass": 0.06160000339150429,
+    "oscillation": 0.11330000415910035
    }
   },
   {
-   "t": 5.062999999994645,
+   "t": 5.061999999990803,
    "incidents": [],
    "buffer_records": 357,
-   "detect_ms": 1.063200004864484,
-   "build_ms": 0.9074999979929999,
+   "detect_ms": 0.6278999935602769,
+   "build_ms": 0.6422000005841255,
    "messages_in": 662,
    "per_detector_ms": {
-    "vibration": 0.18930000078398734,
-    "ekf": 0.09140001202467829,
-    "actuator": 0.3693000035127625,
-    "battery": 0.03270000161137432,
-    "gps": 0.032500000088475645,
-    "compass": 0.1092999882530421,
-    "oscillation": 0.23219999275170267
+    "vibration": 0.10770000517368317,
+    "ekf": 0.058999998145736754,
+    "actuator": 0.19299999985378236,
+    "battery": 0.02230000973213464,
+    "gps": 0.020000006770715117,
+    "compass": 0.07359999290201813,
+    "oscillation": 0.14770000416319817
    }
   },
   {
-   "t": 6.062999999994645,
+   "t": 6.046999999991385,
    "incidents": [],
    "buffer_records": 427,
-   "detect_ms": 1.1219000007258728,
-   "build_ms": 0.9683999960543588,
+   "detect_ms": 0.7194000063464046,
+   "build_ms": 0.7546999986516312,
    "messages_in": 792,
    "per_detector_ms": {
-    "vibration": 0.1976000057766214,
-    "ekf": 0.10200000542681664,
-    "actuator": 0.3580000047804788,
-    "battery": 0.031499992473982275,
-    "gps": 0.0354999938281253,
-    "compass": 0.12140000762883574,
-    "oscillation": 0.2699000033317134
+    "vibration": 0.1272999943466857,
+    "ekf": 0.06829999620094895,
+    "actuator": 0.2201000024797395,
+    "battery": 0.02439999661874026,
+    "gps": 0.023200002033263445,
+    "compass": 0.08009999874047935,
+    "oscillation": 0.17109999316744506
    }
   },
   {
    "t": 7.046999999991385,
    "incidents": [],
    "buffer_records": 497,
-   "detect_ms": 1.5559999883407727,
-   "build_ms": 1.1616999981924891,
+   "detect_ms": 0.9847000037552789,
+   "build_ms": 0.8245000062743202,
    "messages_in": 922,
    "per_detector_ms": {
-    "vibration": 0.414699999964796,
-    "ekf": 0.13040000339969993,
-    "actuator": 0.4486999969230965,
-    "battery": 0.037900012102909386,
-    "gps": 0.04739999712910503,
-    "compass": 0.1438000035705045,
-    "oscillation": 0.3260000084992498
+    "vibration": 0.24029999622143805,
+    "ekf": 0.09349999891128391,
+    "actuator": 0.2542000001994893,
+    "battery": 0.032199997804127634,
+    "gps": 0.02749999111983925,
+    "compass": 0.10600000678095967,
+    "oscillation": 0.22560000070370734
    }
   },
   {
-   "t": 8.046999999991385,
+   "t": 8.031000000002678,
    "incidents": [],
    "buffer_records": 567,
-   "detect_ms": 1.2648999982047826,
-   "build_ms": 1.0902000067289919,
+   "detect_ms": 1.0342000023229048,
+   "build_ms": 0.9713999897940084,
    "messages_in": 1052,
    "per_detector_ms": {
-    "vibration": 0.1584999990882352,
-    "ekf": 0.11549999180715531,
-    "actuator": 0.4589000018313527,
-    "battery": 0.041700011934153736,
-    "gps": 0.0518000015290454,
-    "compass": 0.16769999638199806,
-    "oscillation": 0.2646000066306442
+    "vibration": 0.16729999333620071,
+    "ekf": 0.08990000060293823,
+    "actuator": 0.27430000773165375,
+    "battery": 0.0278999941656366,
+    "gps": 0.08710000838618726,
+    "compass": 0.12799999967683107,
+    "oscillation": 0.25240000104531646
    }
   },
   {
-   "t": 9.046999999991385,
+   "t": 9.031000000002678,
    "incidents": [
     {
-     "t_start": 8.655999999988126,
-     "t_end": 8.968999999997322,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 96.15541076660156,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 96.2 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 8.968999999997322,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 609,
-   "detect_ms": 2.790300000924617,
-   "build_ms": 1.4243000041460618,
-   "messages_in": 1133,
-   "per_detector_ms": {
-    "vibration": 1.3655000075232238,
-    "ekf": 0.1736999984132126,
-    "actuator": 0.5489999894052744,
-    "battery": 0.044200001866556704,
-    "gps": 0.05980000423733145,
-    "compass": 0.1773999974830076,
-    "oscillation": 0.4135000053793192
-   }
-  },
-  {
-   "t": 10.046999999991385,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 9.952999999994063,
+     "t_start": 8.75,
+     "t_end": 8.952999999994063,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
        "metric": "VibeZ",
-       "value": 102.65003967285156,
+       "value": 84.17076110839844,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 102.7 m/s^2 on VibeZ"
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
+     "t_start": 8.75,
+     "t_end": 8.75,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 1.0,
+       "value": 20.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
+       "description": "Accumulated 20 accelerometer clipping events"
       }
      ],
      "notes": []
     }
    ],
-   "buffer_records": 679,
-   "detect_ms": 2.0179999992251396,
-   "build_ms": 1.6678999963914976,
-   "messages_in": 1263,
+   "buffer_records": 588,
+   "detect_ms": 1.5697999915573746,
+   "build_ms": 0.9519000013824552,
+   "messages_in": 1091,
    "per_detector_ms": {
-    "vibration": 0.4234999942127615,
-    "ekf": 0.1812999980757013,
-    "actuator": 0.607599999057129,
-    "battery": 0.058900011936202645,
-    "gps": 0.07759999425616115,
-    "compass": 0.21410000044852495,
-    "oscillation": 0.44580000394489616
+    "vibration": 0.24599999596830457,
+    "ekf": 0.09190000128000975,
+    "actuator": 0.6660999933956191,
+    "battery": 0.03189999551977962,
+    "gps": 0.03479998849797994,
+    "compass": 0.13270000636111945,
+    "oscillation": 0.3603000077418983
    }
   },
   {
-   "t": 11.030999999988126,
+   "t": 10.031000000002678,
    "incidents": [
     {
-     "t_start": 8.655999999988126,
-     "t_end": 10.952999999994063,
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 658,
+   "detect_ms": 1.1317000025883317,
+   "build_ms": 1.0867000091820955,
+   "messages_in": 1221,
+   "per_detector_ms": {
+    "vibration": 0.23249999503605068,
+    "ekf": 0.10099999781232327,
+    "actuator": 0.3324999997857958,
+    "battery": 0.030400013201870024,
+    "gps": 0.03680000372696668,
+    "compass": 0.11789999553002417,
+    "oscillation": 0.27529998624231666
+   }
+  },
+  {
+   "t": 11.031000000002678,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 10.936999999990803,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 54.90279006958008,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 54.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 728,
+   "detect_ms": 1.1769999982789159,
+   "build_ms": 1.2344999995548278,
+   "messages_in": 1356,
+   "per_detector_ms": {
+    "vibration": 0.24789999588392675,
+    "ekf": 0.11159999121446162,
+    "actuator": 0.3243999963160604,
+    "battery": 0.03029999788850546,
+    "gps": 0.03640000068116933,
+    "compass": 0.12830000196117908,
+    "oscillation": 0.29290000384207815
+   }
+  },
+  {
+   "t": 12.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 11.936999999990803,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 66.43403625488281,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 66.4 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 798,
+   "detect_ms": 2.256799998576753,
+   "build_ms": 1.430200005415827,
+   "messages_in": 1486,
+   "per_detector_ms": {
+    "vibration": 0.2894000062951818,
+    "ekf": 0.1336999994236976,
+    "actuator": 0.42869999015238136,
+    "battery": 0.04220000118948519,
+    "gps": 0.059600002714432776,
+    "compass": 0.7687999896006659,
+    "oscillation": 0.5263000057311729
+   }
+  },
+  {
+   "t": 13.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 12.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 66.43403625488281,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 66.4 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 868,
+   "detect_ms": 1.5086000057635829,
+   "build_ms": 1.408000010997057,
+   "messages_in": 1616,
+   "per_detector_ms": {
+    "vibration": 0.34420000156387687,
+    "ekf": 0.14210000517778099,
+    "actuator": 0.4045999958179891,
+    "battery": 0.036600002204068005,
+    "gps": 0.050000002374872565,
+    "compass": 0.1635999942664057,
+    "oscillation": 0.3617000038502738
+   }
+  },
+  {
+   "t": 14.0,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 13.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 66.43403625488281,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 66.4 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 938,
+   "detect_ms": 1.6027000092435628,
+   "build_ms": 1.7032000032486394,
+   "messages_in": 1746,
+   "per_detector_ms": {
+    "vibration": 0.3350999904796481,
+    "ekf": 0.15279999934136868,
+    "actuator": 0.4512000014074147,
+    "battery": 0.0391000066883862,
+    "gps": 0.0492000108351931,
+    "compass": 0.17300000763498247,
+    "oscillation": 0.3961000038543716
+   }
+  },
+  {
+   "t": 15.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 14.906000000002678,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
        "metric": "VibeY",
-       "value": 103.57979583740234,
+       "value": 79.18424224853516,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 103.6 m/s^2 on VibeY"
+       "description": "Peak vibration reached 79.2 m/s^2 on VibeY"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
+     "t_start": 8.75,
+     "t_end": 8.75,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 1.0,
+       "value": 20.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
+       "description": "Accumulated 20 accelerometer clipping events"
       }
      ],
      "notes": []
     }
    ],
-   "buffer_records": 749,
-   "detect_ms": 1.306299993302673,
-   "build_ms": 1.4227999927243218,
-   "messages_in": 1398,
+   "buffer_records": 1009,
+   "detect_ms": 1.6317999979946762,
+   "build_ms": 1.6402000037487596,
+   "messages_in": 1877,
    "per_detector_ms": {
-    "vibration": 0.2919000107795,
-    "ekf": 0.11980000999756157,
-    "actuator": 0.35680001019500196,
-    "battery": 0.03340000694151968,
-    "gps": 0.0408000050811097,
-    "compass": 0.14039999223314226,
-    "oscillation": 0.31800000579096377
-   }
-  },
-  {
-   "t": 12.030999999988126,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 11.952999999994063,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 819,
-   "detect_ms": 2.118399992468767,
-   "build_ms": 1.6982999950414523,
-   "messages_in": 1528,
-   "per_detector_ms": {
-    "vibration": 0.4202999989502132,
-    "ekf": 0.20310000400058925,
-    "actuator": 0.47730001097079366,
-    "battery": 0.04020000051241368,
-    "gps": 0.0658999924780801,
-    "compass": 0.23190000501926988,
-    "oscillation": 0.6712000031257048
-   }
-  },
-  {
-   "t": 13.030999999988126,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 12.937999999994645,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 889,
-   "detect_ms": 2.53800000064075,
-   "build_ms": 2.034199991612695,
-   "messages_in": 1658,
-   "per_detector_ms": {
-    "vibration": 0.5569000059040263,
-    "ekf": 0.22620000527240336,
-    "actuator": 0.7507000118494034,
-    "battery": 0.05440000677481294,
-    "gps": 0.07210001058410853,
-    "compass": 0.24780000967439264,
-    "oscillation": 0.6224999960977584
-   }
-  },
-  {
-   "t": 14.015999999988708,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 13.937999999994645,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 959,
-   "detect_ms": 2.7839999966090545,
-   "build_ms": 2.3201000003609806,
-   "messages_in": 1788,
-   "per_detector_ms": {
-    "vibration": 0.614999997196719,
-    "ekf": 0.2629999944474548,
-    "actuator": 0.8234999986598268,
-    "battery": 0.060000005760230124,
-    "gps": 0.08589999924879521,
-    "compass": 0.2733000001171604,
-    "oscillation": 0.6553999992320314
-   }
-  },
-  {
-   "t": 15.015999999988708,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 14.937999999994645,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1029,
-   "detect_ms": 2.9790999979013577,
-   "build_ms": 1.6347000055247918,
-   "messages_in": 1918,
-   "per_detector_ms": {
-    "vibration": 0.6243000098038465,
-    "ekf": 0.3020000003743917,
-    "actuator": 0.8854999905452132,
-    "battery": 0.061400001868605614,
-    "gps": 0.08880000677891076,
-    "compass": 0.30500000866595656,
-    "oscillation": 0.7048999977996573
+    "vibration": 0.3262999962316826,
+    "ekf": 0.15720000374130905,
+    "actuator": 0.4523999959928915,
+    "battery": 0.039099992136470973,
+    "gps": 0.052400006097741425,
+    "compass": 0.17770001431927085,
+    "oscillation": 0.42100000428035855
    }
   },
   {
    "t": 16.0,
    "incidents": [
     {
-     "t_start": 8.655999999988126,
-     "t_end": 15.921999999991385,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1099,
-   "detect_ms": 1.8427000031806529,
-   "build_ms": 1.731399999698624,
-   "messages_in": 2048,
-   "per_detector_ms": {
-    "vibration": 0.37769999471493065,
-    "ekf": 0.1711999939288944,
-    "actuator": 0.5290999979479238,
-    "battery": 0.04169999738223851,
-    "gps": 0.05919999966863543,
-    "compass": 0.1967999996850267,
-    "oscillation": 0.4613999917637557
-   }
-  },
-  {
-   "t": 17.015999999988708,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 16.921999999991385,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1169,
-   "detect_ms": 3.2556000078329816,
-   "build_ms": 2.551600002334453,
-   "messages_in": 2178,
-   "per_detector_ms": {
-    "vibration": 0.682699988828972,
-    "ekf": 0.28639999800361693,
-    "actuator": 0.9519999875919893,
-    "battery": 0.062099992646835744,
-    "gps": 0.10089999705087394,
-    "compass": 0.338400001055561,
-    "oscillation": 0.826300005428493
-   }
-  },
-  {
-   "t": 18.0,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 17.921999999991385,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1239,
-   "detect_ms": 3.3973000099649653,
-   "build_ms": 2.7348000003257766,
-   "messages_in": 2308,
-   "per_detector_ms": {
-    "vibration": 0.7317999989027157,
-    "ekf": 0.32780000765342265,
-    "actuator": 0.9766000002855435,
-    "battery": 0.06510000093840063,
-    "gps": 0.10010000551119447,
-    "compass": 0.3308999876026064,
-    "oscillation": 0.857399994856678
-   }
-  },
-  {
-   "t": 19.015999999988708,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 18.921999999991385,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1309,
-   "detect_ms": 3.670499994768761,
-   "build_ms": 3.79590000375174,
-   "messages_in": 2438,
-   "per_detector_ms": {
-    "vibration": 0.7970000006025657,
-    "ekf": 0.3218999918317422,
-    "actuator": 1.0571000020718202,
-    "battery": 0.06690000009257346,
-    "gps": 0.10649999603629112,
-    "compass": 0.3761999978451058,
-    "oscillation": 0.9377000096719712
-   }
-  },
-  {
-   "t": 20.015999999988708,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 19.937999999994645,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1379,
-   "detect_ms": 2.3573999933432788,
-   "build_ms": 2.2910999978194013,
-   "messages_in": 2568,
-   "per_detector_ms": {
-    "vibration": 0.5745000089518726,
-    "ekf": 0.20680000307038426,
-    "actuator": 0.6394999945769086,
-    "battery": 0.047299996367655694,
-    "gps": 0.06779999239370227,
-    "compass": 0.23940000392030925,
-    "oscillation": 0.5767000111518428
-   }
-  },
-  {
-   "t": 21.030999999988126,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 20.952999999994063,
-     "type": "vibration_excessive",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "VibeZ",
-       "value": 57.47385025024414,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 57.5 m/s^2 on VibeZ"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1449,
-   "detect_ms": 4.029999996419065,
-   "build_ms": 3.1370999931823462,
-   "messages_in": 2699,
-   "per_detector_ms": {
-    "vibration": 0.8624000038253143,
-    "ekf": 0.3660000074887648,
-    "actuator": 1.1860000086016953,
-    "battery": 0.0889000075403601,
-    "gps": 0.11920000542886555,
-    "compass": 0.3862000012304634,
-    "oscillation": 1.0135999909834936
-   }
-  },
-  {
-   "t": 22.046999999991385,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 21.952999999994063,
+     "t_start": 8.75,
+     "t_end": 9.75,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
        "metric": "VibeZ",
-       "value": 98.09141540527344,
+       "value": 84.17076110839844,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1519,
-   "detect_ms": 4.352799995103851,
-   "build_ms": 3.3324999967589974,
-   "messages_in": 2829,
-   "per_detector_ms": {
-    "vibration": 0.9395999950356781,
-    "ekf": 0.3895999980159104,
-    "actuator": 1.3045000087004155,
-    "battery": 0.08579999848734587,
-    "gps": 0.1289000065298751,
-    "compass": 0.4219999973429367,
-    "oscillation": 1.07489999209065
-   }
-  },
-  {
-   "t": 23.062999999994645,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 22.968999999997322,
+     "t_start": 10.139999999999418,
+     "t_end": 15.906000000002678,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
        "metric": "VibeZ",
-       "value": 98.09141540527344,
+       "value": 103.58739471435547,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
+     "t_start": 8.75,
+     "t_end": 8.75,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 1.0,
+       "value": 20.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
+       "description": "Accumulated 20 accelerometer clipping events"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1589,
-   "detect_ms": 4.338400001870468,
-   "build_ms": 3.459699990344234,
-   "messages_in": 2959,
-   "per_detector_ms": {
-    "vibration": 0.9391000057803467,
-    "ekf": 0.3704999980982393,
-    "actuator": 1.2258999922778457,
-    "battery": 0.09220000356435776,
-    "gps": 0.1306999911321327,
-    "compass": 0.4444999940460548,
-    "oscillation": 1.1259000020800158
-   }
-  },
-  {
-   "t": 24.062999999994645,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 23.968999999997322,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeZ",
-       "value": 98.09141540527344,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1659,
-   "detect_ms": 3.3030000049620867,
-   "build_ms": 2.9125000000931323,
-   "messages_in": 3089,
-   "per_detector_ms": {
-    "vibration": 0.5432000034488738,
-    "ekf": 0.37290000182110816,
-    "actuator": 1.166899994132109,
-    "battery": 0.06550000398419797,
-    "gps": 0.09819999104365706,
-    "compass": 0.30420000257436186,
-    "oscillation": 0.7441000052494928
-   }
-  },
-  {
-   "t": 25.062999999994645,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 24.98399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeZ",
-       "value": 98.09141540527344,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1729,
-   "detect_ms": 4.820999994990416,
-   "build_ms": 3.9588999934494495,
-   "messages_in": 3219,
-   "per_detector_ms": {
-    "vibration": 1.017999995383434,
-    "ekf": 0.4326999915065244,
-    "actuator": 1.439799991203472,
-    "battery": 0.08709999383427203,
-    "gps": 0.14239999291021377,
-    "compass": 0.4896000027656555,
-    "oscillation": 1.2038999993819743
-   }
-  },
-  {
-   "t": 26.077999999994063,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 25.98399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeZ",
-       "value": 98.09141540527344,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1799,
-   "detect_ms": 3.07510000129696,
-   "build_ms": 3.341599993291311,
-   "messages_in": 3349,
-   "per_detector_ms": {
-    "vibration": 0.6050999945728108,
-    "ekf": 0.2813000028254464,
-    "actuator": 0.876499994774349,
-    "battery": 0.0661999947624281,
-    "gps": 0.1058999914675951,
-    "compass": 0.3446000046096742,
-    "oscillation": 0.7883999933255836
-   }
-  },
-  {
-   "t": 27.077999999994063,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 26.98399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeZ",
-       "value": 98.09141540527344,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1869,
-   "detect_ms": 5.210100003750995,
-   "build_ms": 4.068599999300204,
-   "messages_in": 3479,
-   "per_detector_ms": {
-    "vibration": 1.1009000008925796,
-    "ekf": 0.4754999972647056,
-    "actuator": 1.5285000117728487,
-    "battery": 0.0923999905353412,
-    "gps": 0.15750000602565706,
-    "compass": 0.5005999992135912,
-    "oscillation": 1.3468999968608841
-   }
-  },
-  {
-   "t": 28.077999999994063,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 27.98399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeZ",
-       "value": 98.09141540527344,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 98.1 m/s^2 on VibeZ"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1939,
-   "detect_ms": 5.409899997175671,
-   "build_ms": 4.188699997030199,
-   "messages_in": 3609,
-   "per_detector_ms": {
-    "vibration": 1.1116999958176166,
-    "ekf": 0.5131999932928011,
-    "actuator": 1.5705999976489693,
-    "battery": 0.09650000720284879,
-    "gps": 0.17610000213608146,
-    "compass": 0.520500005222857,
-    "oscillation": 1.4131999923847616
-   }
-  },
-  {
-   "t": 29.077999999994063,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 28.98399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 101.46249389648438,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 101.5 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.187999999994645,
-     "t_end": 28.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 9.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 9 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.796999999991385,
-     "t_end": 28.796999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 3.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 3 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.98399999999674,
-     "t_end": 28.98399999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 2009,
-   "detect_ms": 4.607400012901053,
-   "build_ms": 4.012499994132668,
-   "messages_in": 3739,
-   "per_detector_ms": {
-    "vibration": 1.0842999909073114,
-    "ekf": 0.5564000020967796,
-    "actuator": 1.4112000062596053,
-    "battery": 0.09970000246539712,
-    "gps": 0.16929999401327223,
-    "compass": 0.36869999894406646,
-    "oscillation": 0.9106000070460141
-   }
-  },
-  {
-   "t": 30.077999999994063,
-   "incidents": [
-    {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 20.546999999991385,
-     "t_end": 29.98399999999674,
-     "type": "vibration_excessive",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "VibeY",
-       "value": 105.19781494140625,
-       "threshold": 30.0,
-       "unit": "m/s^2",
-       "description": "Peak vibration reached 105.2 m/s^2 on VibeY"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 21.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.187999999994645,
-     "t_end": 28.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 9.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 9 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.796999999991385,
-     "t_end": 28.796999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 3.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 3 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.98399999999674,
-     "t_end": 28.98399999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.296999999991385,
-     "t_end": 29.593999999997322,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 16.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 16 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.796999999991385,
-     "t_end": 29.98399999999674,
+     "t_start": 15.702999999994063,
+     "t_end": 15.906000000002678,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
@@ -3161,845 +669,2434 @@
      "notes": []
     }
    ],
-   "buffer_records": 2079,
-   "detect_ms": 3.97289999818895,
-   "build_ms": 3.8404000079026446,
-   "messages_in": 3869,
+   "buffer_records": 1079,
+   "detect_ms": 1.757299993187189,
+   "build_ms": 1.8681999936234206,
+   "messages_in": 2007,
    "per_detector_ms": {
-    "vibration": 0.963800004683435,
-    "ekf": 0.3614000015659258,
-    "actuator": 1.0209000029135495,
-    "battery": 0.07910000567790121,
-    "gps": 0.12770001194439828,
-    "compass": 0.4172000044491142,
-    "oscillation": 0.9953000117093325
+    "vibration": 0.36079999699722975,
+    "ekf": 0.16660000255797058,
+    "actuator": 0.47900000936351717,
+    "battery": 0.04120000812690705,
+    "gps": 0.05190000229049474,
+    "compass": 0.1914000022225082,
+    "oscillation": 0.4602999979397282
    }
   },
   {
-   "t": 31.0,
+   "t": 17.0,
    "incidents": [
     {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
+     "t_start": 8.75,
+     "t_end": 9.75,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 20.546999999991385,
-     "t_end": 30.890999999988708,
+     "t_start": 10.139999999999418,
+     "t_end": 16.889999999999418,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
-       "metric": "VibeX",
-       "value": 106.32936096191406,
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 106.3 m/s^2 on VibeX"
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
+     "t_start": 8.75,
+     "t_end": 8.75,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 1.0,
+       "value": 20.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
+       "description": "Accumulated 20 accelerometer clipping events"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 21.0,
+       "value": 41.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.187999999994645,
-     "t_end": 28.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 9.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 9 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.796999999991385,
-     "t_end": 28.796999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 3.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 3 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.98399999999674,
-     "t_end": 28.98399999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.296999999991385,
-     "t_end": 29.593999999997322,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 16.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 16 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.796999999991385,
-     "t_end": 30.390999999988708,
-     "type": "accel_clipping",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 69.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 69 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 30.796999999991385,
-     "t_end": 30.890999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 6.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 6 accelerometer clipping events"
+       "description": "Accumulated 41 accelerometer clipping events"
       }
      ],
      "notes": []
     }
    ],
-   "buffer_records": 2143,
-   "detect_ms": 5.680699992808513,
-   "build_ms": 4.683199993451126,
-   "messages_in": 3988,
+   "buffer_records": 1149,
+   "detect_ms": 1.8552999972598627,
+   "build_ms": 1.9603999971877784,
+   "messages_in": 2141,
    "per_detector_ms": {
-    "vibration": 1.3784999900963157,
-    "ekf": 0.5320000054780394,
-    "actuator": 1.669200006290339,
-    "battery": 0.0985000078799203,
-    "gps": 0.16650000179652125,
-    "compass": 0.5621000018436462,
-    "oscillation": 1.266200008103624
+    "vibration": 0.3862000012304634,
+    "ekf": 0.17430000298190862,
+    "actuator": 0.4977000062353909,
+    "battery": 0.04469999112188816,
+    "gps": 0.05609999061562121,
+    "compass": 0.21270000434014946,
+    "oscillation": 0.47759999870322645
    }
   },
   {
-   "t": 32.07799999999406,
+   "t": 18.0,
    "incidents": [
     {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
+     "t_start": 8.75,
+     "t_end": 9.75,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 20.546999999991385,
-     "t_end": 31.98399999999674,
+     "t_start": 10.139999999999418,
+     "t_end": 17.906000000002678,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
-       "metric": "VibeX",
-       "value": 106.32936096191406,
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 106.3 m/s^2 on VibeX"
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
+     "t_start": 8.75,
+     "t_end": 8.75,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 1.0,
+       "value": 20.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
+       "description": "Accumulated 20 accelerometer clipping events"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 21.0,
+       "value": 41.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.187999999994645,
-     "t_end": 28.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 9.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 9 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.796999999991385,
-     "t_end": 28.796999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 3.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 3 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.98399999999674,
-     "t_end": 28.98399999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.296999999991385,
-     "t_end": 29.593999999997322,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 16.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 16 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.796999999991385,
-     "t_end": 30.390999999988708,
-     "type": "accel_clipping",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 69.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 69 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 30.796999999991385,
-     "t_end": 31.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
+       "description": "Accumulated 41 accelerometer clipping events"
       }
      ],
      "notes": []
     }
    ],
-   "buffer_records": 2219,
-   "detect_ms": 6.2344999896595255,
-   "build_ms": 4.904400004306808,
-   "messages_in": 4130,
+   "buffer_records": 1219,
+   "detect_ms": 2.4243999941973016,
+   "build_ms": 1.924299998790957,
+   "messages_in": 2267,
    "per_detector_ms": {
-    "vibration": 1.4090999902691692,
-    "ekf": 0.5724999937228858,
-    "actuator": 1.7877999925985932,
-    "battery": 0.11100000119768083,
-    "gps": 0.18760000239126384,
-    "compass": 0.6308000010903925,
-    "oscillation": 1.5272000018740073
+    "vibration": 0.4932000010740012,
+    "ekf": 0.21699999342672527,
+    "actuator": 0.7288999913726002,
+    "battery": 0.05709999823011458,
+    "gps": 0.07190000906120986,
+    "compass": 0.25070000265259296,
+    "oscillation": 0.5980999994790182
    }
   },
   {
-   "t": 33.07799999999406,
+   "t": 19.014999999999418,
    "incidents": [
     {
-     "t_start": 8.655999999988126,
-     "t_end": 20.23399999999674,
+     "t_start": 8.75,
+     "t_end": 9.75,
      "type": "vibration_excessive",
      "severity": "critical",
      "evidence": [
       {
-       "metric": "VibeY",
-       "value": 103.81002807617188,
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 103.8 m/s^2 on VibeY"
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 20.546999999991385,
-     "t_end": 32.98399999999674,
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
      "type": "vibration_excessive",
      "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
      "evidence": [
       {
        "metric": "VibeX",
-       "value": 106.32936096191406,
+       "value": 31.854572296142578,
        "threshold": 30.0,
        "unit": "m/s^2",
-       "description": "Peak vibration reached 106.3 m/s^2 on VibeX"
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.765999999988708,
-     "t_end": 8.765999999988708,
+     "t_start": 8.75,
+     "t_end": 8.75,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 1.0,
+       "value": 20.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
+       "description": "Accumulated 20 accelerometer clipping events"
       }
      ],
      "notes": []
     },
     {
-     "t_start": 8.968999999997322,
-     "t_end": 9.265999999988708,
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
      "type": "accel_clipping",
      "severity": "warning",
      "evidence": [
       {
        "metric": "ClipCountTotal",
-       "value": 21.0,
+       "value": 41.0,
        "threshold": 1.0,
        "unit": "count",
-       "description": "Accumulated 21 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 10.655999999988126,
-     "t_end": 10.85899999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 11.155999999988126,
-     "t_end": 11.546999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 38.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 38 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 12.046999999991385,
-     "t_end": 12.25,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 10.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 10 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 17.327999999994063,
-     "t_end": 17.327999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 2.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 2 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 21.452999999994063,
-     "t_end": 21.452999999994063,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 5.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 5 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.187999999994645,
-     "t_end": 28.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 9.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 9 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.796999999991385,
-     "t_end": 28.796999999991385,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 3.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 3 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 28.98399999999674,
-     "t_end": 28.98399999999674,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 1.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 1 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.296999999991385,
-     "t_end": 29.593999999997322,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 16.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 16 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 29.796999999991385,
-     "t_end": 30.390999999988708,
-     "type": "accel_clipping",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 69.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 69 accelerometer clipping events"
-      }
-     ],
-     "notes": []
-    },
-    {
-     "t_start": 30.796999999991385,
-     "t_end": 31.390999999988708,
-     "type": "accel_clipping",
-     "severity": "warning",
-     "evidence": [
-      {
-       "metric": "ClipCountTotal",
-       "value": 32.0,
-       "threshold": 1.0,
-       "unit": "count",
-       "description": "Accumulated 32 accelerometer clipping events"
+       "description": "Accumulated 41 accelerometer clipping events"
       }
      ],
      "notes": []
     }
    ],
-   "buffer_records": 2289,
-   "detect_ms": 5.371699997340329,
-   "build_ms": 4.536299995379522,
-   "messages_in": 4260,
+   "buffer_records": 1288,
+   "detect_ms": 2.1259000059217215,
+   "build_ms": 2.002199995331466,
+   "messages_in": 2396,
    "per_detector_ms": {
-    "vibration": 1.1132000072393566,
-    "ekf": 0.47539999650325626,
-    "actuator": 1.4801999932387844,
-    "battery": 0.11359999189153314,
-    "gps": 0.1674999948590994,
-    "compass": 0.5862999969394878,
-    "oscillation": 1.4274999994086102
+    "vibration": 0.43870000808965415,
+    "ekf": 0.2032999909715727,
+    "actuator": 0.5836999916937202,
+    "battery": 0.04739999712910503,
+    "gps": 0.06849999772384763,
+    "compass": 0.23389999114442617,
+    "oscillation": 0.5449000018415973
+   }
+  },
+  {
+   "t": 20.046999999991385,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1358,
+   "detect_ms": 2.172900000005029,
+   "build_ms": 2.3895999911474064,
+   "messages_in": 2526,
+   "per_detector_ms": {
+    "vibration": 0.4397000011522323,
+    "ekf": 0.2077999961329624,
+    "actuator": 0.5918999959249049,
+    "battery": 0.048999994760379195,
+    "gps": 0.06669999856967479,
+    "compass": 0.24160000612027943,
+    "oscillation": 0.570699994568713
+   }
+  },
+  {
+   "t": 21.061999999990803,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 20.98399999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 66.57829284667969,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 66.6 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1428,
+   "detect_ms": 2.2629000013694167,
+   "build_ms": 2.2698999964632094,
+   "messages_in": 2657,
+   "per_detector_ms": {
+    "vibration": 0.4744000034406781,
+    "ekf": 0.21349999587982893,
+    "actuator": 0.6210999999893829,
+    "battery": 0.04949999856762588,
+    "gps": 0.06969999230932444,
+    "compass": 0.24140000459738076,
+    "oscillation": 0.5877000075997785
+   }
+  },
+  {
+   "t": 22.0,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 21.889999999999418,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 73.01834106445312,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 73.0 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1492,
+   "detect_ms": 2.658900004462339,
+   "build_ms": 2.856400009477511,
+   "messages_in": 2775,
+   "per_detector_ms": {
+    "vibration": 0.5079999973531812,
+    "ekf": 0.31290001061279327,
+    "actuator": 0.7230000046547502,
+    "battery": 0.07429999823216349,
+    "gps": 0.09699999645818025,
+    "compass": 0.28559999191202223,
+    "oscillation": 0.6507999933091924
+   }
+  },
+  {
+   "t": 23.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 22.906000000002678,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1562,
+   "detect_ms": 2.8365999896777794,
+   "build_ms": 2.9910000012023374,
+   "messages_in": 2905,
+   "per_detector_ms": {
+    "vibration": 0.574999998207204,
+    "ekf": 0.3423000016482547,
+    "actuator": 0.7827999943401664,
+    "battery": 0.06570000550709665,
+    "gps": 0.0889000075403601,
+    "compass": 0.2927999885287136,
+    "oscillation": 0.6825000018579885
+   }
+  },
+  {
+   "t": 24.0,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 23.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1631,
+   "detect_ms": 2.769300001091324,
+   "build_ms": 2.5064999936148524,
+   "messages_in": 3034,
+   "per_detector_ms": {
+    "vibration": 0.5960999988019466,
+    "ekf": 0.271999990218319,
+    "actuator": 0.7489999989047647,
+    "battery": 0.06009999196976423,
+    "gps": 0.0897999998414889,
+    "compass": 0.2913999924203381,
+    "oscillation": 0.7046999962767586
+   }
+  },
+  {
+   "t": 25.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1701,
+   "detect_ms": 2.8476000006776303,
+   "build_ms": 2.601999993203208,
+   "messages_in": 3164,
+   "per_detector_ms": {
+    "vibration": 0.5476999940583482,
+    "ekf": 0.2690999972401187,
+    "actuator": 0.8110999915516004,
+    "battery": 0.06400000711437315,
+    "gps": 0.08789999992586672,
+    "compass": 0.30169999809004366,
+    "oscillation": 0.7593000045744702
+   }
+  },
+  {
+   "t": 26.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 25.936999999990803,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 48.6400260925293,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 48.6 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1771,
+   "detect_ms": 3.7764999869978055,
+   "build_ms": 2.7989999944111332,
+   "messages_in": 3294,
+   "per_detector_ms": {
+    "vibration": 0.5967000033706427,
+    "ekf": 0.29710000671911985,
+    "actuator": 1.19859998812899,
+    "battery": 0.1016000023810193,
+    "gps": 0.14980000560171902,
+    "compass": 0.5539999983739108,
+    "oscillation": 0.8694999996805564
+   }
+  },
+  {
+   "t": 27.014999999999418,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 26.936999999990803,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 55.901939392089844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 55.9 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1841,
+   "detect_ms": 3.652300001704134,
+   "build_ms": 3.1307000026572496,
+   "messages_in": 3424,
+   "per_detector_ms": {
+    "vibration": 0.7354999979725108,
+    "ekf": 0.3192000003764406,
+    "actuator": 1.0784000041894615,
+    "battery": 0.09270000737160444,
+    "gps": 0.1419000036548823,
+    "compass": 0.4748999926960096,
+    "oscillation": 0.8006999996723607
+   }
+  },
+  {
+   "t": 28.031000000002678,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 27.936999999990803,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 58.16749954223633,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 58.2 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1911,
+   "detect_ms": 3.212099996744655,
+   "build_ms": 3.201300001819618,
+   "messages_in": 3554,
+   "per_detector_ms": {
+    "vibration": 0.7600000099046156,
+    "ekf": 0.30139999580569565,
+    "actuator": 0.8203000033972785,
+    "battery": 0.06920000305399299,
+    "gps": 0.09699999645818025,
+    "compass": 0.3361999988555908,
+    "oscillation": 0.8212999964598566
+   }
+  },
+  {
+   "t": 29.031000000002678,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 28.546999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 58.16749954223633,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 58.2 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 28.75,
+     "t_end": 28.75,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 30.65277862548828,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1981,
+   "detect_ms": 3.344299999298528,
+   "build_ms": 3.087400007643737,
+   "messages_in": 3684,
+   "per_detector_ms": {
+    "vibration": 0.7028999971225858,
+    "ekf": 0.3205999964848161,
+    "actuator": 0.8936000085668638,
+    "battery": 0.07259999983943999,
+    "gps": 0.0973999995039776,
+    "compass": 0.3409000055398792,
+    "oscillation": 0.910000002477318
+   }
+  },
+  {
+   "t": 30.031000000002678,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 28.546999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 58.16749954223633,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 58.2 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 28.75,
+     "t_end": 28.75,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 30.65277862548828,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 29.25,
+     "t_end": 29.936999999990803,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 46.744754791259766,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 46.7 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 2051,
+   "detect_ms": 3.359000009368174,
+   "build_ms": 3.6296000034781173,
+   "messages_in": 3814,
+   "per_detector_ms": {
+    "vibration": 0.6886999908601865,
+    "ekf": 0.32950000604614615,
+    "actuator": 0.909099995624274,
+    "battery": 0.07110000296961516,
+    "gps": 0.11050001194234937,
+    "compass": 0.3544000064721331,
+    "oscillation": 0.8894000056898221
+   }
+  },
+  {
+   "t": 31.031000000002678,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 28.546999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 58.16749954223633,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 58.2 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 28.75,
+     "t_end": 28.75,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 30.65277862548828,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 29.25,
+     "t_end": 30.952999999994063,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 55.9874153137207,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 56.0 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 2121,
+   "detect_ms": 3.7446999922394753,
+   "build_ms": 3.285600003437139,
+   "messages_in": 3945,
+   "per_detector_ms": {
+    "vibration": 0.7049000123515725,
+    "ekf": 0.32619999547023326,
+    "actuator": 1.0241999989375472,
+    "battery": 0.08099999104160815,
+    "gps": 0.18980000459123403,
+    "compass": 0.4672999930335209,
+    "oscillation": 0.9437000117031857
+   }
+  },
+  {
+   "t": 32.03100000000268,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 28.546999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 58.16749954223633,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 58.2 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 28.75,
+     "t_end": 28.75,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 30.65277862548828,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 29.25,
+     "t_end": 31.843999999997322,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 55.9874153137207,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 56.0 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 2191,
+   "detect_ms": 4.063800006406382,
+   "build_ms": 3.8647000037599355,
+   "messages_in": 4075,
+   "per_detector_ms": {
+    "vibration": 0.7181999972090125,
+    "ekf": 0.4430000117281452,
+    "actuator": 1.1639000003924593,
+    "battery": 0.08380001236218959,
+    "gps": 0.12040000001434237,
+    "compass": 0.39909999759402126,
+    "oscillation": 1.1277000012341887
+   }
+  },
+  {
+   "t": 33.03100000000268,
+   "incidents": [
+    {
+     "t_start": 8.75,
+     "t_end": 9.75,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 84.17076110839844,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 84.2 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 10.139999999999418,
+     "t_end": 18.10899999999674,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 103.58739471435547,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 103.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.311999999990803,
+     "t_end": 18.514999999999418,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeZ",
+       "value": 43.62542724609375,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 43.6 m/s^2 on VibeZ"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 18.921999999991385,
+     "t_end": 18.921999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 31.854572296142578,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 31.9 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 20.156000000002678,
+     "t_end": 24.421999999991385,
+     "type": "vibration_excessive",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 95.25625610351562,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 95.3 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 25.327999999994063,
+     "t_end": 28.546999999991385,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeX",
+       "value": 58.16749954223633,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 58.2 m/s^2 on VibeX"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 28.75,
+     "t_end": 28.75,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 30.65277862548828,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 30.7 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 29.25,
+     "t_end": 31.843999999997322,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 55.9874153137207,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 56.0 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 32.546999999991385,
+     "t_end": 32.9369999999908,
+     "type": "vibration_excessive",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "VibeY",
+       "value": 46.79409408569336,
+       "threshold": 30.0,
+       "unit": "m/s^2",
+       "description": "Peak vibration reached 46.8 m/s^2 on VibeY"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 8.75,
+     "t_end": 8.75,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 20.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 20 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "t_start": 15.702999999994063,
+     "t_end": 16.202999999994063,
+     "type": "accel_clipping",
+     "severity": "warning",
+     "evidence": [
+      {
+       "metric": "ClipCountTotal",
+       "value": 41.0,
+       "threshold": 1.0,
+       "unit": "count",
+       "description": "Accumulated 41 accelerometer clipping events"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 2261,
+   "detect_ms": 3.902100012055598,
+   "build_ms": 3.511700007948093,
+   "messages_in": 4205,
+   "per_detector_ms": {
+    "vibration": 0.7607000006828457,
+    "ekf": 0.3767000016523525,
+    "actuator": 1.1298000026727095,
+    "battery": 0.08769999840296805,
+    "gps": 0.12709999282378703,
+    "compass": 0.4321000014897436,
+    "oscillation": 0.9806000016396865
    }
   }
  ],
  "advisories": [
   {
-   "t": 9.046999999991385,
+   "t": 9.031000000002678,
    "type": "vibration_excessive",
    "severity": "critical",
    "reason": "new",
    "pre_inject": false
   },
   {
-   "t": 9.046999999991385,
+   "t": 9.031000000002678,
    "type": "accel_clipping",
    "severity": "warning",
    "reason": "new",
    "pre_inject": false
   },
   {
-   "t": 29.077999999994063,
+   "t": 29.031000000002678,
    "type": "vibration_excessive",
    "severity": "critical",
    "reason": "reminder",
    "pre_inject": false
   },
   {
-   "t": 29.077999999994063,
+   "t": 29.031000000002678,
    "type": "accel_clipping",
    "severity": "warning",
    "reason": "reminder",
-   "pre_inject": false
-  },
-  {
-   "t": 31.0,
-   "type": "accel_clipping",
-   "severity": "critical",
-   "reason": "escalated",
    "pre_inject": false
   }
  ],
  "metrics": {
   "latency_s": 1.0,
   "false_positives": 0,
-  "incidents": 208,
-  "advisories": 5,
-  "suppression": 0.976,
+  "incidents": 152,
+  "advisories": 4,
+  "suppression": 0.974,
   "cycles": 31,
   "buffer_first": 217,
-  "buffer_last": 2289,
-  "detect_ms_first": 0.67,
-  "detect_ms_last": 5.37,
-  "worst_cycle_ms": 11.1
+  "buffer_last": 2261,
+  "detect_ms_first": 0.42,
+  "detect_ms_last": 3.9,
+  "worst_cycle_ms": 7.9
  },
- "bundle_id": "194e865293ff2e51",
+ "bundle_id": "b234e5f2d4871e39",
  "params_hash": "0629c99b8ddfa7fe"
 }

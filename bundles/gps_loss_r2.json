@@ -2,7 +2,7 @@
  "schema_version": 1,
  "scenario": "gps_loss",
  "note": "fix type 0; EKF degradation is the expected cascade, not the root cause",
- "created_utc": "2026-08-14T12:37:33+00:00",
+ "created_utc": "2026-08-14T15:02:14+00:00",
  "expected_root_cause": "gps_fix_loss",
  "expected_symptoms": [
   "ekf_inconsistency",
@@ -16,7 +16,7 @@
    "applied": true
   }
  ],
- "t_inject": 8.063000000009197,
+ "t_inject": 8.077999999994063,
  "inject_verified": true,
  "params": {
   "MOT_PWM_MIN": 1000.0,
@@ -65,181 +65,249 @@
  },
  "cycles": [
   {
-   "t": 3.063000000009197,
+   "t": 3.062999999994645,
    "incidents": [],
    "buffer_records": 217,
-   "detect_ms": 0.42490000487305224,
-   "build_ms": 0.45479999971576035,
+   "detect_ms": 0.4357999860076234,
+   "build_ms": 0.4957000055583194,
    "messages_in": 402,
    "per_detector_ms": {
-    "vibration": 0.07100000220816582,
-    "ekf": 0.03700000524986535,
-    "actuator": 0.14189998910296708,
-    "battery": 0.01889999839477241,
-    "gps": 0.013500000932253897,
-    "compass": 0.05060000694356859,
-    "oscillation": 0.08689999231137335
+    "vibration": 0.07180000829976052,
+    "ekf": 0.039300008211284876,
+    "actuator": 0.14210000517778099,
+    "battery": 0.020799998310394585,
+    "gps": 0.014600009308196604,
+    "compass": 0.05300001066643745,
+    "oscillation": 0.08880000677891076
    }
   },
   {
-   "t": 4.047000000005937,
+   "t": 4.0939999999973224,
    "incidents": [],
    "buffer_records": 287,
-   "detect_ms": 0.5538000114029273,
-   "build_ms": 0.6204999954206869,
+   "detect_ms": 0.5294000002322719,
+   "build_ms": 0.6852999940747395,
    "messages_in": 532,
    "per_detector_ms": {
-    "vibration": 0.08769999840296805,
-    "ekf": 0.047900000936351717,
-    "actuator": 0.19460001203697175,
-    "battery": 0.019500002963468432,
-    "gps": 0.0185999961104244,
-    "compass": 0.06369999027810991,
-    "oscillation": 0.11660000018309802
+    "vibration": 0.08969999908003956,
+    "ekf": 0.04850000550504774,
+    "actuator": 0.16680000408086926,
+    "battery": 0.021299987565726042,
+    "gps": 0.016999998479150236,
+    "compass": 0.06150000263005495,
+    "oscillation": 0.11920000542886555
    }
   },
   {
-   "t": 5.047000000005937,
+   "t": 5.01600000000326,
    "incidents": [],
-   "buffer_records": 357,
-   "detect_ms": 0.6501000025309622,
-   "build_ms": 0.6563000060850754,
-   "messages_in": 662,
+   "buffer_records": 350,
+   "detect_ms": 0.6318000087048858,
+   "build_ms": 0.6857999978819862,
+   "messages_in": 649,
    "per_detector_ms": {
     "vibration": 0.10439999459777027,
-    "ekf": 0.05889999738428742,
-    "actuator": 0.21569999807979912,
-    "battery": 0.022099993657320738,
-    "gps": 0.021499989088624716,
-    "compass": 0.07480000203941017,
-    "oscillation": 0.14740000187885016
+    "ekf": 0.05709999823011458,
+    "actuator": 0.2021000109380111,
+    "battery": 0.023300002794712782,
+    "gps": 0.022099993657320738,
+    "compass": 0.07229999755509198,
+    "oscillation": 0.1449999981559813
    }
   },
   {
-   "t": 6.063000000009197,
+   "t": 6.047000000005937,
    "incidents": [],
-   "buffer_records": 427,
-   "detect_ms": 1.11119999201037,
-   "build_ms": 0.8889000018825755,
-   "messages_in": 792,
+   "buffer_records": 420,
+   "detect_ms": 0.7448999967891723,
+   "build_ms": 0.7634999928995967,
+   "messages_in": 779,
    "per_detector_ms": {
-    "vibration": 0.12959999730810523,
-    "ekf": 0.08070000330917537,
-    "actuator": 0.2927000023191795,
-    "battery": 0.03809999907389283,
-    "gps": 0.049000009312294424,
-    "compass": 0.17329999536741525,
-    "oscillation": 0.3392999933566898
+    "vibration": 0.13800000306218863,
+    "ekf": 0.06919998850207776,
+    "actuator": 0.22230000467970967,
+    "battery": 0.024299995857290924,
+    "gps": 0.024599998141638935,
+    "compass": 0.08450000314041972,
+    "oscillation": 0.1770999951986596
    }
   },
   {
-   "t": 7.063000000009197,
+   "t": 7.062999999994645,
    "incidents": [],
-   "buffer_records": 497,
-   "detect_ms": 0.9347000013804063,
-   "build_ms": 0.9206999966409057,
-   "messages_in": 922,
+   "buffer_records": 490,
+   "detect_ms": 0.9202000073855743,
+   "build_ms": 0.8575999963795766,
+   "messages_in": 909,
    "per_detector_ms": {
-    "vibration": 0.18450000789016485,
-    "ekf": 0.07699998968746513,
-    "actuator": 0.24399999529123306,
-    "battery": 0.024499997380189598,
-    "gps": 0.027000001864507794,
-    "compass": 0.149200001033023,
-    "oscillation": 0.22190000163391232
+    "vibration": 0.1632999919820577,
+    "ekf": 0.07870000263210386,
+    "actuator": 0.3077000001212582,
+    "battery": 0.02649999805726111,
+    "gps": 0.02649999805726111,
+    "compass": 0.10699999984353781,
+    "oscillation": 0.20540000696200877
    }
   },
   {
-   "t": 8.063000000009197,
+   "t": 8.077999999994063,
    "incidents": [],
-   "buffer_records": 567,
-   "detect_ms": 1.0374999983469024,
-   "build_ms": 0.9698999929241836,
-   "messages_in": 1052,
+   "buffer_records": 560,
+   "detect_ms": 0.9331000037491322,
+   "build_ms": 0.9912999958032742,
+   "messages_in": 1039,
    "per_detector_ms": {
-    "vibration": 0.16340000729542226,
-    "ekf": 0.11780000932049006,
-    "actuator": 0.294700002996251,
-    "battery": 0.041099992813542485,
-    "gps": 0.03959999594371766,
-    "compass": 0.1297999988310039,
-    "oscillation": 0.24510000366717577
+    "vibration": 0.15870000061113387,
+    "ekf": 0.08870000601746142,
+    "actuator": 0.28219999512657523,
+    "battery": 0.028399997972883284,
+    "gps": 0.029100003303028643,
+    "compass": 0.109500004327856,
+    "oscillation": 0.23150000197347254
    }
   },
   {
-   "t": 9.063000000009197,
+   "t": 9.093999999997322,
    "incidents": [],
-   "buffer_records": 637,
-   "detect_ms": 1.1702000047080219,
-   "build_ms": 1.1752999998861924,
-   "messages_in": 1183,
+   "buffer_records": 602,
+   "detect_ms": 1.1516999948071316,
+   "build_ms": 1.103200003853999,
+   "messages_in": 1118,
    "per_detector_ms": {
-    "vibration": 0.18099999579135329,
-    "ekf": 0.10749998909886926,
-    "actuator": 0.3645999968284741,
-    "battery": 0.043799998820759356,
-    "gps": 0.046900007873773575,
-    "compass": 0.1365000061923638,
-    "oscillation": 0.28360000578686595
+    "vibration": 0.16680000408086926,
+    "ekf": 0.09609998960513622,
+    "actuator": 0.40940000326372683,
+    "battery": 0.04100000660400838,
+    "gps": 0.04230000195093453,
+    "compass": 0.1343000039923936,
+    "oscillation": 0.255300008575432
    }
   },
   {
-   "t": 10.047000000005937,
+   "t": 10.0,
    "incidents": [],
-   "buffer_records": 707,
-   "detect_ms": 1.300699994317256,
-   "build_ms": 1.2847999896621332,
-   "messages_in": 1313,
+   "buffer_records": 665,
+   "detect_ms": 1.113999998779036,
+   "build_ms": 1.178899998194538,
+   "messages_in": 1235,
    "per_detector_ms": {
-    "vibration": 0.19289999909233302,
-    "ekf": 0.15700000221841037,
-    "actuator": 0.37570000858977437,
-    "battery": 0.03779999678954482,
-    "gps": 0.06799999391660094,
-    "compass": 0.1453000004403293,
-    "oscillation": 0.3169000119669363
+    "vibration": 0.18540000019129366,
+    "ekf": 0.1058999914675951,
+    "actuator": 0.3394000086700544,
+    "battery": 0.03160000778734684,
+    "gps": 0.03890000516548753,
+    "compass": 0.13000000035390258,
+    "oscillation": 0.2778000052785501
    }
   },
   {
-   "t": 11.063000000009197,
+   "t": 11.0,
    "incidents": [],
-   "buffer_records": 777,
-   "detect_ms": 1.3376999995671213,
-   "build_ms": 1.4121999993221834,
-   "messages_in": 1448,
+   "buffer_records": 735,
+   "detect_ms": 1.5554999990854412,
+   "build_ms": 1.339199996436946,
+   "messages_in": 1370,
    "per_detector_ms": {
-    "vibration": 0.2733000001171604,
-    "ekf": 0.12790001346729696,
-    "actuator": 0.3664999967440963,
+    "vibration": 0.20349999249447137,
+    "ekf": 0.1277999981539324,
+    "actuator": 0.3671000013127923,
+    "battery": 0.032500000088475645,
+    "gps": 0.16799999866634607,
+    "compass": 0.19920000340789557,
+    "oscillation": 0.4507999983616173
+   }
+  },
+  {
+   "t": 12.0,
+   "incidents": [],
+   "buffer_records": 805,
+   "detect_ms": 1.5917999990051612,
+   "build_ms": 1.3989999861223623,
+   "messages_in": 1500,
+   "per_detector_ms": {
+    "vibration": 0.28079999901819974,
+    "ekf": 0.13889999536331743,
+    "actuator": 0.3799999976763502,
+    "battery": 0.04579999949783087,
+    "gps": 0.044800006435252726,
+    "compass": 0.16560000949539244,
+    "oscillation": 0.527900003362447
+   }
+  },
+  {
+   "t": 13.01600000000326,
+   "incidents": [
+    {
+     "t_start": 12.297000000005937,
+     "t_end": 12.906000000002678,
+     "type": "gps_fix_loss",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "GPSFixStatus",
+       "value": 0.0,
+       "threshold": 3.0,
+       "unit": "status",
+       "description": "GPS lost 3D fix (Status code 0)"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 875,
+   "detect_ms": 1.8356000073254108,
+   "build_ms": 1.989800002775155,
+   "messages_in": 1630,
+   "per_detector_ms": {
+    "vibration": 0.2491999912308529,
+    "ekf": 0.2182000025641173,
+    "actuator": 0.4972000024281442,
+    "battery": 0.0594000011915341,
+    "gps": 0.11329998960718513,
+    "compass": 0.20049999875482172,
+    "oscillation": 0.4889000119874254
+   }
+  },
+  {
+   "t": 14.0,
+   "incidents": [
+    {
+     "t_start": 12.297000000005937,
+     "t_end": 13.906000000002678,
+     "type": "gps_fix_loss",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "GPSFixStatus",
+       "value": 0.0,
+       "threshold": 3.0,
+       "unit": "status",
+       "description": "GPS lost 3D fix (Status code 0)"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 945,
+   "detect_ms": 1.5463999880012125,
+   "build_ms": 1.6728000045986846,
+   "messages_in": 1760,
+   "per_detector_ms": {
+    "vibration": 0.2582000015536323,
+    "ekf": 0.1483999949414283,
+    "actuator": 0.44839999463874847,
     "battery": 0.03749999450519681,
-    "gps": 0.04470000567380339,
-    "compass": 0.14770000416319817,
-    "oscillation": 0.33310000435449183
+    "gps": 0.07599999662488699,
+    "compass": 0.17839999054558575,
+    "oscillation": 0.39420000393874943
    }
   },
   {
-   "t": 12.01600000000326,
-   "incidents": [],
-   "buffer_records": 841,
-   "detect_ms": 1.3904000079492107,
-   "build_ms": 1.5064000035636127,
-   "messages_in": 1566,
-   "per_detector_ms": {
-    "vibration": 0.2454999921610579,
-    "ekf": 0.1345999917248264,
-    "actuator": 0.40099999750964344,
-    "battery": 0.03409999771974981,
-    "gps": 0.04749999789055437,
-    "compass": 0.16619999951217324,
-    "oscillation": 0.35539999953471124
-   }
-  },
-  {
-   "t": 13.03200000000652,
+   "t": 15.01600000000326,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 12.953000000008615,
+     "t_start": 12.297000000005937,
+     "t_end": 14.906000000002678,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -254,26 +322,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 910,
-   "detect_ms": 1.6036000015446916,
-   "build_ms": 2.1323999972082675,
-   "messages_in": 1695,
+   "buffer_records": 1015,
+   "detect_ms": 1.6879000031622127,
+   "build_ms": 1.7614000098546967,
+   "messages_in": 1890,
    "per_detector_ms": {
-    "vibration": 0.25749999622348696,
-    "ekf": 0.15219999477267265,
-    "actuator": 0.47640000411774963,
-    "battery": 0.041100007365457714,
-    "gps": 0.07700000423938036,
-    "compass": 0.19869999960064888,
-    "oscillation": 0.3947000077459961
+    "vibration": 0.2815000043483451,
+    "ekf": 0.1669000048423186,
+    "actuator": 0.4932999872835353,
+    "battery": 0.04060000355821103,
+    "gps": 0.0796000094851479,
+    "compass": 0.19530000281520188,
+    "oscillation": 0.42529999336693436
    }
   },
   {
-   "t": 14.063000000009197,
+   "t": 16.0,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 13.985000000000582,
+     "t_start": 12.297000000005937,
+     "t_end": 15.906000000002678,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -288,26 +356,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 980,
-   "detect_ms": 1.9584999972721562,
-   "build_ms": 1.876900001661852,
-   "messages_in": 1825,
+   "buffer_records": 1085,
+   "detect_ms": 1.818799995817244,
+   "build_ms": 1.9973000016761944,
+   "messages_in": 2020,
    "per_detector_ms": {
-    "vibration": 0.47139999514911324,
-    "ekf": 0.1841999910539016,
-    "actuator": 0.5060999974375591,
-    "battery": 0.042400002712383866,
-    "gps": 0.09130001126322895,
-    "compass": 0.21349999587982893,
-    "oscillation": 0.4427999956533313
+    "vibration": 0.29779999749735,
+    "ekf": 0.17829998978413641,
+    "actuator": 0.5335000023478642,
+    "battery": 0.04619998799171299,
+    "gps": 0.0881000014487654,
+    "compass": 0.2153999957954511,
+    "oscillation": 0.45279999903868884
    }
   },
   {
-   "t": 15.0,
+   "t": 17.0,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 14.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 16.906000000002678,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -322,26 +390,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1044,
-   "detect_ms": 2.215999993495643,
-   "build_ms": 2.0146999886492267,
-   "messages_in": 1943,
+   "buffer_records": 1155,
+   "detect_ms": 1.9980000070063397,
+   "build_ms": 2.166700011002831,
+   "messages_in": 2153,
    "per_detector_ms": {
-    "vibration": 0.5333000008249655,
-    "ekf": 0.21549999655690044,
-    "actuator": 0.5391999875428155,
-    "battery": 0.05089999467600137,
-    "gps": 0.11350000568199903,
-    "compass": 0.294700002996251,
-    "oscillation": 0.4611000040313229
+    "vibration": 0.3367000026628375,
+    "ekf": 0.2010000025620684,
+    "actuator": 0.5512000061571598,
+    "battery": 0.0475000124424696,
+    "gps": 0.11239999730605632,
+    "compass": 0.2234999992651865,
+    "oscillation": 0.5190999945625663
    }
   },
   {
-   "t": 16.01600000000326,
+   "t": 18.0,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 15.922000000005937,
+     "t_start": 12.297000000005937,
+     "t_end": 17.89100000000326,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -356,26 +424,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1113,
-   "detect_ms": 2.299600004334934,
-   "build_ms": 1.9351000082679093,
-   "messages_in": 2072,
+   "buffer_records": 1225,
+   "detect_ms": 2.0643999887397513,
+   "build_ms": 2.1766999998362735,
+   "messages_in": 2283,
    "per_detector_ms": {
-    "vibration": 0.5220000020926818,
-    "ekf": 0.30330001027323306,
-    "actuator": 0.568500006920658,
-    "battery": 0.05299999611452222,
-    "gps": 0.11079999967478216,
-    "compass": 0.2525999880162999,
-    "oscillation": 0.4808999947272241
+    "vibration": 0.3338999958941713,
+    "ekf": 0.20619999850168824,
+    "actuator": 0.5870000022696331,
+    "battery": 0.04739999712910503,
+    "gps": 0.10230000771116465,
+    "compass": 0.25120000645983964,
+    "oscillation": 0.5305000086082146
    }
   },
   {
-   "t": 17.03200000000652,
+   "t": 19.0,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 16.938000000009197,
+     "t_start": 12.297000000005937,
+     "t_end": 18.89100000000326,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -390,93 +458,25 @@
      "notes": []
     }
    ],
-   "buffer_records": 1183,
-   "detect_ms": 2.016900005401112,
-   "build_ms": 2.0191000076010823,
-   "messages_in": 2205,
+   "buffer_records": 1295,
+   "detect_ms": 2.108500004396774,
+   "build_ms": 2.337400001124479,
+   "messages_in": 2413,
    "per_detector_ms": {
-    "vibration": 0.31180000223685056,
-    "ekf": 0.18440000712871552,
-    "actuator": 0.5591000081039965,
-    "battery": 0.04189999890513718,
-    "gps": 0.0864000030560419,
-    "compass": 0.2572999947005883,
-    "oscillation": 0.570099990000017
+    "vibration": 0.3667999990284443,
+    "ekf": 0.2072000061161816,
+    "actuator": 0.5991000070935115,
+    "battery": 0.04990000161342323,
+    "gps": 0.09780000254977494,
+    "compass": 0.23630000941921026,
+    "oscillation": 0.5454000056488439
    }
   },
   {
-   "t": 18.047000000005937,
+   "t": 20.093999999997322,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 17.953000000008615,
-     "type": "gps_fix_loss",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "GPSFixStatus",
-       "value": 0.0,
-       "threshold": 3.0,
-       "unit": "status",
-       "description": "GPS lost 3D fix (Status code 0)"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1253,
-   "detect_ms": 2.096800002618693,
-   "build_ms": 2.3548000026494265,
-   "messages_in": 2335,
-   "per_detector_ms": {
-    "vibration": 0.3321000112919137,
-    "ekf": 0.2032000047620386,
-    "actuator": 0.6088999944040552,
-    "battery": 0.04849999095313251,
-    "gps": 0.11929999163839966,
-    "compass": 0.24550000671297312,
-    "oscillation": 0.5332000000635162
-   }
-  },
-  {
-   "t": 19.047000000005937,
-   "incidents": [
-    {
-     "t_start": 12.219000000011874,
-     "t_end": 18.969000000011874,
-     "type": "gps_fix_loss",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "GPSFixStatus",
-       "value": 0.0,
-       "threshold": 3.0,
-       "unit": "status",
-       "description": "GPS lost 3D fix (Status code 0)"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1323,
-   "detect_ms": 2.21649999730289,
-   "build_ms": 2.2523000079672784,
-   "messages_in": 2465,
-   "per_detector_ms": {
-    "vibration": 0.37060001341160387,
-    "ekf": 0.2106000029016286,
-    "actuator": 0.6466999911936,
-    "battery": 0.047900000936351717,
-    "gps": 0.11289998656138778,
-    "compass": 0.24720000510569662,
-    "oscillation": 0.5744000081904233
-   }
-  },
-  {
-   "t": 20.063000000009197,
-   "incidents": [
-    {
-     "t_start": 12.219000000011874,
+     "t_start": 12.297000000005937,
      "t_end": 19.985000000000582,
      "type": "gps_fix_loss",
      "severity": "critical",
@@ -492,25 +492,25 @@
      "notes": []
     }
    ],
-   "buffer_records": 1393,
-   "detect_ms": 2.1773999906145036,
-   "build_ms": 2.328599992324598,
-   "messages_in": 2595,
+   "buffer_records": 1372,
+   "detect_ms": 2.537000007578172,
+   "build_ms": 2.408500004094094,
+   "messages_in": 2556,
    "per_detector_ms": {
-    "vibration": 0.3662000090116635,
-    "ekf": 0.21240000205580145,
-    "actuator": 0.6085999921197072,
-    "battery": 0.05400000372901559,
-    "gps": 0.09480000881012529,
-    "compass": 0.24750000739004463,
-    "oscillation": 0.5883999983780086
+    "vibration": 0.3670999867608771,
+    "ekf": 0.2165000041713938,
+    "actuator": 0.6068000075174496,
+    "battery": 0.0501000031363219,
+    "gps": 0.1049999991664663,
+    "compass": 0.24380000832024962,
+    "oscillation": 0.9405000018887222
    }
   },
   {
-   "t": 21.078000000008615,
+   "t": 21.077999999994063,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
+     "t_start": 12.297000000005937,
      "t_end": 20.985000000000582,
      "type": "gps_fix_loss",
      "severity": "critical",
@@ -526,26 +526,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1463,
-   "detect_ms": 3.03949999215547,
-   "build_ms": 4.757400005473755,
-   "messages_in": 2728,
+   "buffer_records": 1442,
+   "detect_ms": 2.4914999958127737,
+   "build_ms": 2.669399997103028,
+   "messages_in": 2689,
    "per_detector_ms": {
-    "vibration": 0.745400000596419,
-    "ekf": 0.28050001128576696,
-    "actuator": 0.8481999975629151,
-    "battery": 0.06009999196976423,
-    "gps": 0.12399999832268804,
-    "compass": 0.31400000443682075,
-    "oscillation": 0.6589999975403771
+    "vibration": 0.42270000267308205,
+    "ekf": 0.261199995293282,
+    "actuator": 0.7123999967006966,
+    "battery": 0.057199998991563916,
+    "gps": 0.12579999747686088,
+    "compass": 0.2832000027410686,
+    "oscillation": 0.6224999960977584
    }
   },
   {
-   "t": 22.0,
+   "t": 22.077999999994063,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 21.89100000000326,
+     "t_start": 12.297000000005937,
+     "t_end": 21.968999999997322,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -560,26 +560,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1527,
-   "detect_ms": 2.57430000056047,
-   "build_ms": 2.858899999409914,
-   "messages_in": 2846,
+   "buffer_records": 1512,
+   "detect_ms": 2.9230999934952706,
+   "build_ms": 2.735799993388355,
+   "messages_in": 2819,
    "per_detector_ms": {
-    "vibration": 0.4301000008126721,
-    "ekf": 0.26420000358484685,
-    "actuator": 0.7200999971246347,
-    "battery": 0.05149999924469739,
-    "gps": 0.14519999967887998,
-    "compass": 0.301199994282797,
-    "oscillation": 0.6560999900102615
+    "vibration": 0.40920000174082816,
+    "ekf": 0.26130001060664654,
+    "actuator": 0.7159000087995082,
+    "battery": 0.06070001109037548,
+    "gps": 0.12080000306013972,
+    "compass": 0.33519999124109745,
+    "oscillation": 1.011800006381236
    }
   },
   {
-   "t": 23.0,
+   "t": 23.077999999994063,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 22.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 22.968999999997322,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -594,94 +594,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1597,
-   "detect_ms": 3.1574999884469435,
-   "build_ms": 2.941300001111813,
-   "messages_in": 2976,
+   "buffer_records": 1582,
+   "detect_ms": 2.674699993804097,
+   "build_ms": 2.8227999864611775,
+   "messages_in": 2949,
    "per_detector_ms": {
-    "vibration": 0.621700004558079,
-    "ekf": 0.32360000477638096,
-    "actuator": 0.8487000013701618,
-    "battery": 0.06460001168306917,
-    "gps": 0.2165000041713938,
-    "compass": 0.3463000030023977,
-    "oscillation": 0.7278999983100221
-   }
-  },
-  {
-   "t": 24.01600000000326,
-   "incidents": [
-    {
-     "t_start": 12.219000000011874,
-     "t_end": 23.90700000000652,
-     "type": "gps_fix_loss",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "GPSFixStatus",
-       "value": 0.0,
-       "threshold": 3.0,
-       "unit": "status",
-       "description": "GPS lost 3D fix (Status code 0)"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1667,
-   "detect_ms": 2.9608000040752813,
-   "build_ms": 2.861100001609884,
-   "messages_in": 3108,
-   "per_detector_ms": {
-    "vibration": 0.607599999057129,
-    "ekf": 0.3671000013127923,
-    "actuator": 0.7571000023745,
-    "battery": 0.05949998740106821,
-    "gps": 0.11419999646022916,
-    "compass": 0.3037999995285645,
-    "oscillation": 0.7435000006807968
-   }
-  },
-  {
-   "t": 25.01600000000326,
-   "incidents": [
-    {
-     "t_start": 12.219000000011874,
-     "t_end": 24.90700000000652,
-     "type": "gps_fix_loss",
-     "severity": "critical",
-     "evidence": [
-      {
-       "metric": "GPSFixStatus",
-       "value": 0.0,
-       "threshold": 3.0,
-       "unit": "status",
-       "description": "GPS lost 3D fix (Status code 0)"
-      }
-     ],
-     "notes": []
-    }
-   ],
-   "buffer_records": 1737,
-   "detect_ms": 2.770000006421469,
-   "build_ms": 3.021299999090843,
-   "messages_in": 3238,
-   "per_detector_ms": {
-    "vibration": 0.4655999946407974,
-    "ekf": 0.27150000096298754,
-    "actuator": 0.7919000054243952,
-    "battery": 0.059300000430084765,
-    "gps": 0.1109000004362315,
+    "vibration": 0.4571000026771799,
+    "ekf": 0.27770000451710075,
+    "actuator": 0.7539000071119517,
+    "battery": 0.06120000034570694,
+    "gps": 0.12009999772999436,
     "compass": 0.3071999963140115,
-    "oscillation": 0.7571000023745
+    "oscillation": 0.6913999968674034
    }
   },
   {
-   "t": 26.01600000000326,
+   "t": 24.062999999994645,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 25.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 23.952999999994063,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -696,26 +628,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1807,
-   "detect_ms": 4.310000003897585,
-   "build_ms": 3.1128999980865046,
-   "messages_in": 3368,
+   "buffer_records": 1652,
+   "detect_ms": 2.9497999930754304,
+   "build_ms": 2.876099999411963,
+   "messages_in": 3081,
    "per_detector_ms": {
-    "vibration": 0.8527000027243048,
-    "ekf": 0.5087000026833266,
-    "actuator": 1.3946000108262524,
-    "battery": 0.0940999889280647,
-    "gps": 0.16239999968092889,
-    "compass": 0.3986000083386898,
-    "oscillation": 0.8875000057742
+    "vibration": 0.455000001238659,
+    "ekf": 0.29009999707341194,
+    "actuator": 0.7580999954370782,
+    "battery": 0.061699989601038396,
+    "gps": 0.11750000703614205,
+    "compass": 0.3264999977545813,
+    "oscillation": 0.934900002903305
    }
   },
   {
-   "t": 27.01600000000326,
+   "t": 25.062999999994645,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 26.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 24.952999999994063,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -730,26 +662,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 1877,
-   "detect_ms": 3.1277000089176,
-   "build_ms": 3.2168000034289435,
-   "messages_in": 3498,
+   "buffer_records": 1722,
+   "detect_ms": 2.891500000259839,
+   "build_ms": 3.0484000017168,
+   "messages_in": 3211,
    "per_detector_ms": {
-    "vibration": 0.5046000005677342,
-    "ekf": 0.32050001027528197,
-    "actuator": 0.872499993420206,
-    "battery": 0.07360000745393336,
-    "gps": 0.13109999417793006,
-    "compass": 0.33229999826289713,
-    "oscillation": 0.8859999943524599
+    "vibration": 0.4941000079270452,
+    "ekf": 0.3041000018129125,
+    "actuator": 0.8118999976431951,
+    "battery": 0.062399994931183755,
+    "gps": 0.12159999459981918,
+    "compass": 0.33719999191816896,
+    "oscillation": 0.7539999933214858
    }
   },
   {
-   "t": 28.01600000000326,
+   "t": 26.047000000005937,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 27.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 25.937999999994645,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -764,26 +696,94 @@
      "notes": []
     }
    ],
-   "buffer_records": 1947,
-   "detect_ms": 3.240000005462207,
-   "build_ms": 3.235100011806935,
-   "messages_in": 3628,
+   "buffer_records": 1792,
+   "detect_ms": 2.888699993491173,
+   "build_ms": 3.18469999183435,
+   "messages_in": 3341,
    "per_detector_ms": {
-    "vibration": 0.5187999922782183,
-    "ekf": 0.298099999781698,
-    "actuator": 0.8551999926567078,
-    "battery": 0.083099992480129,
-    "gps": 0.12830000196117908,
-    "compass": 0.4332999960752204,
-    "oscillation": 0.9157999884337187
+    "vibration": 0.49449999642092735,
+    "ekf": 0.2818999928422272,
+    "actuator": 0.7951000006869435,
+    "battery": 0.07959999493323267,
+    "gps": 0.11510000331327319,
+    "compass": 0.34949999826494604,
+    "oscillation": 0.7663000142201781
+   }
+  },
+  {
+   "t": 27.031000000002678,
+   "incidents": [
+    {
+     "t_start": 12.297000000005937,
+     "t_end": 26.937999999994645,
+     "type": "gps_fix_loss",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "GPSFixStatus",
+       "value": 0.0,
+       "threshold": 3.0,
+       "unit": "status",
+       "description": "GPS lost 3D fix (Status code 0)"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1862,
+   "detect_ms": 4.273700003977865,
+   "build_ms": 3.240999998524785,
+   "messages_in": 3471,
+   "per_detector_ms": {
+    "vibration": 0.5226000066613778,
+    "ekf": 0.5429999873740599,
+    "actuator": 1.3999000075273216,
+    "battery": 0.12080000306013972,
+    "gps": 0.20500000391621143,
+    "compass": 0.6160000048112124,
+    "oscillation": 0.8567000040784478
+   }
+  },
+  {
+   "t": 28.031000000002678,
+   "incidents": [
+    {
+     "t_start": 12.297000000005937,
+     "t_end": 27.922000000005937,
+     "type": "gps_fix_loss",
+     "severity": "critical",
+     "evidence": [
+      {
+       "metric": "GPSFixStatus",
+       "value": 0.0,
+       "threshold": 3.0,
+       "unit": "status",
+       "description": "GPS lost 3D fix (Status code 0)"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "buffer_records": 1932,
+   "detect_ms": 3.1522000062977895,
+   "build_ms": 3.450700009125285,
+   "messages_in": 3601,
+   "per_detector_ms": {
+    "vibration": 0.5206999921938404,
+    "ekf": 0.31519999902229756,
+    "actuator": 0.8731999987503514,
+    "battery": 0.06830001075286418,
+    "gps": 0.12650000280700624,
+    "compass": 0.3944999916711822,
+    "oscillation": 0.8473999914713204
    }
   },
   {
    "t": 29.01600000000326,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 28.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 28.922000000005937,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -798,26 +798,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 2017,
-   "detect_ms": 3.169000003254041,
-   "build_ms": 3.2936999923549592,
-   "messages_in": 3758,
+   "buffer_records": 2002,
+   "detect_ms": 3.377200002432801,
+   "build_ms": 3.446799993980676,
+   "messages_in": 3731,
    "per_detector_ms": {
-    "vibration": 0.5316999886417761,
-    "ekf": 0.301199994282797,
-    "actuator": 0.8565000025555491,
-    "battery": 0.06120000034570694,
-    "gps": 0.12620000052265823,
-    "compass": 0.3395000094315037,
-    "oscillation": 0.94600000011269
+    "vibration": 0.5589000065810978,
+    "ekf": 0.3482000029180199,
+    "actuator": 0.9658999915700406,
+    "battery": 0.07359999290201813,
+    "gps": 0.13270000636111945,
+    "compass": 0.3956000000471249,
+    "oscillation": 0.8956999954534695
    }
   },
   {
    "t": 30.01600000000326,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 29.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 29.906000000002678,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -832,26 +832,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 2087,
-   "detect_ms": 4.85820000176318,
-   "build_ms": 3.4001000021817163,
-   "messages_in": 3888,
+   "buffer_records": 2072,
+   "detect_ms": 3.4220000088680536,
+   "build_ms": 3.9265000086743385,
+   "messages_in": 3861,
    "per_detector_ms": {
-    "vibration": 0.5861999961780384,
-    "ekf": 0.42899999243672937,
-    "actuator": 1.5650999994250014,
-    "battery": 0.11569999333005399,
-    "gps": 0.2466000005370006,
-    "compass": 0.6131999980425462,
-    "oscillation": 1.2920000008307397
+    "vibration": 0.5654999986290932,
+    "ekf": 0.3552999987732619,
+    "actuator": 0.99640000553336,
+    "battery": 0.07740000728517771,
+    "gps": 0.13970000145491213,
+    "compass": 0.37769999471493065,
+    "oscillation": 0.9029999928316101
    }
   },
   {
    "t": 31.0,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 30.90700000000652,
+     "t_start": 12.297000000005937,
+     "t_end": 30.89100000000326,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -866,26 +866,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 2157,
-   "detect_ms": 3.5090000019408762,
-   "build_ms": 4.003399997600354,
-   "messages_in": 4020,
+   "buffer_records": 2142,
+   "detect_ms": 3.6152999964542687,
+   "build_ms": 3.816800002823584,
+   "messages_in": 3993,
    "per_detector_ms": {
-    "vibration": 0.5668999947374687,
-    "ekf": 0.35259999276604503,
-    "actuator": 1.0192999907303602,
-    "battery": 0.0737000082153827,
-    "gps": 0.14699999883305281,
-    "compass": 0.38640000275336206,
-    "oscillation": 0.9561000042594969
+    "vibration": 0.5784999957541004,
+    "ekf": 0.36539998836815357,
+    "actuator": 1.015200003166683,
+    "battery": 0.07890000415500253,
+    "gps": 0.1379000023007393,
+    "compass": 0.45390000741463155,
+    "oscillation": 0.9787000017240644
    }
   },
   {
-   "t": 32.0,
+   "t": 32.09399999999732,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 31.89100000000326,
+     "t_start": 12.297000000005937,
+     "t_end": 31.985000000000582,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -900,26 +900,26 @@
      "notes": []
     }
    ],
-   "buffer_records": 2227,
-   "detect_ms": 3.6945000028936192,
-   "build_ms": 4.005700000561774,
-   "messages_in": 4150,
+   "buffer_records": 2219,
+   "detect_ms": 3.711299999849871,
+   "build_ms": 3.9779999933671206,
+   "messages_in": 4136,
    "per_detector_ms": {
-    "vibration": 0.603299995418638,
-    "ekf": 0.3870999935315922,
-    "actuator": 1.0497999901417643,
-    "battery": 0.08199999865610152,
-    "gps": 0.155699992319569,
-    "compass": 0.40389999048784375,
-    "oscillation": 1.0058000043500215
+    "vibration": 0.6016999977873638,
+    "ekf": 0.38490000588353723,
+    "actuator": 1.0227999882772565,
+    "battery": 0.07550000736955553,
+    "gps": 0.14600000577047467,
+    "compass": 0.48800000513438135,
+    "oscillation": 0.985999999102205
    }
   },
   {
-   "t": 33.0,
+   "t": 33.07799999999406,
    "incidents": [
     {
-     "t_start": 12.219000000011874,
-     "t_end": 32.89100000000326,
+     "t_start": 12.297000000005937,
+     "t_end": 32.96899999999732,
      "type": "gps_fix_loss",
      "severity": "critical",
      "evidence": [
@@ -934,43 +934,50 @@
      "notes": []
     }
    ],
-   "buffer_records": 2297,
-   "detect_ms": 4.111899994313717,
-   "build_ms": 3.846399995381944,
-   "messages_in": 4280,
+   "buffer_records": 2289,
+   "detect_ms": 4.518999994616024,
+   "build_ms": 4.069699993124232,
+   "messages_in": 4266,
    "per_detector_ms": {
-    "vibration": 0.9273999894503504,
-    "ekf": 0.41039999632630497,
-    "actuator": 1.090899997507222,
-    "battery": 0.0838999985717237,
-    "gps": 0.1669000048423186,
-    "compass": 0.4233000072417781,
-    "oscillation": 1.0009999969042838
+    "vibration": 0.6150999979581684,
+    "ekf": 0.3964999923482537,
+    "actuator": 1.2532999971881509,
+    "battery": 0.1303000026382506,
+    "gps": 0.24240001221187413,
+    "compass": 0.6941000028746203,
+    "oscillation": 1.1774000013247132
    }
   }
  ],
  "advisories": [
   {
-   "t": 13.03200000000652,
+   "t": 13.01600000000326,
    "type": "gps_fix_loss",
    "severity": "critical",
    "reason": "new",
    "pre_inject": false
+  },
+  {
+   "t": 33.07799999999406,
+   "type": "gps_fix_loss",
+   "severity": "critical",
+   "reason": "reminder",
+   "pre_inject": false
   }
  ],
  "metrics": {
-  "latency_s": 5.0,
+  "latency_s": 4.9,
   "false_positives": 0,
   "incidents": 21,
-  "advisories": 1,
-  "suppression": 0.952,
+  "advisories": 2,
+  "suppression": 0.905,
   "cycles": 31,
   "buffer_first": 217,
-  "buffer_last": 2297,
-  "detect_ms_first": 0.42,
-  "detect_ms_last": 4.11,
-  "worst_cycle_ms": 8.3
+  "buffer_last": 2289,
+  "detect_ms_first": 0.44,
+  "detect_ms_last": 4.52,
+  "worst_cycle_ms": 8.6
  },
- "bundle_id": "a681e807744d83b9",
+ "bundle_id": "192489aec54c340f",
  "params_hash": "0629c99b8ddfa7fe"
 }

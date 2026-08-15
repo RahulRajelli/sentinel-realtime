@@ -1,0 +1,203 @@
+[
+ {
+  "scenario": "compass_offset",
+  "expected": "compass_inconsistency",
+  "ok": true,
+  "injected": [
+   "SIM_MAG1_OFS_X=400.0",
+   "SIM_MAG1_OFS_Y=400.0"
+  ],
+  "inject_verified": false,
+  "first_advised": "ekf_inconsistency",
+  "latency_s": 0.7,
+  "all_advised": [
+   "compass_inconsistency",
+   "ekf_inconsistency"
+  ],
+  "false_positives": 0,
+  "incidents": 312,
+  "advisories": 4,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 217,
+  "buffer_last": 3367,
+  "detect_ms_first": 0.69,
+  "detect_ms_last": 5.89,
+  "worst_cycle_ms": 17.0,
+  "ambiguous": true,
+  "expected_first": "ekf_inconsistency",
+  "ambiguity_confirmed": true,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\compass_offset_r0.json",
+  "bundle_id": "25650f70f9ec832a",
+  "rep": 0
+ },
+ {
+  "scenario": "stiff_airframe",
+  "expected": "vibration_excessive",
+  "ok": false,
+  "injected": [
+   "SIM_ACC1_RND=90.0",
+   "SIM_VIB_MOT_MAX=120.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 0.7,
+  "all_advised": [
+   "accel_clipping",
+   "actuator_saturation",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 1754,
+  "advisories": 6,
+  "suppression": 0.997,
+  "cycles": 181,
+  "buffer_first": 210,
+  "buffer_last": 3325,
+  "detect_ms_first": 0.44,
+  "detect_ms_last": 6.35,
+  "worst_cycle_ms": 27.2,
+  "ambiguous": true,
+  "expected_first": "accel_clipping",
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\stiff_airframe_r0.json",
+  "bundle_id": "402239eaf6ed326b",
+  "rep": 0
+ },
+ {
+  "scenario": "compass_offset",
+  "expected": "compass_inconsistency",
+  "ok": true,
+  "injected": [
+   "SIM_MAG1_OFS_X=400.0",
+   "SIM_MAG1_OFS_Y=400.0"
+  ],
+  "inject_verified": false,
+  "first_advised": "ekf_inconsistency",
+  "latency_s": 0.8,
+  "all_advised": [
+   "compass_inconsistency",
+   "ekf_inconsistency"
+  ],
+  "false_positives": 0,
+  "incidents": 312,
+  "advisories": 4,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 210,
+  "buffer_last": 3353,
+  "detect_ms_first": 0.41,
+  "detect_ms_last": 5.74,
+  "worst_cycle_ms": 22.7,
+  "ambiguous": true,
+  "expected_first": "ekf_inconsistency",
+  "ambiguity_confirmed": true,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\compass_offset_r1.json",
+  "bundle_id": "e962a5213415c292",
+  "rep": 1
+ },
+ {
+  "scenario": "stiff_airframe",
+  "expected": "vibration_excessive",
+  "ok": false,
+  "injected": [
+   "SIM_ACC1_RND=90.0",
+   "SIM_VIB_MOT_MAX=120.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 0.7,
+  "all_advised": [
+   "accel_clipping",
+   "actuator_saturation",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 1717,
+  "advisories": 6,
+  "suppression": 0.997,
+  "cycles": 181,
+  "buffer_first": 212,
+  "buffer_last": 3339,
+  "detect_ms_first": 0.41,
+  "detect_ms_last": 5.72,
+  "worst_cycle_ms": 25.8,
+  "ambiguous": true,
+  "expected_first": "accel_clipping",
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\stiff_airframe_r1.json",
+  "bundle_id": "90d7c50c2486d8a5",
+  "rep": 1
+ },
+ {
+  "scenario": "compass_offset",
+  "expected": "compass_inconsistency",
+  "ok": true,
+  "injected": [
+   "SIM_MAG1_OFS_X=400.0",
+   "SIM_MAG1_OFS_Y=400.0"
+  ],
+  "inject_verified": false,
+  "first_advised": "ekf_inconsistency",
+  "latency_s": 0.7,
+  "all_advised": [
+   "compass_inconsistency",
+   "ekf_inconsistency"
+  ],
+  "false_positives": 0,
+  "incidents": 312,
+  "advisories": 4,
+  "suppression": 0.987,
+  "cycles": 181,
+  "buffer_first": 217,
+  "buffer_last": 3353,
+  "detect_ms_first": 0.68,
+  "detect_ms_last": 5.72,
+  "worst_cycle_ms": 21.4,
+  "ambiguous": true,
+  "expected_first": "ekf_inconsistency",
+  "ambiguity_confirmed": true,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\compass_offset_r2.json",
+  "bundle_id": "ebad6469cce79d55",
+  "rep": 2
+ },
+ {
+  "scenario": "stiff_airframe",
+  "expected": "vibration_excessive",
+  "ok": false,
+  "injected": [
+   "SIM_ACC1_RND=90.0",
+   "SIM_VIB_MOT_MAX=120.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 0.7,
+  "all_advised": [
+   "accel_clipping",
+   "actuator_saturation",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 1776,
+  "advisories": 6,
+  "suppression": 0.997,
+  "cycles": 181,
+  "buffer_first": 210,
+  "buffer_last": 3332,
+  "detect_ms_first": 0.43,
+  "detect_ms_last": 5.86,
+  "worst_cycle_ms": 26.4,
+  "ambiguous": true,
+  "expected_first": "accel_clipping",
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\stiff_airframe_r2.json",
+  "bundle_id": "b4cf4b11ce47dcfb",
+  "rep": 2
+ }
+]

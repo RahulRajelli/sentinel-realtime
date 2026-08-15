@@ -1,0 +1,103 @@
+[
+ {
+  "scenario": "stiff_airframe",
+  "expected": "vibration_excessive",
+  "ok": false,
+  "injected": [
+   "SIM_ACC1_RND=70.0",
+   "SIM_VIB_MOT_MAX=120.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 1.0,
+  "all_advised": [
+   "accel_clipping",
+   "actuator_saturation",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 1576,
+  "advisories": 6,
+  "suppression": 0.996,
+  "cycles": 181,
+  "buffer_first": 217,
+  "buffer_last": 3311,
+  "detect_ms_first": 0.86,
+  "detect_ms_last": 7.18,
+  "worst_cycle_ms": 20.4,
+  "ambiguous": true,
+  "expected_first": "accel_clipping",
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\stiff_airframe_rnd70_r0.json",
+  "bundle_id": "5737e7818788d367",
+  "rep": 0
+ },
+ {
+  "scenario": "stiff_airframe",
+  "expected": "vibration_excessive",
+  "ok": false,
+  "injected": [
+   "SIM_ACC1_RND=70.0",
+   "SIM_VIB_MOT_MAX=120.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 0.8,
+  "all_advised": [
+   "accel_clipping",
+   "actuator_saturation",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 2397,
+  "advisories": 6,
+  "suppression": 0.997,
+  "cycles": 181,
+  "buffer_first": 217,
+  "buffer_last": 3318,
+  "detect_ms_first": 0.42,
+  "detect_ms_last": 5.72,
+  "worst_cycle_ms": 29.6,
+  "ambiguous": true,
+  "expected_first": "accel_clipping",
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\stiff_airframe_rnd70_r1.json",
+  "bundle_id": "a935333bb24792d1",
+  "rep": 1
+ },
+ {
+  "scenario": "stiff_airframe",
+  "expected": "vibration_excessive",
+  "ok": false,
+  "injected": [
+   "SIM_ACC1_RND=70.0",
+   "SIM_VIB_MOT_MAX=120.0"
+  ],
+  "inject_verified": true,
+  "first_advised": "vibration_excessive",
+  "latency_s": 1.0,
+  "all_advised": [
+   "accel_clipping",
+   "vibration_excessive"
+  ],
+  "false_positives": 0,
+  "incidents": 1791,
+  "advisories": 4,
+  "suppression": 0.998,
+  "cycles": 181,
+  "buffer_first": 210,
+  "buffer_last": 3305,
+  "detect_ms_first": 0.41,
+  "detect_ms_last": 5.77,
+  "worst_cycle_ms": 20.0,
+  "ambiguous": true,
+  "expected_first": "accel_clipping",
+  "ambiguity_confirmed": false,
+  "cadence_s": 0.25,
+  "bundle": "bundles\\stiff_airframe_rnd70_r2.json",
+  "bundle_id": "b1b9f96896136032",
+  "rep": 2
+ }
+]
