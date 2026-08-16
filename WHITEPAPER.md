@@ -181,17 +181,23 @@ misreading accurate evidence with confidence**, and no amount of fact-checking t
 catch that. The only thing that catches it is a test where the correct answer and the plausible
 answer are different, which is what the compass fault is for.
 
-## Five things I was wrong about
+## Eight things I was wrong about
 
-Over two days I formed five conclusions and withdrew all five.
+Every conclusion I formed and later withdrew, with what caught it.
 
 | I claimed | What killed it |
 |---|---|
 | "The difference is statistically significant" | I counted 27 samples where there were 9 independent flights. Corrected, the ranges overlap |
 | "Removing timestamps raised Gemini's agent to 0.89" | That was one run. Gemini's five-run mean is 0.69. The 0.96 in the table above is a different model, GPT, and a different experiment |
-| "AI agents mistake ordering for causation" | True of Gemini, false of GPT |
+| "AI agents mistake ordering for causation" | True of Gemini, false of GPT — and false of a newer Gemini too |
 | "The rest of the gap is a scoring bug in my code" | I fixed the bug. The gap did not move |
 | "Remove timestamps from the tools" | Helps the weaker model, slightly hurts the stronger one |
+| "Gemini's single-shot judge scores 0.89" | That was the most common run, quoted as if it were the average. The real average is 0.911 |
+| **"Naming the model is enough"** | The same model, same task, same prompts scored **0.11 through one provider and 0.46 through another**. A result has to name the route as well as the model |
+| **"These accuracies describe the judges"** | They describe the judges **on one fault**. On a second fault, built later, the two best-scoring judges both drop to **0.00** and name the symptom on every single attempt |
+
+The last two are the expensive ones, because they do not look like errors. Both are cases where a
+number was correct and the sentence around it claimed more than the number could support.
 
 Every one was caught by a check rather than by an argument: an outside model reviewing my work
 against a written rubric, running things five times instead of once, testing a second model, and
