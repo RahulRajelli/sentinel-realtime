@@ -211,8 +211,19 @@ class LiveRunner:
         self,
         duration_s: float,
         on_cycle: Callable[[CycleReport], None] | None = None,
+        on_message: Callable[[object, float], None] | None = None,
     ) -> list[CycleReport]:
-        """Pump the link, running detectors every cadence_s. Returns every cycle report."""
+        """Pump the link, running detectors every cadence_s. Returns every cycle report.
+
+        `on_message` sees every raw MAVLink message with the runner's own clock, before the
+        adapter decides whether it is one of the types the detectors care about. It exists so a
+        caller can record what the AUTOPILOT broadcasts (STATUSTEXT, failsafe chatter) on the
+        SAME flight and the SAME timebase as the advisories, which is the only way the two are
+        comparable. Reading them from a second flight and presenting one timeline is a stitch.
+
+        Deliberately a callback rather than a stored log: the runner must not grow a buffer whose
+        size depends on how chatty the vehicle is.
+        """
         self.t0 = time.monotonic()
         reports: list[CycleReport] = []
         next_cycle = self.warmup_s
@@ -223,6 +234,8 @@ class LiveRunner:
             if msg is not None:
                 self.messages_seen += 1
                 self.health.on_message()
+                if on_message is not None:
+                    on_message(msg, self._now())
                 for mtype, rec in self.adapter.feed(msg, self._now()):
                     self.buffer.add(mtype, rec)
 

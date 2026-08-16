@@ -1,0 +1,58 @@
+{
+ "scenario": "hot_gains_lowd",
+ "injected_at": 8.016,
+ "inject": {
+  "ATC_ANG_RLL_P": 30.0,
+  "ATC_ANG_PIT_P": 30.0,
+  "ATC_RAT_RLL_P": 0.9,
+  "ATC_RAT_PIT_P": 0.9,
+  "ATC_RAT_RLL_D": 0.0,
+  "ATC_RAT_PIT_D": 0.0,
+  "INS_GYRO_FILTER": 4.0,
+  "SIM_WIND_SPD": 20.0
+ },
+ "cadence_s": 0.25,
+ "one_flight": true,
+ "said": [
+  {
+   "t": 17.813,
+   "sev": 0,
+   "text": "Potential Thrust Loss (1)",
+   "rel": 9.797
+  }
+ ],
+ "advised": [
+  {
+   "t": 10.297,
+   "type": "actuator_saturation",
+   "sev": "critical",
+   "reason": "new",
+   "evidence": "Motor_PWM_Imbalance=778 (thr 300)",
+   "rel": 2.281
+  },
+  {
+   "t": 11.0,
+   "type": "control_oscillation",
+   "sev": "critical",
+   "reason": "new",
+   "evidence": "Peak_Roll_Error_Amp=27.94 (thr 3)",
+   "rel": 2.984
+  },
+  {
+   "t": 40.297,
+   "type": "actuator_saturation",
+   "sev": "critical",
+   "reason": "reminder",
+   "evidence": "Saturated_Motor_Count=1 (thr 1); Motor_PWM_Imbalance=800 (thr 300)",
+   "rel": 32.281
+  },
+  {
+   "t": 41.0,
+   "type": "control_oscillation",
+   "sev": "critical",
+   "reason": "reminder",
+   "evidence": "Peak_Pitch_Error_Amp=45.94 (thr 3)",
+   "rel": 32.984
+  }
+ ]
+}
