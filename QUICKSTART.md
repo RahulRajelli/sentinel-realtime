@@ -7,29 +7,26 @@ If any step does not print roughly what is shown below, that is a bug and worth 
 
 ---
 
-## 1. Install (two clones, one reason)
+## 1. Install
 
-The detectors live in a sibling package, `flightdx`, which is not on PyPI. So it is two clones
-rather than one. They must sit **next to each other**.
+```bash
+pip install sentinel-realtime
+```
+
+That pulls `flightdx` — the parsers and the seven detectors — with it as a declared dependency.
+Python 3.11+. Nothing else: no drone, no simulator, no API key, no account.
+
+Steps 3 and 4 below reproduce the published figures, and those need the committed flights, which
+ship in the repository rather than in the wheel:
 
 ```bash
 git clone https://github.com/RahulRajelli/sentinel-realtime
-git clone https://github.com/RahulRajelli/ardupilot-log-analyzer
 cd sentinel-realtime
+pip install -e ".[dev]"
 ```
 
-```bash
-python -m venv .venv
-source .venv/bin/activate        # Linux / macOS
-# .venv\Scripts\activate         # Windows
-```
-
-```bash
-pip install -e .
-pip install -e ../ardupilot-log-analyzer
-```
-
-Needs Python 3.11+. Nothing else.
+Working on the detectors themselves? Clone `ardupilot-log-analyzer` next to this one and
+`pip install -e` that too; `conftest.py` puts the sibling `src/` tree on the path.
 
 ## 2. Check the install
 
@@ -168,8 +165,7 @@ vague — it may be false.
 |---|---|
 | **PX4** | Not supported, deliberately. Different dialect, different log format, different parameter names. It would run and find nothing, which is worse than refusing. |
 | **Betaflight / INAV** | Not supported. No MAVLink telemetry of this shape. |
-| **`pip install sentinel-realtime`** | Not on PyPI yet. Hence the two clones. |
-| **The two repos in unrelated folders** | `flightdx` is imported by path in places. Keep them siblings. |
+| **The two repos in unrelated folders** | Only matters for an editable dev install — `flightdx` is imported by path there. A plain `pip install` needs neither clone. |
 | **Running the AI judges** | Needs *some* endpoint — but not a paid one. See step 6; Ollama runs locally with no account. Steps 1–4 need nothing at all, and they are the parts that prove the claim. |
 
 ## Where to go next

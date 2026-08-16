@@ -2,6 +2,7 @@
 
 [![tests](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/tests.yml/badge.svg)](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/tests.yml)
 [![codeql](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/codeql.yml/badge.svg)](https://github.com/RahulRajelli/sentinel-realtime/actions/workflows/codeql.yml)
+[![PyPI](https://img.shields.io/pypi/v/sentinel-realtime.svg)](https://pypi.org/project/sentinel-realtime/)
 [![licence: Apache-2.0](https://img.shields.io/badge/licence-Apache--2.0-blue.svg)](LICENSE)
 [![python: 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
 [![baseline B0 = 0.00](https://img.shields.io/badge/baseline%20B0-0.00-critical.svg)](QUICKSTART.md#4-reproduce-the-headline-result)
@@ -53,21 +54,19 @@ the harness that answers that question honestly — including when the answer is
 > **[docs/SETUP.md](docs/SETUP.md)**.
 
 ```bash
-pip install git+https://github.com/RahulRajelli/ardupilot-log-analyzer
-pip install git+https://github.com/RahulRajelli/sentinel-realtime
+pip install sentinel-realtime
 sentinel analyze YOURFLIGHT.BIN
 ```
 
-Two commands, because the detectors (`flightdx`) are useful without the realtime tier and live in
-their own repository. Python 3.11+, no simulator, no MAVLink link, no API key, no account. If
-anything is missing, `sentinel doctor` names the piece and the fix.
+That is the whole setup. `flightdx` — the parsers and the seven detectors — is a declared
+dependency and comes with it. Python 3.11+, no simulator, no MAVLink link, no API key, no account.
+If anything is missing, `sentinel doctor` names the piece and the fix.
 
-> **PyPI is not live yet.** Both packages build and pass `twine check`, and `pip install
-> sentinel-realtime` will be the single command once they are published. Until then the two lines
-> above are the install, and they are what gets tested.
+Want the detectors without the realtime tier? `pip install flightdx` on its own is Python 3.10+ and
+pulls no web stack.
 
-For development, clone the two as siblings and `pip install -e` each; `conftest.py` adds the
-sibling `src/` tree to the path so the tests run either way.
+For development, clone the two repositories as siblings and `pip install -e` each; `conftest.py`
+adds the sibling `src/` tree to the path so the tests run either way.
 
 It reads the `.BIN` files already on your SD card.
 Real output, from a real 3.4 MB log:

@@ -41,18 +41,21 @@ python -m venv .venv
 # Windows:  .venv\Scripts\activate
 # Linux/macOS: source .venv/bin/activate
 
-pip install -e .            # log analysis only
-pip install -e ".[live]"    # adds live MAVLink capture
+pip install sentinel-realtime            # log analysis
+pip install "sentinel-realtime[live]"    # adds live MAVLink capture
 ```
 
-**The detectors live in a sibling package.** `flightdx` ships in
-[ardupilot-log-analyzer](https://github.com/RahulRajelli/ardupilot-log-analyzer) and is not on
-PyPI. Clone it next to this repo:
+`flightdx` — the parsers and the seven detectors — is a declared dependency and installs with it.
+It is [its own package](https://pypi.org/project/flightdx/) if you want the detectors without the
+realtime tier, and [its own repository](https://github.com/RahulRajelli/ardupilot-log-analyzer).
+
+**Only for an editable dev install** do the two need to be siblings, because `flightdx` is
+imported by path there:
 
 ```bash
-cd ..
+git clone https://github.com/RahulRajelli/sentinel-realtime
 git clone https://github.com/RahulRajelli/ardupilot-log-analyzer
-pip install -e ardupilot-log-analyzer
+cd sentinel-realtime && pip install -e ".[dev]" && pip install -e ../ardupilot-log-analyzer
 ```
 
 Then confirm the whole thing:
