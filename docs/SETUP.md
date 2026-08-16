@@ -182,7 +182,10 @@ python scripts/e4_report.py --bundles bundles --verdicts verdicts.json --only co
 
 `--provider gemini` uses Google application-default credentials instead. Any OpenAI-compatible
 endpoint works: omit `--base-url` for OpenAI, `https://api.x.ai/v1` for Grok,
-`http://localhost:11434/v1` for a local server.
+`http://localhost:11434/v1` for Ollama, or `http://localhost:8000/v1` for Unsloth Desktop
+(`unsloth run --model <gguf> -p 8000 --disable-tools`). The local routes are free and need no
+account; **[QUICKSTART.md](../QUICKSTART.md) step 6** has the full recipe and the three caveats
+that decide whether the numbers mean anything.
 
 **Run five times and report a mean.** These models are not deterministic even at temperature 0;
 measured spread is one judgement in nine, and single runs have produced two retracted claims here.

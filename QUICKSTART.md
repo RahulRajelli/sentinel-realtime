@@ -133,6 +133,7 @@ python scripts/e4_report.py --bundles bundles --verdicts verdicts.json --only co
 | Route | Endpoint | Notes |
 |---|---|---|
 | **Ollama, local** | `http://localhost:11434/v1` | Genuinely free and needs no account. Use `OPENAI_API_KEY=none` — any non-empty string works. Best option for just trying it. |
+| **Unsloth Desktop, local** | `http://localhost:8000/v1` (or your `-p` port) | Free, open source, runs and fine-tunes locally. Needs a real key from the app. See below. |
 | **OpenRouter** | `https://openrouter.ai/api/v1` | Aggregates many providers behind one key and carries free-tier models (conventionally suffixed `:free`). |
 | **NVIDIA NIM** | `https://integrate.api.nvidia.com/v1` | Hosts the Nemotron family with a free developer tier. |
 | **xAI** | `https://api.x.ai/v1` | Paid. |
@@ -141,6 +142,47 @@ python scripts/e4_report.py --bundles bundles --verdicts verdicts.json --only co
 **Free tiers change faster than this file does.** Treat the table as *where to look*, not as a
 promise about current quotas or which models are free today — check the provider before assuming.
 The mechanism (any OpenAI-compatible base URL) is the stable part.
+
+### Running it against a local model with Unsloth Desktop
+
+> **Written from Unsloth's documentation, not from a run of this harness against it.** Nothing in
+> this project has been measured on Unsloth. Treat the commands as a starting point and the
+> numbers you get as yours, not as a result of this repository. Unsloth Desktop shipped
+> 2026-08-11, so it is new enough that its flags may have moved by the time you read this.
+
+Install, then serve a model as an OpenAI-compatible endpoint:
+
+```bash
+curl -fsSL https://unsloth.ai/install.sh | sh     # macOS / Linux / WSL
+# Windows PowerShell:  irm https://unsloth.ai/install.ps1 | iex
+
+unsloth run --model <a-gguf-model> -p 8000 --disable-tools
+```
+
+The API key is generated inside the app — **Settings → API → Create** — and starts `sk-unsloth-`.
+Unlike Ollama, a placeholder will not do:
+
+```bash
+export OPENAI_API_KEY=sk-unsloth-...
+python scripts/e4_judge.py --bundles bundles --only compass_offset \
+  --judges B0,B1,B3 --provider openai --model <the-model-you-served> \
+  --base-url http://localhost:8000/v1 --out verdicts-local.json
+```
+
+Three things worth knowing before you spend an evening on it:
+
+* **`--disable-tools` is deliberate.** Unsloth enables its own web search, code execution and
+  bash for clients on localhost. This harness supplies its own read-only tools and needs none of
+  that, so leaving them on adds a local code-execution surface for no benefit. Turning them off
+  does not affect the function-calling B3 relies on, which is the OpenAI tools parameter and a
+  different mechanism.
+* **Pick a model that fits your card before blaming the result.** The size the docs demonstrate is
+  far larger than a consumer GPU holds; on 8 GB you are realistically at ~8B quantised. A model
+  that is thrashing or truncating is a hardware result wearing a capability costume.
+* **The cost table does not transfer.** `scripts/e4_cost.py` reports tokens per correct answer,
+  and local tokens are free at the margin, so a local model scores unbeatably well on a metric
+  that has stopped measuring anything. If you want a comparable number for local inference, the
+  honest one is wall-clock or energy per correct answer, and this repo does not measure either.
 
 Two things that will bite you, so they are stated rather than left to discover:
 
