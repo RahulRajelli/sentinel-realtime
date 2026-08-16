@@ -53,12 +53,23 @@ the harness that answers that question honestly — including when the answer is
 > **[docs/SETUP.md](docs/SETUP.md)**.
 
 ```bash
-pip install -e .          # plus flightdx, see Dependency below
-sentinel doctor           # tells you what's installed and what's missing
+pip install git+https://github.com/RahulRajelli/ardupilot-log-analyzer
+pip install git+https://github.com/RahulRajelli/sentinel-realtime
 sentinel analyze YOURFLIGHT.BIN
 ```
 
-No simulator, no MAVLink link, no API key. It reads the `.BIN` files already on your SD card.
+Two commands, because the detectors (`flightdx`) are useful without the realtime tier and live in
+their own repository. Python 3.11+, no simulator, no MAVLink link, no API key, no account. If
+anything is missing, `sentinel doctor` names the piece and the fix.
+
+> **PyPI is not live yet.** Both packages build and pass `twine check`, and `pip install
+> sentinel-realtime` will be the single command once they are published. Until then the two lines
+> above are the install, and they are what gets tested.
+
+For development, clone the two as siblings and `pip install -e` each; `conftest.py` adds the
+sibling `src/` tree to the path so the tests run either way.
+
+It reads the `.BIN` files already on your SD card.
 Real output, from a real 3.4 MB log:
 
 ```
@@ -125,13 +136,21 @@ actuator and battery verdicts are unreliable.
 
 ## The problem the agent layer exists for
 
-One fault trips several detectors. A stiff airframe clips the accelerometer *before* the
-vibration detector has enough window to call it. A magnetometer offset raises EKF variance
-immediately, while the compass detector waits a full second to confirm the anomaly is sustained.
+One fault trips several detectors, and the fastest detector is not the one that is right. A
+magnetometer offset raises EKF variance immediately, while the compass detector waits a full
+second to confirm the anomaly is sustained. A mistuned attitude loop drives the motors to their
+limits, and `actuator_saturation` is advised **1.719 s** before `control_oscillation`, because
+the oscillation detector needs two consecutive 1.5 s windows before it may speak.
 
 In both cases the **first** alarm is a symptom, and the deterministic tier answers it with total
-confidence. Telling an operator "accelerometer clipping" when the fix is a loose motor mount is
-the difference between a wasted maintenance day and a corrected aircraft.
+confidence. The second case is the expensive one: the symptom reads as a motor or ESC fault and
+the cause means detune the controller. **Opposite actions.** On the ground that is a wrongly
+swapped ESC; in the air, "motor failure" on a quad can mean shutting a motor down.
+
+That gap is also why root cause is not the only question worth asking. The action that is correct
+under *both* readings is decidable at the symptom, deterministically, with no model in the loop —
+**[docs/SAFE-ACTION-SPEC.md](docs/SAFE-ACTION-SPEC.md)** specifies it, including the hole in its
+own evaluation.
 
 > **The generalisable part is not about drones.** Most evaluations beat a baseline that is weak by
 > accident, so "the expensive method won" is a sampling result rather than a structural one. Here
@@ -180,17 +199,47 @@ the LLM is invoked per *escalation*, not per cycle — on the order of tens of c
 one method. `ScriptedClient` and `DryRunClient` already do, which is how the whole test suite
 runs at zero cost.
 
-**The table below is arithmetic from published per-token prices, not observations.** Real sweeps
-have since run across nine models, and the number that turned out to matter is not cost per
-judgement but **cost per correct answer** — `scripts/e4_cost.py` regenerates it and spends nothing:
+**The number that decides this is not cost per judgement. It is cost per CORRECT answer.**
+`scripts/e4_cost.py` regenerates everything below from committed verdict files and spends nothing.
+
+**Nine models, one frozen arm** (B3, `compass_offset`, variants v1/v2/v3 — identical prompts and
+tools, so any difference in spend is the model rather than the task):
+
+| model | runs | tok/judgement | acc | **tok/correct** |
+|---|---|---|---|---|
+| `gemini-3.7-flash` | 5 | 5,138 | 1.00 | **5,138** |
+| `zai-glm-5.2` | 5 | 5,199 | 0.98 | **5,317** |
+| `grok-4.6` | 5 | 6,955 | 0.82 | **8,459** |
+| `qwen3.8-max` | 5 | 5,753 | 0.67 | **8,630** |
+| `kimi-k3` | 5 | 6,020 | 0.67 | **9,030** |
+| `gemini-2.5-flash` | 10 | **4,652** | 0.46 | **10,211** |
+| `claude-sonnet-5` | 5 | 10,435 | 0.91 | **11,453** |
+| `deepseek-v4-pro` | 5 | 5,287 | 0.44 | **11,895** |
+| `deepseek-v4-flash` | 10 | 5,521 | 0.18 | **31,055** |
+
+**The cheapest model per judgement is not the cheapest model per right answer.**
+`gemini-2.5-flash` is the cheapest thing to call at 4,652 tok and lands sixth once accuracy is
+priced in. `gemini-3.7-flash` costs more per call and is the cheapest per correct answer.
+Best to worst is **6x**, and a model-selection decision made on the tok/judgement column alone
+would have picked the wrong model.
+
+`claude-sonnet-5` is the case worth understanding: **0.91 accuracy, and seventh on cost.** It is
+accurate and verbose, and per-token pricing punishes verbosity independently of whether the answer
+is right. Accuracy tables hide this entirely.
+
+**Within one model, across arms** — the same measure applied to the judge tiers:
 
 | arm | B1 tok/correct | B3 tok/correct | |
 |---|---|---|---|
-| `gpt-5.6-sol` untimed | 1,089 | 2,250 | B3 costs 2.07× and earns it (0.71 → 0.96) |
-| `gemini-2.5-flash` variance | 4,026 | 5,802 | B3 costs 1.44× and is **worse** (0.91 → 0.69) — strictly dominated |
+| `gpt-5.6-sol` untimed | 1,089 | 2,250 | B3 costs 2.07x and earns it (0.71 -> 0.96) |
+| `gemini-2.5-flash` variance | 4,026 | 5,802 | B3 costs 1.44x and is **worse** (0.91 -> 0.69) — strictly dominated |
 
-An arm can be cheaper per call and far more expensive per right answer. Trust that script's output
-over this table.
+**Caveat that travels with every row: these are `compass_offset` only.** Seven of the nine models
+have never been measured on a second fault, and on pair C the two that have both collapse to 0.00.
+The ranking is a ranking on one mechanism.
+
+The estimated-price table below predates all of this and is arithmetic, not observation. Trust
+the script.
 
 | | Opus-tier ($5/$25 per MTok) | Haiku-tier ($1/$5 per MTok) |
 |---|---|---|

@@ -7,7 +7,12 @@ requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
 authors = [{ name = "Rahul Rajelli" }]
 keywords = ["uav", "ardupilot", "mavlink", "llm-agents", "evaluation", "root-cause-analysis"]
-dependencies = ["pydantic>=2.0"]
+# `flightdx` carries the parsers and the seven detectors. It was previously undeclared, so
+# `pip install sentinel-realtime` succeeded and then every command failed with "flightdx is not
+# installed" -- a package that installs cleanly and cannot do anything is worse than one that
+# refuses to install. Declared now that flightdx is published; before that it could only be
+# satisfied from the sibling checkout, which is why CI installs `./_flightdx` explicitly.
+dependencies = ["pydantic>=2.0", "flightdx>=0.1.0"]
 
 # Trove classifiers. Only ones that are actually true: "Production/Stable" on a project whose own
 # write-up says its central claims rest on 3 flights would be the first dishonest line in it.

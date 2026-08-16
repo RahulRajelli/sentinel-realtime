@@ -127,6 +127,64 @@ def report_cost(bundles, only: str) -> None:
                       f"(accuracy {a1:.2f} -> {a3:.2f})")
 
 
+def report_prevalence_cost(bundles) -> None:
+    """Cost per correct answer across every model in the prevalence sweep.
+
+    `report_cost` above walks ARMS -- one model per arm, several judges per arm. This walks the
+    other axis: ONE frozen arm (`e4_prevalence.py`'s, B0+B3 on `compass_offset`) across nine
+    models. That axis is where the interesting spread is, because accuracy and spend move
+    independently: the cheapest model per judgement is not the cheapest per RIGHT ANSWER, and on
+    this sweep the gap between those two orderings is more than two orders of magnitude.
+
+    Models are discovered from the filenames rather than hard-coded, so a model added to the
+    sweep appears here without editing this file. B0 is skipped -- it spends nothing by
+    construction and scores 0.00 on this arm, so `tok/correct` is 0/0 and printing it invites a
+    division that means nothing.
+    """
+    print()
+    print("=" * 100)
+    print("1b. COST PER CORRECT ANSWER, ACROSS MODELS")
+    print("    One frozen arm (B3, compass_offset, v1/v2/v3), nine models. Identical prompts and")
+    print("    tools, so any difference in spend is the model rather than the task.")
+    print("=" * 100)
+
+    files = sorted(glob.glob(str(_ROOT / "results" / "prevalence" / "*__run*.json")))
+    models = sorted({Path(f).name.split("__run")[0] for f in files})
+    if not models:
+        print("\n  no prevalence runs on disk (results/prevalence/*__run*.json)")
+        return
+
+    print(f"\n    {'model':22} {'runs':>4} {'judg':>5} {'tok/judg':>9} {'calls':>6} "
+          f"{'acc':>6} {'tok/correct':>12}")
+    out = []
+    for m in models:
+        agg = collect(bundles, f"results/prevalence/{m}__run*.json")
+        a = agg.get("B3")
+        if not a or not a["n"]:
+            continue
+        acc = a["acc_sum"] / a["runs"] if a["runs"] else 0.0
+        per = (a["tin"] + a["tout"]) / a["n"]
+        out.append((m, a["runs"], a["n"], per, a["calls"] / a["n"], acc,
+                    per / acc if acc > 0 else None))
+
+    # Ordered by what you pay for one right answer, which is the ranking the argument turns on.
+    for m, runs, n, per, calls, acc, eff in sorted(
+            out, key=lambda r: (r[6] is None, r[6] or 0)):
+        cell = f"{eff:>12,.0f}" if eff is not None else f"{'never right':>12}"
+        print(f"    {m:22} {runs:>4} {n:>5} {per:>9,.0f} {calls:>6.2f} {acc:>6.2f} {cell}")
+
+    priced = [r for r in out if r[6] is not None]
+    if len(priced) >= 2:
+        best = min(priced, key=lambda r: r[6])
+        worst = max(priced, key=lambda r: r[6])
+        cheap = min(priced, key=lambda r: r[3])
+        print(f"\n    cheapest per RIGHT ANSWER : {best[0]} at {best[6]:,.0f} tok")
+        print(f"    dearest  per RIGHT ANSWER : {worst[0]} at {worst[6]:,.0f} tok "
+              f"({worst[6]/best[6]:.0f}x)")
+        print(f"    cheapest per JUDGEMENT     : {cheap[0]} at {cheap[3]:,.0f} tok/judg"
+              f"{'  -- NOT the same model' if cheap[0] != best[0] else ''}")
+
+
 def report_attribution(bundles, only: str) -> None:
     print()
     print("=" * 100)
@@ -213,6 +271,7 @@ def main() -> int:
     print(f"{len(bundles)} bundles ({args.only}); all figures below come from committed "
           f"verdict files -- nothing is spent to run this.\n")
     report_cost(bundles, args.only)
+    report_prevalence_cost(bundles)
     report_attribution(bundles, args.only)
     report_variants(bundles, args.only)
     detectability()
