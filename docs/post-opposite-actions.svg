@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="1200" fill="#0f172a"/>
+
+  <!-- title -->
+  <text x="80" y="126" font-size="58" font-weight="800" fill="#f8fafc">The first alarm says</text>
+  <text x="80" y="196" font-size="58" font-weight="800" fill="#f8fafc">check the motors.</text>
+  <text x="80" y="250" font-size="24" fill="#94a3b8">The motors are fine. The controller needs detuning. On a quad, acting on the</text>
+  <text x="80" y="282" font-size="24" fill="#94a3b8">first alarm can mean shutting down a working motor.</text>
+  <line x1="80" y1="318" x2="1120" y2="318" stroke="#334155" stroke-width="2"/>
+
+  <!-- timeline -->
+  <text x="80" y="366" font-size="18" font-weight="700" fill="#64748b" letter-spacing="2.5">ONE FAULT, TWO DETECTORS</text>
+
+  <rect x="110" y="396" width="430" height="86" rx="10" fill="#450a0a" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="132" y="432" font-size="25" font-weight="700" fill="#fca5a5">actuator_saturation</text>
+  <text x="132" y="462" font-size="19" fill="#fecaca">fires FIRST, and it is the symptom</text>
+
+  <rect x="640" y="396" width="450" height="86" rx="10" fill="#042f2e" stroke="#14b8a6" stroke-width="2.5"/>
+  <text x="662" y="432" font-size="25" font-weight="700" fill="#5eead4">control_oscillation</text>
+  <text x="662" y="462" font-size="19" fill="#99f6e4">the actual cause, 1.7 s later</text>
+
+  <line x1="120" y1="530" x2="1080" y2="530" stroke="#475569" stroke-width="3"/>
+  <circle cx="200" cy="530" r="11" fill="#64748b"/>
+  <circle cx="470" cy="530" r="15" fill="#ef4444"/>
+  <circle cx="880" cy="530" r="15" fill="#14b8a6"/>
+
+  <text x="146" y="576" font-size="19" fill="#64748b">t = 8.00 s</text>
+  <text x="150" y="600" font-size="17" fill="#475569">inject</text>
+  <text x="418" y="576" font-size="19" fill="#64748b">t = 11.06 s</text>
+  <text x="828" y="576" font-size="19" fill="#64748b">t = 12.78 s</text>
+
+  <line x1="470" y1="628" x2="880" y2="628" stroke="#f59e0b" stroke-width="2.5"/>
+  <line x1="470" y1="620" x2="470" y2="636" stroke="#f59e0b" stroke-width="2.5"/>
+  <line x1="880" y1="620" x2="880" y2="636" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="516" y="672" font-size="22" font-weight="700" fill="#fbbf24">1.719 s in which every response is the wrong one</text>
+
+  <line x1="80" y1="712" x2="1120" y2="712" stroke="#334155" stroke-width="2"/>
+
+  <!-- what each one tells you to do -->
+  <text x="80" y="760" font-size="18" font-weight="700" fill="#64748b" letter-spacing="2.5">WHAT EACH ONE TELLS YOU TO DO</text>
+
+  <rect x="80" y="790" width="500" height="196" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="108" y="832" font-size="20" font-weight="700" fill="#94a3b8">WHAT MY OWN CODE PRINTS</text>
+  <text x="108" y="878" font-size="24" font-weight="800" fill="#fca5a5">"Check motor/ESC health,</text>
+  <text x="108" y="910" font-size="24" font-weight="800" fill="#fca5a5">propeller damage, CG offset..."</text>
+  <text x="108" y="954" font-size="20" fill="#fecaca">A hangar instruction, printed in flight</text>
+
+  <rect x="620" y="790" width="500" height="196" rx="12" fill="#1e293b" stroke="#14b8a6" stroke-width="2.5"/>
+  <text x="648" y="832" font-size="20" font-weight="700" fill="#94a3b8">WHAT WAS ACTUALLY WRONG</text>
+  <text x="648" y="878" font-size="24" font-weight="800" fill="#5eead4">Detune the attitude loop.</text>
+  <text x="648" y="910" font-size="20" fill="#99f6e4">Rate damping removed, gyro over-filtered</text>
+  <text x="648" y="942" font-size="20" fill="#99f6e4">to 4 Hz. A 53.5&#176; limit cycle.</text>
+
+  <line x1="580" y1="888" x2="612" y2="888" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- the finding -->
+  <rect x="80" y="1024" width="1040" height="122" rx="12" fill="#1c1917" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="108" y="1066" font-size="20" font-weight="700" fill="#fbbf24" letter-spacing="2">YOU DO NOT NEED TO KNOW WHICH ONE IT IS</text>
+  <text x="108" y="1104" font-size="22" fill="#e7e5e4">Both alarms mean the same thing: <tspan font-weight="800" fill="#ffffff">stop demanding attitude from the loop, and land.</tspan></text>
+  <text x="108" y="1132" font-size="22" fill="#e7e5e4">Decidable at the FIRST alarm, 1.7 s early, with no model in the loop.</text>
+
+  <text x="80" y="1180" font-size="19" fill="#475569">Measured on ArduPilot SITL &#183; 218 offline tests &#183; github.com/RahulRajelli/sentinel-realtime</text>
+</svg>

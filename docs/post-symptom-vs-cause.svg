@@ -54,7 +54,7 @@
   <rect x="80" y="1000" width="1040" height="118" rx="12" fill="#1c1917" stroke="#f59e0b" stroke-width="2.5"/>
   <text x="108" y="1042" font-size="20" font-weight="700" fill="#fbbf24" letter-spacing="2">WHY THIS FAULT EXISTS AT ALL</text>
   <text x="108" y="1080" font-size="22" fill="#e7e5e4">On my original four scenarios the free deterministic baseline scored <tspan font-weight="800" fill="#ffffff">4/4 at zero cost</tspan>.</text>
-  <text x="108" y="1108" font-size="22" fill="#e7e5e4">No agent could beat it. So I made the problem harder instead of publishing the tie.</text>
+  <text x="108" y="1108" font-size="22" fill="#e7e5e4">So I built faults it gets wrong. It now scores 4.0/5, and one agent has beaten it.</text>
 
-  <text x="80" y="1168" font-size="19" fill="#475569">Measured on ArduPilot SITL · 74 offline tests · github.com/RahulRajelli/sentinel-realtime</text>
+  <text x="80" y="1168" font-size="19" fill="#475569">Measured on ArduPilot SITL · 218 offline tests · github.com/RahulRajelli/sentinel-realtime</text>
 </svg>
