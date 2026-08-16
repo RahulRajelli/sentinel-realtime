@@ -156,8 +156,12 @@ Install, then serve a model as an OpenAI-compatible endpoint:
 curl -fsSL https://unsloth.ai/install.sh | sh     # macOS / Linux / WSL
 # Windows PowerShell:  irm https://unsloth.ai/install.ps1 | iex
 
-unsloth run --model <a-gguf-model> -p 8000 --disable-tools
+unsloth run --model unsloth/Muse-Glimmer-30B-GGUF:UD-Q4_K_XL -p 8000 --disable-tools
 ```
+
+Unsloth's catalog carries the current agentic models as Dynamic GGUF quants -- Muse Glimmer 30B,
+Qwen3.8 27B, Gemma 4. **Read the memory caveat below before picking one**: the interesting ones
+are 27-31B and do not fit a laptop GPU.
 
 The API key is generated inside the app — **Settings → API → Create** — and starts `sk-unsloth-`.
 Unlike Ollama, a placeholder will not do:
@@ -176,9 +180,19 @@ Three things worth knowing before you spend an evening on it:
   that, so leaving them on adds a local code-execution surface for no benefit. Turning them off
   does not affect the function-calling B3 relies on, which is the OpenAI tools parameter and a
   different mechanism.
-* **Pick a model that fits your card before blaming the result.** The size the docs demonstrate is
-  far larger than a consumer GPU holds; on 8 GB you are realistically at ~8B quantised. A model
-  that is thrashing or truncating is a hardware result wearing a capability costume.
+* **Check the model fits before blaming the result.** A model that is swapping or truncating
+  produces a *hardware* result wearing a capability costume, and the harness cannot tell the
+  difference. Unsloth publishes the memory each quant needs — for Muse Glimmer 30B it is 12–14 GB
+  at 2-bit, 17 GB at 4-bit. The current agentic models in that family (Muse Glimmer 30B,
+  Qwen3.8 27B, Gemma 4 31B) therefore do **not** fit an 8 GB consumer card at any usable quant.
+  llama.cpp will still run them by offloading to system RAM or disk, and it will be slow.
+
+  Slow matters more here than it looks, because the protocol is not one prompt. A published B3
+  arm is 3 bundles x 3 variants x 5 runs = 45 judgements at roughly 2,150 tokens each, and B3
+  averages two model calls per judgement. At offloaded speeds that is hours per arm, not minutes.
+  If your card is 8 GB, either size down to something that sits entirely in VRAM (~8B class at
+  4-bit) and accept it as an extra B1-style row, or run one bundle and one variant as a probe and
+  say so when you report it. Do not start a five-run sweep you will not finish.
 * **The cost table does not transfer.** `scripts/e4_cost.py` reports tokens per correct answer,
   and local tokens are free at the margin, so a local model scores unbeatably well on a metric
   that has stopped measuring anything. If you want a comparable number for local inference, the
