@@ -50,9 +50,36 @@ AP = "/root/ardupilot"
 INSTANCE = 4                       # away from the scenario runner's instances
 PORT = 5760 + 10 * INSTANCE
 
-# The same injection compass_offset uses. Not a bigger one chosen to make a point -- if the
+# The same injections the scenarios use. Not bigger ones chosen to make a point -- if the
 # comparison needed a larger fault than the experiment uses, it would not be the same comparison.
-INJECT = {"SIM_MAG1_OFS_X": 400.0, "SIM_MAG1_OFS_Y": 400.0}
+#
+# `compass_offset` is the original arm and its recorded transcript is committed at
+# docs/_ardupilot-says.json. It is the DEFAULT and its behaviour is unchanged: the aircraft stays
+# on the ground, because a magnetometer bias raises EKF variance and flips 3D_MAG health whether
+# or not it is flying.
+#
+# `hot_gains_lowd` CANNOT be probed that way and this is the whole reason it needs its own entry.
+# The fault is a mistuned attitude loop; it produces nothing at all until the controller is
+# actively holding attitude against wind. Injecting these gains on a disarmed aircraft on the
+# ground records silence, and reporting that silence as "ArduPilot says nothing about this fault"
+# would be a measurement error, not a result. So it flies first.
+SCENARIOS = {
+    "compass_offset": {
+        "inject": {"SIM_MAG1_OFS_X": 400.0, "SIM_MAG1_OFS_Y": 400.0},
+        "fly": False,
+        "banner": "INJECTING MAGNETOMETER OFFSET",
+        "event": "SIM_MAG1_OFS_X/Y = 400 (magnetometer biased)",
+    },
+    "hot_gains_lowd": {
+        "inject": {"ATC_ANG_RLL_P": 30.0, "ATC_ANG_PIT_P": 30.0,
+                   "ATC_RAT_RLL_P": 0.90, "ATC_RAT_PIT_P": 0.90,
+                   "ATC_RAT_RLL_D": 0.0, "ATC_RAT_PIT_D": 0.0,
+                   "INS_GYRO_FILTER": 4.0, "SIM_WIND_SPD": 20.0},
+        "fly": True,
+        "banner": "INJECTING HOT GAINS + 4 Hz GYRO FILTER + 20 m/s WIND",
+        "event": "ATC_ANG_*_P=30, ATC_RAT_*_D=0, INS_GYRO_FILTER=4, SIM_WIND_SPD=20",
+    },
+}
 
 
 def launch_sitl() -> subprocess.Popen:
@@ -88,9 +115,14 @@ def set_param(conn, name: str, value: float) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="docs/_ardupilot-says.json")
+    ap.add_argument("--scenario", default="compass_offset", choices=sorted(SCENARIOS),
+                    help="which fault to inject. compass_offset is the committed arm")
     ap.add_argument("--settle", type=float, default=12.0, help="seconds before injecting")
     ap.add_argument("--watch", type=float, default=25.0, help="seconds to record after injecting")
     args = ap.parse_args()
+
+    cfg = SCENARIOS[args.scenario]
+    INJECT = cfg["inject"]
 
     print(f"launching SITL instance {INSTANCE} -> tcp:127.0.0.1:{PORT}")
     proc = launch_sitl()
@@ -100,6 +132,16 @@ def main() -> int:
     # Ask for the streams that carry the autopilot's own diagnostics.
     conn.mav.request_data_stream_send(conn.target_system, conn.target_component,
                                       mavutil.mavlink.MAV_DATA_STREAM_ALL, 10, 1)
+
+    if cfg["fly"]:
+        # Reused rather than hand-rolled: a GPS fix alone is not enough to arm, the EKF must reach
+        # POS_HORIZ_ABS and home must be set. A hand-written arm loop failed every scenario once
+        # already, which is why r7_r8_scenarios owns this.
+        sys.path.insert(0, str(_ROOT / "scripts"))
+        from r7_r8_scenarios import arm_and_takeoff  # noqa: E402
+        print(f"scenario {args.scenario} needs to be FLYING before the fault means anything")
+        arm_and_takeoff(conn, alt=10.0)
+        print("airborne")
 
     t_start = time.time()
     events: list[dict] = []
@@ -113,12 +155,11 @@ def main() -> int:
         now = time.time() - t_start
         if injected_at is None and now >= args.settle:
             injected_at = stamp()
-            print(f"\n--- t={injected_at:.2f}s  INJECTING MAGNETOMETER OFFSET ---")
+            print(f"\n--- t={injected_at:.2f}s  {cfg['banner']} ---")
             for k, v in INJECT.items():
                 set_param(conn, k, v)
                 print(f"    {k} = {v}")
-            events.append({"t": injected_at, "kind": "INJECT",
-                           "text": "SIM_MAG1_OFS_X/Y = 400 (magnetometer biased)"})
+            events.append({"t": injected_at, "kind": "INJECT", "text": cfg["event"]})
         if injected_at is not None and now >= args.settle + args.watch:
             break
 
@@ -160,7 +201,8 @@ def main() -> int:
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"injected_at": injected_at, "inject": INJECT,
+    out.write_text(json.dumps({"scenario": args.scenario, "flew": cfg["fly"],
+                               "injected_at": injected_at, "inject": INJECT,
                                "events": events}, indent=1), encoding="utf-8")
 
     print("\n" + "=" * 78)

@@ -1,0 +1,40 @@
+{
+ "scenario": "hot_gains_lowd",
+ "flew": true,
+ "injected_at": 10.062,
+ "inject": {
+  "ATC_ANG_RLL_P": 30.0,
+  "ATC_ANG_PIT_P": 30.0,
+  "ATC_RAT_RLL_P": 0.9,
+  "ATC_RAT_PIT_P": 0.9,
+  "ATC_RAT_RLL_D": 0.0,
+  "ATC_RAT_PIT_D": 0.0,
+  "INS_GYRO_FILTER": 4.0,
+  "SIM_WIND_SPD": 20.0
+ },
+ "events": [
+  {
+   "t": 0.0,
+   "kind": "MAGHEALTH",
+   "healthy": true,
+   "text": "3D_MAG health -> OK"
+  },
+  {
+   "t": 10.062,
+   "kind": "INJECT",
+   "text": "ATC_ANG_*_P=30, ATC_RAT_*_D=0, INS_GYRO_FILTER=4, SIM_WIND_SPD=20"
+  },
+  {
+   "t": 17.938,
+   "kind": "STATUSTEXT",
+   "sev": 0,
+   "text": "Potential Thrust Loss (2)"
+  },
+  {
+   "t": 19.544,
+   "kind": "STATUSTEXT",
+   "sev": 0,
+   "text": "Potential Thrust Loss (1)"
+  }
+ ]
+}
