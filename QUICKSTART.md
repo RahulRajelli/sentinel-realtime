@@ -48,7 +48,7 @@ pytest -q
 Expect:
 
 ```
-215 passed, 2 skipped
+218 passed, 2 skipped
 ```
 
 Takes about 35 s. Every one of those tests is offline — no simulator, no network, no key. About

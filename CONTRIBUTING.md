@@ -74,7 +74,7 @@ stays empty and looks hung.
 ## What CI enforces
 
 ```bash
-pytest -q     # 215 passed, 2 skipped
+pytest -q     # 218 passed, 2 skipped
 ```
 
 Two things worth knowing about that number:

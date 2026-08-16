@@ -43,7 +43,7 @@ the harness that answers that question honestly — including when the answer is
 > ### → **[QUICKSTART.md](QUICKSTART.md) — five minutes, no drone, no API key**
 >
 > You do not need hardware to check that any of this is true. The flights are captured and
-> committed, so you can install it, run 215 offline tests, and reproduce the headline result
+> committed, so you can install it, run 218 offline tests, and reproduce the headline result
 > (`B0 = 0.00`) entirely on your own machine. Start there if you want to verify the claim before
 > reading the argument for it.
 
@@ -180,9 +180,17 @@ the LLM is invoked per *escalation*, not per cycle — on the order of tens of c
 one method. `ScriptedClient` and `DryRunClient` already do, which is how the whole test suite
 runs at zero cost.
 
-**Estimated cost — not yet measured.** No LLM judge has been run against a live model, so these
-are arithmetic from published per-token prices and expected prompt sizes, not observations. The
-harness reports real `tok/judgement` once a sweep runs; trust that column, not this table.
+**The table below is arithmetic from published per-token prices, not observations.** Real sweeps
+have since run across nine models, and the number that turned out to matter is not cost per
+judgement but **cost per correct answer** — `scripts/e4_cost.py` regenerates it and spends nothing:
+
+| arm | B1 tok/correct | B3 tok/correct | |
+|---|---|---|---|
+| `gpt-5.6-sol` untimed | 1,089 | 2,250 | B3 costs 2.07× and earns it (0.71 → 0.96) |
+| `gemini-2.5-flash` variance | 4,026 | 5,802 | B3 costs 1.44× and is **worse** (0.91 → 0.69) — strictly dominated |
+
+An arm can be cheaper per call and far more expensive per right answer. Trust that script's output
+over this table.
 
 | | Opus-tier ($5/$25 per MTok) | Haiku-tier ($1/$5 per MTok) |
 |---|---|---|
@@ -211,18 +219,47 @@ itself, not the tuned model.
 
 ## Status — honest
 
-**Measured on ArduPilot SITL:** 4/4 scenarios pass · 0 false positives · 1.0 s detection latency
-(vibration), 5.0 s (GPS loss) · 96.9% advisory suppression · worst cycle **18 ms of 1000 ms**.
+**Measured on ArduPilot SITL:** 5/5 scenarios pass · 0 false positives · 1.0 s detection latency
+(vibration), 5.0 s (GPS loss), 3.1 s (pair C) · 96.9–98.6% advisory suppression · worst cycle
+**118 ms of 1000 ms**.
 
-**Not yet measured:** every judge comparison. B1/B2/B3 have not been run against a live model —
-the loops are proven end-to-end against a scripted client, at zero tokens. **No accuracy, κ, or
-cost number for any LLM judge exists yet, and none is claimed.**
+**The deterministic baseline is no longer perfect, and that is the point.** B0 scores **4.0 / 5**:
+1.00 on `null`, `vibration`, `gps_loss` and `wind`, and **0.00 on `hot_gains_lowd`**, where it
+answers `actuator_saturation` — the symptom — instead of `control_oscillation`. Until that fault
+existed the root cause's own detector always fired first, B0 won or tied everything, and there was
+nothing for an agent to be better at.
 
-**Known and recorded:** on the original four scenarios the deterministic baseline **B0 scores
-4/4 at zero tokens**. No agent can beat that — the best available outcome is a tie at higher
-cost. Two ambiguous faults (`compass_offset`, `stiff_airframe`) were added specifically to give
-the comparison headroom, and `stats.ambiguity_worked()` fails the report if a future fault set
-loses it again.
+**One judge has now beaten it, and only one.** A single read-only tool, `exceedance_ranking`, took
+`gpt-5.6-sol` B3 from **0.00 to 0.53** on that fault while the `compass_offset` control held at
+**0.98** — helpful where it discriminates, harmless where it does not. The same tool moved
+`gemini-3.7-flash` **not at all** (0.00, symptom named 15/15). So the finding is not "the tool
+surface was the bottleneck"; it is that **a tool surface cannot be evaluated apart from the model
+consuming it**. The tool stays in `OPTIONAL_SPECS` and a test asserts it is not in the default.
+
+**Judge numbers exist and are published**, with the caveats attached. Two of those caveats change
+how every number here should be read:
+
+* **Name the model AND the route.** The same model, same arm, same prompts scored **0.11 via Google
+  ADC and 0.46 via an OpenAI-compatible gateway.** A result that names only the model may simply be
+  false.
+* **The cross-model accuracies describe the judges on `compass_offset`**, the only fault they were
+  measured against before pair C existed. On pair C, `gpt-5.6-sol` B3 goes 0.96 → 0.00 and
+  `gemini-3.7-flash` 1.00 → 0.00, naming the symptom on 30 of 30 judgements.
+
+**[WHITEPAPER.md](WHITEPAPER.md) is behind the repository** and is being rewritten. It carries the
+cross-model table and five retractions; it does not yet cover pair C, the nine-model prevalence
+sweep, the provider effect, cost per correct answer, or retractions six through eight. Until it
+does, the reproducible sources are the committed verdict files plus `scripts/e4_cost.py`,
+`scripts/e4_prevalence.py`, and the pre-registered probes in
+[docs/probe-pairc-e4.md](docs/probe-pairc-e4.md) and
+[docs/probe-pairc-tool-surface.md](docs/probe-pairc-tool-surface.md) — each of which committed its
+prediction and its falsifier *before* the run.
+
+**Ambiguity is enforced, not assumed.** `stats.ambiguity_worked()` fails the report if a fault set
+stops discriminating, and `test_score.py` asserts both halves — B0 perfect on every plain fault, and
+failing completely on every ambiguous pair. `stiff_airframe` was **retired** after six flights
+proved it was not ambiguous at all: cause and symptom landed in the same 0.25 s cycle every time.
+It is kept in the source as the record of what was tried.
 
 **Two things the API does not provide, recorded because they change what the numbers mean:**
 sampling parameters are rejected on the current model, so **B2's k samples vary only by the
@@ -231,7 +268,7 @@ means B2 collapsed into B1 at k× the cost. And there is **no seed**: bundles ar
 verdicts are not, so this is not end-to-end reproducible and does not claim to be.
 
 ```
-74 tests, all offline — no simulator, no network, no API key
+218 tests, all offline — no simulator, no network, no API key
 ```
 
 ## Running the research path

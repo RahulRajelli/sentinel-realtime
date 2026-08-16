@@ -25,7 +25,7 @@ decides whether the repair works.
 I build a monitor that watches a drone while it flies and tells the operator what is failing.
 The code is at
 [github.com/RahulRajelli/sentinel-realtime](https://github.com/RahulRajelli/sentinel-realtime),
-Apache-2.0. It ships 215 automated tests that need no simulator and no AI account, which you
+Apache-2.0. It ships 218 automated tests that need no simulator and no AI account, which you
 can confirm with `pytest -q` after cloning.
 
 A flight log is that dashboard with a few hundred lights and no dashboard. Sensors disagree,
